@@ -5,7 +5,7 @@ import Brands from "@/components/sections/home/Brands";
 import WorldNeedsUs from "@/components/sections/home/WorldNeedsUs";
 import Solution from "@/components/sections/home/Solution";
 import Video from "@/components/sections/home/Video";
-import ContactNow from "@/components/shared/contact/ContactNow";
+import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 
 const Home = () => {
   return (
@@ -16,7 +16,7 @@ const Home = () => {
       <WorldNeedsUs />
       <Solution />
       <Video />
-      <ContactNow />
+      <FinalCTA />
     </>
   );
 };
