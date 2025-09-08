@@ -8,7 +8,7 @@ import SolutionCard from "./SolutionCard";
 import GradientBadge from "@/components/utils/badges/GradientBadge";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 
-const ROTATION_INTERVAL = 15000; // 5 seconds per item
+const ROTATION_INTERVAL = 15000; // 15 seconds per item
 
 export default function SolutionSection() {
   const [selectedId, setSelectedId] = useState(solutionData[0].id);
@@ -58,20 +58,31 @@ export default function SolutionSection() {
 
         <div className="space-y-6">
           {solutionData.map((item, index) => (
-            <SolutionItem
-              key={item.id}
-              number={`0${index + 1}`}
-              title={item.title}
-              description={item.description}
-              isActive={selectedId === item.id}
-              onClick={() => handleItemClick(item.id, index)}
-              intervalDuration={ROTATION_INTERVAL}
-            />
+            <div className="" key={item.id}>
+              <SolutionItem
+                key={item.id}
+                number={`0${index + 1}`}
+                title={item.title}
+                description={item.description}
+                isActive={selectedId === item.id}
+                onClick={() => handleItemClick(item.id, index)}
+                intervalDuration={ROTATION_INTERVAL}
+              />
+              {selectedId === item.id && (
+                <div className="lg:hidden">
+                  <SolutionCard
+                    count={`0${item.id}`}
+                    cardTitle={item.title}
+                    cardDescription={item.description}
+                  />
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="w-full lg:w-[48%] h-full">
+      <div className="w-full lg:w-[48%] h-full hidden lg:block">
         {selectedFeature && (
           <SolutionCard
             count={`0${selectedFeature.id}`}
