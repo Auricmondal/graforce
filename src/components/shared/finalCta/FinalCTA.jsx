@@ -3,6 +3,7 @@ import Image from "next/image";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import bulb from "@/assets/bulb.png";
 import ElevatedButton from "@/components/utils/buttons/ElevatedButton";
+import ScrollReveal from "@/wrappers/ScrollReveal";
 
 const FinalCTA = () => {
   return (
@@ -13,6 +14,7 @@ const FinalCTA = () => {
           <Image src={bulb} alt="bulb" className=""></Image>
         </div>
 
+        <ScrollReveal>
         {/* Text */}
         <div className="relative z-10 flex flex-col gap-4 md:items-baseline items-center">
           <h2 className="text-3xl font-bold text-white">Ready to cut CO2 ?</h2>
@@ -21,6 +23,7 @@ const FinalCTA = () => {
           </p>
           <ElevatedButton className="!w-fit">Contact Now ❯ </ElevatedButton>
         </div>
+        </ScrollReveal>
       </SectionWrapper>
     </div>
   );
