@@ -29,14 +29,16 @@ export default function FloatupButton({
           {children}
         </span>
       </span>
-      <span className="relative w-5 h-5 block overflow-hidden text-center">
-        <span className="absolute inset-0 transform transition-opacity duration-300 group-hover:opacity-0 text-[14px] md:text-[16px] text-center h-fit m-auto">
-          {icon}
+      {icon && (
+        <span className="relative w-5 h-5 block overflow-hidden text-center">
+          <span className="absolute inset-0 transform transition-opacity duration-300 group-hover:opacity-0 text-[14px] md:text-[16px] text-center h-fit m-auto">
+            {icon}
+          </span>
+          <span className="flex absolute left-0 top-0 transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 text-[14px] md:text-[16px] text-center h-fit m-auto">
+            {icon}
+          </span>
         </span>
-        <span className="flex absolute left-0 top-0 transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 text-[14px] md:text-[16px] text-center h-fit m-auto">
-          {icon}
-        </span>
-      </span>
+      )}
     </button>
   );
 }
