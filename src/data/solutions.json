@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Fossil Hydrogen",
+    "description": "95% of hydrogen today comes from fossil fuels, creating heavy CO₂ emissions.",
+    "image": null
+  },
+  {
+    "id": 2,
+    "title": "Massive Emissions",
+    "description": "Hydrogen production emits ~830M tons of CO₂ annually, equal to Germany's emissions.",
+    "image": null
+  },
+  {
+    "id": 3,
+    "title": "Rising Costs",
+    "description": "Fossil hydrogen faces carbon taxes, penalties, and volatile fuel prices.",
+    "image": null
+  },
+  {
+    "id": 4,
+    "title": "ESG Pressure",
+    "description": "Regulators, investors, and customers demand clean energy compliance.",
+    "image": null
+  }
+]
