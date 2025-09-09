@@ -23,6 +23,7 @@ export default function SolutionCard({ count, cardTitle, cardDescription }) {
           <div className="text-xs text-white">Image Placeholder</div>
         </div>
       </div>
+      
     </div>
   );
 }
