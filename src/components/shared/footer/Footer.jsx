@@ -25,7 +25,7 @@ const Footer = () => {
               <FloatupButton
                 type="submit"
                 variant="Footer"
-                className=" min-w-[10ch] max-w-full sm:!w-fit bg-primary-500 text-primary-50 rounded-xl py-3 px-4 flex gap-2 items-center justify-center font-medium text-center border-[0.5px] border-[rgba(255,255,255,0.15)]"
+                className=" min-w-[10ch] max-w-full sm:!w-fit bg-primary-500 text-primary-50 rounded-xl py-3 px-4 flex gap-2 items-center justify-center font-medium border-[0.5px] border-[rgba(255,255,255,0.15)]"
               >
                 Subscribe
               </FloatupButton>
