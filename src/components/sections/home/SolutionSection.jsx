@@ -52,7 +52,7 @@ export default function SolutionSection() {
 
         <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] text-center lg:text-left max-w-[400px] md:max-w-[600px]">
           Hydrogen Today Pollutes.
-          <span className="text-primary-400"> We Change That</span>
+          <span className="text-primary-400 pl-2">We Change That</span>
         </h2>
 
         <div className="space-y-6">
