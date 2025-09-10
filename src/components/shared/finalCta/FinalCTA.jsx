@@ -1,8 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import bulb from "@/assets/bulb.png";
-import ElevatedButton from "@/components/utils/buttons/ElevatedButton";
+import Bulb from "@/assets/bulb.png";
+import FloatupButton from "@/components/utils/buttons/FloatupButton";
 import ScrollReveal from "@/wrappers/ScrollReveal";
 
 const FinalCTA = () => {
@@ -11,7 +11,7 @@ const FinalCTA = () => {
       <SectionWrapper className="max-w-[1460px] relative overflow-hidden">
         {/* Bulb Image */}
         <div className="absolute z-0 -bottom-8 right-1/12 -rotate-30 w-1/7 min-w-30">
-          <Image src={bulb} alt="bulb" className=""></Image>
+          <Image src={Bulb} alt="bulb" className=""></Image>
         </div>
 
         <ScrollReveal>
@@ -21,7 +21,7 @@ const FinalCTA = () => {
           <p className="text-md text-center md:text-left text-white">
             Book a demo and see how Graforce can fuel your hydrogen strategy.
           </p>
-          <ElevatedButton className="!w-fit">Contact Now ❯ </ElevatedButton>
+          <FloatupButton className="!w-fit" icon={"❯"}>Contact Now </FloatupButton>
         </div>
         </ScrollReveal>
       </SectionWrapper>
