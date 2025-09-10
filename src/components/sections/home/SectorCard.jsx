@@ -31,7 +31,7 @@ export default function SectorCard({
   return (
     <div
       onClick={onClick}
-      className={`relative cursor-pointer flex flex-col gap-[10px] transition-all duration-700 ease-in-out p-6 pb-0 border-r-1 border-white/15 
+      className={`relative cursor-pointer flex flex-col gap-[10px] transition-all duration-200 ease-in p-6 pb-0 border-r-1 border-white/15 
         ${
           isActive
             ? "flex-1 scale-100"
