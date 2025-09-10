@@ -50,7 +50,7 @@ export default function AboutUs() {
 
         {/* Technology Image */}
         <div className="relative w-full h-full">
-          <div className="absolute -bottom-1 -right-0 w-[95%] h-[95%] bg-gray-300 rounded-3xl z-0"></div>
+          <div className="absolute -bottom-1 -right-0 w-[95%] h-[95%] bg-cst-neutral-200 rounded-3xl z-0"></div>
           <div className="relative z-10 rounded-3xl overflow-hidden w-[95%] h-[95%]">
             <Image
               src={aboutUsImage}
