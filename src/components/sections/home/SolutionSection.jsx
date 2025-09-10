@@ -52,7 +52,6 @@ export default function SolutionSection() {
 
         <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] text-center lg:text-left">
           Hydrogen Today Pollutes.
-          <br />
           <span className="text-primary-400">We Change That</span>
         </h2>
 
