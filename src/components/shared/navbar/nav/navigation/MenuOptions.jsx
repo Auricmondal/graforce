@@ -35,7 +35,7 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
               onClick={() => {
                 // Handle option click
                 router.push(
-                  "/services/#" + option.toLowerCase().replace(/\s+/g, "-")
+                  "/services/" + option.toLowerCase().replace(/\s+/g, "-")
                 );
                 setHovered(false);
               }}
@@ -114,7 +114,7 @@ export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMe
               onClick={() => {
                 // Handle option click
                 router.push(
-                  "/services/#" + option.toLowerCase().replace(/\s+/g, "-")
+                  "/services/" + option.toLowerCase().replace(/\s+/g, "-")
                 );
                 setHovered(false);
                 setIsMenuOpen(false); // Close the menu after navigation

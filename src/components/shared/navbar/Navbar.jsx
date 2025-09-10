@@ -30,7 +30,7 @@ const Navbar = () => {
   useClickOutside(menuRef, () => setIsMenuOpen(false));
 
   return (
-    <bar className="fixed top-0 w-full" ref={menuRef}>
+    <bar className="fixed top-0 w-full z-100" ref={menuRef}>
       <nav
         className={`mx-auto flex-1 items-center justify-between px-4 py-2 w-[85%] border border-gray-300 bg-white shadow-sm overflow-auto
         ${

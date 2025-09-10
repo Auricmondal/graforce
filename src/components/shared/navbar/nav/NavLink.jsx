@@ -27,7 +27,7 @@ const NavLink = ({
       <div
         ref={menuRef}
         className={`peer group cursor-pointer ${className} ${
-          pathname === link ? active : ""
+          pathname.split('/')[1] === link.split('/')[1] ? active : ""
         }`}
         onClick={(e) => {
           if (!item.toggle) {
