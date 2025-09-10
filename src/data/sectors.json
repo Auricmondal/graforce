@@ -1,0 +1,87 @@
+{
+  "Energy": [
+    {
+      "id": 1,
+      "title": "Energy-Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 2,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 3,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    }
+  ],
+  "Real Estate": [
+    {
+      "id": 1,
+      "title": "Estate-Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 2,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 3,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    }
+  ],
+  "Steel & Concrete": [
+    {
+      "id": 1,
+      "title": "Steel-Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 2,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 3,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    }
+  ],
+  "Mobility": [
+    {
+      "id": 1,
+      "title": "Mobility-Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 2,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 3,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    }
+  ],
+  "Agriculture": [
+    {
+      "id": 1,
+      "title": "Agri-Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 2,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    },
+    {
+      "id": 3,
+      "title": "Plasma Hydrogen",
+      "description": "Graforce's Plasmalyzer® produces clean hydrogen without CO₂, using plasma catalysis."
+    }
+  ]
+}
