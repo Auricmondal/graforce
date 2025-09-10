@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import ScrollReveal from "@/wrappers/ScrollReveal";
 import Path from "@/assets/home/hero/Path.png";
 import Rectangle from "@/assets/home/hero/Rectangle-5.png";
 import Bulb from "@/assets/bulb.png";
@@ -27,6 +28,7 @@ const Hero = () => {
         <Image src={Rectangle} width={500} alt="Rectangle" className="absolute top-0 right-0 object-contain" />
         <Image src={Bulb} width={200} alt="Rectangle" className="absolute bottom-0 left-1/2 -translate-x-1/2" />
 
+        <ScrollReveal>
         <div className="h-1/2 absolute top-32 left-0 w-full flex flex-col gap-8 items-center z-10">
           <h1 className="text-5xl lg:text-7xl text-center">Fueling a Carbon <br/> Free Future</h1>
           <div className="flex flex-wrap gap-4">
@@ -34,6 +36,8 @@ const Hero = () => {
             <ElevatedButton className="!w-fit">Learn More</ElevatedButton>
           </div>
         </div>
+        </ScrollReveal>
+
       </div>
 
         <FloatingTip className="top-90 right-1/6" delay={1}>• 100% Carbon Value</FloatingTip>
