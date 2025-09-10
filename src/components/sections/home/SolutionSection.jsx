@@ -44,13 +44,13 @@ export default function SolutionSection() {
 
   return (
     <SectionWrapper className="flex flex-col lg:flex-row justify-between gap-4 items-stretch max-w-[1460px] mx-auto">
-      <div className="space-y-6">
+      <div className="space-y-6 flex flex-col items-center lg:items-start">
         <GradientBadge
           text={"Graforce's Solution"}
           icon={<TbSquareRotatedFilled />}
         />
 
-        <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] whitespace-nowrap">
+        <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] text-center lg:text-left">
           Hydrogen Today Pollutes.
           <br />
           <span className="text-primary-400">We Change That</span>
