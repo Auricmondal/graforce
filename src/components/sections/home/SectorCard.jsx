@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
 import FloatupButton from "@/components/utils/buttons/FloatupButton";
 import useIsMobile from "@/hooks/useIsMobile";
+import useIsDesktop from "@/hooks/useIsDesktop";
+import { motion } from "motion/react";
 
 export default function SectorCard({
   data,
@@ -10,6 +12,7 @@ export default function SectorCard({
 }) {
   const progressRef = useRef(null);
   const isMobile = useIsMobile();
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     const el = progressRef.current;
@@ -26,24 +29,32 @@ export default function SectorCard({
       el.style.transition = "none";
       el.style.height = "0%";
     }
-  }, [isActive, intervalDuration]);
+  }, [isActive, intervalDuration, isMobile]);
 
   return (
-    <div
+    <motion.div
       onClick={onClick}
-      className={`relative cursor-pointer flex flex-col gap-[10px] transition-all duration-200 ease-in p-6 pb-0 border-r-1 border-white/15 
-        ${
-          isActive
-            ? "flex-1 scale-100"
-            : "flex-1 lg:flex-[0.6] opacity-70 hover:opacity-100 justify-between"
-        }
-        w-full
+      animate={{
+        flexGrow: isActive || isMobile ? 1 : 0.6,
+        opacity: isActive || isMobile ? 1 : 0.7,
+      }}
+      transition={{
+        duration: 0.3,
+        easing: "easeInOut",
+      }}
+      className={`relative cursor-pointer flex flex-col gap-[10px] p-6 pb-0 border-r-1 border-white/15 
+        hover:opacity-100 w-full
+        justify-between
       `}
+      style={{
+        flexBasis: 0,
+        minWidth: 0,
+      }}
     >
       {/* Vertical progress bar */}
       <div
         ref={progressRef}
-        className="absolute bottom-0 right-0 w-[2px] bg-white"
+        className="absolute bottom-0 right-0 w-[2px] bg-white hidden lg:block"
         style={{ height: 0 }}
       />
 
@@ -53,7 +64,7 @@ export default function SectorCard({
         <p className="text-white/80 text-xl">{data.description}</p>
       </div>
 
-      {(isActive || isMobile) && (
+      {(isActive || !isDesktop) && (
         <FloatupButton
           variant="custom"
           fullWidth={true}
@@ -64,6 +75,6 @@ export default function SectorCard({
       )}
 
       <div className="bg-white aspect-square w-full rounded-[27px]" />
-    </div>
+    </motion.div>
   );
 }
