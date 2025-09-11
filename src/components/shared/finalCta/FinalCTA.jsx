@@ -8,7 +8,7 @@ import ScrollReveal from "@/wrappers/ScrollReveal";
 const FinalCTA = () => {
   return (
     <div className="bg-primary-700">
-      <SectionWrapper className="max-w-[1460px] relative overflow-hidden">
+      <SectionWrapper className="max-w-[2000px] relative overflow-hidden mx-auto">
         {/* Bulb Image */}
         <div className="absolute z-0 -bottom-8 right-1/12 -rotate-30 w-1/7 min-w-30">
           <Image src={bulb} alt="bulb" className=""></Image>
