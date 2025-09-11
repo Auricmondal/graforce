@@ -11,7 +11,7 @@ import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 
 import { notFound } from "next/navigation";
 
-const ALLOWED_SLUGS = ["hydrogen", "water_purification", "energy_generation"];
+const ALLOWED_SLUGS = ["hydrogen-production", "water-purification", "energy-generation"];
 
 export default async function ServicePage({ params }) {
   const { service } = await params;
