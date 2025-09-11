@@ -29,13 +29,13 @@ export default function SolutionItem({
 
   return (
     <div
-      className="relative cursor-pointer transition flex items-center gap-4 pt-4 pb-3 border-b border-b-neutral-300"
+      className="relative cursor-pointer transition flex items-center gap-4 pt-4 pb-3 shadow-[inset_0_-1px_0_0_var(--color-cst-neutral-300)]"
       onClick={onClick}
     >
       {/* Animated progress bar overlay (blue) */}
       <div
         ref={progressRef}
-        className={`absolute bottom-0 left-0 h-[1px] bg-primary-300`}
+        className={`absolute -bottom-0 left-0 h-[1px] bg-primary-300`}
         style={{ width: 0 }}
       />
 

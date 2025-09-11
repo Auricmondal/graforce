@@ -6,7 +6,7 @@ export default function SectorTabs({ tabs, activeTab, onTabClick }) {
           <button
             key={tab}
             onClick={() => onTabClick(tab)}
-            className={`text-white text-xl tracking-tight border-r border-white/20 pb-2 px-4`}
+            className={`text-white text-xl cursor-pointer tracking-tight border-r border-white/20 pb-2 px-4`}
           >
             <span
               className={`pb-2 transition-all duration-300 text-nowrap ${
