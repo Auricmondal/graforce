@@ -11,7 +11,7 @@ import ScrollReveal from '@/wrappers/ScrollReveal';
 const Footer = () => {
   return (
       <footer className="bg-primary-900 text-white  relative overflow-hidden">
-        <div className="max-w-[1460px] mx-auto">
+        <div className="max-w-[2000px] mx-auto">
           <div className='pt-12 px-6 md:px-16'>
           <div className="mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-2">Creating a Co2 free World</h2>
@@ -160,7 +160,7 @@ const Footer = () => {
       </div>
 
             <ScrollReveal>
-          <FitText minFont={16} maxFont={300} className="w-full text-center font-extrabold text-white leading-none overflow-hidden">
+          <FitText minFont={16} maxFont={500} className="w-full text-center font-extrabold text-white leading-none overflow-hidden">
               Graforce
           </FitText>
             </ScrollReveal>
