@@ -45,7 +45,7 @@ const News = () => {
           />
     <Link 
       href="#" 
-      className="text-black underline  hover:underline-offset-1 hover:decoration-transparent transition-all duration-150 ease font-medium"
+      className="text-black md:text-base text-xs underline  hover:underline-offset-1 hover:decoration-transparent transition-all duration-150 ease font-medium"
     >
             Read More Articles
           </Link>
