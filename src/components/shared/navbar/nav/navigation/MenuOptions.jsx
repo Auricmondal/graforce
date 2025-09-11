@@ -97,7 +97,7 @@ export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMe
   ];
   return (
     <div
-      className={`flex flex-col transition-transform duration-200 ease-in-out rounded-lg text-white shadow-sm p-1 ${className}
+      className={`mobile-options flex flex-col transition-transform duration-200 ease-in-out rounded-lg text-white shadow-sm p-1 ${className}
       ${mobileMenuHovered ? "scale-x-100 transition-transform duration-200 ease-in-out" : "scale-x-0 transition-transform duration-200 ease-in-out"}`}
       {...props}
     >
@@ -116,7 +116,7 @@ export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMe
                 router.push(
                   "/services/" + option.toLowerCase().replace(/\s+/g, "-")
                 );
-                setHovered(false);
+                setMobileMenuHovered(false);
                 setIsMenuOpen(false); // Close the menu after navigation
               }}
             >
@@ -130,7 +130,7 @@ export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMe
           ))}
         </div>
         {/* Achievement Section */}
-        <div className="space-y-1 px-2 pt-2">
+        <div className="space-y-1 pt-2">
           <div className="text-white text-sm font-medium">Our Achievement</div>
           {/* Achievement Card */}
           <div

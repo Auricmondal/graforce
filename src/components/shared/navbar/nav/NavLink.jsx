@@ -99,7 +99,7 @@ const NavLink = ({
         {mobileMenuHovered && item.toggle && (
           <ServiceOptionsMobile
             // ref={menuRef}
-            className={`transition-transform bg-transparent mx-auto flex [@media(min-width:1080px)]:hidden duration-200 hover:flex w-full`}
+            className={`transition-transform bg-transparent mx-auto flex [@media(min-width:1080px)]:hidden hover:flex w-full  transform duration-200 ease-in-out`}
             onMouseEnter={() => setMobileMenuHovered(true)}
             setMobileMenuHovered={setMobileMenuHovered}
             setIsMenuOpen={setIsMenuOpen}
