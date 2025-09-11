@@ -6,6 +6,8 @@ import FloatupButton from '@/components/utils/buttons/FloatupButton';
 import FitText from '@/hooks/FitText';
 import AnimatedText from '@/components/utils/Animation/AnimatedText';
 
+import ScrollReveal from '@/wrappers/ScrollReveal';
+
 const Footer = () => {
   return (
       <footer className="bg-primary-900 text-white  relative overflow-hidden">
@@ -118,7 +120,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-[#7B7B7B] pb-2 border-b border-[#7B7B7B] mb-4">
             Quick Links
           </h3>
-          <ul className="space-y-2 text-[#7B7B7B]">
+          <ul className="space-y-2 text-[#7B7B7B">
             <li><Link href="#" >
               <AnimatedText>About Us</AnimatedText>
             </Link></li>
@@ -157,9 +159,11 @@ const Footer = () => {
       </div>
       </div>
 
+            <ScrollReveal>
           <FitText minFont={16} maxFont={300} className="w-full text-center font-extrabold text-white leading-none overflow-hidden">
-            Graforce
+              Graforce
           </FitText>
+            </ScrollReveal>
           
           <div className="pb-4 px-2 md:px-4">
             <div className="flex flex-col-reverse md:flex-row md:justify-between justify-center items-center text-[#7B7B7B] text-sm border-t-[1.5px] border-[rgba(255,255,255,0.15)] pt-4">
