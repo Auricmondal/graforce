@@ -51,7 +51,7 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
         </div>
 
         {/* Achievement Section */}
-        <div className="space-y-1 py-4">
+        <div className="space-y-1 pb-4 pr-4">
           <div className="text-black text-lg font-medium">Our Achievement</div>
 
           {/* Achievement Card */}
