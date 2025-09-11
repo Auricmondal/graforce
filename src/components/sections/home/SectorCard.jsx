@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import FloatupButton from "@/components/utils/buttons/FloatupButton";
 import useIsMobile from "@/hooks/useIsMobile";
+import useIsDesktop from "@/hooks/useIsDesktop";
 import { motion } from "motion/react";
 
 export default function SectorCard({
@@ -11,6 +12,7 @@ export default function SectorCard({
 }) {
   const progressRef = useRef(null);
   const isMobile = useIsMobile();
+  const isDesktop = useIsDesktop();
 
   useEffect(() => {
     const el = progressRef.current;
@@ -62,7 +64,7 @@ export default function SectorCard({
         <p className="text-white/80 text-xl">{data.description}</p>
       </div>
 
-      {(isActive || isMobile) && (
+      {(isActive || !isDesktop) && (
         <FloatupButton
           variant="custom"
           fullWidth={true}
