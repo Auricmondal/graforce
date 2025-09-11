@@ -6,6 +6,7 @@ import WorldNeedsUs from "@/components/sections/home/WorldNeedsUs";
 import Solution from "@/components/sections/home/SolutionSection";
 import Video from "@/components/sections/home/Video";
 import FinalCTA from "@/components/shared/finalCta/FinalCTA";
+import FooterRevealer from "@/components/shared/footer/FooterRevealer";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Solution />
       <WorldNeedsUs />
       <FinalCTA />
+      <FooterRevealer />
     </>
   );
 };

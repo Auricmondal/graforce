@@ -13,9 +13,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${oxygen.variable} ${dmSans.variable} antialiased`}>
-        <Navbar />
-        <ProgressProvider>{children}</ProgressProvider>
-        <Footer />
+          <div className="relative z-10">
+            <Navbar />
+            <ProgressProvider>{children}</ProgressProvider>
+          </div>
+          <div className="fixed bottom-0 w-full z-0">
+            <Footer />
+          </div>
       </body>
     </html>
   );
