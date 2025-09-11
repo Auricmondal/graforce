@@ -10,10 +10,10 @@ export default function AnimatedText({ className, children, icon, variant, ...pr
         {...props}
       >
         <span className="relative block overflow-hidden">
-          <span className={`flex transform transition-transform duration-300 group-hover:-translate-y-full text-[14px] md:text-[16px] ${isRightAligned ? 'justify-end' : ''}`}>
+          <span className={` flex transform transition-transform duration-300 group-hover:-translate-y-full text-[14px] md:text-[16px] ${isRightAligned ? 'justify-end' : ''}`}>
             {children}
           </span>
-          <span className={`flex absolute ${isRightAligned ? 'right-0' : 'left-0'} top-0 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-[14px] md:text-[16px] ${isRightAligned ? 'justify-end' : ''}`}>
+          <span className={`text-white flex absolute ${isRightAligned ? 'right-0' : 'left-0'} top-0 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-[14px] md:text-[16px] ${isRightAligned ? 'justify-end' : ''}`}>
             {children}
           </span>
         </span>
