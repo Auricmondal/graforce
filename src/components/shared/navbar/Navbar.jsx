@@ -29,17 +29,17 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  useDisableZoom();
+  // useDisableZoom();
 
   useClickOutside(menuRef, () => setIsMenuOpen(false));
 
   useHideOnScrollNav(menuRef, navRef, isMenuOpen);
 
   return (
-    <div className="fixed top-0 right-0 w-full h-full z-100" ref={menuRef}>
+    <div className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out ${isMenuOpen ? "h-full" : "h-14"}`} ref={menuRef}>
       <nav
         ref={navRef}
-        className={`mx-auto flex-1 items-center justify-between px-4 py-2 bg-white shadow-sm [@media(min-width:1080px)]:overflow-visible overflow-auto m-auto select-none transition-all duration-300 ease-in-out
+        className={`mx-auto flex-1 items-center justify-between px-4 py-2 bg-white shadow-sm [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto transition-all duration-300 ease-in-out
         ${
           isMenuOpen
             ? "h-full w-full transition-all duration-500 ease-in-out origin-top mt-0 bg-gradient-to-l from-[#1E428A] to-[#081124]"

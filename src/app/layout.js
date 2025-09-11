@@ -2,6 +2,7 @@ import "./globals.css";
 import { oxygen, dmSans } from "./font";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
+import ProgressProvider from "./providers";
 
 export const metadata = {
   title: "Graforce",
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${oxygen.variable} ${dmSans.variable} antialiased`}>
         <Navbar />
-        {children}
+        <ProgressProvider>{children}</ProgressProvider>
         <Footer />
       </body>
     </html>
