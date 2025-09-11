@@ -29,7 +29,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  useDisableZoom();
+  //useDisableZoom();
 
   useClickOutside(menuRef, () => setIsMenuOpen(false));
 
