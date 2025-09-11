@@ -10,47 +10,27 @@ gsap.registerPlugin(ScrollTrigger);
 const Video = () => {
   const overlayRef = useRef(null);
   const videoRef = useRef(null);
+  const scrollTriggerConfig = { trigger: "#hero", start: "top top", end: "bottom+=2500 top", scrub: true, pin: true };
 
   useEffect(() => {
     const overlay = overlayRef.current;
     const video = videoRef.current;
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
 
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom+=2000 top",
-        scrub: true,
-        pin: true,
-      },
+      scrollTrigger: scrollTriggerConfig,
+      defaults: { borderRadius: "50rem", ease: "power4.inOut" },
     });
 
-    tl.to(overlay, { width: "0rem", height: "0rem", borderRadius: "50rem", ease: "power2.out", duration: 0.4,
+    tl.to(overlay, { duration: 0.01,
       onComplete: () => {
-        if (video) {
-          video.play();
-        }
-    }})
+        video?.play().catch(() => {});
+    }});
 
-    tl.to(overlay, { width: "5rem", height: "5rem", borderRadius: "50rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: "20rem", height: "20rem", borderRadius: "50rem", ease: "power2.out", duration: 0.4 });
-
-    if(vw > vh){
-      tl.to(overlay, { width: "100vh", height: "100vh", borderRadius: "50rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: Math.max(vw * 0.6, vh), borderRadius: "10rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: Math.max(vw * 0.8, vh), borderRadius: "5rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: "100vw", borderRadius: "5rem", ease: "power2.out", duration: 0.4 })
-    }
-    else{
-      tl.to(overlay, { width: "100vw", height: "100vw", borderRadius: "50rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { height: Math.max(vh * 0.6, vw), borderRadius: "10rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { height: Math.max(vh * 0.8, vw), borderRadius: "5rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { height: "100vh", borderRadius: "5rem", ease: "power2.out", duration: 0. })
-    }
-
-    tl.to(overlay, { borderRadius: "0%", scale: 1, ease: "power2.out", duration: 0.4 }).to({}, { duration: 3 })
+    tl.to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
+      .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
+      .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
+      .to(overlay, { width: "100vw", height: "100vh", borderRadius: "0rem", duration: 3 })
+      .to({}, { duration: 3 });
 
   }, []);
 
