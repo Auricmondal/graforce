@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${oxygen.variable} ${dmSans.variable} antialiased`}>
-          <div className="relative z-10">
+          <div className="relative z-10 pointer-events-none">
             <Navbar />
             <ProgressProvider>{children}</ProgressProvider>
           </div>

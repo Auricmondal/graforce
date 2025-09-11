@@ -29,7 +29,7 @@ const Hero = () => {
         <Image
           src={Path}
           alt="Path"
-          className="absolute  -bottom-1/5 left-0 min-h-full object-cover object-right"
+          className="absolute -bottom-1/5 left-0 min-h-full object-cover object-right"
         />
         <Image
           src={Rectangle}

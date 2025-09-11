@@ -29,7 +29,7 @@ const Video = () => {
     tl.to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
       .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
       .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
-      .to(overlay, { width: "100vw", height: "100vh", borderRadius: "0rem", duration: 3 })
+      .to(overlay, { width: "100%", height: "100vh", borderRadius: "0rem", duration: 3 })
       .to({}, { duration: 3 });
 
   }, []);
@@ -44,7 +44,7 @@ const Video = () => {
         src="https://www.w3schools.com/html/mov_bbb.mp4"
         playsInline
         muted
-        className="w-screen h-screen object-cover scale-1.5"
+        className="w-screen h-screen object-cover"
       />
     </div>
   );

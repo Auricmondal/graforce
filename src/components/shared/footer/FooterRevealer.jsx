@@ -2,7 +2,7 @@ import React from 'react';
 
 const FooterRevealer = () => {
   return (
-    <section className="h-screen"></section>
+    <div className="h-[1000px] pointer-events-none bg-transparent"></div>
   );
 };
 
