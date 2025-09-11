@@ -43,6 +43,7 @@ export default function SolutionSection() {
   const selectedFeature = solutionData.find((f) => f.id === selectedId);
 
   return (
+    <div className="bg-white">
     <SectionWrapper className="flex flex-col lg:flex-row justify-between gap-4 items-stretch max-w-[1460px] mx-auto bg-white">
       <div className="space-y-6 flex flex-col items-center lg:items-start">
         <GradientBadge
@@ -91,5 +92,6 @@ export default function SolutionSection() {
         )}
       </div>
     </SectionWrapper>
+    </div>
   );
 }

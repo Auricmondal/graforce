@@ -1,7 +1,5 @@
 "use client";
-import React from 'react';
-
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,7 +8,15 @@ gsap.registerPlugin(ScrollTrigger);
 const Video = () => {
   const overlayRef = useRef(null);
   const videoRef = useRef(null);
-  const scrollTriggerConfig = { trigger: "#hero", start: "top top", end: "bottom+=2500 top", scrub: true, pin: true };
+  const circleRef = useRef(null);
+
+  const scrollTriggerConfig = {
+    trigger: "#hero",
+    start: "top top",
+    end: "bottom+=2500 top",
+    scrub: true,
+    pin: true
+  };
 
   useEffect(() => {
     const overlay = overlayRef.current;
@@ -24,13 +30,17 @@ const Video = () => {
     tl.to(overlay, { duration: 0.01,
       onComplete: () => {
         video?.play().catch(() => {});
-    }});
-
-    tl.to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
+    }})
+      .to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
       .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
       .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
       .to(overlay, { width: "100%", height: "100vh", borderRadius: "0rem", duration: 3 })
-      .to({}, { duration: 3 });
+
+      .to(circleRef.current, {
+        strokeDashoffset: 0,
+        duration: 3,
+        ease: "none",
+      });
 
   }, []);
 
@@ -46,6 +56,24 @@ const Video = () => {
         muted
         className="w-screen h-screen object-cover"
       />
+
+      <svg
+        className="absolute bottom-8 right-8 w-16 h-16 rounded-full p-2"
+        viewBox="0 0 100 100"
+      >
+        <circle
+          ref={circleRef}
+          r="40"
+          cx="50"
+          cy="50"
+          stroke="white"
+          strokeWidth="12"
+          fill="none"
+          strokeDasharray="280"
+          strokeDashoffset="280"
+          transform="rotate(-90 50 50)"
+        />
+      </svg>
     </div>
   );
 }
