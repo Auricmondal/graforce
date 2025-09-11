@@ -10,8 +10,10 @@ import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 const Home = () => {
   return (
     <>
+    <section id="hero">
       <Hero />
       <Video />
+    </section>
       <Brands />
       <Solution />
       <WorldNeedsUs />
