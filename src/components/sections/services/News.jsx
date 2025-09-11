@@ -38,14 +38,15 @@ const News = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-12">
           <GradientBadge
+            variant="News"
             text="News"
             icon={<TbSquareRotatedFilled />}
-            className="text-black"
+            className="p-[4px_16px] rounded-full opacity-100 inline-flex items-center justify-start bg-gradient-to-r from-primary-50 to-primary-300 text-white text-base md:text-lg font-medium border-[0.5px] border-black/10"
           />
-          <Link 
-            href="#" 
-            className="text-black hover:text-primary-600 transition-colors duration-300 font-medium underline"
-          >
+    <Link 
+      href="#" 
+      className="text-black underline  hover:underline-offset-1 hover:decoration-transparent transition-all duration-150 ease font-medium"
+    >
             Read More Articles
           </Link>
         </div>
