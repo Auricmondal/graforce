@@ -1,13 +1,14 @@
 import { useRouter } from "next/navigation";
 import React from "react";
-import { HiOutlineMenuAlt1 } from "react-icons/hi";
-import MenuRive from "./MenuRive";
+import Hamburger from "./Hamburger";
+// import { HiOutlineMenuAlt1 } from "react-icons/hi";
+// import MenuRive from "./MenuRive";
 
 const BrandLogo = ({ onClick, isMenuOpen }) => {
   const router = useRouter();
   return (
     <div
-      className={`flex items-center justify-center brand cursor-pointer lg:gap-2 md:gap-1 gap-0`}
+      className={`flex items-center justify-center brand cursor-pointer gap-2`}
       onClick={() => router.push("/")}
     >
       <div
@@ -16,10 +17,12 @@ const BrandLogo = ({ onClick, isMenuOpen }) => {
             ? "text-white"
             : "text-black"
         }`}
+        // onMouseEnter={onClick}
         onClick={onClick}
       >
+        <Hamburger isMenuOpen={isMenuOpen} />
         {/* <HiOutlineMenuAlt1 /> */}
-        <MenuRive isMenuOpen={isMenuOpen} />
+        {/* <MenuRive isMenuOpen={isMenuOpen} /> */}
       </div>
       <div
         className={`group flex text-3xl font-bold brand cursor-pointer ${

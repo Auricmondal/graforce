@@ -22,16 +22,16 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
       className={`options flex flex-col translate-x-[10%] transition-transform duration-200 ease-in-out bg-white border rounded-lg border-gray-300 shadow-sm p-2 ${className}`}
       {...props}
     >
-      <div className="text-black py-2 border-b border-gray-400 font-bold mb-2">
+      <div className="text-black px-4 py-2 border-b border-gray-400 font-bold mb-2">
         Our Services
       </div>
-      <div className="flex flex-row gap-8 justify-between mt-2">
+      <div className="flex flex-row gap-8 justify-between mt-1">
         <div className="space-y-3 mb-8">
           {/* Service Options */}
           {options.map((option, index) => (
             <div
               key={index}
-              className="list flex items-center backdrop-blur-sm rounded-lg p-4 cursor-pointer hover:bg-gray-100"
+              className="list flex items-center backdrop-blur-sm rounded-lg px-4 py-2 cursor-pointer hover:bg-gray-100"
               onClick={() => {
                 // Handle option click
                 router.push(
@@ -51,7 +51,7 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
         </div>
 
         {/* Achievement Section */}
-        <div className="space-y-1 p-4">
+        <div className="space-y-1 py-4">
           <div className="text-black text-lg font-medium">Our Achievement</div>
 
           {/* Achievement Card */}
@@ -74,10 +74,10 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
                 router.push("/contact");
                 setHovered(false);
               }}
-              className="transition-colors duration-200 rounded-full flex items-center font-medium text-lg gap-1"
+              className="group transition-colors duration-200 rounded-full flex items-center font-medium text-lg gap-1 cursor-pointer"
             >
               <span>Contact Us</span>
-              <IoIosArrowDroprightCircle className="w-6 h-6" />
+              <IoIosArrowDroprightCircle className="w-6 h-6 transition-all duration-200 ease-in-out group-hover:mx-2" />
             </button>
           </div>
         </div>
