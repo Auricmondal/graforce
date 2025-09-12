@@ -1,28 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { loaderContext } from "@/contexts/LoaderContext";
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
+import { useContext, useEffect, useRef } from "react";
 
 export default function LoaderProvider({ children }) {
+  const loadingctx = useContext(loaderContext);
+  const { loading, setLoading, setRevealStarted, waitForPageReady } =
+    loadingctx;
   const pathname = usePathname();
-  const [loading, setLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
-  const [revealStarted, setRevealStarted] = useState(false);
+  const prevPath = useRef(pathname);
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
-    setLoading(true);
-    setShowContent(false);
-    setRevealStarted(false);
+    if (prevPath.current !== pathname) {
+      setLoading(true);
 
-    const timeout = setTimeout(() => {
-      setLoading(false);
-      setShowContent(true);
-    }, 3500);
+      (async () => {
+        await waitForPageReady();
+        await sleep(800);
+        setLoading(false);
+      })();
 
-    return () => clearTimeout(timeout);
+      prevPath.current = pathname;
+    }
   }, [pathname]);
-
   return (
     <>
       <main className="z-0 relative">{children}</main>
@@ -30,75 +34,37 @@ export default function LoaderProvider({ children }) {
       <AnimatePresence>
         {loading && (
           <motion.div
-            key="overlay"
-            className={`fixed ${
-              revealStarted ? "" : "top-0 left-0 w-screen h-screen"
-            } z-50 pointer-events-none`}
-            style={{
-              transform: "translate(-50%, -50%)",
-              borderRadius: "50%", // fallback
-              backgroundColor: revealStarted ? "transparent" : "white",
-              boxShadow: "0 0 0 9999px rgba(255, 255, 255, 1)",
-            }}
+            className="fixed bg-[linear-gradient(206.41deg,_var(--color-primary-700)_17.27%,_var(--color-primary-100)_47.98%,_var(--color-primary-200)_65.61%,_var(--color-primary-500)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
             initial={{
-              height: 0,
-              width: 0,
+              width: 5000,
+              height: 5000,
+              borderRadius: "50%",
+              x: "-50%",
+              y: "-50%",
               top: "50%",
               left: "50%",
+              opacity: 1,
             }}
-            animate={
-              revealStarted
-                ? {
-                    height: 5000,
-                    width: 5000, // expanding hole
-                    transition: {
-                      duration: 1.5,
-                      ease: "easeInOut",
-                    },
-                  }
-                : {}
-            }
-            exit={{
-              opacity: 0,
-              transition: { duration: 0.5, ease: "easeInOut" },
+            animate={{
+              width: 0,
+              height: 0,
+              transition: {
+                duration: 0.6,
+                ease: [0.6, 0.01, -0.05, 0.95],
+              },
             }}
           >
-            {/* Shrinking logo animation */}
-            {!revealStarted && (
-              <motion.div
-                className="fixed bg-[linear-gradient(206.41deg,_var(--color-primary-700)_17.27%,_var(--color-primary-100)_47.98%,_var(--color-primary-200)_65.61%,_var(--color-primary-500)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
-                initial={{
-                  width: 5000,
-                  height: 5000,
-                  borderRadius: "50%",
-                  x: "-50%",
-                  y: "-50%",
-                  top: "50%",
-                  left: "50%",
-                }}
-                animate={{
-                  width: 0,
-                  height: 0,
-                  transition: {
-                    duration: 1.8,
-                    ease: [0.6, 0.01, -0.05, 0.95],
-                  },
-                }}
-                onAnimationComplete={() => setRevealStarted(true)} // ✅ Trigger hole
-              >
-                <motion.span
-                  className="text-white font-bold"
-                  initial={{ scale: 10 }}
-                  animate={{ scale: 1 }}
-                  transition={{
-                    duration: 1.8,
-                    ease: [0.6, 0.01, -0.05, 0.95],
-                  }}
-                >
-                  Graforce
-                </motion.span>
-              </motion.div>
-            )}
+            <motion.span
+              className="text-white text-[10vw] font-bold"
+              initial={{ scale: 1 }}
+              animate={{ scale: 0 }}
+              transition={{
+                duration: 0.6,
+                ease: [0.6, 0.01, -0.05, 0.95],
+              }}
+            >
+              Graforce
+            </motion.span>
           </motion.div>
         )}
       </AnimatePresence>
