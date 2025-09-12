@@ -7,7 +7,8 @@ import Solution from "@/components/sections/home/SolutionSection";
 import Video from "@/components/sections/home/Video";
 import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 
-const Home = () => {
+const Home = async() => {
+  // await new Promise((resolve) => setTimeout(resolve, 3000)); // Simulate a 1 second delay
   return (
     <>
     <section id="hero">
