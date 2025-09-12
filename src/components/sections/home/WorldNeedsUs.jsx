@@ -81,7 +81,7 @@ export default function WorldNeedsUs() {
       className="bg-no-repeat bg-cover bg-center py-6 my-10 text-white"
       style={{
         backgroundImage: `linear-gradient(206.41deg, #0C1731 17.27%, #92ABE5 47.98%, #6E8FDD 65.61%, #102044 91.31%),
-                          url(lightning.svg)`,
+                          url(/lightning.svg)`,
         backgroundBlendMode: "overlay",
       }}
     >
