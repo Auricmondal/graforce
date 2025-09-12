@@ -41,7 +41,7 @@ const Footer = () => {
             <h3 className=" text-cst-neutral-500 text-right">Quick Links</h3>
             <h3 className="text-white text-right">Important Links</h3>
           </div>
-          
+
           <div className="w-full flex flex-row justify-between gap-8 text-base ">
           {/* Contact Info */}
           <div className="space-y-6 md:w-1/2 text-left text-white">
@@ -93,7 +93,7 @@ const Footer = () => {
         {/* Mobile Layout */}
 
         <div className="md:hidden max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+
         {/* Contacts */}
         <div>
           <h3 className="text-lg font-semibold pb-2 border-b border-[#7B7B7B] mb-4">
@@ -164,10 +164,10 @@ const Footer = () => {
               Graforce
           </FitText>
             </ScrollReveal>
-          
+
           <div className="pb-4 px-2 md:px-4">
             <div className="flex flex-col-reverse md:flex-row md:justify-between justify-center items-center text-[#7B7B7B] text-sm border-t-[1.5px] border-[rgba(255,255,255,0.15)] pt-4">
-              
+
               {/* Left copyright text */}
               <span className="md:pl-12 text-center">
                 © 2025 Graforce. All rights reserved.
@@ -180,13 +180,13 @@ const Footer = () => {
                 <Link href="#" className='md:hidden block'>Privacy</Link>
                 <Link href="#">Terms and Conditions</Link>
               </div>
-              
+
             </div>
           </div>
 
         </div>
       </footer>
-      
+
   );
 };
 
