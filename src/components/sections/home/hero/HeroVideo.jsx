@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -33,19 +33,22 @@ const HeroVideo = ({ animLocationRef }) => {
         duration: 0.01,
         onComplete: () => {
           video?.play().catch(() => {});
-        }
+        },
       })
-      .to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
-      .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
-      .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
-      .to(overlay, { width: "100%", height: "100vh", borderRadius: "0rem", duration: 3 })
-      .to(circle, { strokeDashoffset: 0, duration: 3, ease: "none" })
-      .to(circle, { opacity: 0, duration: 0.5, ease: "power2.out" });
-
+        .to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
+        .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
+        .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
+        .to(overlay, {
+          width: "100%",
+          height: "100vh",
+          borderRadius: "0rem",
+          duration: 3,
+        })
+        .to(circle, { strokeDashoffset: 0, duration: 3, ease: "none" })
+        .to(circle, { opacity: 0, duration: 0.5, ease: "power2.out" });
     }, overlayRef);
 
     return () => ctx.revert();
-
   }, [animLocationRef]);
 
   return (
@@ -55,7 +58,8 @@ const HeroVideo = ({ animLocationRef }) => {
     >
       <video
         ref={videoRef}
-        src="https://www.w3schools.com/html/mov_bbb.mp4"
+        id="video-section"
+        src="/hero-video.webm"
         playsInline
         muted
         className="w-screen h-screen object-cover"
@@ -65,9 +69,15 @@ const HeroVideo = ({ animLocationRef }) => {
         viewBox="0 0 100 100"
       >
         <defs>
-          <linearGradient id="circularStrokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{stopColor:"#ffffff"}} />
-            <stop offset="100%" style={{stopColor:"#444"}} />
+          <linearGradient
+            id="circularStrokeGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+            <stop offset="0%" style={{ stopColor: "#ffffff" }} />
+            <stop offset="100%" style={{ stopColor: "#444" }} />
           </linearGradient>
         </defs>
         <circle

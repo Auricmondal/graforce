@@ -15,8 +15,6 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
   const navRef = React.useRef(null);
-  // const lastScrollY = React.useRef(0);
-  // const ticking = React.useRef(false);
   const navItems = [
     { id: 1, name: "Home", href: "/", toggle: false },
     { id: 2, name: "Services", href: "/services", toggle: true },
@@ -24,11 +22,11 @@ const Navbar = () => {
     { id: 4, name: "Industries", href: "/industries", toggle: true },
     { id: 5, name: "About Us", href: "/about", toggle: false },
   ];
+
   const navigateTo = (href) => {
     router.push(href);
     setIsMenuOpen(false);
   };
-
   // useDisableZoom();
 
   useClickOutside(menuRef, () => setIsMenuOpen(false));
@@ -36,7 +34,12 @@ const Navbar = () => {
   useHideOnScrollNav(menuRef, navRef, isMenuOpen);
 
   return (
-    <div className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out ${isMenuOpen ? "h-full" : "h-14"}`} ref={menuRef}>
+    <div
+      className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out ${
+        isMenuOpen ? "h-full" : "h-14"
+      }`}
+      ref={menuRef}
+    >
       <nav
         ref={navRef}
         className={`mx-auto flex-1 items-center justify-between px-4 py-2 bg-white shadow-sm [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto transition-all duration-300 ease-in-out
