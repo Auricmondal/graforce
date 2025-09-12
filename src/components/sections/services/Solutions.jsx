@@ -87,8 +87,8 @@ const Solutions = ({ isStraight = false }) => {
           </span>
 
           <ScrollReveal>
-          <div className="pb-4 md:pb-0 w-full max-w-[90%] sm:max-w-[600px] lg:max-w-[90%] h-auto lg:h-[168px] mx-auto flex flex-col justify-center gap-2 lg:gap-[10px] opacity-100 lg:pb-2">
-            <h2 className="text-[3rem] sm:text-[2rem] lg:text-[4rem] font-semibold leading-[1.1] tracking-[-0.01em] text-primary-dark mb-4 ">
+          <div className="pb-4 w-full max-w-[90%] sm:max-w-[600px] lg:max-w-[90%] h-auto lg:h-[168px] mx-auto flex flex-col justify-center gap-2 lg:gap-[10px] opacity-100 lg:pb-12 md:pb-6 xl:pb-2 lg:mb-4">
+            <h2 className="text-[3rem] md:text-[3.3rem] lg:max-xl:mt-6 sm:text-[2rem] lg:text-[4rem] font-semibold leading-[1.1] tracking-[-0.01em] text-primary-dark mb-4 ">
               Zero Emission Hydrogen
             </h2>
 
@@ -109,7 +109,7 @@ const Solutions = ({ isStraight = false }) => {
           {subsections.map((subsection, index) => (
             <div
               key={index}
-              className="item absolute left-0 lg:top-30 top-0 w-full h-full bg-[#E8EEFA] py-2"
+              className="item absolute left-0 lg:top-20 top-0 w-full h-full bg-[#E8EEFA] py-2"
             >
               <DemoCard
                 subsection={subsection}
@@ -125,7 +125,7 @@ const Solutions = ({ isStraight = false }) => {
         </ScrollCardSection>
 
         {/* Mobile Only (no scroll animation) */}
-        <div className="space-y-16 lg:space-y-24 md:hidden">
+        <div className="space-y-16 lg:space-y-10 xl:space-y-24 xl:hidden">
           {subsections.map((subsection, index) => (
             <React.Fragment key={index}>
               <DemoCard
@@ -134,9 +134,9 @@ const Solutions = ({ isStraight = false }) => {
                 isReversed={isStraight ? false : index % 2 === 0}
                 isStraight={isStraight}
               />
-              {index < subsections.length - 1 && (
+              {/* {index < subsections.length - 1 && (
                 <hr className="w-full lg:hidden mx-auto border-0 border-t border-dark-tint/80" />
-              )}
+              )} */}
             </React.Fragment>
           ))}
         </div>

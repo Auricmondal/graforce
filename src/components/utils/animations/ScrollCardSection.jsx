@@ -37,7 +37,7 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
 
     items.forEach((item, i) => {
       if (i < items.length - 1) {
-        tl.to(item, { scale: 0.9, borderRadius: "10px" });
+        tl.to(item, { scale: 0.8, borderRadius: "10px" });
         tl.to(
           items[i + 1],
           direction === "horizontal" ? { xPercent: 0 } : { yPercent: 0 },
@@ -55,7 +55,7 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
   return (
     <section
       ref={sectionRef}
-      className={`hidden md:block scroll-section ${direction}-section section overflow-hidden`}
+      className={`hidden xl:block scroll-section ${direction}-section section overflow-hidden`}
     >
       <div ref={wrapperRef} className="wrapper relative h-screen w-full">
         <div className="list relative h-full w-full">
