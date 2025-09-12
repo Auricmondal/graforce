@@ -2,7 +2,7 @@ import react from 'react';
 
 const Solutions = () => {
   return (
-    <div>Solutions Section</div>
+    <div className='bg-white'>Solutions Section</div>
   )
 }
 
