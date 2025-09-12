@@ -8,11 +8,11 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
   const card = React.useRef(null);
   const router = useRouter();
   const options = [
-    "Hydrogen production",
-    "Water purification",
-    "CO2 free energy generation",
+    { title: "Hydrogen production", route: "hydrogen-production" },
+    { title: "Water purification", route: "water-purification" },
+    { title: "CO2 free energy generation", route: "energy-generation" },
   ];
-  
+
   useOptionsHover();
 
   return (
@@ -35,17 +35,17 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
               onClick={() => {
                 // Handle option click
                 router.push(
-                  "/services/" + option.toLowerCase().replace(/\s+/g, "-")
+                  "/services/" + option.route
                 );
                 setHovered(false);
               }}
             >
               <div className="bg-gray-500 w-10 h-10 rounded-lg flex items-center justify-center mr-2">
                 <span className="text-white text-2xl font-bold">
-                  {option.charAt(0)}
+                  {option.title.charAt(0)}
                 </span>
               </div>
-              <span className="text-black text-2xl font-medium">{option}</span>
+              <span className="text-black text-2xl font-medium capitalize">{option.title}</span>
             </div>
           ))}
         </div>
@@ -87,7 +87,13 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
   );
 };
 
-export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMenuHovered, setIsMenuOpen, ...props }) => {
+export const ServiceOptionsMobile = ({
+  className,
+  mobileMenuHovered,
+  setMobileMenuHovered,
+  setIsMenuOpen,
+  ...props
+}) => {
   const card = React.useRef(null);
   const router = useRouter();
   const options = [
@@ -98,7 +104,11 @@ export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMe
   return (
     <div
       className={`mobile-options flex flex-col transition-transform duration-200 ease-in-out rounded-lg text-white shadow-sm p-1 ${className}
-      ${mobileMenuHovered ? "scale-x-100 transition-transform duration-200 ease-in-out" : "scale-x-0 transition-transform duration-200 ease-in-out"}`}
+      ${
+        mobileMenuHovered
+          ? "scale-x-100 transition-transform duration-200 ease-in-out"
+          : "scale-x-0 transition-transform duration-200 ease-in-out"
+      }`}
       {...props}
     >
       {/* <div className="text-white py-2 border-b border-gray-400 font-bold mb-2">
@@ -161,4 +171,4 @@ export const ServiceOptionsMobile = ({ className, mobileMenuHovered, setMobileMe
       </div>
     </div>
   );
-}
+};
