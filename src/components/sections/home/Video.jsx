@@ -1,7 +1,5 @@
 "use client";
-import React from 'react';
-
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from 'react';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,48 +8,39 @@ gsap.registerPlugin(ScrollTrigger);
 const Video = () => {
   const overlayRef = useRef(null);
   const videoRef = useRef(null);
+  const circleRef = useRef(null);
+
+  const scrollTriggerConfig = {
+    trigger: "#hero",
+    start: "top top",
+    end: "bottom+=2500 top",
+    scrub: true,
+    pin: true
+  };
 
   useEffect(() => {
     const overlay = overlayRef.current;
     const video = videoRef.current;
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
+    const circle = circleRef.current;
 
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#hero",
-        start: "top top",
-        end: "bottom+=2000 top",
-        scrub: true,
-        pin: true,
-      },
+      scrollTrigger: scrollTriggerConfig,
+      defaults: { borderRadius: "50rem", ease: "power4.inOut" },
     });
 
-    tl.to(overlay, { width: "0rem", height: "0rem", borderRadius: "50rem", ease: "power2.out", duration: 0.4,
+    tl.to(overlay, { duration: 0.01,
       onComplete: () => {
-        if (video) {
-          video.play();
-        }
+        video?.play().catch(() => {});
     }})
+      .to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
+      .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
+      .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
+      .to(overlay, { width: "100%", height: "100vh", borderRadius: "0rem", duration: 3 })
 
-    tl.to(overlay, { width: "5rem", height: "5rem", borderRadius: "50rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: "20rem", height: "20rem", borderRadius: "50rem", ease: "power2.out", duration: 0.4 });
+      .to(circle, { strokeDashoffset: 0, duration: 3, ease: "none" })
+      .to(circle, { opacity: 0, duration: 0.5, ease: "power2.out" });
 
-    if(vw > vh){
-      tl.to(overlay, { width: "100vh", height: "100vh", borderRadius: "50rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: Math.max(vw * 0.6, vh), borderRadius: "10rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: Math.max(vw * 0.8, vh), borderRadius: "5rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { width: "100vw", borderRadius: "5rem", ease: "power2.out", duration: 0.4 })
-    }
-    else{
-      tl.to(overlay, { width: "100vw", height: "100vw", borderRadius: "50rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { height: Math.max(vh * 0.6, vw), borderRadius: "10rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { height: Math.max(vh * 0.8, vw), borderRadius: "5rem", ease: "power2.out", duration: 0.4 })
-      .to(overlay, { height: "100vh", borderRadius: "5rem", ease: "power2.out", duration: 0. })
-    }
-
-    tl.to(overlay, { borderRadius: "0%", scale: 1, ease: "power2.out", duration: 0.4 }).to({}, { duration: 3 })
-
+    return () => { tl.kill(); };
   }, []);
 
   return (
@@ -64,8 +53,32 @@ const Video = () => {
         src="https://www.w3schools.com/html/mov_bbb.mp4"
         playsInline
         muted
-        className="w-screen h-screen object-cover scale-1.5"
+        className="w-screen h-screen object-cover"
       />
+
+      <svg
+        className="absolute bottom-8 right-8 w-16 h-16 rounded-full p-2"
+        viewBox="0 0 100 100"
+      >
+        <defs>
+          <linearGradient id="circularStrokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{stopColor:"#ffffff"}} />
+            <stop offset="100%" style={{stopColor:"#444"}} />
+          </linearGradient>
+        </defs>
+        <circle
+          ref={circleRef}
+          r="40"
+          cx="50"
+          cy="50"
+          stroke="url(#circularStrokeGradient)"
+          strokeWidth="8"
+          fill="none"
+          strokeDasharray="280"
+          strokeDashoffset="280"
+          transform="rotate(-90 50 50)"
+        />
+      </svg>
     </div>
   );
 }
