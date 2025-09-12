@@ -21,7 +21,7 @@ const FinalCTA = () => {
           <p className="text-md text-center md:text-left text-white">
             Book a demo and see how Graforce can fuel your hydrogen strategy.
           </p>
-          <FloatupButton className="!w-fit" icon={"❯"}>Contact Now </FloatupButton>
+          <FloatupButton className="!w-fit !bg-primary-50 !text-primary-700" icon={"❯"}>Contact Now </FloatupButton>
         </div>
         </ScrollReveal>
       </SectionWrapper>
