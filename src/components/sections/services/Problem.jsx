@@ -115,7 +115,7 @@ export default function EmissionPage() {
   const filteredData = getFilteredData();
 
   return (
-    <SectionWrapper>
+    <SectionWrapper className="bg-white">
       <div className="py-6 md:py-12 max-w-[2000px] mx-auto">
         <div className="text-center mx-auto mb-8 md:mb-12">
           <GradientBadge
