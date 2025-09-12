@@ -7,6 +7,7 @@ import { TbSquareRotatedFilled } from "react-icons/tb";
 
 export default function AboutUs() {
   return (
+    <div className="bg-white">
     <SectionWrapper className="bg-white text-black py-10 space-y-10 mx-auto max-w-[1460px]">
       <section className="text-center max-w-3xl mx-auto flex flex-col items-center gap-2">
         <GradientBadge text="About Us" icon={<TbSquareRotatedFilled />} />
@@ -72,5 +73,6 @@ export default function AboutUs() {
         </p>
       </section>
     </SectionWrapper>
+    </div>
   );
 }
