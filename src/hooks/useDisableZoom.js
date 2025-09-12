@@ -31,7 +31,7 @@ export function useDisableZoom() {
     // Set meta viewport if it doesn't exist
     let viewportMeta = document.querySelector('meta[name="viewport"]')
     let originalContent = ''
-    
+
     if (viewportMeta) {
       originalContent = viewportMeta.getAttribute('content')
       viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
@@ -47,7 +47,7 @@ export function useDisableZoom() {
       document.removeEventListener('keydown', preventKeyboardZoom)
       document.removeEventListener('wheel', preventWheelZoom)
       document.removeEventListener('touchmove', preventTouchZoom)
-      
+
       // Restore original viewport content or remove if we created it
       if (originalContent) {
         viewportMeta.setAttribute('content', originalContent)

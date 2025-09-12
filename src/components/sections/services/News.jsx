@@ -33,7 +33,7 @@ const News = () => {
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper className='bg-white'>
       <div className="max-w-[2000px] mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-12">

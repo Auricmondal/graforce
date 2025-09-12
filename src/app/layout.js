@@ -2,6 +2,7 @@ import "./globals.css";
 import { oxygen, dmSans } from "./font";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
+import FooterRevealer from "@/components/shared/footer/FooterRevealer";
 import ProgressProvider from "./providers";
 import LoaderProvider from "@/wrappers/LoaderProvider";
 import { LoaderContextProvider } from "@/contexts/LoaderContext";
@@ -17,8 +18,13 @@ export default function RootLayout({ children }) {
       <LoaderContextProvider>
         <body className={`${oxygen.variable} ${dmSans.variable} antialiased`}>
           <LoaderProvider>
-            <Navbar />
-            <ProgressProvider>{children}</ProgressProvider>
+            <div className="relative z-10">
+              <Navbar />
+              <ProgressProvider>{children}</ProgressProvider>
+            </div>
+            <div className="relative z-10 pointer-events-none">
+              <FooterRevealer />
+            </div>
             <Footer />
           </LoaderProvider>
         </body>
