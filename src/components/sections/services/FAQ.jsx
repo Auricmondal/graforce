@@ -32,6 +32,7 @@ const faqs = [
 
 export default function FAQSection() {
   return (
+
     <div className="bg-white">
     <SectionWrapper className="max-w-[2000px] mx-auto">
       <div className="mb-[10px] text-center">
@@ -54,6 +55,8 @@ export default function FAQSection() {
         ))}
       </motion.div>
     </SectionWrapper>
+
     </div>
+
   );
 }
