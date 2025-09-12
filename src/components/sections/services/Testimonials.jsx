@@ -70,7 +70,7 @@ const Testimonial = () => {
     // <div className="w-full bg-primary px-4 py-8 sm:px-6 lg:px-12 sm:py-12 md:py-12 lg:py-16 bg-gradient-to-r from-[#081124] via-[#193570] to-[#1E428A]">
     <SectionWrapper className="w-full bg-primary bg-gradient-to-r from-[#081124] via-[#193570] to-[#1E428A]">
       <div
-        className="max-w-[2000px] max-h-7xl mx-auto"
+        className="max-w-[2000px] mx-auto"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
