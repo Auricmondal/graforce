@@ -59,7 +59,7 @@ const HeroVideo = ({ animLocationRef }) => {
       <video
         ref={videoRef}
         id="video-section"
-        src="https://www.w3schools.com/html/mov_bbb.mp4"
+        src="/hero-video.webm"
         playsInline
         muted
         className="w-screen h-screen object-cover"
