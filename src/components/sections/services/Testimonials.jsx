@@ -2,7 +2,7 @@ import react from 'react';
 
 const Testimonials = () => {
   return (
-    <div>Testimonials Section</div>
+    <div className='bg-white'>Testimonials Section</div>
   )
 }
 

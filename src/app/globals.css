@@ -48,6 +48,9 @@
   --color-cst-neutral-800: var(--cst-neutral-800);
   --color-cst-neutral-900: var(--cst-neutral-900);
 
+  /* Breakpoints */
+  --breakpoint-laptop: 1024px;
+
   /* Font */
   --font-dm-sans: var(--font-dm-sans);
   --font-oxygen: var(--font-oxygen);

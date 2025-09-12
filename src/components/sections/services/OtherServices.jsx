@@ -2,7 +2,7 @@ import react from 'react';
 
 const OtherServices = () => {
   return (
-    <div>Other Services</div>
+    <div className='bg-white'>Other Services</div>
   )
 }
 
