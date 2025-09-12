@@ -5,43 +5,48 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Video = () => {
+const HeroVideo = ({ animLocationRef }) => {
   const overlayRef = useRef(null);
   const videoRef = useRef(null);
   const circleRef = useRef(null);
-
-  const scrollTriggerConfig = {
-    trigger: "#hero",
-    start: "top top",
-    end: "bottom+=2500 top",
-    scrub: true,
-    pin: true
-  };
 
   useEffect(() => {
     const overlay = overlayRef.current;
     const video = videoRef.current;
     const circle = circleRef.current;
 
-    const tl = gsap.timeline({
-      scrollTrigger: scrollTriggerConfig,
-      defaults: { borderRadius: "50rem", ease: "power4.inOut" },
-    });
+    const scrollTriggerConfig = {
+      trigger: animLocationRef.current,
+      start: "top top",
+      end: "bottom+=2500 top",
+      scrub: true,
+      pin: true,
+    };
 
-    tl.to(overlay, { duration: 0.01,
-      onComplete: () => {
-        video?.play().catch(() => {});
-    }})
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: scrollTriggerConfig,
+        defaults: { borderRadius: "50rem", ease: "power4.inOut" },
+      });
+
+      tl.to(overlay, {
+        duration: 0.01,
+        onComplete: () => {
+          video?.play().catch(() => {});
+        }
+      })
       .to(overlay, { width: "5vmin", height: "5vmin", duration: 0.5 })
       .to(overlay, { width: "20vmin", height: "20vmin", duration: 0.1 })
       .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
       .to(overlay, { width: "100%", height: "100vh", borderRadius: "0rem", duration: 3 })
-
       .to(circle, { strokeDashoffset: 0, duration: 3, ease: "none" })
       .to(circle, { opacity: 0, duration: 0.5, ease: "power2.out" });
 
-    return () => { tl.kill(); };
-  }, []);
+    }, overlayRef);
+
+    return () => ctx.revert();
+
+  }, [animLocationRef]);
 
   return (
     <div
@@ -55,7 +60,6 @@ const Video = () => {
         muted
         className="w-screen h-screen object-cover"
       />
-
       <svg
         className="absolute bottom-8 right-8 w-16 h-16 rounded-full p-2"
         viewBox="0 0 100 100"
@@ -81,6 +85,6 @@ const Video = () => {
       </svg>
     </div>
   );
-}
+};
 
-export default Video;
+export default HeroVideo;
