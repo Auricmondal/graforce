@@ -2,19 +2,19 @@ import React from "react";
 import Image from "next/image";
 
 const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
-  const getBackgroundColor = (index, isStraight) => {
-    if (isStraight) {
-      return index % 2 === 0 ? "bg-cover bg-center" : "bg-light-teal";
-    } else {
-      return index % 2 === 0 ? "bg-light-blue" : "bg-dark-blue";
-    }
-  };
+  // const getBackgroundColor = (index, isStraight) => {
+  //   if (isStraight) {
+  //     return index % 2 === 0 ? "bg-cover bg-center" : "bg-light-teal";
+  //   } else {
+  //     return index % 2 === 0 ? "bg-light-blue" : "bg-dark-blue";
+  //   }
+  // };
 
   const isImpactSection = subsection.points && subsection.points.length > 0;
 
   return (
     <div
-      className={`bg-[#E8EEFA] flex flex-col-reverse md:flex-row gap-2 ${
+      className={`bg-[#E8EEFA] flex flex-col-reverse md:flex-row gap-4 ${
         isReversed ? "md:flex-row-reverse" : ""
       }`}
     >
@@ -61,7 +61,7 @@ const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
                     <h4 className="text-[1.125rem] font-semibold text-white">
                       {point.title}
                     </h4>
-                    <p className="text-[0.9rem] text-cst-neutral-50">
+                    <p className="text-[0.9rem] text-cst-neutral-50 whitespace-pre-line">
                       {point.description}
                     </p>
                   </div>
@@ -74,11 +74,14 @@ const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
 
       {/* Image Section */}
       <div className="w-full md:w-[37%] h-[674px] md:h-auto order-2 lg:order-none relative overflow-hidden rounded-2xl">
-        <div
+        {/* <div
           className={`w-full h-full ${getBackgroundColor(
             index,
             isStraight
           )} flex items-center justify-center overflow-hidden`}
+        > */}
+        <div
+          className={`w-full h-full flex items-center justify-center overflow-hidden`}
         >
           <Image
             src={subsection.img}

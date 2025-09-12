@@ -87,7 +87,7 @@ const Solutions = ({ isStraight = false }) => {
           </span>
 
           <ScrollReveal>
-          <div className="sm:pb-4 w-full max-w-[90%] sm:max-w-[600px] lg:max-w-[90%] h-auto lg:h-[168px] mx-auto flex flex-col justify-center gap-2 lg:gap-[10px] opacity-100 lg:pb-2">
+          <div className="pb-4 md:pb-0 w-full max-w-[90%] sm:max-w-[600px] lg:max-w-[90%] h-auto lg:h-[168px] mx-auto flex flex-col justify-center gap-2 lg:gap-[10px] opacity-100 lg:pb-2">
             <h2 className="text-[3rem] sm:text-[2rem] lg:text-[4rem] font-semibold leading-[1.1] tracking-[-0.01em] text-primary-dark mb-4 ">
               Zero Emission Hydrogen
             </h2>
@@ -109,7 +109,7 @@ const Solutions = ({ isStraight = false }) => {
           {subsections.map((subsection, index) => (
             <div
               key={index}
-              className="item absolute left-0 top-20 w-full h-full bg-[#E8EEFA] py-2"
+              className="item absolute left-0 lg:top-30 top-0 w-full h-full bg-[#E8EEFA] py-2"
             >
               <DemoCard
                 subsection={subsection}

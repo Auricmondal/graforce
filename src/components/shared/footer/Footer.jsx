@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import FloatupButton from '@/components/utils/buttons/FloatupButton';
 import FitText from '@/hooks/FitText';
-import AnimatedText from '@/components/utils/Animation/AnimatedText';
+import AnimatedText from '@/components/utils/animations/AnimatedText';
 
 import ScrollReveal from '@/wrappers/ScrollReveal';
 
