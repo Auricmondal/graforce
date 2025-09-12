@@ -85,7 +85,7 @@ export default function WorldNeedsUs() {
         backgroundBlendMode: "overlay",
       }}
     >
-      <div className="max-w-[1460px] mx-auto">
+      <div className="max-w-[2000px] mx-auto">
         {/* Header */}
         <div className="text-center mb-4">
           <GradientBadge
