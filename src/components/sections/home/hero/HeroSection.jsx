@@ -12,7 +12,7 @@ import Customer1 from "@/assets/home/hero/Ellipse-10.png";
 import Customer2 from "@/assets/home/hero/Ellipse-11.png";
 import Customer3 from "@/assets/home/hero/Ellipse-15.png";
 
-const Hero = () => {
+const HeroSection = () => {
   const CustomerAvatar = ({ src, className = "" }) => {
     return (
       <Image
@@ -88,4 +88,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroSection;
