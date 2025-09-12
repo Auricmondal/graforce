@@ -15,7 +15,7 @@ import ScrollReveal from "@/wrappers/ScrollReveal";
 
 const Solutions = ({ isStraight = false }) => {
   const subsections = [
-        {
+    {
       title: "Impact",
       description:
         "Proven efficiency, lower costs, and near-zero emissions — validated in real-world applications.",
@@ -87,30 +87,26 @@ const Solutions = ({ isStraight = false }) => {
           </span>
 
           <ScrollReveal>
-          <div className="pb-4 w-full max-w-[90%] sm:max-w-[600px] lg:max-w-[90%] h-auto lg:h-[168px] mx-auto flex flex-col justify-center gap-2 lg:gap-[10px] opacity-100 lg:pb-12 md:pb-6 xl:pb-2 lg:mb-4">
-            <h2 className="text-[3rem] md:text-[3.3rem] lg:max-xl:mt-6 sm:text-[2rem] lg:text-[4rem] font-semibold leading-[1.1] tracking-[-0.01em] text-primary-dark mb-4 ">
-              Zero Emission Hydrogen
-            </h2>
+            <div className="pb-4 w-full max-w-[90%] sm:max-w-[600px] lg:max-w-[90%] h-auto lg:h-[168px] mx-auto flex flex-col justify-center gap-2 lg:gap-[10px] opacity-100 lg:pb-12 md:pb-6 xl:pb-2 lg:mb-4">
+              <h2 className="text-[3rem] md:text-[3.3rem] lg:max-xl:mt-6 sm:text-[2rem] lg:text-[4rem] font-semibold leading-[1.1] tracking-[-0.01em] text-primary-dark mb-4 ">
+                Zero Emission Hydrogen
+              </h2>
 
-            <p className="mx-auto w-full lg:max-w-[65%] text-[0.875rem] sm:text-[1rem] lg:text-[1rem] font-normal leading-[1.6] tracking-[0] text-center text-black ">
-              Graforce's Plasmalyzer® converts methane or biogas into clean
-              hydrogen using plasma catalysis at over 1,300 °C. Instead of
-              releasing CO₂, carbon is captured as a valuable solid. The result:
-              a cost-effective, emission-free fuel for energy, industry, and
-              mobility.
-            </p>
-          </div>
+              <p className="mx-auto w-full lg:max-w-[65%] text-[0.875rem] sm:text-[1rem] lg:text-[1rem] font-normal leading-[1.6] tracking-[0] text-center text-black ">
+                Graforce's Plasmalyzer® converts methane or biogas into clean
+                hydrogen using plasma catalysis at over 1,300 °C. Instead of
+                releasing CO₂, carbon is captured as a valuable solid. The
+                result: a cost-effective, emission-free fuel for energy,
+                industry, and mobility.
+              </p>
+            </div>
           </ScrollReveal>
-
         </div>
 
         {/* Subsections with Scroll Animation */}
         <ScrollCardSection direction="vertical">
           {subsections.map((subsection, index) => (
-            <div
-              key={index}
-              className="item absolute left-0 lg:top-20 top-0 w-full h-full bg-[#E8EEFA] py-2"
-            >
+            <div key={index} className="item w-full h-full bg-[#E8EEFA] py-2">
               <DemoCard
                 subsection={subsection}
                 index={index}
