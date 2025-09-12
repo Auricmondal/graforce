@@ -32,7 +32,8 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <SectionWrapper className="max-w-[1460px] mx-auto bg-white">
+    <div className="bg-white">
+    <SectionWrapper className="max-w-[2000px] mx-auto">
       <div className="mb-[10px] text-center">
         <GradientBadge text="FAQs" icon={<TbSquareRotatedFilled />}/>
         <h2 className="text-[32px] md:text-[64px] w-fit mx-auto">
@@ -53,5 +54,6 @@ export default function FAQSection() {
         ))}
       </motion.div>
     </SectionWrapper>
+    </div>
   );
 }
