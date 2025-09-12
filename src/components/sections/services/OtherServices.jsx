@@ -26,6 +26,16 @@ const OtherServices = () => {
     },
   ];
 
+  const handleNavigate = () => {
+    const activeService = otherServices.find((s) => s.id === isActive);
+    // if (!activeService) return;
+
+    const formattedTitle = activeService.title
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+    router.push("/services/" + formattedTitle);
+  };
+
   React.useEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(
@@ -102,6 +112,12 @@ const OtherServices = () => {
                       className={`w-full bg-transparent transition-all duration-300 ease-in-out origin-bottom ${
                         isActive ? " h-[50vh]" : "h-0"
                       }`}
+                      onClick={() => {
+                        router.push(
+                          "/services/" +
+                            service.title.toLowerCase().replace(/\s+/g, "-")
+                        );
+                      }}
                     >
                       <Image
                         src={activeImage}
@@ -119,6 +135,7 @@ const OtherServices = () => {
           <div
             ref={desktopImage}
             className={`image w-full h-[60vh] max-h-[400px] rounded-lg bg-white transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden`}
+            onClick={() => handleNavigate()}
           >
             <Image
               src={activeImage}
