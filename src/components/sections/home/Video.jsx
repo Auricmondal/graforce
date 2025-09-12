@@ -21,6 +21,7 @@ const Video = () => {
   useEffect(() => {
     const overlay = overlayRef.current;
     const video = videoRef.current;
+    const circle = circleRef.current;
 
     const tl = gsap.timeline({
       scrollTrigger: scrollTriggerConfig,
@@ -36,12 +37,10 @@ const Video = () => {
       .to(overlay, { width: "100vmin", height: "100vmin", duration: 2.5 })
       .to(overlay, { width: "100%", height: "100vh", borderRadius: "0rem", duration: 3 })
 
-      .to(circleRef.current, {
-        strokeDashoffset: 0,
-        duration: 3,
-        ease: "none",
-      });
+      .to(circle, { strokeDashoffset: 0, duration: 3, ease: "none" })
+      .to(circle, { opacity: 0, duration: 0.5, ease: "power2.out" });
 
+    return () => { tl.kill(); };
   }, []);
 
   return (
@@ -61,13 +60,19 @@ const Video = () => {
         className="absolute bottom-8 right-8 w-16 h-16 rounded-full p-2"
         viewBox="0 0 100 100"
       >
+        <defs>
+          <linearGradient id="circularStrokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style={{stopColor:"#ffffff"}} />
+            <stop offset="100%" style={{stopColor:"#444"}} />
+          </linearGradient>
+        </defs>
         <circle
           ref={circleRef}
           r="40"
           cx="50"
           cy="50"
-          stroke="white"
-          strokeWidth="12"
+          stroke="url(#circularStrokeGradient)"
+          strokeWidth="8"
           fill="none"
           strokeDasharray="280"
           strokeDashoffset="280"
