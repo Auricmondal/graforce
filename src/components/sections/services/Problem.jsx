@@ -116,8 +116,8 @@ export default function EmissionPage() {
 
   return (
     <SectionWrapper>
-      <div className="py-6 md:py-12">
-        <div className="text-center max-w-[2000px] mx-auto mb-8 md:mb-12">
+      <div className="py-6 md:py-12 max-w-[2000px] mx-auto">
+        <div className="text-center mx-auto mb-8 md:mb-12">
           <GradientBadge
             text={"The Problem We Discovered"}
             icon={<TbSquareRotatedFilled />}
