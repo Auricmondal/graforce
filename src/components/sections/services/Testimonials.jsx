@@ -81,7 +81,7 @@ const Testimonial = () => {
                 variant="testimonials"
                 text="This is What Our Customer Has to Say"
                 icon={<TbSquareRotatedFilled className={`rotate-45`} />}
-                className="p-[4px_16px] rounded-full opacity-100 inline-flex items-center justify-start bg-gradient-to-r from-primary-50 to-primary-300 text-white text-sm md:text-md font-medium border-black/10"
+                className="p-[4px_16px] rounded-full opacity-100 inline-flex items-center justify-start bg-gradient-to-r from-primary-50 to-primary-300 text-white text-xs sm:text-sm md:text-md font-medium border-black/10"
               />
               <h2 className="lg:text-5xl md:text-4xl text-2xl text-white">
                 Testimonials

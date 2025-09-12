@@ -64,3 +64,8 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+#nprogress .bar {
+  background: white;
+  height: 3px;
+}

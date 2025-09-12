@@ -25,16 +25,16 @@ const TestCard = ({ review, currentIndex, index, totalReviews, className }) => {
             </div>
           </div>
         </div>
-        <div className="flex gap-1 h-10 mt-6 mb-4">
+        <div className="flex gap-1 h-10 mt-3 sm:mt-6 mb-4">
           <div className="flex bg-gradient-to-t from-gray-500 to-transparent w-10 opacity-50 border-l-15 border-l-transparent border-r-25 border-r-transparent border-t-30 border-t-gray-500 rounded-lg"></div>
           <div className="flex bg-gradient-to-t from-gray-500 to-transparent w-10 opacity-50 border-l-15 border-l-transparent border-r-25 border-r-transparent border-t-30 border-t-gray-500 rounded-lg"></div>
         </div>
-        <div className="relative flex-1 text-white min-h-[20vh]">
-          <div className="flex items-start rotate-180 h-[20vh] sm:h-[27vh] justify-start">
-            <div className="flex bg-gradient-to-t from-gray-500 to-transparent w-10 opacity-25 border-l-50 border-l-transparent border-r-70 border-r-transparent border-t-100 border-t-gray-500 rounded-lg"></div>
-            <div className="flex bg-gradient-to-t from-gray-500 to-transparent w-10 opacity-25 border-l-50 border-l-transparent border-r-70 border-r-transparent border-t-100 border-t-gray-500 rounded-lg"></div>
+        <div className="relative text-white min-h-[30vh] sm:min-h-[27vh] w-full">
+          <div className="absolute top-0 right-0 flex items-start rotate-180 h-[33vh] sm:h-[27vh] justify-start w-full">
+            <div className="flex bg-gradient-to-t from-gray-500 to-transparent w-10 opacity-25 border-l-50 border-l-transparent border-r-70 border-r-transparent border-t-100 border-t-gray-500 rounded-lg scale-80 sm:scale-100"></div>
+            <div className="flex bg-gradient-to-t from-gray-500 to-transparent w-10 opacity-25 border-l-50 border-l-transparent border-r-70 border-r-transparent border-t-100 border-t-gray-500 rounded-lg scale-80 sm:scale-100"></div>
           </div>
-          <div className="absolute top-0 left-0 text-white">{review.description}</div>
+          <div className="text-white">{review.description}</div>
         </div>
         <div className="flex flex-row items-center gap-4">
           <img
