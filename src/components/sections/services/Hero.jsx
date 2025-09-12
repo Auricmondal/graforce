@@ -22,7 +22,7 @@ const Hero = () => {
                     mixBlendMode: 'color',
           }}
       >
-      <div className="max-w-[2000px] mx-auto">
+      <div className="max-w-[2000px] mx-auto relative">
       <div className="overflow-hidden ">
 
         <ScrollReveal>
@@ -38,11 +38,13 @@ const Hero = () => {
         <div className="w-full flex justify-center items-center pt-18 mt-12">
           <Image src={HeroImg} alt="HeroImg" className="w-full" />
         </div>
-
+          <div>
+            <FloatingBolt className="top-90 left-1/6 md:top-60 md:left-9/50 xl:top-40 2xl:left-4/25" size="sm:w-16 sm:h-16 h-14 w-14" />
+            <FloatingBolt className="top-100 right-1/7 md:top-90 md:right-1/5 lg:top-90 lg:right-1/4" size="sm:w-10 sm:h-10 h-8 w-8"  />
+          </div>
       </div>
 
-        <FloatingBolt className="top-90 left-1/6 md:top-60 md:left-9/50 xl:top-40 2xl:left-4/25" size="sm:w-16 sm:h-16 h-14 w-14" />
-        <FloatingBolt className="top-100 right-1/7 md:top-90 md:right-1/5 lg:top-90 lg:right-1/4" size="sm:w-10 sm:h-10 h-8 w-8"  />
+
 
       </div>
     </div>
