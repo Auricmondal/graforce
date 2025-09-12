@@ -2,25 +2,25 @@
 import GradientBadge from "@/components/utils/badges/GradientBadge";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { TbSquareRotatedFilled } from "react-icons/tb";
 import ServiceSolution from "@/assets/service/ServiceSolution2.jpg";
 import Image from "next/image";
 import { gsap } from "gsap";
 
 const OtherServices = () => {
+  const router = useRouter();
   const [isActive, setIsActive] = useState(1);
   const [activeImage, setActiveImage] = useState(ServiceSolution);
   const otherServices = [
     {
       id: 1,
-      title: "Service One",
-      description: "Water purification",
+      title: "Water purification",
       image: ServiceSolution,
     },
     {
       id: 2,
-      title: "Service Two",
-      description: "Energy generation",
+      title: "Energy generation",
       image: ServiceSolution,
     },
   ];
@@ -60,35 +60,40 @@ const OtherServices = () => {
           <div className="mt-4 gap-2 justify-start items-start flex flex-col lg:gap-6">
             {otherServices.map((service) => (
               <div
-                onClick={() => {
+                onMouseEnter={() => {
                   setIsActive(service.id);
                   setActiveImage(service.image);
                 }}
                 key={service.id}
                 className="flex flex-col items-start justify-start gap-5 w-full cursor-pointer"
               >
-                <div className="flex flex-row items-center justify-start gap-3">
+                <div 
+                className="flex flex-row items-center justify-start gap-3"
+                onClick={() => {router.push('/services/' + service.title.toLowerCase().replace(/\s+/g, '-'))}}
+                >
                   <div
                     className={`text-xl transition-all duration-300 ease-in-out ${
                       isActive === service.id
                         ? "text-primary-200"
-                        : "text-gray-500"
+                        : "text-primary-200 md:text-gray-500"
                     }`}
                   >
                     0{service.id}
                   </div>
                   <div
-                    className={`text-4xl md:text-6xl transition-all duration-300 ease-in-out ${
-                      isActive === service.id ? "text-white" : "text-gray-500"
+                    className={`text-3xl sm:text-4xl md:text-6xl transition-all duration-300 ease-in-out capitalize ${
+                      isActive === service.id
+                        ? "text-white"
+                        : "text-white md:text-gray-500"
                     }`}
                   >
-                    {service.description}
+                    {service.title}
                   </div>
                 </div>
                 <div className="flex flex-col w-full min-[1100px]:hidden">
                   <div
                     className={`w-full bg-transparent transition-all duration-300 ease-in-out origin-bottom ${
-                      isActive === service.id ? " h-[50vh]" : "h-0"
+                      isActive ? " h-[50vh]" : "h-0"
                     }`}
                   >
                     <Image
