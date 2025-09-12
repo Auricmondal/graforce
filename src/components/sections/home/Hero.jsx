@@ -44,10 +44,10 @@ const Hero = () => {
           className="absolute bottom-0 left-1/2 -translate-x-1/2"
         />
 
-        <div className="h-1/2 absolute top-32 left-0 w-full z-2">
+        <div className="h-1/2 absolute top-28 left-0 w-full z-2">
           <ScrollReveal>
             <div className="flex flex-col gap-8 items-center">
-              <h1 className="text-5xl lg:text-7xl text-center">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-center">
                 Fueling a Carbon <br /> Free Future
               </h1>
               <div className="flex gap-4">
@@ -59,13 +59,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <FloatingTip className="top-90 right-1/6" delay={1}>
+      <FloatingTip className="top-90 right-1/6 -translate-y-10 md:translate-0" delay={1}>
         • 100% Carbon Value
       </FloatingTip>
-      <FloatingTip className="top-100 left-1/7" delay={0.2}>
+      <FloatingTip className="top-105 left-1/6 -translate-y-10 md:translate-0" delay={0.2}>
         • 0% CO₂ Costs
       </FloatingTip>
-      <FloatingTip className="top-120 right-1/3" delay={0.6}>
+      <FloatingTip className="top-120 right-1/3 -translate-y-10 md:translate-0" delay={0.6}>
         • 50% Energy Savings
       </FloatingTip>
 
