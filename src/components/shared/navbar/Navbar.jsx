@@ -77,7 +77,7 @@ const Navbar = () => {
           />
         </div>
       </nav>
-      <ContactModal />
+      {/* <ContactModal /> */}
     </div>
   );
 };
