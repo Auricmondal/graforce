@@ -14,10 +14,16 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
     const section = sectionRef.current;
     const items = wrapperRef.current.querySelectorAll(".item");
 
-    // Prepare items: position offscreen
+    // Prepare items: position offscreen & fade out except first
     items.forEach((item, index) => {
       if (index !== 0) {
-        gsap.set(item, direction === "horizontal" ? { xPercent: 100 } : { yPercent: 100 });
+        gsap.set(item, {
+          opacity: 0,
+          scale: 0.95,
+          ...(direction === "horizontal"
+            ? { xPercent: 100 }
+            : { yPercent: 100 }),
+        });
       }
     });
 
@@ -25,29 +31,38 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
       scrollTrigger: {
         trigger: section,
         pin: true,
-        // pinSpacing: false,
         start: "top top",
         end: () => `+=${items.length * 100}%`,
         scrub: 1,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
-        // markers: true,
       },
-      defaults: { ease: "none" },
+      defaults: { ease: "power2.out", duration: 0.6 },
     });
 
     items.forEach((item, i) => {
       if (i < items.length - 1) {
-        tl.to(item, { scale: 0.8, borderRadius: "10px" });
+        // Smoothly scale and fade out the current item
+        tl.to(item, {
+          scale: 0.9,
+          opacity: 0,
+        });
+
+        // Bring the next one in with nice motion
         tl.to(
           items[i + 1],
-          direction === "horizontal" ? { xPercent: 0 } : { yPercent: 0 },
+          {
+            opacity: 1,
+            scale: 1,
+            ...(direction === "horizontal" ? { xPercent: 0 } : { yPercent: 0 }),
+          },
           "<"
         );
       }
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
       tl.kill();
     };
   }, [direction]);
@@ -57,10 +72,8 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
       ref={sectionRef}
       className={`hidden xl:block scroll-section ${direction}-section section overflow-hidden`}
     >
-      <div ref={wrapperRef} className="wrapper relative h-screen w-full">
-        <div className="list relative h-full w-full">
-          {children}
-        </div>
+      <div ref={wrapperRef} className="wrapper relative w-full">
+        <div className="list relative h-full w-full">{children}</div>
       </div>
     </section>
   );
