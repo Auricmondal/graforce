@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { TbSquareRotatedFilled } from "react-icons/tb";
 import ServiceSolution from "@/assets/service/ServiceSolution2.jpg";
+import ServiceSolution1 from "@/assets/service/ServiceSolution1.jpg";
 import Image from "next/image";
 import { gsap } from "gsap";
 
@@ -22,7 +23,7 @@ const OtherServices = () => {
     {
       id: 2,
       title: "Energy generation",
-      image: ServiceSolution,
+      image: ServiceSolution1,
     },
   ];
 
