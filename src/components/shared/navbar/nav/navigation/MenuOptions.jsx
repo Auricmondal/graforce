@@ -1,10 +1,13 @@
 "use client";
+import { useContactModal } from "@/contexts/ContactModalContext";
 import useOptionsHover from "@/hooks/useOptionsHover";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 
+
 export const ServiceOptions = ({ className, setHovered, ...props }) => {
+  const { openModal } = useContactModal();
   const card = React.useRef(null);
   const router = useRouter();
   const options = [
@@ -16,9 +19,7 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
   useOptionsHover();
 
   return (
-    // <div className={`${className}`}>
     <div
-      // className="flex flex-col translate-x-[10%] transition-transform duration-200 ease-in-out bg-white border rounded-lg border-gray-300 shadow-sm p-2"
       className={`options flex flex-col translate-x-[10%] transition-transform duration-200 ease-in-out bg-white border rounded-lg border-gray-300 shadow-sm p-2 ${className}`}
       {...props}
     >
@@ -71,7 +72,7 @@ export const ServiceOptions = ({ className, setHovered, ...props }) => {
             {/* Contact Button */}
             <button
               onClick={() => {
-                router.push("/contact");
+                openModal();
                 setHovered(false);
               }}
               className="group transition-colors duration-200 rounded-full flex items-center font-medium text-lg gap-1 cursor-pointer"
@@ -94,6 +95,7 @@ export const ServiceOptionsMobile = ({
   setIsMenuOpen,
   ...props
 }) => {
+  const { openModal } = useContactModal();
   const card = React.useRef(null);
   const router = useRouter();
   const options = [
@@ -158,13 +160,14 @@ export const ServiceOptionsMobile = ({
             {/* Contact Button */}
             <button
               onClick={() => {
-                router.push("/contact");
                 setMobileMenuHovered(false);
+                setIsMenuOpen(false);
+                openModal();
               }}
-              className="transition-colors duration-200 rounded-full flex items-center font-medium text-md gap-1"
+              className="group/contact transition-colors duration-200 rounded-full flex items-center font-medium text-md gap-1"
             >
               <span>Contact Us</span>
-              <IoIosArrowDroprightCircle className="w-6 h-6" />
+              <IoIosArrowDroprightCircle className="w-6 h-6 transition-all duration-200 ease-in-out group-hover/contact:mx-2" />
             </button>
           </div>
         </div>

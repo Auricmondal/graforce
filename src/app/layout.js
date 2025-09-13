@@ -6,6 +6,9 @@ import FooterRevealer from "@/components/shared/footer/FooterRevealer";
 import ProgressProvider from "./providers";
 import LoaderProvider from "@/wrappers/LoaderProvider";
 import { LoaderContextProvider } from "@/contexts/LoaderContext";
+import ContactModal from "@/components/shared/navbar/nav/ContactModal";
+import { ContactModalProvider } from "@/contexts/ContactModalContext";
+import { ReactLenis } from "@/components/utils/lenis/LenisProvider";
 
 export const metadata = {
   title: "Graforce",
@@ -15,19 +18,28 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <LoaderContextProvider>
-        <body className={`${oxygen.variable} ${dmSans.variable} antialiased`}>
-          <LoaderProvider>
-            <Navbar />
-            <ProgressProvider>{children}</ProgressProvider>
-            <Footer />
-            {/* Divs required for footer animation */}
-            {/* <div className="relative z-10"></div>
-            <div className="relative z-10 pointer-events-none"></div>
-            <div className="fixed bottom-0 w-full z-0"></div> */}
-          </LoaderProvider>
-        </body>
-      </LoaderContextProvider>
+      <ReactLenis root>
+        <LoaderContextProvider>
+          <ContactModalProvider>
+            <body
+              className={`${oxygen.variable} ${dmSans.variable} antialiased`}
+            >
+              <LoaderProvider>
+                <div className="relative z-10">
+                  <Navbar />
+                  <ProgressProvider>{children}</ProgressProvider>
+                </div>
+                <div className="relative z-10 pointer-events-none">
+                  <FooterRevealer />
+                </div>
+                <Footer />
+                <ContactModal clickOutside={false} />
+              </LoaderProvider>
+            </body>
+          </ContactModalProvider>
+        </LoaderContextProvider>
+      </ReactLenis>
+
     </html>
   );
 }
