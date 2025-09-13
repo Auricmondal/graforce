@@ -15,7 +15,7 @@ export default function FloatingBolt ({ className = "", size = "w-6 h-6" }) {
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className={`absolute ${size} bg-white rounded-full flex items-center justify-center shadow-lg z-1 ${className}`}
+      className={` absolute ${size} bg-white rounded-full flex items-center justify-center shadow-lg z-1 ${className}`}
     >
       <Image src={Bolt} alt="Lightning Bolt" className="object-contain" />
     </motion.div>

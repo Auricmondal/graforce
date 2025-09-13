@@ -43,7 +43,7 @@ const LanguageOptions = () => {
       </div>
 
       <div
-        className={`absolute gap-2 flex flex-col w-50 rounded-xl shadow bg-[#edf0f7] overflow-hidden p-4 my-6 [@media(min-width:645px)]:translate-x-[-25%] [@media(min-width:470px)]:translate-x-[-23%] translate-x-[-70%] transition-transform duration-300 ease-in-out origin-top-right sm:origin-top text-black ${
+        className={`absolute gap-2 flex flex-col w-50 rounded-xl shadow bg-[#edf0f7] overflow-hidden p-4 my-6 [@media(min-width:645px)]:translate-x-[-25%] [@media(min-width:470px)]:translate-x-[-23%] translate-x-[-80%] transition-transform duration-300 ease-in-out origin-top-right sm:origin-top text-black ${
           showLanguageOptions ? "scale-100" : "scale-0 z-50"
         }`}
       >

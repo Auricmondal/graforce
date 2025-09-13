@@ -81,11 +81,11 @@ export default function WorldNeedsUs() {
       className="bg-no-repeat bg-cover bg-center py-6 text-white"
       style={{
         backgroundImage: `linear-gradient(206.41deg, #0C1731 17.27%, #92ABE5 47.98%, #6E8FDD 65.61%, #102044 91.31%),
-                          url(lightning.svg)`,
+                          url(/lightning.svg)`,
         backgroundBlendMode: "overlay",
       }}
     >
-      <div className="max-w-[1460px] mx-auto">
+      <div className="max-w-[2000px] mx-auto">
         {/* Header */}
         <div className="text-center mb-4">
           <GradientBadge
