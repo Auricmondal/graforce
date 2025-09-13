@@ -18,14 +18,13 @@ export default function RootLayout({ children }) {
       <LoaderContextProvider>
         <body className={`${oxygen.variable} ${dmSans.variable} antialiased`}>
           <LoaderProvider>
-            <div className="relative z-10">
-              <Navbar />
-              <ProgressProvider>{children}</ProgressProvider>
-            </div>
-            <div className="relative z-10 pointer-events-none">
-              <FooterRevealer />
-            </div>
+            <Navbar />
+            <ProgressProvider>{children}</ProgressProvider>
             <Footer />
+            {/* Divs required for footer animation */}
+            {/* <div className="relative z-10"></div>
+            <div className="relative z-10 pointer-events-none"></div>
+            <div className="fixed bottom-0 w-full z-0"></div> */}
           </LoaderProvider>
         </body>
       </LoaderContextProvider>
