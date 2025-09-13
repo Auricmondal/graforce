@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
           </ContactModalProvider>
         </LoaderContextProvider>
       </ReactLenis>
+
     </html>
   );
 }
