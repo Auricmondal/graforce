@@ -173,12 +173,12 @@ const Footer = () => {
                 © 2025 Graforce. All rights reserved.
               </span>
 
-              <Link href="#" className='md:block hidden'>Privacy</Link>
+              <Link href="/privacy" className='md:block hidden'>Privacy</Link>
 
               {/* Right links (always side by side) */}
               <div className="flex gap-6 mt-2 md:mt-0 md:pr-12">
-                <Link href="#" className='md:hidden block'>Privacy</Link>
-                <Link href="#">Terms and Conditions</Link>
+                <Link href="/privacy" className='md:hidden block'>Privacy</Link>
+                <Link href="/tnc">Terms and Conditions</Link>
               </div>
 
             </div>
