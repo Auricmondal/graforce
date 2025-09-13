@@ -8,6 +8,7 @@ import BrandLogo from "./nav/BrandLogo";
 import MobileNav from "./nav/navigation/MobileNav";
 import useClickOutside from "@/hooks/useClickOutside";
 import useHideOnScrollNav from "@/hooks/useHideOnScrollNav";
+import ContactModal from "./nav/ContactModal";
 
 const Navbar = () => {
   const router = useRouter();
@@ -76,6 +77,7 @@ const Navbar = () => {
           />
         </div>
       </nav>
+      <ContactModal />
     </div>
   );
 };
