@@ -5,7 +5,8 @@ const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
   return (
     <div
       key={index}
-      className={`bg-[#E8EEFA] flex flex-col-reverse  gap-4 md:flex-row-reverse`}
+      className={`bg-[#E8EEFA] flex flex-col-reverse md:flex-row gap-4 ${isReversed ? "md:flex-row-reverse" : ""}
+        `}
     >
       {/* Content Section */}
       <div
@@ -31,7 +32,7 @@ const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
             {subsection.points.map((point, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center lg:items-start text-center lg:text-left gap-3 md:border-none border-b border-[rgba(255,255,255,0.15)] pb-6 md:pb-0"
+                className="flex flex-col items-center md:items-start text-center md:text-left gap-3 md:border-none border-b border-[rgba(255,255,255,0.15)] pb-6 md:pb-0"
               >
                 {/* Icon */}
                 <div className="w-14 h-14 bg-primary-50 rounded-full flex items-center justify-center">

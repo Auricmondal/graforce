@@ -77,7 +77,7 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
   return (
     <section
       ref={sectionRef}
-      className="hidden lg:block scroll-section relative overflow-hidden h-screen w-full"
+      className="hidden lg:block scroll-section relative  h-screen w-full"
     >
       <div ref={wrapperRef} className="wrapper relative w-full h-full">
         {children}
