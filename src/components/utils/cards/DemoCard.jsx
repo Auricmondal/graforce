@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-const DemoCard = ({ subsection, index }) => {
+const DemoCard = ({ subsection, isReversed, index }) => {
   return (
     <div
       key={index}
-      className={`bg-[#E8EEFA] flex flex-col-reverse md:flex-row gap-4 ${isReversed ? "md:flex-row-reverse" : ""}
-        `}
+      className={`bg-[#E8EEFA] flex flex-col-reverse md:flex-row gap-4 ${isReversed ? "md:flex-row-reverse" : ""
+        }`}
     >
       {/* Content Section */}
       <div
