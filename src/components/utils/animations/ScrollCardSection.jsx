@@ -14,17 +14,22 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
     const section = sectionRef.current;
     const items = wrapperRef.current.querySelectorAll(".item");
 
-    // Prepare items: position offscreen & fade out except first
+    // Set container relative to allow absolutely positioned children
+    section.style.position = "relative";
+
+    // Set up initial states
     items.forEach((item, index) => {
-      if (index !== 0) {
-        gsap.set(item, {
-          opacity: 0,
-          scale: 0.95,
-          ...(direction === "horizontal"
-            ? { xPercent: 100 }
-            : { yPercent: 100 }),
-        });
-      }
+      gsap.set(item, {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        opacity: index === 0 ? 1 : 0,
+        scale: index === 0 ? 1 : 0.95,
+        yPercent: index === 0 ? 0 : 50, // cards start lower
+        zIndex: index,
+      });
     });
 
     const tl = gsap.timeline({
@@ -33,32 +38,34 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
         pin: true,
         start: "top top",
         end: () => `+=${items.length * 100}%`,
-        scrub: 1,
+        scrub: true,
         anticipatePin: 1,
-        invalidateOnRefresh: true,
       },
-      defaults: { ease: "power2.out", duration: 0.6 },
     });
 
     items.forEach((item, i) => {
-      if (i < items.length - 1) {
-        // Smoothly scale and fade out the current item
-        tl.to(item, {
-          scale: 0.9,
-          opacity: 0,
-        });
+      const next = items[i + 1];
+      if (!next) return;
 
-        // Bring the next one in with nice motion
-        tl.to(
-          items[i + 1],
-          {
-            opacity: 1,
-            scale: 1,
-            ...(direction === "horizontal" ? { xPercent: 0 } : { yPercent: 0 }),
-          },
-          "<"
-        );
-      }
+      // Fade out current, move it up a little
+      tl.to(item, {
+        opacity: 0,
+        scale: 0.9,
+        yPercent: -25,
+        duration: 0.5,
+      });
+
+      // At the same time, bring in next from below
+      tl.to(
+        next,
+        {
+          opacity: 1,
+          scale: 1,
+          yPercent: 10,
+          duration: 0.5,
+        },
+        "-=0.3" // Overlap the animations
+      );
     });
 
     return () => {
@@ -70,10 +77,10 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
   return (
     <section
       ref={sectionRef}
-      className={`hidden xl:block scroll-section ${direction}-section section overflow-hidden`}
+      className="hidden lg:block scroll-section relative overflow-hidden h-screen w-full"
     >
-      <div ref={wrapperRef} className="wrapper relative w-full">
-        <div className="list relative h-full w-full">{children}</div>
+      <div ref={wrapperRef} className="wrapper relative w-full h-full">
+        {children}
       </div>
     </section>
   );

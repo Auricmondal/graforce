@@ -74,7 +74,7 @@ const Solutions = ({ isStraight = false }) => {
   ];
 
   return (
-    <SectionWrapper className="bg-[#E8EEFA]">
+    <SectionWrapper className="bg-[#E8EEFA] !py-0">
       <div className="max-w-[2000px] mx-auto">
         {/* Section Header */}
         <div className="flex flex-col justify-center text-center gap-4 md:gap-2">
