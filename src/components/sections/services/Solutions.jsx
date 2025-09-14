@@ -75,7 +75,7 @@ const Solutions = ({ isStraight = false }) => {
 
   return (
     <SectionWrapper className="bg-[#E8EEFA]">
-      <div className="max-w-[2000px] mx-auto">
+      <div className="max-w-[2000px] mx-auto" id="solutions-section-service">
         {/* Section Header */}
         <div className="flex flex-col justify-center text-center gap-4 md:gap-2">
           <span>
@@ -121,15 +121,10 @@ const Solutions = ({ isStraight = false }) => {
         </ScrollCardSection>
 
         {/* Mobile Only (no scroll animation) */}
-        <div className="space-y-16 lg:space-y-10 xl:space-y-24 xl:hidden">
+        <div className="space-y-8 lg:space-y-10 xl:space-y-24 xl:hidden">
           {subsections.map((subsection, index) => (
             <React.Fragment key={index}>
-              <DemoCard
-                subsection={subsection}
-                index={index}
-                isReversed={isStraight ? false : index % 2 === 0}
-                isStraight={isStraight}
-              />
+              <DemoCard subsection={subsection} index={index} />
               {/* {index < subsections.length - 1 && (
                 <hr className="w-full lg:hidden mx-auto border-0 border-t border-dark-tint/80" />
               )} */}

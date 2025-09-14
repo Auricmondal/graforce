@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import ScrollReveal from "@/wrappers/ScrollReveal";
@@ -11,8 +12,32 @@ import ElevatedButton from "@/components/utils/buttons/ElevatedButton";
 import Customer1 from "@/assets/home/hero/Ellipse-10.png";
 import Customer2 from "@/assets/home/hero/Ellipse-11.png";
 import Customer3 from "@/assets/home/hero/Ellipse-15.png";
+import { useContactModal } from "@/contexts/ContactModalContext";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+  const { isOpen, closeModal, openModal } = useContactModal();
+  const router = useRouter();
+
+  const handleContactModal = () => {
+    if (!isOpen) {
+      openModal();
+    } else {
+      closeModal();
+    }
+  };
+
+  const handleLearnMore = (e) => {
+    e.preventDefault();
+    const section = document.getElementById("solutions-section");
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   const CustomerAvatar = ({ src, className = "" }) => {
     return (
       <Image
@@ -51,21 +76,38 @@ const HeroSection = () => {
                 Fueling a Carbon <br /> Free Future
               </h1>
               <div className="flex gap-4">
-                <FloatupButton className="!w-fit" icon={"❯"}>Book a Demo</FloatupButton>
-                <ElevatedButton className="!w-fit">Learn More</ElevatedButton>
+                <FloatupButton
+                  className="!w-fit cursor-pointer"
+                  icon={"❯"}
+                  onClick={handleContactModal}
+                >
+                  Book a Demo
+                </FloatupButton>
+                <ElevatedButton className="!w-fit" onClick={handleLearnMore}>
+                  Learn More
+                </ElevatedButton>
               </div>
             </div>
           </ScrollReveal>
         </div>
       </div>
 
-      <FloatingTip className="top-90 right-1/6 -translate-y-10 md:translate-0" delay={1}>
+      <FloatingTip
+        className="top-90 right-1/6 -translate-y-10 md:translate-0"
+        delay={1}
+      >
         • 100% Carbon Value
       </FloatingTip>
-      <FloatingTip className="top-105 left-1/6 -translate-y-10 md:translate-0" delay={0.2}>
+      <FloatingTip
+        className="top-105 left-1/6 -translate-y-10 md:translate-0"
+        delay={0.2}
+      >
         • 0% CO₂ Costs
       </FloatingTip>
-      <FloatingTip className="top-120 right-1/3 -translate-y-10 md:translate-0" delay={0.6}>
+      <FloatingTip
+        className="top-120 right-1/3 -translate-y-10 md:translate-0"
+        delay={0.6}
+      >
         • 50% Energy Savings
       </FloatingTip>
 

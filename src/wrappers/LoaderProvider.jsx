@@ -20,7 +20,7 @@ export default function LoaderProvider({ children }) {
 
       (async () => {
         await waitForPageReady();
-        await sleep(800);
+        await sleep(1500);
         setLoading(false);
       })();
 
@@ -49,7 +49,7 @@ export default function LoaderProvider({ children }) {
               width: 0,
               height: 0,
               transition: {
-                duration: 0.6,
+                duration: 1.5,
                 ease: [0.6, 0.01, -0.05, 0.95],
               },
             }}
@@ -59,7 +59,7 @@ export default function LoaderProvider({ children }) {
               initial={{ scale: 1 }}
               animate={{ scale: 0 }}
               transition={{
-                duration: 0.6,
+                duration: 1.5,
                 ease: [0.6, 0.01, -0.05, 0.95],
               }}
             >

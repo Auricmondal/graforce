@@ -56,7 +56,7 @@ export const LoaderContextProvider = ({ children }) => {
         setTimeout(() => {
           setRevealStarted(false);
           setLoading(false);
-        }, 600); // same as animation duration
+        }, 1500); // same as animation duration
       }
     })();
 
