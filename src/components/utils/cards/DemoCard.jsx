@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
+const DemoCard = ({ subsection, index }) => {
   return (
     <div
       key={index}
@@ -10,7 +10,7 @@ const DemoCard = ({ subsection, index, isReversed, isStraight = false }) => {
     >
       {/* Content Section */}
       <div
-        className={`w-full md:w-[63%] h-auto rounded-2xl flex flex-col justify-center items-center lg:items-start gap-6 py-16 px-8 text-center lg:text-left order-1 lg:order-none`}
+        className={`w-full md:w-[63%] h-auto rounded-2xl flex flex-col justify-center items-center  gap-6 py-16 px-8 text-center md:text-left order-1 lg:order-none`}
         style={{
           background:
             "linear-gradient(248.79deg, #1E428A -2.85%, #193570 13.88%, #132957 30.61%, #081124 64.07%)",

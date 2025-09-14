@@ -43,55 +43,55 @@ export default function SolutionSection() {
   const selectedFeature = solutionData.find((f) => f.id === selectedId);
 
   return (
-    <div className="bg-white">
-    <SectionWrapper className="flex flex-col lg:flex-row justify-between gap-4 items-stretch max-w-[2000px] mx-auto bg-white">
-      <div className="space-y-6 flex flex-col items-center lg:items-start">
-        <GradientBadge
-          text={"Graforce's Solution"}
-          icon={<TbSquareRotatedFilled />}
-        />
-
-        <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] text-center lg:text-left max-w-[400px] md:max-w-[600px]">
-          Hydrogen Today Pollutes.
-          <span className="text-primary-400 pl-2">We Change That</span>
-        </h2>
-
-        <div className="space-y-6">
-          {solutionData.map((item, index) => (
-            <div className="" key={item.id}>
-              <SolutionItem
-                key={item.id}
-                number={`0${index + 1}`}
-                title={item.title}
-                description={item.description}
-                isActive={selectedId === item.id}
-                onClick={() => handleItemClick(item.id, index)}
-                intervalDuration={ROTATION_INTERVAL}
-              />
-              {selectedId === item.id && (
-                <div className="lg:hidden">
-                  <SolutionCard
-                    count={`0${item.id}`}
-                    cardTitle={item.title}
-                    cardDescription={item.description}
-                  />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="w-full lg:w-[48%] h-full hidden lg:block">
-        {selectedFeature && (
-          <SolutionCard
-            count={`0${selectedFeature.id}`}
-            cardTitle={selectedFeature.title}
-            cardDescription={selectedFeature.description}
+    <div className="bg-white" id="solutions-section">
+      <SectionWrapper className="flex flex-col lg:flex-row justify-between gap-4 items-stretch max-w-[2000px] mx-auto bg-white">
+        <div className="space-y-6 flex flex-col items-center lg:items-start">
+          <GradientBadge
+            text={"Graforce's Solution"}
+            icon={<TbSquareRotatedFilled />}
           />
-        )}
-      </div>
-    </SectionWrapper>
+
+          <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] text-center lg:text-left max-w-[400px] md:max-w-[600px]">
+            Hydrogen Today Pollutes.
+            <span className="text-primary-400 pl-2">We Change That</span>
+          </h2>
+
+          <div className="space-y-6">
+            {solutionData.map((item, index) => (
+              <div className="" key={item.id}>
+                <SolutionItem
+                  key={item.id}
+                  number={`0${index + 1}`}
+                  title={item.title}
+                  description={item.description}
+                  isActive={selectedId === item.id}
+                  onClick={() => handleItemClick(item.id, index)}
+                  intervalDuration={ROTATION_INTERVAL}
+                />
+                {selectedId === item.id && (
+                  <div className="lg:hidden">
+                    <SolutionCard
+                      count={`0${item.id}`}
+                      cardTitle={item.title}
+                      cardDescription={item.description}
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-full lg:w-[48%] h-full hidden lg:block">
+          {selectedFeature && (
+            <SolutionCard
+              count={`0${selectedFeature.id}`}
+              cardTitle={selectedFeature.title}
+              cardDescription={selectedFeature.description}
+            />
+          )}
+        </div>
+      </SectionWrapper>
     </div>
   );
 }

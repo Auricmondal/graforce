@@ -123,18 +123,17 @@ export default function EmissionPage() {
             icon={<TbSquareRotatedFilled />}
           />
           <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl lg:text-[64px] mt-4">
-            The Emission Burden
-          </h2>
-          <p className="text-base md:text-xl mt-2 mx-auto">
-            95% of today's hydrogen is fossil-based, emitting millions of tons
-            of CO₂ annually.
-          </p>
+            <h2 className="text-3xl md:text-5xl lg:text-[64px] mt-4">
+              The Emission Burden
+            </h2>
+            <p className="text-base md:text-xl mt-2 mx-auto">
+              95% of today's hydrogen is fossil-based, emitting millions of tons
+              of CO₂ annually.
+            </p>
           </ScrollReveal>
         </div>
 
         <div className="shadow-[0px_1px_3px_0px_rgba(13,10,44,0.08)] rounded-lg p-4 md:p-6">
-
           {/* large screen */}
 
           <div className="hidden lg:flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
@@ -142,9 +141,7 @@ export default function EmissionPage() {
               <p className="text-cst-neutral-400 text-xs md:text-lg">
                 Statistics
               </p>
-              <p className="font-bold text-sm md:text-[22px]">
-                Co2 Emmission
-              </p>
+              <p className="font-bold text-sm md:text-[22px]">Co2 Emmission</p>
             </div>
 
             {/* Year Filters */}
@@ -153,7 +150,7 @@ export default function EmissionPage() {
                 <button
                   key={year}
                   onClick={() => toggleYear(year)}
-                  className={`py-1 md:py-2 px-2 md:px-4 rounded-lg border border-cst-neutral-500 transition flex items-center gap-1 text-xs md:text-base whitespace-nowrap
+                  className={`py-1 md:py-2  md:px-4 rounded-lg border border-cst-neutral-500 transition flex items-center gap-1 text-xs md:text-base whitespace-nowrap
                 ${activeYears.includes(year) ? "" : " text-cst-neutral-500"}`}
                 >
                   <GoDotFill

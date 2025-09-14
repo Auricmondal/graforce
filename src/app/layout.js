@@ -2,7 +2,6 @@ import "./globals.css";
 import { oxygen, dmSans } from "./font";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
-import FooterRevealer from "@/components/shared/footer/FooterRevealer";
 import ProgressProvider from "./providers";
 import LoaderProvider from "@/wrappers/LoaderProvider";
 import { LoaderContextProvider } from "@/contexts/LoaderContext";
@@ -29,17 +28,14 @@ export default function RootLayout({ children }) {
                   <Navbar />
                   <ProgressProvider>{children}</ProgressProvider>
                 </div>
-                <div className="relative z-10 pointer-events-none">
-                  <FooterRevealer />
-                </div>
+
                 <Footer />
-                <ContactModal clickOutside={false} />
+                <ContactModal clickOutside={true} />
               </LoaderProvider>
             </body>
           </ContactModalProvider>
         </LoaderContextProvider>
       </ReactLenis>
-
     </html>
   );
 }
