@@ -7,7 +7,7 @@ import SmartLink from "@/components/utils/legalUtils/SmartLink";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="max-w-[2000px] mx-auto">
+    <div className="max-w-[2000px] mx-auto bg-white">
       {/* Header */}
       <div className="bg-[linear-gradient(206.41deg,#0C1731_17.27%,#92ABE5_47.98%,#6E8FDD_65.61%,#102044_91.31%)] text-white py-16">
         <SectionWrapper>
