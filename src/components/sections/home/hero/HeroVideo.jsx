@@ -46,11 +46,31 @@ const HeroVideo = () => {
       })
       .to(circle, { strokeDashoffset: 0, duration: 3, ease: "none" })
       .to(circle, { opacity: 0, duration: 0.5, ease: "power2.out" });
-
-  },[]);
+    ScrollTrigger.create({
+      trigger: "#hero-vid-main",
+      start: "top+=800 center",
+      onEnter: () => {
+        gsap.to("#hero-title", {
+          color: "#ffffff", // white text
+          fontWeight: 800, // bold
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to("#hero-title", {
+          color: "#000000", // back to black
+          fontWeight: 400, // normal weight
+          duration: 0.6,
+          ease: "power2.inOut",
+        });
+      },
+    });
+  }, []);
 
   return (
     <div
+      id="hero-vid-main"
       ref={overlayRef}
       className="fixed top-1/2 left-1/2 z-2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 overflow-hidden bg-white"
     >
@@ -67,7 +87,13 @@ const HeroVideo = () => {
         viewBox="0 0 100 100"
       >
         <defs>
-          <linearGradient id="progressCircleGradient" x1="0%" y1="0%" x2="100%" y2="100%" >
+          <linearGradient
+            id="progressCircleGradient"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
             <stop offset="0%" style={{ stopColor: "#ffffff" }} />
             <stop offset="100%" style={{ stopColor: "#444" }} />
           </linearGradient>
