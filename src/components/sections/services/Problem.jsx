@@ -115,7 +115,7 @@ export default function EmissionPage() {
   const filteredData = getFilteredData();
 
   return (
-    <SectionWrapper className="bg-white">
+    <SectionWrapper className="bg-white ">
       <div className="py-6 md:py-12 max-w-[2000px] mx-auto">
         <div className="text-center mx-auto mb-8 md:mb-12">
           <GradientBadge
@@ -132,8 +132,8 @@ export default function EmissionPage() {
             </p>
           </ScrollReveal>
         </div>
-
-        <div className="shadow-[0px_1px_3px_0px_rgba(13,10,44,0.08)] rounded-lg p-4 md:p-6">
+        <div className="shadow-[0px_1px_3px_0px_rgba(13,10,44,0.08)]">  
+        <div className=" rounded-lg p-4 md:p-6">
           {/* large screen */}
 
           <div className="hidden lg:flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
@@ -261,10 +261,12 @@ export default function EmissionPage() {
               })}
             </div>
           </div>
+          </div>
 
+          <div className=" rounded-lg p-0 pr-0 md:pr-0">
           {/* Chart */}
           <div className="w-full overflow-x-auto pointer-events-none">
-            <ResponsiveContainer width="100%" height={250} minWidth={300}>
+            <ResponsiveContainer width="98%" height={250} minWidth={200}>
               <LineChart data={filteredData}>
                 <XAxis
                   dataKey="month"
@@ -277,14 +279,6 @@ export default function EmissionPage() {
                   stroke="#ccc"
                   fontSize={12}
                   width={60}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "#fff",
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    fontSize: "12px",
-                  }}
                 />
                 {activeYears.map((year) => (
                   <Line
@@ -300,6 +294,7 @@ export default function EmissionPage() {
               </LineChart>
             </ResponsiveContainer>
           </div>
+        </div>
         </div>
       </div>
     </SectionWrapper>
