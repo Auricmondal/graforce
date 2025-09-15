@@ -5,7 +5,7 @@ import HeroVideo from "@/components/sections/home/hero/HeroVideo";
 
 const Hero = () => {
   return (
-    <section id="video-section" >
+    <section id="video-section">
       <HeroSection />
       <HeroVideo />
     </section>
