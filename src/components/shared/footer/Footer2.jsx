@@ -16,7 +16,7 @@ const Footer2 = () => {
         <div className="max-w-[2000px] mx-auto">
 
               <ScrollReveal>
-            <FitText minFont={16} maxFont={500} className="w-full text-center font-extrabold text-white leading-none overflow-hidden">
+            <FitText minFont={1} maxFont={500} className="w-full text-center font-extrabold text-white leading-none overflow-hidden">
                 Graforce
             </FitText>
               </ScrollReveal>
