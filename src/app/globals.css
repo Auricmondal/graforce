@@ -56,6 +56,10 @@
   --font-oxygen: var(--font-oxygen);
 }
 
+* {
+  cursor: none !important;
+}
+
 body {
   font-family: var(--font-dm-sans), sans-serif;
   background-color: var(--primary-900);
