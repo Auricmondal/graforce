@@ -4,67 +4,53 @@ import { motion } from "framer-motion";
 
 export default function CustomCursor() {
   const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [cursorType, setCursorType] = useState("default");
 
   useEffect(() => {
-    const move = (e) => setPos({ x: e.clientX, y: e.clientY });
+    const move = (e) => {
+      setPos({ x: e.clientX, y: e.clientY });
+
+      const target = e.target.closest("[data-cursor]");
+      target ? setCursorType(target.getAttribute("data-cursor")) : setCursorType("default");
+    };
+
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
+  const base = {
+    x: pos.x,
+    y: pos.y,
+    backgroundColor: "#fff",
+  };
+
   const variants = {
     default: {
-      x: pos.x,
-      y: pos.y,
+      ...base,
+      scale: 1,
+      mixBlendMode: "difference",
+    },
+    highlight: {
+      ...base,
+      scale: 2,
+      mixBlendMode: "exclusion",
+    },
+    image: {
+      ...base,
+      scale: 4,
+      backgroundImage: "url('/test/img/test-image.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      mixBlendMode: "normal",
     },
   };
 
   return (
     <motion.div
-      className="fixed z-[999] h-12 w-12 pointer-events-none rounded-full transform -translate-x-1/2 -translate-y-1/2 bg-white mix-blend-exclusion"
+      className="fixed z-[999] h-12 w-12 pointer-events-none rounded-full -translate-x-1/2 -translate-y-1/2"
       variants={variants}
-      animate="default"
+      animate={cursorType}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
     />
   );
 }
-
-// "use client";
-// import { useEffect, useState } from "react";
-// import { motion } from "framer-motion";
-
-// export default function CustomCursor() {
-//   const [pos, setPos] = useState({ x: 0, y: 0 });
-//   const [isOnText, setIsOnText] = useState(false);
-
-//   useEffect(() => {
-//     const move = (e) => {
-//       setPos({ x: e.clientX, y: e.clientY });
-
-//       const tag = e.target.tagName.toLowerCase();
-//       if (["p", "span", "a", "h1", "h2", "h3", "h4", "h5", "h6"].includes(tag)) {
-//         setIsOnText(true);
-//       } else {
-//         setIsOnText(false);
-//       }
-//     };
-
-//     window.addEventListener("mousemove", move);
-//     return () => window.removeEventListener("mousemove", move);
-//   }, []);
-
-//   const variants = {
-//     default: {
-//       x: pos.x,
-//       y: pos.y,
-//     },
-//   };
-
-//   return (
-//     <motion.div
-//       className={`fixed z-[999] h-12 w-12 pointer-events-none rounded-full transform -translate-x-1/2 -translate-y-1/2 ${
-//         isOnText ? "bg-white mix-blend-difference" : "bg-black"
-//       }`}
-//       variants={variants}
-//       animate="default"
-//     />
-//   );
-// }
