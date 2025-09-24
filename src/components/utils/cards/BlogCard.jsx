@@ -16,7 +16,7 @@ const BlogCard = ({ blog }) => {
 
       {/* Tag */}
       <div className="mb-3">
-        <span className="inline-block px-4 py-1 bg-primary-300 text-white text-sm font-medium rounded-xl">
+        <span className="inline-block px-4 py-1 bg-primary-300 text-white text-sm font-medium rounded-lg">
           {blog.tag}
         </span>
       </div>

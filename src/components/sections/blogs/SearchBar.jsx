@@ -43,8 +43,8 @@ export default function SearchBar({ onSearch }) {
   return (
     <div ref={containerRef} className="relative">
       <div
-        className={`flex items-center bg-[#eef2fc] rounded-full md:rounded-2xl transition-all duration-300 ease-in-out py-3
-          ${isExpanded ? "w-64 px-4" : "w-10 px-2"}
+        className={`flex items-center bg-[#E8EEFA] rounded-full md:rounded-2xl transition-all duration-300 ease-in-out py-3
+          ${isExpanded ? "w-64 px-4" : "w-10 px-2 justify-center"}
           sm:w-64 sm:px-4`}
       >
         <input
