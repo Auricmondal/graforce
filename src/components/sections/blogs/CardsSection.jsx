@@ -33,7 +33,7 @@ export default function CardsSection() {
       </div>
 
       {hasMore && (
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 lg:mt-16 mb-8 lg:mb-0">
           <FloatupButton icon={"❯"} onClick={loadMore} className="!w-fit">
             Load More
           </FloatupButton>
