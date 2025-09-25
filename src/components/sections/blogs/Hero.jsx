@@ -16,7 +16,7 @@ const HeroBlogs = () => {
         y: 0,
         opacity: 1,
         duration: 1,
-        stagger: 0.2,
+        stagger: 0.0,
         filter: "blur(0px)",
         scale: 1,
       },
@@ -25,14 +25,14 @@ const HeroBlogs = () => {
       .fromTo(
         ".hero-head",
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
-        2.5
+        { y: 0, opacity: 1, duration: 1, stagger: 0.0 },
+        1.5
       )
       .fromTo(
         ".hero-text",
         { y: 100, opacity: 0 },
         { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
-        3
+        2
       );
   }, []);
 
