@@ -17,7 +17,7 @@ const FinalCTA = () => {
     }
   };
   return (
-    <div className="bg-primary-700">
+    <div className="bg-dark">
       <SectionWrapper className="max-w-[2000px] relative overflow-hidden mx-auto">
         {/* Bulb Image */}
         <div className="absolute z-0 -bottom-8 right-1/12 -rotate-30 w-1/7 min-w-30">
