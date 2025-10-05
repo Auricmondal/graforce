@@ -19,19 +19,20 @@ const HeroBlogs = () => {
         stagger: 0.0,
         filter: "blur(0px)",
         scale: 1,
+        ease: "power2.out",
       },
       1.5
     )
       .fromTo(
         ".hero-head",
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.0, ease: "power2.out" },
         1.5
       )
       .fromTo(
         ".hero-text",
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.2 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.2, ease: "power2.out" },
         2
       );
   }, []);

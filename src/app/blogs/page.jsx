@@ -8,7 +8,7 @@ const Blogs = () => {
   return (
     <div className="">
       <HeroBlogs />
-      {/* <LatestNews /> */}
+      <LatestNews />
       <OtherServices />
       <FinalCTA />
     </div>
