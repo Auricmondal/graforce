@@ -1,5 +1,5 @@
 import React from 'react';
-import dropSvg from '@/assets/home/drop.svg';
+import dropSvg from '@/assets/drop.svg';
 import Image from 'next/image';
 
 const SectionLabel = ({ text }) => {
