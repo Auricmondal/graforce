@@ -1,97 +1,126 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { TbSquareRotatedFilled } from "react-icons/tb";
-import solutionData from "@/data/solutions.json";
-import SolutionItem from "./SolutionItem";
+import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import solutionImg from "@/assets/home/solution.webp";
+import steps from "@/data/solutions.json";
+import SectionLabel from "@/components/utils/badges/SectionLabel";
+import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import SolutionCard from "./SolutionCard";
-import GradientBadge from "@/components/utils/badges/GradientBadge";
-import SectionWrapper from "@/wrappers/SectionWrapper";
 
-const ROTATION_INTERVAL = 15000; // 15 seconds per item
+gsap.registerPlugin(ScrollTrigger);
 
 export default function SolutionSection() {
-  const [selectedId, setSelectedId] = useState(solutionData[0].id);
-  const intervalRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const triggerRef = useRef(null);
 
-  const currentIndex = solutionData.findIndex((item) => item.id === selectedId);
+  useGSAP(() => {
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    if (!triggerRef.current || !isDesktop) return;
 
-  const startRotation = (startFromIndex) => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    let index = startFromIndex;
-
-    intervalRef.current = setInterval(() => {
-      index = (index + 1) % solutionData.length;
-      setSelectedId(solutionData[index].id);
-    }, ROTATION_INTERVAL);
-  };
-
-  useEffect(() => {
-    startRotation(currentIndex);
-
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    steps.forEach((_, i) => {
+      const stepElement = triggerRef.current.children[i];
+      if (stepElement) {
+        ScrollTrigger.create({
+          trigger: stepElement,
+          start: "top 75%",
+          end: "bottom 25%",
+          scrub: 1,
+          onEnter: () => {
+            console.log(`Entering step ${i}`);
+            setActiveStep(i);
+            setScrollProgress(0); // Reset progress when entering new step
+          },
+          onEnterBack: () => {
+            console.log(`Entering back step ${i}`);
+            setActiveStep(i);
+            setScrollProgress(0); // Reset progress when entering back
+          },
+          onUpdate: (self) => {
+            // Only update progress for current step being scrolled
+            setScrollProgress(self.progress * 100);
+          },
+          onLeave: () => {
+            // When leaving a step, set progress to 100%
+            if (i < steps.length - 1) {
+              setScrollProgress(100);
+            }
+          },
+          onLeaveBack: () => {
+            setScrollProgress(0);
+          },
+        });
+      }
+    });
   }, []);
 
-  const handleItemClick = (id, index) => {
-    setSelectedId(id);
-    startRotation(index);
-  };
-
-  const selectedFeature = solutionData.find((f) => f.id === selectedId);
-
   return (
-    <div className="bg-white" id="solutions-section">
-      <SectionWrapper className="flex flex-col lg:flex-row justify-between gap-4 items-stretch max-w-[2000px] mx-auto bg-white">
-        <div className="space-y-6 flex flex-col items-center lg:items-start">
-          <GradientBadge
-            text={"Graforce's Solution"}
-            icon={<TbSquareRotatedFilled />}
-          />
-
-          <h2 className="text-[32px] md:text-[52px] leading-[100%] tracking-[-1.5%] text-center lg:text-left max-w-[400px] md:max-w-[600px]">
-            Hydrogen Today Pollutes.
-            <span className="text-primary-400 pl-2">We Change That</span>
-          </h2>
-
-          <div className="space-y-6">
-            {solutionData.map((item, index) => (
-              <div className="" key={item.id}>
-                <SolutionItem
-                  key={item.id}
-                  number={`0${index + 1}`}
-                  title={item.title}
-                  description={item.description}
-                  isActive={selectedId === item.id}
-                  onClick={() => handleItemClick(item.id, index)}
-                  intervalDuration={ROTATION_INTERVAL}
-                />
-                {selectedId === item.id && (
-                  <div className="lg:hidden">
-                    <SolutionCard
-                      count={`0${item.id}`}
-                      cardTitle={item.title}
-                      cardDescription={item.description}
-                    />
-                  </div>
-                )}
+    <main className="md:relative w-full bg-secondary-light">
+      {/* Fixed split layout */}
+      <div className="md:sticky top-0 left-0 w-full md:h-[100vh] z-30 flex flex-col md:flex-row p-2 gap-2 h-fit">
+        {/* Left Side */}
+        <div className="w-full md:flex-3/7 flex gap-2">
+          <div className="flex flex-col gap-2 w-full">
+            <div className="md:sticky top-0 z-40 border-primary-light border-1 rounded-lg flex flex-col gap-2 py-8 px-6 bg-secondary-light">
+              <SectionLabel text={"Our Solution"} />
+              <div className="text-xl">
+                Hydrogen Today Pollutes. We Change That
               </div>
-            ))}
+            </div>
+
+            {/* Solution card */}
+            <div className="hidden md:block h-full">
+              <SolutionCard
+                key={activeStep}
+                id={steps[activeStep].id}
+                title={steps[activeStep].title}
+                description={steps[activeStep].description}
+                progress={scrollProgress}
+              />
+            </div>
+
+            <div className="md:hidden">
+              {steps.map((step, index) => (
+                <SolutionCard
+                  key={step.id}
+                  id={step.id}
+                  title={step.title}
+                  description={step.description}
+                  progress={scrollProgress}
+                />
+              ))}
+            </div>
+
+            {/* Solution card end */}
           </div>
         </div>
 
-        <div className="w-full lg:w-[48%] h-full hidden lg:block">
-          {selectedFeature && (
-            <SolutionCard
-              count={`0${selectedFeature.id}`}
-              cardTitle={selectedFeature.title}
-              cardDescription={selectedFeature.description}
-            />
-          )}
-        </div>
-      </SectionWrapper>
-    </div>
+        {/* Right Side */}
+        <div
+          className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-screen md:min-h-0"
+          style={{
+            backgroundImage: `url(${solutionImg.src})`,
+          }}
+        ></div>
+      </div>
+
+      {/* Scroll space for GSAP ScrollTrigger */}
+      <div ref={triggerRef} className="relative z-10 hidden md:block">
+        {steps.map((_, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-center"
+            style={{ minHeight: "300vh" }}
+          >
+            {/* Individual scroll trigger zones */}
+          </div>
+        ))}
+      </div>
+    </main>
   );
 }
