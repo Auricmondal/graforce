@@ -11,11 +11,13 @@ const Home = async() => {
   return (
     <>
       <Hero />
-      <Brands />
-      <Solution />
-      <WorldNeedsUs />
-      <AboutUs />
-      <FinalCTA />
+      <div className="relative z-10 mt-[100vh]">
+        <Brands />
+        <Solution />
+        <WorldNeedsUs />
+        <AboutUs />
+        <FinalCTA />
+      </div>
     </>
   );
 };
