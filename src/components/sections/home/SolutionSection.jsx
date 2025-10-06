@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import solutionImg from "@/assets/home/solution.webp";
 import steps from "@/data/solutions.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import SolutionCard from "./SolutionCard";
 
 gsap.registerPlugin(ScrollTrigger);
