@@ -4,6 +4,7 @@ import { useContactModal } from "@/contexts/ContactModalContext";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
 const HeroSection = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
@@ -42,10 +43,12 @@ const HeroSection = () => {
       {/* Content */}
       <div className="absolute inset-0 flex flex-col items-center lg:items-start justify-between px-4 text-center lg:text-start text-white">
         <div className="flex-3 flex items-center">
-          <h1 className="text-[clamp(56px,10vw,128px)] font-semibold max-w-8xl leading-[110%]">
-            Powering the Future with{" "}
-            <span className="text-primary">Hydrogen</span>
-          </h1>
+          <AnimatedHeader delay={0.8}>
+            <h1 className="text-[clamp(56px,10vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[110%]">
+              Powering the Future with{" "}
+              <span className="text-primary">Hydrogen</span>
+            </h1>
+          </AnimatedHeader>
         </div>
         <div className="flex-1 lg:flex-0 flex flex-col lg:flex-row items-center lg:justify-between w-full lg:pb-8 gap-4">
           <div className="flex gap-4">
