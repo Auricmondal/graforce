@@ -10,15 +10,15 @@ const WhatDoWeDo = () => {
     <div className="flex flex-col md:flex-row gap-2 bg-cst-neutral-1 p-2">
       <div className="flex-1 bg-white rounded-2xl px-6 py-8 flex flex-col lg:gap-4">
         <SectionLabel text="What Do We Do" />
-        <AnimatedHeader>
-        <h6 className="text-2xl font-semibold mt-[20vh] lg:mt-0">
-          We convert <span className="text-primary">Waste</span> and{" "}
-          <span className="text-primary">Renewable Energy</span> into{" "}
-          <span className="text-primary">Clean Hydrogen</span>. Our technology
-          replaces fossil fuels and{" "}
-          <span className="text-primary">Cuts CO₂</span> emissions across
-          industries.
-        </h6>
+        <AnimatedHeader className="mt-[20vh] lg:mt-0">
+          <h6 className="text-2xl font-semibold">
+            We convert <span className="text-primary">Waste</span> and{" "}
+            <span className="text-primary">Renewable Energy</span> into{" "}
+            <span className="text-primary">Clean Hydrogen</span>. Our technology
+            replaces fossil fuels and{" "}
+            <span className="text-primary">Cuts CO₂</span> emissions across
+            industries.
+          </h6>
         </AnimatedHeader>
       </div>
 
