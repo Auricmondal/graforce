@@ -1,78 +1,102 @@
-import GradientBadge from "@/components/utils/badges/GradientBadge";
-import FloatupButton from "@/components/utils/buttons/FloatupButton";
+"use client";
+
+import SectionLabel from "@/components/utils/badges/SectionLabel";
+import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import Image from "next/image";
-import aboutUsImage from "@/assets/home/aboutimg.png";
-import { TbSquareRotatedFilled } from "react-icons/tb";
+import React, { useEffect, useState } from "react";
 
-export default function AboutUs() {
+const AboutUs = () => {
+  const brandLogoBase = "/brand/img/";
+
+  // Hardcoded fallback logos
+  const fallbackLogos = [
+    { src: `${brandLogoBase}digicert_icon.png.webp`, name: "Brand 1" },
+    { src: `${brandLogoBase}Group.webp`, name: "Brand 2" },
+    { src: `${brandLogoBase}Vector.webp`, name: "Brand 3" },
+    { src: `${brandLogoBase}WSJ.webp`, name: "Brand 4" },
+    { src: `${brandLogoBase}WSJ.webp`, name: "Brand 5" },
+    { src: `${brandLogoBase}Vector.webp`, name: "Brand 6" },
+  ];
+
+  const [brandLogos, setBrandLogos] = useState(fallbackLogos); // default = fallback
+  const [loading, setLoading] = useState(true);
+
+  const API_URL = "/api/brands"; // replace with your real endpoint
+
+  useEffect(() => {
+    const fetchLogos = async () => {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("Failed to fetch logos");
+
+        const data = await res.json();
+
+        // If API returns logos, use them; else use fallback
+        if (data && Array.isArray(data.logos) && data.logos.length > 0) {
+          setBrandLogos(data.logos);
+        } else {
+          setBrandLogos(fallbackLogos);
+        }
+      } catch (err) {
+        console.warn("API fetch failed, using fallback logos:", err);
+        setBrandLogos(fallbackLogos);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchLogos();
+  }, []);
+
+  // Local fallback for individual broken images
+  const handleImgError = (e) => {
+    e.target.src = `${brandLogoBase}default-logo.webp`;
+  };
+
   return (
-    <div className="bg-white">
-    <SectionWrapper className="bg-white text-black py-10 space-y-10 mx-auto max-w-[2000px]">
-      <section className="text-center max-w-3xl mx-auto flex flex-col items-center gap-2">
-        <GradientBadge text="About Us" icon={<TbSquareRotatedFilled />} />
-        <h2 className="text-2xl md:text-[64px] tracking-tight">
-          Trusted. Proven. Driven.
-        </h2>
-        <p className="text-black text-base">
-          Graforce is recognized worldwide for pioneering plasma technology that
-          delivers clean hydrogen without CO₂. Our mission is to scale
-          sustainable energy solutions that decarbonize industries and power a
-          carbon-free future.
-        </p>
-        <FloatupButton
-          variant="custom"
-          className={
-            "bg-cst-neutral-800 text-white rounded-md py-3 px-4 flex gap-2 items-center justify-center font-medium mx-auto !w-fit"
-          }
+    <SectionWrapper
+      maxWidth="2000px"
+      className="bg-[#E6E6E6] text-black space-y-10 px-2 py-4"
+      sectionStyle={{ backgroundColor: "#E6E6E6" }}
+    >
+      <div className="space-y-4">
+        <CardWrapper
+          className="gap-4"
+          variant="featured"
+          color="default"
+          align="center"
         >
-          Learn More
-        </FloatupButton>
-      </section>
-
-      {/* Partners + Image Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-        {/* Partners */}
-        <div>
-          <h2 className="text-xl md:text-[40px] mb-4 text-center lg:text-left">
-            Our Partners
+          <SectionLabel text="About Us" />
+          <h2 className="text-3xl md:text-[48px] tracking-tight">
+            Trusted. Proven. Driven.
           </h2>
-          <div className="grid grid-cols-2 gap-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
+        </CardWrapper>
+
+        {loading ? (
+          <p className="text-center text-gray-500">Loading brand logos...</p>
+        ) : (
+          <div
+            id="brands"
+            className="grid md:grid-cols-3 grid-cols-2 gap-4 p-4 h-fit w-full bg-white rounded-lg"
+          >
+            {brandLogos.map((logo, i) => (
               <div
-                key={idx}
-                className="w-full h-[184px] bg-gray-200 rounded-md border border-gray-300 flex items-center justify-center"
+                key={i}
+                className="group flex items-center justify-center bg-black/10 rounded-lg h-[131px] md:h-[196px]"
               >
-                <span className="text-gray-400">Logo</span>
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  onError={handleImgError}
+                  className="w-[25%] h-[25%] object-contain rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
+                />
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Technology Image */}
-        <div className="relative w-full h-full">
-          <div className="absolute -bottom-1 -right-0 w-[95%] h-[95%] bg-cst-neutral-200 rounded-3xl z-0"></div>
-          <div className="relative z-10 rounded-3xl overflow-hidden w-[95%] h-[95%]">
-            <Image
-              src={aboutUsImage}
-              alt="Graforce Technology"
-              width={600}
-              height={450}
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <p className="text-center md:text-2xl ">
-          At Graforce, we engineer breakthrough plasma technologies that turn
-          methane and biogas into CO₂-free hydrogen. With global collaborators
-          and award-winning innovation, we are building the clean energy systems
-          of tomorrow.
-        </p>
-      </section>
+        )}
+      </div>
     </SectionWrapper>
-    </div>
   );
-}
+};
+
+export default AboutUs;
