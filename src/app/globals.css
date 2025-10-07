@@ -25,6 +25,7 @@
 
 @theme inline {
   --color-primary: var(--primary);
+  --clor-primary-light: var(--primary-light);
 
   --color-secondary: var(--secondary);
   --color-secondary-light: var(--secondary-light);
