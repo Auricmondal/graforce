@@ -3,7 +3,8 @@ import React from "react";
 import Image from "next/image";
 import ScrollReveal from "@/wrappers/ScrollReveal";
 import { useContactModal } from "@/contexts/ContactModalContext";
-import finalCtaImg from "@/assets/finalcta.svg";
+import finalCtaLeftImg from "@/assets/grid.webp";
+import finalCtaRightImg from "@/assets/spark.webp";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa6";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
@@ -19,14 +20,26 @@ const FinalCTA = () => {
   };
   return (
     <div className="bg-cst-neutral-1 p-2">
-      <section className="relative bg-cst-neutral-5 flex items-center justify-center rounded-2xl py-28 px-16">
-        <Image
-          src={finalCtaImg.src}
-          className="absolute inset-0 w-full h-full object-fill z-0"
-          alt="background"
-          fill
-          style={{ objectFit: "fill" }}
-        />
+      <section className="relative bg-cst-neutral-5 flex items-center justify-center rounded-2xl py-28 px-4 md:px-16">
+
+        <div className="absolute left-0 bottom-0 w-2/3 md:w-1/2 lg:w-1/3 z-0">
+          <Image
+            src={finalCtaLeftImg}
+            alt="left image"
+            fill={false}
+            className="!aspect-[912/707]"
+          />
+        </div>
+
+        {/* Right background image */}
+        <div className="absolute right-0 top-0 h-fit w-2/3 md:w-1/2 lg:w-1/3 z-0">
+          <Image
+            src={finalCtaRightImg}
+            alt="right image"
+            fill={false}
+            className="!aspect-[128/113]"
+          />
+        </div>
         <ScrollReveal>
           {/* Text */}
           <div className="flex flex-col items-center gap-10 rounded-md text-center text-white max-w-xl">
