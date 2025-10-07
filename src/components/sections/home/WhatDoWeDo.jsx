@@ -57,40 +57,6 @@ const WhatDoWeDo = () => {
         >
           • 50% Energy Savings
         </FloatingTip>
-
-        {/* Tablet version (hidden on desktop) */}
-        {/* <Image
-            src={globeImg}
-            alt="Globe tablet"
-            className="object-contain select-none md:hidden block"
-            draggable={false}
-            style={{
-              width: "952.74px",
-              height: "714.55px",
-              transform: "rotate(-180deg)",
-              opacity: 1,
-              position: "absolute",
-              top: "-238.78px",
-              left: "-324.54px",
-            }}
-          /> */}
-        {/* </div> */}
-
-        {/* Text Labels */}
-        {/* <div className="absolute inset-0 flex justify-center items-center">
-
-          <div className="absolute top-[28%] md:top-[20%] md:left-[55%] bg-white/80 backdrop-blur-md shadow-md rounded-lg px-4 py-2 text-sm font-semibold text-gray-900">
-            <span className="text-blue-600">•</span> 100% Carbon Value
-          </div>
-
-          <div className="absolute bottom-[18%] md:bottom-[25%] md:left-[28%] bg-white/80 backdrop-blur-md shadow-md rounded-lg px-4 py-2 text-sm font-semibold text-gray-900">
-            <span className="text-blue-600">•</span> 50% Energy Savings
-          </div>
-
-          <div className="absolute bottom-[22%] md:bottom-[30%] md:right-[25%] bg-white/80 backdrop-blur-md shadow-md rounded-lg px-4 py-2 text-sm font-semibold text-gray-900">
-            <span className="text-blue-600">•</span> 0% CO₂ Costs
-          </div>
-        </div> */}
       </div>
     </div>
   );
