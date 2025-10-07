@@ -86,7 +86,7 @@ export default function SolutionSection() {
             </SectionWrapper>
 
             {/* Solution card */}
-            <div className="hidden md:block h-full">
+            <div className="hidden md:flex flex-col h-full">
               <SolutionCard
                 key={activeStep}
                 id={steps[activeStep].id}

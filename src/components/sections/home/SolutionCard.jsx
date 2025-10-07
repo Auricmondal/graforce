@@ -16,7 +16,7 @@ export default function SolutionCard({ id, title, description, progress }) {
         borderRadius: "0.5rem",
         paddingTop: "32px",
         paddingBottom: "32px",
-        height: "fit-content",
+        flex: 1
       }}
     >
       <div className="mb-4 flex items-center gap-4">
