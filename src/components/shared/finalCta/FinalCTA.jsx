@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import SectionWrapper from "@/wrappers/SectionWrapper";
-import Bulb from "@/assets/bulb.png";
-import FloatupButton from "@/components/utils/buttons/FloatupButton";
 import ScrollReveal from "@/wrappers/ScrollReveal";
 import { useContactModal } from "@/contexts/ContactModalContext";
+import finalCtaImg from "@/assets/finalcta.svg";
+import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { FaChevronRight } from "react-icons/fa6";
 
 const FinalCTA = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
@@ -17,32 +17,30 @@ const FinalCTA = () => {
     }
   };
   return (
-    <div className="bg-dark">
-      <SectionWrapper className="max-w-[2000px] relative overflow-hidden mx-auto">
-        {/* Bulb Image */}
-        <div className="absolute z-0 -bottom-8 right-1/12 -rotate-30 w-1/7 min-w-30">
-          <Image src={Bulb} alt="bulb" className=""></Image>
-        </div>
-
+    <div className="bg-cst-neutral-1 p-2">
+      <section className="relative bg-cst-neutral-5 flex items-center justify-center rounded-2xl py-28 px-16">
+        <Image
+          src={finalCtaImg.src}
+          className="absolute inset-0 w-full h-full object-fill z-0"
+          alt="background"
+          fill
+          style={{ objectFit: "fill" }}
+        />
         <ScrollReveal>
           {/* Text */}
-          <div className="relative z-10 flex flex-col gap-4 md:items-baseline items-center">
-            <h2 className="text-3xl font-bold text-white">
-              Ready to cut CO2 ?
-            </h2>
-            <p className="text-md text-center md:text-left text-white">
-              Book a demo and see how Graforce can fuel your hydrogen strategy.
-            </p>
-            <FloatupButton
-              className="!w-fit !bg-primary-50 !text-primary-700"
-              icon={"❯"}
+          <div className="flex flex-col items-center gap-10 rounded-md text-center text-white max-w-xl">
+            <h1 className="text-[clamp(32px,4vw,56px)] font-medium leading-[110%]">
+              First Step Towards Better Future
+            </h1>
+            <PrimaryButton
+              className="flex gap-2 items-center bg-primary text-white rounded-2xl py-4 px-6 md:py-8 md:px-12 md:rounded-[28px] md:text-2xl font-medium cursor-pointer"
               onClick={handleContactModal}
             >
-              Contact Now{" "}
-            </FloatupButton>
+              Let&apos;s Talk <FaChevronRight />
+            </PrimaryButton>
           </div>
         </ScrollReveal>
-      </SectionWrapper>
+      </section>
     </div>
   );
 };
