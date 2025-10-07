@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import globeImg from "@/assets/home/globe.webp";
-import FloatingTip from "@/components/utils/heroUtils/FloatingTip";
+import FloatingTip from "@/components/utils/heroutils/FloatingTip";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
 const WhatDoWeDo = () => {

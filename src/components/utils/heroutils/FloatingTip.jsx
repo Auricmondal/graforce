@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import * as motion from "motion/react-client";
+import { motion } from "motion/react";
 
 export default function FloatingTip({ children, delay = 0, className = "" }) {
   return (
