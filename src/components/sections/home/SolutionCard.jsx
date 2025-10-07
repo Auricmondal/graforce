@@ -6,7 +6,6 @@ export default function SolutionCard({ id, title, description, progress }) {
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
-  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
   return (
     <SectionWrapper
