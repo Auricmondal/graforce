@@ -1,49 +1,79 @@
 "use client";
 
-import { motion, useAnimation, useInView } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useInView } from "motion/react";
+import { useRef } from "react";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import SplitText from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 
 export default function AnimatedHeader({
   children,
   delay = 0,
-  duration = 0.4,
+  duration = 0.6,
+  stagger = 0.2,
+  className = "",
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { margin: "0px 0px -10% 0px" });
-  const controls = useAnimation();
+  const splitInstance = useRef(null);
+  const tl = useRef(null);
 
-  console.log({inView})
+  useGSAP(
+    () => {
+      if (!ref.current) return;
 
-  useEffect(() => {
-    if (inView) {
-      controls.start({
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration,
-          delay,
-          ease: "easeOut",
-        },
+      // Revert old SplitText if exists
+      if (splitInstance.current) {
+        splitInstance.current.revert();
+      }
+
+      // Set up fresh split
+      splitInstance.current = new SplitText(ref.current, {
+        type: "lines",
+        linesClass: "gsap-line",
       });
-    } else {
-      controls.start({
-        opacity: 0,
-        y: 32, // same as -2rem
-        transition: {
-          duration: 0,
-        },
-      });
-    }
-  }, [inView, controls, delay, duration]);
+
+      if (inView) {
+        tl.current = gsap.fromTo(
+          splitInstance.current.lines,
+          { opacity: 0, y: 32 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger,
+            duration,
+            delay,
+            ease: "power3.out",
+          }
+        );
+      } else {
+        // Reset instantly when out of view
+        gsap.set(splitInstance.current.lines, {
+          opacity: 0,
+          y: 32,
+        });
+      }
+
+      return () => {
+        if (splitInstance.current) {
+          splitInstance.current.revert();
+          splitInstance.current = null;
+        }
+        if (tl.current) {
+          tl.current.kill();
+          tl.current = null;
+        }
+      };
+    },
+    { scope: ref, dependencies: [inView] }
+  );
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
-      animate={controls}
-      className="will-change-transform"
-    >
+    <div ref={ref} className={`will-change-transform ${className}`}>
       {children}
-    </motion.div>
+    </div>
   );
 }
