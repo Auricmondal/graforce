@@ -67,7 +67,8 @@ const HeroSection = () => {
           </div>
 
           <p className="text-primary cursor-pointer flex gap-1 items-center">
-            Scroll Down <IoArrowDownCircleOutline className="text-xl" />
+            Scroll Down{" "}
+            <IoArrowDownCircleOutline className="text-xl animate-bounce" />
           </p>
         </div>
       </div>
