@@ -6,6 +6,7 @@ import { useContactModal } from "@/contexts/ContactModalContext";
 import finalCtaImg from "@/assets/finalcta.svg";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa6";
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
 const FinalCTA = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
@@ -29,9 +30,11 @@ const FinalCTA = () => {
         <ScrollReveal>
           {/* Text */}
           <div className="flex flex-col items-center gap-10 rounded-md text-center text-white max-w-xl">
-            <h1 className="text-[clamp(32px,4vw,56px)] font-medium leading-[110%]">
-              First Step Towards Better Future
-            </h1>
+            <AnimatedHeader>
+              <h1 className="text-[clamp(32px,4vw,56px)] font-medium leading-[110%]">
+                First Step Towards Better Future
+              </h1>
+            </AnimatedHeader>
             <PrimaryButton
               className="flex gap-2 items-center bg-primary text-white rounded-2xl py-4 px-6 md:py-8 md:px-12 md:rounded-[28px] md:text-2xl font-medium cursor-pointer"
               onClick={handleContactModal}
