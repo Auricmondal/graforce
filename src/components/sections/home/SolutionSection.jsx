@@ -8,6 +8,8 @@ import solutionImg from "@/assets/home/solution.webp";
 import steps from "@/data/solutions.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "./SolutionCard";
+import SectionWrapper from "@/wrappers/SectionWrapper";
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,12 +67,23 @@ export default function SolutionSection() {
         {/* Left Side */}
         <div className="w-full md:flex-3/7 flex gap-2">
           <div className="flex flex-col gap-2 w-full">
-            <div className="md:sticky top-0 z-40 border-primary-light border-1 rounded-lg flex flex-col gap-2 py-8 px-6 bg-secondary-light">
+            <SectionWrapper
+              className="md:sticky top-0 z-40 rounded-lg flex flex-col gap-2"
+              sectionStyle={{
+                borderColor: "var(--color-primary-light)",
+                border: "1px solid var(--color-primary-light)",
+                borderRadius: "0.5rem",
+                paddingTop: "32px",
+                paddingBottom: "32px",
+              }}
+            >
               <SectionLabel text={"Our Solution"} />
-              <div className="text-xl">
-                Hydrogen Today Pollutes. We Change That
-              </div>
-            </div>
+              <AnimatedHeader>
+                <div className="text-xl">
+                  Hydrogen Today Pollutes. We Change That
+                </div>
+              </AnimatedHeader>
+            </SectionWrapper>
 
             {/* Solution card */}
             <div className="hidden md:block h-full">
@@ -83,7 +96,7 @@ export default function SolutionSection() {
               />
             </div>
 
-            <div className="md:hidden">
+            <div className="md:hidden flex flex-col gap-2">
               {steps.map((step, index) => (
                 <SolutionCard
                   key={step.id}

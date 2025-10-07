@@ -1,12 +1,25 @@
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import SectionWrapper from "@/wrappers/SectionWrapper";
 
 export default function SolutionCard({ id, title, description, progress }) {
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
   return (
-    <div className="border-primary-light border-1 rounded-lg flex flex-col justify-between py-8 px-6 h-[100vh] md:h-full">
+    <SectionWrapper
+      className="flex flex-col justify-between h-[90vh] md:h-full"
+      sectionStyle={{
+        borderColor: "var(--color-primary-light)",
+        border: "1px solid var(--color-primary-light)",
+        borderRadius: "0.5rem",
+        paddingTop: "32px",
+        paddingBottom: "32px",
+        height: "fit-content",
+      }}
+    >
       <div className="mb-4 flex items-center gap-4">
         {/* Circular Progress Bar */}
         <div className="relative w-16 h-16">
@@ -36,17 +49,21 @@ export default function SolutionCard({ id, title, description, progress }) {
           </div>
         </div>
 
-        <div className="text-[clamp(24px,2.5vw,56px)] leading-[125%] mb-2">
-          {title}
-        </div>
+        <AnimatedHeader>
+          <div className="text-[clamp(24px,2.5vw,56px)] leading-[125%] mb-2">
+            {title}
+          </div>
+        </AnimatedHeader>
       </div>
 
       <div className="flex flex-col gap-6">
-        <p className="text-black">{description}</p>
+        <AnimatedHeader>
+          <p className="text-black">{description}</p>
+        </AnimatedHeader>
         <PrimaryButton className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6">
           Learn More
         </PrimaryButton>
       </div>
-    </div>
+    </SectionWrapper>
   );
 }
