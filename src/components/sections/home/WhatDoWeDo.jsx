@@ -4,11 +4,12 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import globeImg from "@/assets/home/globe.webp";
 import FloatingTip from "@/components/utils/heroutils/FloatingTip";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import CardWrapper from "@/wrappers/CardWrapper";
 
 const WhatDoWeDo = () => {
   return (
     <div className="flex flex-col md:flex-row gap-2 bg-cst-neutral-1 p-2">
-      <div className="flex-1 bg-white rounded-2xl px-6 py-8 flex flex-col lg:gap-4">
+      <CardWrapper className="flex-1 rounded-2xl px-6 py-8 lg:gap-4" variant="compact">
         <SectionLabel text="What Do We Do" />
         <AnimatedHeader className="mt-[20vh] lg:mt-0">
           <h6 className="text-2xl font-semibold">
@@ -20,7 +21,7 @@ const WhatDoWeDo = () => {
             industries.
           </h6>
         </AnimatedHeader>
-      </div>
+      </CardWrapper>
 
       <div className="relative flex-1 bg-white rounded-2xl overflow-hidden min-h-[50vh] lg:min-h-0">
         {/* Globe Image */}
