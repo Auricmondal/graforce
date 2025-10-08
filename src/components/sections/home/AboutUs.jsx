@@ -65,19 +65,19 @@ const AboutUs = () => {
   return (
     <SectionWrapper
       // maxWidth="2000px"
-      className="bg-[#E6E6E6] text-black space-y-10 px-2 py-4"
+      className="bg-[#E6E6E6] text-black space-y-10 "
       sectionStyle={{ backgroundColor: "#E6E6E6" }}
     >
       <div className="space-y-4">
         <CardWrapper
-          className="gap-4"
+          className="gap-2"
           variant="featured"
           color="default"
           align="center"
         >
           <SectionLabel text="About Us" />
           <AnimatedHeader>
-            <h2 className="text-3xl md:text-[48px] tracking-tight">
+            <h2 className="text-2xl md:text-3xl md:text-[48px] tracking-tight">
               Trusted. Proven. Driven.
             </h2>
           </AnimatedHeader>
@@ -109,15 +109,15 @@ const AboutUs = () => {
           variant="custom"
           align="center"
           color="default"
-          className="px-4 md:px-14 pt-[80px] pb-[112px]"
+          className="px-4 md:px-14 pt-[52px] pb-[88px] md:pt-[80px] md:pb-[112px]"
         >
           <div className="flex-col w-full">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-lg">
+            <div className="flex flex-row items-center justify-between gap-4 text-sm sm:text-lg">
               <div className="flex items-center gap-1">
-                <LuClock3 className="text-2xl" />Founded in {foundation}
+                <LuClock3 className="text-base sm:text-2xl" />Founded in {foundation}
               </div>
               <div className="flex items-center gap-1">
-                <MdOutlineLocationOn className="text-2xl" />{location}
+                <MdOutlineLocationOn className="text-base sm:text-2xl" />{location}
               </div>
             </div>
             <div className="flex-row pt-6 sm:pt-10 w-full">
@@ -125,7 +125,7 @@ const AboutUs = () => {
               <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start w-full h-full">
                 {/* Partners */}
                 <div className="h-full">
-                  <div className="w-full h-full flex flex-col justify-between space-y-[80px] sm:space-y-[80px]">
+                  <div className="w-full h-full flex flex-col justify-between space-y-[70px] sm:space-y-[70px]">
                     <div className="text-[48px] text-left capitalize font-bold">
                       <h2 className="">
                         <AnimatedHeader>
@@ -136,7 +136,7 @@ const AboutUs = () => {
                     <div className="">
                       <AnimatedHeader>
                         <p className="text-black text-base text-left">
-                          Power-to-X plants for the generation of CO2-free or CO2-negative hydrogen and synthetic raw materials the technology leader in sustainable solutions and negative emission technologies holds three patents for the application of different plasma processes {"("}high-frequency discharge, dielectric barrier discharge, coronal low-frequency discharge{")"} production capacities: Methane Plasmalysis  expansion to up to 50 MW/a through customers and partners
+                          Power-to-X plants for the generation of CO<sub>2</sub>-free or CO<sub>2</sub>-negative hydrogen and synthetic raw materials the technology leader in sustainable solutions and negative emission technologies holds three patents for the application of different plasma processes {"("}high-frequency discharge, dielectric barrier discharge, coronal low-frequency discharge{")"} production capacities: Methane Plasmalysis  expansion to up to 50 MW/a through customers and partners.
                         </p>
                       </AnimatedHeader>
                       <div className="pt-6">

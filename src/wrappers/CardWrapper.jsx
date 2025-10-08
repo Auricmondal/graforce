@@ -11,7 +11,7 @@ const CardWrapper = ({
   const variants = {
     standard: "px-16 py-8",
     compact: "py-6 px-8",
-    featured:"pt-28 pb-10 px-10",
+    featured:"pt-20 sm:pt-28 pb-10 px-10",
     custom: "",
   };
 
