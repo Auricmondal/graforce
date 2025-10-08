@@ -11,36 +11,39 @@ const CardWrapper = ({
   const variants = {
     standard: "px-16 py-8",
     compact: "py-6 px-8",
-    featured:
-      "pt-28 pb-10 px-10",
+    featured:"pt-20 sm:pt-28 pb-10 px-10",
+    custom: "",
   };
 
   const cardColors = {
     default: "bg-white",
     blue: "bg-[#E6E6E64D]",
     dark: "bg-[#4D4D4D]",
+    custom: "",
   };
 
   const cardRadius = {
     standard: "rounded-lg",
     compact: "rounded-xl",
     featured: "rounded-3xl",
+    custom: "",
   };
 
   const alignments = {
     left: "text-left items-start justify-start",
     center: "text-center items-center justify-center",
     right: "text-right items-end justify-end",
+    custom: "",
   };
 
   return (
     <div
       className={`
         flex flex-col
-        ${variants[variant] || variants.standard}
-        ${cardColors[color] || cardColors.default}
-        ${cardRadius[radius] || cardRadius.standard}
-        ${alignments[align] || alignments.left}
+        ${variants[variant]}
+        ${cardColors[color]}
+        ${cardRadius[radius]}
+        ${alignments[align]}
         ${className}
       `}
     >
