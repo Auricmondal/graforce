@@ -49,7 +49,7 @@ const FinalCTA = () => {
               </h1>
             </AnimatedHeader>
             <PrimaryButton
-              className="flex gap-2 items-center bg-primary text-white rounded-2xl py-4 px-6 md:py-8 md:px-12 md:rounded-[28px] md:text-2xl font-medium cursor-pointer"
+              className="flex gap-2 items-center bg-primary text-white rounded-2xl py-4 px-6 md:py-8 md:px-12 md:rounded-[28px] md:text-2xl font-medium cursor-pointer hover:!bg-black hover:border-cst-neutral-2 border-1 border-transparent transition-all duration-300"
               onClick={handleContactModal}
             >
               Let&apos;s Talk <FaChevronRight />
