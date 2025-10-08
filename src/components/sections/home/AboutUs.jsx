@@ -55,7 +55,7 @@ const AboutUs = () => {
 
   return (
     <SectionWrapper
-      maxWidth="2000px"
+      // maxWidth="2000px"
       className="bg-[#E6E6E6] text-black space-y-10 px-2 py-4"
       sectionStyle={{ backgroundColor: "#E6E6E6" }}
     >
