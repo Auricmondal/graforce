@@ -41,7 +41,7 @@ const YouNeedUs = () => {
   const needRef = useRef(null);
   const labelRef = useRef(null); // <-- added
   const [isMobile, setIsMobile] = useState(false);
-  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+  // const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
   // Check if mobile
   useEffect(() => {
@@ -159,7 +159,7 @@ const YouNeedUs = () => {
           </div>
 
           {/* Desktop: Animated single section */}
-          {isDesktop && <div className="hidden md:grid grid-cols-2 w-full h-full min-h-screen"> {/* ensure height */}
+          <div className="hidden md:grid grid-cols-2 w-full h-full min-h-screen"> {/* ensure height */}
             <CardWrapper
               color='dark'
               align='left'
@@ -182,7 +182,7 @@ const YouNeedUs = () => {
               {/* <Tower className={`w-full h-full`} /> */}
               <Image src={Tower} className='object-cover w-full h-full' />
             </div>
-          </div>}
+          </div>
 
           {/* Mobile: Stacked all sections */}
           <div className="md:hidden flex flex-col gap-4 w-full">
