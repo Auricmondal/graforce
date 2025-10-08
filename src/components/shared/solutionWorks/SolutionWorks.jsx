@@ -1,9 +1,15 @@
-'use client';
+"use client";
 import React, { useRef, useState } from "react";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import GradientBadge from "@/components/utils/badges/GradientBadge";
 import { TbSquareRotatedFilled } from "react-icons/tb";
-import { FaPlay, FaPause, FaVolumeUp, FaVolumeMute, FaExpand } from "react-icons/fa";
+import {
+  FaPlay,
+  FaPause,
+  FaVolumeUp,
+  FaVolumeMute,
+  FaExpand,
+} from "react-icons/fa";
 
 const SolutionWorks = () => {
   const videoRef = useRef(null);
@@ -44,7 +50,7 @@ const SolutionWorks = () => {
   };
 
   return (
-    <SectionWrapper className="w-full bg-primary bg-white">
+    <SectionWrapper className="w-full bg-primary ">
       <div className="max-w-[2000px] mx-auto">
         <div className="flex flex-col items-center justify-center space-y-3">
           <GradientBadge
@@ -84,7 +90,11 @@ const SolutionWorks = () => {
             )}
 
             {/* Custom Controls */}
-            <div className={`absolute bottom-0 w-full bg-black/50 flex items-center gap-4 px-4 py-3 ${isPlaying ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300`}>
+            <div
+              className={`absolute bottom-0 w-full bg-black/50 flex items-center gap-4 px-4 py-3 ${
+                isPlaying ? "opacity-100" : "opacity-0"
+              } transition-opacity duration-300`}
+            >
               {/* Play / Pause */}
               <button onClick={togglePlay}>
                 {isPlaying ? (
