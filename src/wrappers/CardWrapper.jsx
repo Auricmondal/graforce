@@ -18,7 +18,7 @@ const CardWrapper = ({
   const cardColors = {
     default: "bg-white",
     blue: "bg-[#E6E6E64D]",
-    dark: "bg-[#4D4D4D]",
+    dark: "bg-cst-neutral-5",
     custom: "",
   };
 
