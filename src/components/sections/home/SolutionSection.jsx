@@ -8,8 +8,8 @@ import solutionImg from "@/assets/home/solution.webp";
 import steps from "@/data/solutions.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "./SolutionCard";
-import SectionWrapper from "@/wrappers/SectionWrapper";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import CardWrapper from "@/wrappers/CardWrapper";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,15 +67,9 @@ export default function SolutionSection() {
         {/* Left Side */}
         <div className="w-full md:flex-3/7 flex gap-2">
           <div className="flex flex-col gap-2 w-full">
-            <SectionWrapper
-              className="md:sticky top-0 z-40 rounded-lg flex flex-col gap-2"
-              sectionStyle={{
-                borderColor: "var(--color-primary-light)",
-                border: "1px solid var(--color-primary-light)",
-                borderRadius: "0.5rem",
-                paddingTop: "32px",
-                paddingBottom: "32px",
-              }}
+            <CardWrapper
+              className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light"
+              variant="compact"
             >
               <SectionLabel text={"Our Solution"} />
               <AnimatedHeader>
@@ -83,7 +77,7 @@ export default function SolutionSection() {
                   Hydrogen Today Pollutes. We Change That
                 </div>
               </AnimatedHeader>
-            </SectionWrapper>
+            </CardWrapper>
 
             {/* Solution card */}
             <div className="hidden md:flex flex-col h-full">

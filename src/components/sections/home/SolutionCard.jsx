@@ -1,5 +1,6 @@
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 
 export default function SolutionCard({ id, title, description, progress }) {
@@ -8,16 +9,9 @@ export default function SolutionCard({ id, title, description, progress }) {
   const offset = circumference * (1 - progress / 100);
 
   return (
-    <SectionWrapper
-      className="flex flex-col justify-between h-[90vh] md:h-full"
-      sectionStyle={{
-        borderColor: "var(--color-primary-light)",
-        border: "1px solid var(--color-primary-light)",
-        borderRadius: "0.5rem",
-        paddingTop: "32px",
-        paddingBottom: "32px",
-        flex: 1
-      }}
+    <CardWrapper
+    variant="compact"
+      className="!justify-between md:flex-1 h-[90vh] md:h-full border-1 border-primary-light !bg-secondary-light"
     >
       <div className="mb-4 flex items-center gap-4">
         {/* Circular Progress Bar */}
@@ -63,6 +57,6 @@ export default function SolutionCard({ id, title, description, progress }) {
           Learn More
         </PrimaryButton>
       </div>
-    </SectionWrapper>
+    </CardWrapper>
   );
 }
