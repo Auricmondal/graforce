@@ -7,8 +7,7 @@ import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 import WhatDoWeDo from "@/components/sections/home/WhatDoWeDo";
 import YouNeedUs from "@/components/sections/home/YouNeedUs";
 
-const Home = async() => {
-  // await new Promise((resolve) => setTimeout(resolve, 3000)); // Simulate a 1 second delay
+const Home = async () => {
   return (
     <>
       <Hero />
