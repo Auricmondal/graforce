@@ -136,7 +136,7 @@ const YouNeedUs = () => {
     <SectionWrapper
       sectionClassName='bg-cst-neutral-1'
     >
-      <div ref={sectionRef} className='flex items-start'>
+      <div ref={sectionRef} className='flex items-start h-fit md:h-screen'>
         <CardWrapper
           variant='custom'
           color='dark'
@@ -147,7 +147,7 @@ const YouNeedUs = () => {
             <CardWrapper
               color='dark'
               align='left'
-              className='border border-cst-neutral-3 gap-2 sm:gap-4'
+              className='border border-cst-neutral-3 gap-1 sm:gap-4'
             >
               <SectionLabel text="This is why you need us" textColor='text-white' />
               <AnimatedHeader>
@@ -159,7 +159,7 @@ const YouNeedUs = () => {
           </div>
 
           {/* Desktop: Animated single section */}
-          <div className="hidden md:grid grid-cols-2 w-full h-full min-h-screen"> {/* ensure height */}
+          <div className="hidden md:grid grid-cols-2 w-full h-full"> {/* ensure height */}
             <CardWrapper
               color='dark'
               align='left'
@@ -178,9 +178,9 @@ const YouNeedUs = () => {
                 />
               </div>
             </CardWrapper>
-            <div className="flex items-center justify-center col-span-2 md:col-span-1 p-4">
+            <div className={`flex items-center justify-center p-0`}>
               {/* <Tower className={`w-full h-full`} /> */}
-              <Image src={Tower} className='object-cover w-full h-full' />
+              <Image src={Tower} className='object-cover w-fit' alt="tower" />
             </div>
           </div>
 
@@ -196,13 +196,13 @@ const YouNeedUs = () => {
                   <div className="text-left flex items-start">
                     <SectionLabel icon={false} text={sector.label} textColor='text-white' />
                   </div>
-                  <h3 className='text-white font-bold text-lg pt-[150px]'
+                  <h3 className='text-white font-bold text-base md:text-lg pt-[150px]'
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                 </CardWrapper>
                 <div className="flex items-center justify-center">
                   {/* <Tower className="" /> */}
-                  <Image src={Tower} className='object-cover w-full h-full' />
+                  <Image src={Tower} className='object-cover w-full h-full' alt="tower" />
                 </div>
               </div>
             ))}

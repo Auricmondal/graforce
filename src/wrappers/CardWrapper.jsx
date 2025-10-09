@@ -30,9 +30,9 @@ const CardWrapper = ({
   };
 
   const alignments = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
+    left: "text-left items-start",
+    center: "text-center justify-center items-center",
+    right: "text-right items-end",
     custom: "",
   };
 
@@ -40,11 +40,11 @@ const CardWrapper = ({
     <div
       className={`
         flex flex-col
+        ${className}
         ${variants[variant]}
         ${cardColors[color]}
         ${cardRadius[radius]}
         ${alignments[align]}
-        ${className}
       `}
     >
       {children}
