@@ -8,14 +8,28 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import GradientBadge from "@/components/utils/badges/GradientBadge";
 import { TbSquareRotatedFilled } from "react-icons/tb";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import { GoDotFill } from "react-icons/go";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "motion/react";
 
+import problemData from "@/data/problems.json";
+
 import ScrollReveal from "@/wrappers/ScrollReveal";
+import solutionImg from "@/assets/home/solution.webp";
+import steps from "@/data/solutions.json";
+import SectionLabel from "@/components/utils/badges/SectionLabel";
+import SolutionCard from "@/components/sections/home/SolutionCard";
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import CardWrapper from "@/wrappers/CardWrapper";
+import Chart from "./Chart";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const colorMap = {
   2015: { code: "#102044", text: "text-primary-500" },
@@ -90,6 +104,52 @@ export default function EmissionPage() {
   const [activeYears, setActiveYears] = useState(["2015", "2020", "2025"]);
   const [selectedTimeframe, setSelectedTimeframe] = useState("12 months");
 
+  const [activeStep, setActiveStep] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const triggerRef = useRef(null);
+
+  useGSAP(() => {
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    if (!triggerRef.current || !isDesktop) return;
+
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+
+    steps.forEach((_, i) => {
+      const stepElement = triggerRef.current.children[i];
+      if (stepElement) {
+        ScrollTrigger.create({
+          trigger: stepElement,
+          start: "top 75%",
+          end: "bottom 25%",
+          scrub: 1,
+          onEnter: () => {
+            console.log(`Entering step ${i}`);
+            setActiveStep(i);
+            setScrollProgress(0); // Reset progress when entering new step
+          },
+          onEnterBack: () => {
+            console.log(`Entering back step ${i}`);
+            setActiveStep(i);
+            setScrollProgress(0); // Reset progress when entering back
+          },
+          onUpdate: (self) => {
+            // Only update progress for current step being scrolled
+            setScrollProgress(self.progress * 100);
+          },
+          onLeave: () => {
+            // When leaving a step, set progress to 100%
+            if (i < steps.length - 1) {
+              setScrollProgress(100);
+            }
+          },
+          onLeaveBack: () => {
+            setScrollProgress(0);
+          },
+        });
+      }
+    });
+  }, []);
+
   const toggleYear = (year) => {
     setActiveYears((prev) => {
       const newActiveYears = prev.includes(year)
@@ -115,155 +175,247 @@ export default function EmissionPage() {
   const filteredData = getFilteredData();
 
   return (
-    <SectionWrapper className="bg-white">
-      <div className="py-6 md:py-12 max-w-[2000px] mx-auto">
-        <div className="text-center mx-auto mb-8 md:mb-12">
-          <GradientBadge
-            text={"The Problem We Discovered"}
-            icon={<TbSquareRotatedFilled />}
-          />
-          <ScrollReveal>
-            <h2 className="text-3xl md:text-5xl lg:text-[64px] mt-4">
-              The Emission Burden
-            </h2>
-            <p className="text-base md:text-xl mt-2 mx-auto">
-              95% of today's hydrogen is fossil-based, emitting millions of tons
-              of CO₂ annually.
-            </p>
-          </ScrollReveal>
-        </div>
+    // <SectionWrapper className="bg-white">
+    //   <div className="py-6 md:py-12 max-w-[2000px] mx-auto">
+    //     <div className="text-center mx-auto mb-8 md:mb-12">
+    //       <GradientBadge
+    //         text={"The Problem We Discovered"}
+    //         icon={<TbSquareRotatedFilled />}
+    //       />
+    //       <ScrollReveal>
+    //         <h2 className="text-3xl md:text-5xl lg:text-[64px] mt-4">
+    //           The Emission Burden
+    //         </h2>
+    //         <p className="text-base md:text-xl mt-2 mx-auto">
+    //           95% of today's hydrogen is fossil-based, emitting millions of tons
+    //           of CO₂ annually.
+    //         </p>
+    //       </ScrollReveal>
+    //     </div>
 
-        <div className="shadow-[0px_1px_3px_0px_rgba(13,10,44,0.08)] rounded-lg p-4 md:p-6">
-          {/* large screen */}
+    //     <div className="shadow-[0px_1px_3px_0px_rgba(13,10,44,0.08)] rounded-lg p-4 md:p-6">
+    //       {/* large screen */}
 
-          <div className="hidden lg:flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
-            <div className="w-full lg:w-auto text-left">
-              <p className="text-cst-neutral-400 text-xs md:text-lg">
-                Statistics
-              </p>
-              <p className="font-bold text-sm md:text-[22px]">Co2 Emmission</p>
+    //       <div className="hidden lg:flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
+    //         <div className="w-full lg:w-auto text-left">
+    //           <p className="text-cst-neutral-400 text-xs md:text-lg">
+    //             Statistics
+    //           </p>
+    //           <p className="font-bold text-sm md:text-[22px]">Co2 Emmission</p>
+    //         </div>
+
+    //         {/* Year Filters */}
+    //         <div className="flex gap-2 md:gap-[6px] justify-end lg:justify-start">
+    //           {["2015", "2020", "2025"].map((year) => (
+    //             <button
+    //               key={year}
+    //               onClick={() => toggleYear(year)}
+    //               className={`py-1 md:py-2  md:px-4 rounded-lg border border-cst-neutral-500 transition flex items-center gap-1 text-xs md:text-base whitespace-nowrap
+    //             ${activeYears.includes(year) ? "" : " text-cst-neutral-500"}`}
+    //             >
+    //               <GoDotFill
+    //                 className={`text-sm md:text-2xl ${
+    //                   activeYears.includes(year)
+    //                     ? colorMap[year].text
+    //                     : "text-cst-neutral-500"
+    //                 }`}
+    //               />
+    //               {year}
+    //             </button>
+    //           ))}
+    //         </div>
+
+    //         {/* Timeframe Filter */}
+    //         <div className="relative inline-flex bg-primary-50/10 p-1 rounded-xl w-full lg:w-auto min-w-fit">
+    //           {timeframes.map((label) => {
+    //             const isActive = selectedTimeframe === label;
+
+    //             return (
+    //               <button
+    //                 key={label}
+    //                 onClick={() => setSelectedTimeframe(label)}
+    //                 className={`relative z-10 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium transition-colors duration-200 rounded-xl flex-1 lg:flex-none whitespace-nowrap ${
+    //                   isActive ? "text-white" : "text-gray-500"
+    //                 }`}
+    //               >
+    //                 {isActive && (
+    //                   <motion.div
+    //                     layoutId="pill"
+    //                     className="absolute inset-0 z-0 rounded-xl bg-[#0F1C48]"
+    //                     transition={{
+    //                       type: "spring",
+    //                       stiffness: 300,
+    //                       damping: 30,
+    //                     }}
+    //                   />
+    //                 )}
+    //                 <span className="relative z-10">{label}</span>
+    //               </button>
+    //             );
+    //           })}
+    //         </div>
+    //       </div>
+
+    //       {/* medium screen and below */}
+    //       <div className="flex flex-col gap-4 mb-6 lg:hidden">
+    //         {/* Statistics and Year Filters on same line for sm/md, separate for lg */}
+    //         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start lg:flex-col lg:items-start gap-4">
+    //           <div className="text-left">
+    //             <p className="text-cst-neutral-400 text-xs md:text-lg">
+    //               Statistics
+    //             </p>
+    //             <p className="font-bold text-sm md:text-[22px]">
+    //               Co2 Emmission
+    //             </p>
+    //           </div>
+
+    //           {/* Year Filters */}
+    //           <div className="flex gap-2 md:gap-[6px] justify-start sm:justify-end lg:justify-start">
+    //             {["2015", "2020", "2025"].map((year) => (
+    //               <button
+    //                 key={year}
+    //                 onClick={() => toggleYear(year)}
+    //                 className={`py-1 md:py-2 px-2 md:px-4 rounded-lg border border-cst-neutral-500 transition flex items-center gap-1 text-xs md:text-base whitespace-nowrap
+    //               ${activeYears.includes(year) ? "" : " text-cst-neutral-500"}`}
+    //               >
+    //                 <GoDotFill
+    //                   className={`text-sm md:text-2xl ${
+    //                     activeYears.includes(year)
+    //                       ? colorMap[year].text
+    //                       : "text-cst-neutral-500"
+    //                   }`}
+    //                 />
+    //                 {year}
+    //               </button>
+    //             ))}
+    //           </div>
+    //         </div>
+
+    //         {/* Timeframe Filter - separate row for all screen sizes */}
+    //         <div className="relative inline-flex bg-primary-50/10 p-1 rounded-xl w-full lg:w-auto min-w-fit">
+    //           {timeframes.map((label) => {
+    //             const isActive = selectedTimeframe === label;
+
+    //             return (
+    //               <button
+    //                 key={label}
+    //                 onClick={() => setSelectedTimeframe(label)}
+    //                 className={`relative z-10 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium transition-colors duration-200 rounded-xl flex-1 lg:flex-none whitespace-nowrap ${
+    //                   isActive ? "text-white" : "text-gray-500"
+    //                 }`}
+    //               >
+    //                 {isActive && (
+    //                   <motion.div
+    //                     layoutId="pill"
+    //                     className="absolute inset-0 z-0 rounded-xl bg-[#0F1C48]"
+    //                     transition={{
+    //                       type: "spring",
+    //                       stiffness: 300,
+    //                       damping: 30,
+    //                     }}
+    //                   />
+    //                 )}
+    //                 <span className="relative z-10">{label}</span>
+    //               </button>
+    //             );
+    //           })}
+    //         </div>
+    //       </div>
+
+    //       {/* Chart */}
+    //       <div className="w-full overflow-x-auto pointer-events-none">
+    //         <ResponsiveContainer width="100%" height={250} minWidth={300}>
+    //           <LineChart data={filteredData}>
+    //             <XAxis
+    //               dataKey="month"
+    //               stroke="#ccc"
+    //               fontSize={12}
+    //               tickMargin={8}
+    //             />
+    //             <YAxis
+    //               tickFormatter={(v) => `${v / 1000}k`}
+    //               stroke="#ccc"
+    //               fontSize={12}
+    //               width={60}
+    //             />
+    //             <Tooltip
+    //               contentStyle={{
+    //                 backgroundColor: "#fff",
+    //                 border: "1px solid #ccc",
+    //                 borderRadius: "8px",
+    //                 fontSize: "12px",
+    //               }}
+    //             />
+    //             {activeYears.map((year) => (
+    //               <Line
+    //                 key={year}
+    //                 type="monotone"
+    //                 dataKey={year}
+    //                 stroke={colorMap[year].code}
+    //                 strokeDasharray="5 5"
+    //                 strokeWidth={2}
+    //                 dot={false}
+    //               />
+    //             ))}
+    //           </LineChart>
+    //         </ResponsiveContainer>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </SectionWrapper>
+
+    <main className="md:relative w-full bg-secondary-light">
+      {/* Fixed split layout */}
+      <div className="md:sticky top-0 left-0 w-full md:h-[100vh] z-30 flex flex-col md:flex-row p-2 gap-2 h-fit">
+        {/* Left Side */}
+        <div className="w-full md:flex-3/7 flex gap-2">
+          <div className="flex flex-col gap-2 w-full">
+            <CardWrapper
+              className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
+              variant="custom"
+            >
+              <SectionLabel text={"The Problem We Discovered"} />
+              <AnimatedHeader>
+                <div className="text-xl">The Emission Burden</div>
+              </AnimatedHeader>
+            </CardWrapper>
+
+            {/* Solution card */}
+            <div className="hidden md:flex flex-col h-full">
+              <SolutionCard
+                key={activeStep}
+                id={problemData[activeStep].id}
+                title={problemData[activeStep].title}
+                description={problemData[activeStep].description}
+                progress={scrollProgress}
+              />
             </div>
 
-            {/* Year Filters */}
-            <div className="flex gap-2 md:gap-[6px] justify-end lg:justify-start">
-              {["2015", "2020", "2025"].map((year) => (
-                <button
-                  key={year}
-                  onClick={() => toggleYear(year)}
-                  className={`py-1 md:py-2  md:px-4 rounded-lg border border-cst-neutral-500 transition flex items-center gap-1 text-xs md:text-base whitespace-nowrap
-                ${activeYears.includes(year) ? "" : " text-cst-neutral-500"}`}
-                >
-                  <GoDotFill
-                    className={`text-sm md:text-2xl ${
-                      activeYears.includes(year)
-                        ? colorMap[year].text
-                        : "text-cst-neutral-500"
-                    }`}
-                  />
-                  {year}
-                </button>
+            <div className="md:hidden flex flex-col gap-2">
+              {problemData.map((problem, index) => (
+                <SolutionCard
+                  key={problem.id}
+                  id={problem.id}
+                  title={problem.title}
+                  description={problem.description}
+                  progress={scrollProgress}
+                />
               ))}
             </div>
 
-            {/* Timeframe Filter */}
-            <div className="relative inline-flex bg-primary-50/10 p-1 rounded-xl w-full lg:w-auto min-w-fit">
-              {timeframes.map((label) => {
-                const isActive = selectedTimeframe === label;
-
-                return (
-                  <button
-                    key={label}
-                    onClick={() => setSelectedTimeframe(label)}
-                    className={`relative z-10 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium transition-colors duration-200 rounded-xl flex-1 lg:flex-none whitespace-nowrap ${
-                      isActive ? "text-white" : "text-gray-500"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="pill"
-                        className="absolute inset-0 z-0 rounded-xl bg-[#0F1C48]"
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                    <span className="relative z-10">{label}</span>
-                  </button>
-                );
-              })}
-            </div>
+            {/* Solution card end */}
           </div>
+        </div>
 
-          {/* medium screen and below */}
-          <div className="flex flex-col gap-4 mb-6 lg:hidden">
-            {/* Statistics and Year Filters on same line for sm/md, separate for lg */}
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start lg:flex-col lg:items-start gap-4">
-              <div className="text-left">
-                <p className="text-cst-neutral-400 text-xs md:text-lg">
-                  Statistics
-                </p>
-                <p className="font-bold text-sm md:text-[22px]">
-                  Co2 Emmission
-                </p>
-              </div>
+        {/* Right Side */}
+        <div
+          className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-[100dvh] md:min-h-0"
+          // style={{
+          //   backgroundImage: `url(${solutionImg.src})`,
+          // }}
 
-              {/* Year Filters */}
-              <div className="flex gap-2 md:gap-[6px] justify-start sm:justify-end lg:justify-start">
-                {["2015", "2020", "2025"].map((year) => (
-                  <button
-                    key={year}
-                    onClick={() => toggleYear(year)}
-                    className={`py-1 md:py-2 px-2 md:px-4 rounded-lg border border-cst-neutral-500 transition flex items-center gap-1 text-xs md:text-base whitespace-nowrap
-                  ${activeYears.includes(year) ? "" : " text-cst-neutral-500"}`}
-                  >
-                    <GoDotFill
-                      className={`text-sm md:text-2xl ${
-                        activeYears.includes(year)
-                          ? colorMap[year].text
-                          : "text-cst-neutral-500"
-                      }`}
-                    />
-                    {year}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Timeframe Filter - separate row for all screen sizes */}
-            <div className="relative inline-flex bg-primary-50/10 p-1 rounded-xl w-full lg:w-auto min-w-fit">
-              {timeframes.map((label) => {
-                const isActive = selectedTimeframe === label;
-
-                return (
-                  <button
-                    key={label}
-                    onClick={() => setSelectedTimeframe(label)}
-                    className={`relative z-10 px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium transition-colors duration-200 rounded-xl flex-1 lg:flex-none whitespace-nowrap ${
-                      isActive ? "text-white" : "text-gray-500"
-                    }`}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="pill"
-                        className="absolute inset-0 z-0 rounded-xl bg-[#0F1C48]"
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                    <span className="relative z-10">{label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Chart */}
-          <div className="w-full overflow-x-auto pointer-events-none">
+        >
+          {/* <div className="w-full overflow-x-auto pointer-events-none">
             <ResponsiveContainer width="100%" height={250} minWidth={300}>
               <LineChart data={filteredData}>
                 <XAxis
@@ -299,9 +451,23 @@ export default function EmissionPage() {
                 ))}
               </LineChart>
             </ResponsiveContainer>
-          </div>
+          </div> */}
+          <Chart data={problemData[activeStep ?? 0].data} />
         </div>
       </div>
-    </SectionWrapper>
+
+      {/* Scroll space for GSAP ScrollTrigger */}
+      <div ref={triggerRef} className="relative z-10 hidden md:block">
+        {steps.map((_, i) => (
+          <div
+            key={i}
+            className="flex items-center justify-center"
+            style={{ minHeight: "300vh" }}
+          >
+            {/* Individual scroll trigger zones */}
+          </div>
+        ))}
+      </div>
+    </main>
   );
 }
