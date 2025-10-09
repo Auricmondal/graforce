@@ -151,7 +151,7 @@ const YouNeedUs = () => {
             >
               <SectionLabel text="This is why you need us" textColor='text-white' />
               <AnimatedHeader>
-                <h2 className="text-2xl md:text-[48px] tracking-tight capitalized text-white">
+                <h2 className="text-2xl lg:text-[48px] tracking-tight capitalized text-white">
                   Powering every sector
                 </h2>
               </AnimatedHeader>
@@ -172,7 +172,7 @@ const YouNeedUs = () => {
               <div className="">
                 <h3
                   ref={needRef}
-                  className='text-white/10 font-bold text-base md:text-2xl pt-[100px] sm:pt-0'
+                  className='text-white/10 font-bold text-base lg:text-2xl pt-[100px] sm:pt-0'
                   data-sector="0"
                 // No dangerouslySetInnerHTML here, handled by GSAP
                 />
