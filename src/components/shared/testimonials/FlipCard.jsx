@@ -1,101 +1,3 @@
-// // // components/FlipCard.tsx
-// // "use client";
-
-// // import { motion } from "framer-motion";
-// // import { useState } from "react";
-// // import Image from "next/image";
-
-// // export default function FlipCard({
-// //   companyName,
-// //   logo,
-// //   review,
-// //   reviewer,
-// //   designation,
-// // }) {
-// //   const [isFlipped, setIsFlipped] = useState(false);
-
-// //   return (
-// //     <div
-// //       className="w-full h-64 relative [perspective:1000px] cursor-pointer"
-// //       onMouseEnter={() => setIsFlipped(true)}
-// //       onMouseLeave={() => setIsFlipped(false)}
-// //     >
-// //       <motion.div
-// //         className="w-full h-full relative transition-transform duration-700 [transform-style:preserve-3d] ease-in-out"
-// //         animate={{ rotateY: isFlipped ? 180 : 0 }}
-
-// //       >
-// //         {/* Front Side */}
-// //         <div className="absolute w-full h-full bg-blue-100 rounded-xl flex flex-col items-center justify-center text-center  [backface-visibility:hidden]">
-// //           <Image src={logo} alt="Logo" width={40} height={40} />
-// //           <p className="mt-4 text-lg font-medium text-gray-800">
-// //             {companyName}
-// //           </p>
-// //         </div>
-
-// //         {/* Back Side */}
-// //         <div className="absolute w-full h-full bg-white rounded-xl text-center px-4 py-6  [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center">
-// //           <p className="text-sm italic text-gray-700 mb-4">“{review}”</p>
-// //           <p className="text-sm font-semibold text-gray-900">{reviewer}</p>
-// //           <p className="text-xs text-gray-500">{designation}</p>
-// //         </div>
-// //       </motion.div>
-// //     </div>
-// //   );
-// // }
-
-// "use client";
-
-// import { useRef } from "react";
-// import { gsap } from "gsap";
-// import Image from "next/image";
-
-// export default function FlipCard({
-//   companyName,
-//   logo,
-//   review,
-//   reviewer,
-//   designation,
-// }) {
-//   const cardRef = useRef(null);
-
-//   const handleHover = (flip) => {
-//     gsap.to(cardRef.current, {
-//       rotateY: flip ? 180 : 0,
-//       duration: 0.8,
-//       ease: "bounce.in",
-//     });
-//   };
-
-//   return (
-//     <div
-//       className="w-full h-[60vh] relative [perspective:1000px] cursor-pointer"
-//       onMouseEnter={() => handleHover(true)}
-//       onMouseLeave={() => handleHover(false)}
-//     >
-//       <div
-//         ref={cardRef}
-//         className="w-full h-full relative transition-transform duration-700 [transform-style:preserve-3d]"
-//       >
-//         {/* Front */}
-//         <div className="absolute w-full h-full bg-blue-100 rounded-xl flex flex-col items-center justify-center text-center  [backface-visibility:hidden]">
-//           <Image src={logo} alt="Logo" width={40} height={40} />
-//           <p className="mt-4 text-lg font-medium text-gray-800">
-//             {companyName}
-//           </p>
-//         </div>
-
-//         {/* Back */}
-//         <div className="absolute w-full h-full bg-white rounded-xl text-center px-4 py-6  [transform:rotateY(180deg)] [backface-visibility:hidden] flex flex-col justify-center">
-//           <p className="text-sm italic text-gray-700 mb-4">“{review}”</p>
-//           <p className="text-sm font-semibold text-gray-900">{reviewer}</p>
-//           <p className="text-xs text-gray-500">{designation}</p>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -152,7 +54,7 @@ export default function FlipCard({
 
   return (
     <div
-      className="w-full h-[60vh] relative [perspective:1000px] cursor-pointer "
+      className={`w-full h-[60vh] relative [perspective:1000px] cursor-pointer `}
       onMouseEnter={() => handleHover(true)}
       onMouseLeave={() => handleHover(false)}
     >
@@ -161,10 +63,10 @@ export default function FlipCard({
         className="w-full h-full relative transition-transform duration-700 [transform-style:preserve-3d]"
       >
         <div
-          className={`overflow-hidden absolute z-100 top-0 left-0 w-40 h-40 bg-[url(/grid-blue.svg)] bg-no-repeat bg-contain bg-bottom rotate-x-180`}
+          className={`overflow-hidden absolute z-100 top-[2px] left-[2px] w-40 h-40 bg-[url(/grid-blue.svg)] bg-no-repeat bg-contain bg-bottom rotate-x-180`}
         />
         <div
-          className={`overflow-hidden absolute z-100 bottom-0 right-0 w-40 h-40 bg-[url(/grid-blue.svg))] bg-no-repeat bg-contain bg-bottom rotate-y-180`}
+          className={`overflow-hidden absolute z-100 bottom-[2px] right-[2px] w-40 h-40 bg-[url(/grid-blue.svg)] bg-no-repeat bg-contain bg-bottom rotate-y-180`}
         />
 
         {/* Front */}

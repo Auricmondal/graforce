@@ -75,7 +75,6 @@ const Testimonial = () => {
         </div>
       </CardWrapper>
     </SectionWrapper>
-    // </div>
   );
 };
 
