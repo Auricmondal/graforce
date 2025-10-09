@@ -75,8 +75,8 @@ export default async function ServicePage({ params }) {
       {config.achievements && <Achievements />}
       {config.productGallery && <ProductGallery />}
       {config.whyWorldNeedsUs && <WhyWorldNeedsUs />}
-      {config.otherServices && <OtherServices />}
       {config.solutionWorks && <SolutionWorks />}
+      {config.otherServices && <OtherServices />}
       {config.testimonials && <Testimonials />}
       {config.faq && <FAQ />}
       {config.news && <News />}
