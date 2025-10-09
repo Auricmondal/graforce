@@ -166,7 +166,7 @@ const YouNeedUs = () => {
               {/* animated label controlled via labelRef */}
               <div
                 ref={labelRef}
-                className="text-white capitalize font-semibold"
+                className="text-white capitalize"
                 aria-hidden={false}
               >
                 {sectorsData[0].label}
@@ -174,7 +174,7 @@ const YouNeedUs = () => {
               <div className="">
                 <h3
                   ref={needRef}
-                  className="text-white/10 line-clamp5 text-base md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
+                  className="text-white/10 text-base font-semibold md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
                   data-sector="0"
                   // No dangerouslySetInnerHTML here, handled by GSAP
                 />
