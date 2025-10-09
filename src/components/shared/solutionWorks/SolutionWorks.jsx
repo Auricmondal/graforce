@@ -9,6 +9,7 @@ import {
   FaExpand,
   FaChevronRight,
 } from "react-icons/fa";
+
 import { CiPlay1 } from "react-icons/ci";
 
 import CardWrapper from "@/wrappers/CardWrapper";
