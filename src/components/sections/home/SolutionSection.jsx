@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import solutionImg from "@/assets/home/solution.webp";
 import steps from "@/data/solutions.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-import SolutionCard from "./SolutionCard";
+import SolutionCard from "../../utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 
