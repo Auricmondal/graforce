@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import {
   AreaChart,
   Area,
@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useInView } from "motion/react";
 
 const CustomDot = ({ cx, cy, payload, highlightedWeeks }) => {
   if (!highlightedWeeks.includes(payload.week)) return null;
@@ -51,7 +52,16 @@ const CustomDot = ({ cx, cy, payload, highlightedWeeks }) => {
   );
 };
 
-export default function Chart({ data }) {
+export default function Chart({ data, dataIndex }) {
+  const chartRef = useRef(null);
+  const isInView = useInView(chartRef, { amount: 0.3 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  console.log({ isInView, hasAnimated });
+  useEffect(() => {
+    setHasAnimated(isInView);
+  }, [isInView, hasAnimated, dataIndex]);
+
   const highlightedWeeks = useMemo(() => {
     if (!data || data.length === 0) return [];
 
@@ -75,7 +85,7 @@ export default function Chart({ data }) {
   }, [data]);
 
   return (
-    <div className="w-full h-[90dvh] md:h-full p-6">
+    <div ref={chartRef} className="w-full h-[90dvh] md:h-full p-6">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data}>
           <defs>
@@ -90,6 +100,7 @@ export default function Chart({ data }) {
           <CartesianGrid vertical stroke="#E2E8F0" strokeDasharray="4 4" />
 
           <Area
+            key={hasAnimated ? `animate-${dataIndex}` : "static"}
             type="monotone"
             dataKey="value"
             stroke="#3B82F6"
@@ -97,6 +108,10 @@ export default function Chart({ data }) {
             fill="url(#area-gradient)"
             dot={<CustomDot highlightedWeeks={highlightedWeeks} />}
             activeDot={false}
+            isAnimationActive={hasAnimated}
+            animationBegin={0}
+            animationDuration={3000}
+            animationEasing="ease"
           />
         </AreaChart>
       </ResponsiveContainer>
