@@ -9,7 +9,7 @@ const CardWrapper = ({
   align = "left",
 }) => {
   const variants = {
-    standard: "px-4 py-12 sm:px-16 sm:py-8",
+    standard: "px-6 py-12 sm:px-6 sm:py-8",
     compact: "py-6 px-8",
     featured:"pt-20 sm:pt-28 pb-10 px-10",
     custom: "",
@@ -30,9 +30,9 @@ const CardWrapper = ({
   };
 
   const alignments = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
+    left: "text-left items-start",
+    center: "text-center justify-center items-center",
+    right: "text-right items-end",
     custom: "",
   };
 
@@ -40,11 +40,11 @@ const CardWrapper = ({
     <div
       className={`
         flex flex-col
+        ${className}
         ${variants[variant]}
         ${cardColors[color]}
         ${cardRadius[radius]}
         ${alignments[align]}
-        ${className}
       `}
     >
       {children}
