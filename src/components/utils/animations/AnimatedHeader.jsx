@@ -13,7 +13,7 @@ export default function AnimatedHeader({
   children,
   delay = 0,
   duration = 0.6,
-  stagger = 0.2,
+  stagger = 0.1,
   className = "",
 }) {
   const ref = useRef(null);
@@ -25,17 +25,32 @@ export default function AnimatedHeader({
     () => {
       if (!ref.current) return;
 
-      // Revert old SplitText if exists
       if (splitInstance.current) {
         splitInstance.current.revert();
       }
 
-      // Set up fresh split
+      // Initial split using divs (default)
       splitInstance.current = new SplitText(ref.current, {
         type: "lines",
         linesClass: "gsap-line",
       });
 
+      // Replace each line wrapper <div> with a <span>
+      splitInstance.current.lines = splitInstance.current.lines.map(
+        (lineEl) => {
+          if (lineEl.tagName === "DIV") {
+            const span = document.createElement("span");
+            span.className = lineEl.className;
+            span.style.display = "block"; // mimic <div> behavior
+            span.innerHTML = lineEl.innerHTML;
+            lineEl.replaceWith(span);
+            return span;
+          }
+          return lineEl;
+        }
+      );
+
+      // Animate
       if (inView) {
         tl.current = gsap.fromTo(
           splitInstance.current.lines,
@@ -50,7 +65,6 @@ export default function AnimatedHeader({
           }
         );
       } else {
-        // Reset instantly when out of view
         gsap.set(splitInstance.current.lines, {
           opacity: 0,
           y: 32,
@@ -72,8 +86,8 @@ export default function AnimatedHeader({
   );
 
   return (
-    <div ref={ref} className={`will-change-transform ${className}`}>
+    <span ref={ref} className={`will-change-transform ${className}`}>
       {children}
-    </div>
+    </span>
   );
 }

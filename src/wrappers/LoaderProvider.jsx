@@ -34,7 +34,7 @@ export default function LoaderProvider({ children }) {
       <AnimatePresence>
         {loading && (
           <motion.div
-            className="fixed bg-[linear-gradient(206.41deg,_var(--color-primary-700)_17.27%,_var(--color-primary-100)_47.98%,_var(--color-primary-200)_65.61%,_var(--color-primary-500)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
+            className="fixed bg-[linear-gradient(206.41deg,_var(--color-dark)_17.27%,_var(--color-primary-light)_47.98%,_var(--color-primary)_65.61%,_var(--color-secondary)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
             initial={{
               width: 5000,
               height: 5000,
