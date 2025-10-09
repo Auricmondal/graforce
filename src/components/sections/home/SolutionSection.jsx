@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import solutionImg from "@/assets/home/solution.webp";
 import steps from "@/data/solutions.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-import SolutionCard from "./SolutionCard";
+import SolutionCard from "../../utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 
@@ -68,8 +68,8 @@ export default function SolutionSection() {
         <div className="w-full md:flex-3/7 flex gap-2">
           <div className="flex flex-col gap-2 w-full">
             <CardWrapper
-              className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light"
-              variant="compact"
+              className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
+              variant="custom"
             >
               <SectionLabel text={"Our Solution"} />
               <AnimatedHeader>
