@@ -1,7 +1,6 @@
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import CardWrapper from "@/wrappers/CardWrapper";
-import SectionWrapper from "@/wrappers/SectionWrapper";
 
 export default function SolutionCard({ id, title, description, progress }) {
   const radius = 28;
