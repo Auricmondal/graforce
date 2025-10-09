@@ -187,7 +187,8 @@ const YouNeedUs = () => {
             </CardWrapper>
             <div className={`flex items-center justify-center p-0 w-full h-full`}>
               {/* <Tower className={`w-full h-full`} /> */}
-              <Image src={Tower} className="object-cover w-full lg:w-fit md:scale-135 lg:scale-170 xl:scale-180 2xl:scale-380 transition-transform duration-300 ease-in-out" alt="tower" />
+              {/* <Image src={Tower} className="object-cover w-full lg:w-fit md:scale-135 lg:scale-170 xl:scale-180 2xl:scale-380 transition-transform duration-300 ease-in-out" alt="tower" /> */}
+              <Image src={Tower} className="object-cover w-full lg:w-fit" alt="tower" />
             </div>
           </div>
 
