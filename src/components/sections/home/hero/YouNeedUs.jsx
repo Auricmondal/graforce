@@ -174,7 +174,7 @@ const YouNeedUs = () => {
               <div className="">
                 <h3
                   ref={needRef}
-                  className="text-white/10 line-clamp5 text-base md:text-xl lg:text-2xl pt-[100px] sm:pt-0 leading-5 lg:leading-7"
+                  className="text-white/10 line-clamp5 text-base md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
                   data-sector="0"
                   // No dangerouslySetInnerHTML here, handled by GSAP
                 />
