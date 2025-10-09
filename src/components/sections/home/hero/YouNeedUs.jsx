@@ -209,7 +209,7 @@ const YouNeedUs = () => {
                     />
                   </div>
                   <h3
-                    className="text-white text-base md:text-lg pt-[150px]"
+                    className="text-white text-base font-semibold md:text-lg pt-[150px]"
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="pt-6 w-full">
