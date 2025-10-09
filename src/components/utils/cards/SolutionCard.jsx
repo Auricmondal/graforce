@@ -52,7 +52,7 @@ export default function SolutionCard({ id, title, description, progress }) {
         </AnimatedHeader>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 w-full">
         <AnimatedHeader>
           <p className="text-black">{description}</p>
         </AnimatedHeader>

@@ -24,7 +24,7 @@ import ScrollReveal from "@/wrappers/ScrollReveal";
 import solutionImg from "@/assets/home/solution.webp";
 import steps from "@/data/solutions.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-import SolutionCard from "@/components/sections/home/SolutionCard";
+import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "./Chart";
