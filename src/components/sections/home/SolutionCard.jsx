@@ -10,13 +10,16 @@ export default function SolutionCard({ id, title, description, progress }) {
 
   return (
     <CardWrapper
-    variant="compact"
-      className="!justify-between md:flex-1 h-[90vh] md:h-full border-1 border-primary-light !bg-secondary-light"
+      variant="custom"
+      className="!justify-between md:flex-1 h-[90vh] md:h-full border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
     >
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-2 md:gap-4 w-full">
         {/* Circular Progress Bar */}
-        <div className="relative w-16 h-16">
-          <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 64 64">
+        <div className="relative w-14 h-14 md:w-16 md:h-16">
+          <svg
+            className="w-14 h-14 md:w-16 md:h-16 transform -rotate-90"
+            viewBox="0 0 64 64"
+          >
             <circle
               cx="32"
               cy="32"
@@ -43,7 +46,7 @@ export default function SolutionCard({ id, title, description, progress }) {
         </div>
 
         <AnimatedHeader>
-          <div className="text-[clamp(24px,2.5vw,56px)] leading-[125%] mb-2">
+          <div className="text-[clamp(20px,2.5vw,56px)] leading-[100%] mb-2">
             {title}
           </div>
         </AnimatedHeader>
