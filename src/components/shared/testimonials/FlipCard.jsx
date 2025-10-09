@@ -22,8 +22,9 @@ export default function FlipCard({
     if (!cardRef.current || isMobile) return;
     gsap.to(cardRef.current, {
       rotateY: flip ? 180 : 0,
-      duration: 0.8,
-      ease: "power2.out",
+      duration: 0.5,
+      ease: "sine.in",
+      delay: 0,
     });
   };
 
