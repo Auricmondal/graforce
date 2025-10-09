@@ -57,13 +57,10 @@ export default function Chart({ data, dataIndex }) {
   const isInView = useInView(chartRef, { amount: 0.3 });
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  console.log({isInView, hasAnimated});
+  console.log({ isInView, hasAnimated });
   useEffect(() => {
-    // if (isInView && !hasAnimated) {
-    //   setHasAnimated(true);
-    // }
-    setHasAnimated(isInView)
-  }, [isInView, hasAnimated, data]);
+    setHasAnimated(isInView);
+  }, [isInView, hasAnimated, dataIndex]);
 
   const highlightedWeeks = useMemo(() => {
     if (!data || data.length === 0) return [];
@@ -103,7 +100,7 @@ export default function Chart({ data, dataIndex }) {
           <CartesianGrid vertical stroke="#E2E8F0" strokeDasharray="4 4" />
 
           <Area
-            key={hasAnimated ? `animate-${dataIndex}` : 'static'}
+            key={hasAnimated ? `animate-${dataIndex}` : "static"}
             type="monotone"
             dataKey="value"
             stroke="#3B82F6"
