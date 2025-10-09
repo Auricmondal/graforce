@@ -107,7 +107,7 @@ export default function EmissionPage() {
 
         {/* Right Side */}
         <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-[100dvh] md:min-h-0">
-          <Chart data={problemData[activeStep ?? 0].data} />
+          <Chart data={problemData[activeStep ?? 0].data} dataIndex={activeStep ?? 0} />
         </div>
       </div>
 
