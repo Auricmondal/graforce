@@ -1,7 +1,7 @@
 "use client";
 
 import { useInView } from "motion/react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -21,57 +21,67 @@ export default function AnimatedHeader({
   const splitInstance = useRef(null);
   const tl = useRef(null);
 
-  useGSAP(
-    () => {
-      if (!ref.current) return;
+  const splitAndAnimate = () => {
+    if (!ref.current) return;
 
-      if (splitInstance.current) {
-        splitInstance.current.revert();
+    if (splitInstance.current) {
+      splitInstance.current.revert();
+      splitInstance.current = null;
+    }
+
+    // Split the text into lines
+    splitInstance.current = new SplitText(ref.current, {
+      type: "lines",
+      linesClass: "gsap-line",
+    });
+
+    // Replace <div> with <span>
+    splitInstance.current.lines = splitInstance.current.lines.map((lineEl) => {
+      if (lineEl.tagName === "DIV") {
+        const span = document.createElement("span");
+        span.className = lineEl.className;
+        span.style.display = "block";
+        span.innerHTML = lineEl.innerHTML;
+        lineEl.replaceWith(span);
+        return span;
       }
+      return lineEl;
+    });
 
-      // Initial split using divs (default)
-      splitInstance.current = new SplitText(ref.current, {
-        type: "lines",
-        linesClass: "gsap-line",
-      });
-
-      // Replace each line wrapper <div> with a <span>
-      splitInstance.current.lines = splitInstance.current.lines.map(
-        (lineEl) => {
-          if (lineEl.tagName === "DIV") {
-            const span = document.createElement("span");
-            span.className = lineEl.className;
-            span.style.display = "block"; // mimic <div> behavior
-            span.innerHTML = lineEl.innerHTML;
-            lineEl.replaceWith(span);
-            return span;
-          }
-          return lineEl;
+    // Animate lines
+    if (inView) {
+      tl.current = gsap.fromTo(
+        splitInstance.current.lines,
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger,
+          duration,
+          delay,
+          ease: "power3.out",
         }
       );
+    } else {
+      gsap.set(splitInstance.current.lines, { opacity: 0, y: 32 });
+    }
+  };
 
-      // Animate
-      if (inView) {
-        tl.current = gsap.fromTo(
-          splitInstance.current.lines,
-          { opacity: 0, y: 32 },
-          {
-            opacity: 1,
-            y: 0,
-            stagger,
-            duration,
-            delay,
-            ease: "power3.out",
-          }
-        );
-      } else {
-        gsap.set(splitInstance.current.lines, {
-          opacity: 0,
-          y: 32,
+  useGSAP(
+    () => {
+      splitAndAnimate();
+
+      const handleResize = () => {
+        // debounce with requestAnimationFrame
+        window.requestAnimationFrame(() => {
+          splitAndAnimate();
         });
-      }
+      };
+
+      window.addEventListener("resize", handleResize);
 
       return () => {
+        window.removeEventListener("resize", handleResize);
         if (splitInstance.current) {
           splitInstance.current.revert();
           splitInstance.current = null;
