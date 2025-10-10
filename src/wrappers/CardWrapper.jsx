@@ -42,7 +42,7 @@ const CardWrapper = ({
       className={`
         flex flex-col
         ${className}
-        ${color === "default" ? "border border-cst-neutral-3" : "border border-cst-neutral-1"}
+        ${color === "default" ? "border border-cst-neutral-1" : color === "transparent" ? "" : "border border-cst-neutral-1"}
         ${variants[variant]}
         ${cardColors[color]}
         ${cardRadius[radius]}

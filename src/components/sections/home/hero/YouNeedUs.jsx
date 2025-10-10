@@ -28,7 +28,7 @@ const sectorsData = [
   },
 ];
 
-const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader = "Subheader should be here", sectionImage = Tower, sectionColorVariant = "default", sectionColor = "", doubleButton = false }) => {
+const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader = "Powering Every Sector", sectionImage = Tower, sectionColorVariant = "default", sectionColor = "", doubleButton = false }) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
   const labelRef = useRef(null); // <-- added
@@ -143,7 +143,7 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
             <CardWrapper
               color="transparent"
               align="left"
-              className="gap-2"
+              className="gap-2 border border-cst-neutral-2"
             >
               <SectionLabel
                 text={sectionHeader}
@@ -164,7 +164,7 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
             <CardWrapper
               color="transparent"
               align="left"
-              className="flex flex-col justify-between items-start gap-2 sm:gap-4 p-4 h-full"
+              className="flex flex-col justify-between items-start gap-2 sm:gap-4 p-4 h-full border border-cst-neutral-2"
             >
               {/* animated label controlled via labelRef */}
               <div
@@ -211,7 +211,7 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
                 <CardWrapper
                   color="transparent"
                   align="left"
-                  className="justify-between items-center gap-2 sm:gap-4 p-4 text-left"
+                  className="justify-between items-center gap-2 sm:gap-4 p-4 text-left border border-cst-neutral-2"
                 >
                   <div className="text-left flex items-start">
                     <SectionLabel

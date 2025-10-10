@@ -14,7 +14,7 @@ const Home = async () => {
       <div className="relative z-10 mt-[100vh]">
         <WhatDoWeDo />
         <Solution />
-        <YouNeedUs sectionHeader="This is why you need us" sectionSubHeader="Powering every sector" sectionColorVariant="dark" sectionImage={Tower} />
+        <YouNeedUs sectionColorVariant="dark" />
         <AboutUs />
         <FinalCTA />
       </div>
