@@ -14,7 +14,7 @@ import Chart from "@/components/utils/charts/Chart";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EmissionPage() {
+export default function WhyWeMatter() {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
@@ -71,9 +71,9 @@ export default function EmissionPage() {
               className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
               variant="custom"
             >
-              <SectionLabel text={"The Problem We Discovered"} />
+              <SectionLabel text={"Here is Why We Matter"} />
               <AnimatedHeader>
-                <div className="text-xl">The Emission Burden</div>
+                <div className="text-xl">Our Mission is to Save the Earth</div>
               </AnimatedHeader>
             </CardWrapper>
 
