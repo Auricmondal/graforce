@@ -20,7 +20,7 @@ export default function FAQItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <motion.div layout>
+    <>
       <CardWrapper
         className="overflow-hidden flex flex-col p-8"
         variant="custom"
@@ -48,15 +48,13 @@ export default function FAQItem({ question, answer }) {
         <motion.div
           layout
           initial={false}
-          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10 }}
+          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -10, height: isOpen ? "auto" : 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className={`text-[#181818] overflow-hidden transition-opacity duration-300 ${
-            isOpen ? "pb-6" : "pb-0 h-0"
-          }`}
+          className={`text-[#181818] overflow-hidden transition-opacity duration-300 `}
         >
           {isOpen && <div>{answer}</div>}
         </motion.div>
       </CardWrapper>
-    </motion.div>
+    </>
   );
 }
