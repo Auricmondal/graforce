@@ -2,9 +2,6 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import Hero from "@/components/sections/products/Hero";
-import Problem from "@/components/sections/services/Problem";
-import Achievements from "@/components/sections/services/Achievements";
-import WhyWorldNeedsUs from "@/components/sections/services/WhyWorldNeedsUs";
 
 import WhyWeMatter from "@/components/sections/products/WhyWeMatter";
 import GraforceSolution from "@/components/sections/products/GraforceSolution";
@@ -67,11 +64,11 @@ export default async function ProductPage({ params }) {
 /**
  * generateStaticParams:
  *
- * - This tells Next.js to pre-render only `/services/a`, `/services/b`, and `/services/c`
+ * - This tells Next.js to pre-render only `/products/a`, `/products/b`, and `/products/c`
  *   at build time instead of rendering them on-demand at runtime.
  *   - Keep this if the set of slugs is small and fixed (like here: a, b, c).
  *   - Remove it if slugs might change dynamically (e.g., from a database or CMS).
  */
 export async function generateStaticParams() {
-  return ALLOWED_SLUGS.map((service) => ({ service }));
+  return ALLOWED_SLUGS.map((product) => ({ product }));
 }
