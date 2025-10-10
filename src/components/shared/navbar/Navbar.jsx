@@ -42,16 +42,6 @@ const Navbar = () => {
 
   useHideOnScrollNav(downMenuRef, isMenuOpen);
 
-  // useGSAP(() => {
-  //   if (!downMenuRef.current) return;
-  //   const el = downMenuRef.current;
-  //   gsap.fromTo(
-  //     el,
-  //     { y: 100, opacity: 0, display: "none" },
-  //     { y: 0, opacity: 1, display: "block", duration: 0.5 }
-  //   );
-  // }, [isMenuOpen]);
-
   return (
     <>
       {!isMenuOpen && <div className="">
@@ -62,26 +52,15 @@ const Navbar = () => {
         >
           <nav
             ref={navRef}
-            className={`mx-auto flex-1 items-center justify-between px-4 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top mt-3  rounded-2xl w-[90%]
+            className={`mx-auto flex-1 items-center justify-between px-2 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
         
         `}
-          // ${isMenuOpen
-          //     ? "h-full w-full transition-all duration-500 ease-in-out origin-top mt-0 bg-gradient-to-l from-[#1E428A] to-[#081124]"
-          //     : "h-14 transition-all duration-500 ease-in-out origin-top mt-3  rounded-2xl w-[85%]"
-          //   }
-          // `}
           >
             <div className="justify-between items-center flex sm:px-1 md:px-2 lg:px-4">
               <BrandLogo
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 isMenuOpen={isMenuOpen}
               />
-              {/* <DesktopNav
-              navItems={navItems}
-              active={active}
-              navigateTo={navigateTo}
-              isMenuOpen={isMenuOpen}
-            /> */}
               <div className="language flex items-center gap-2">
                 <LanguageOptions />
                 <div
@@ -93,21 +72,9 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            {/* <div className="flex flex-col justify-start">
-          <MobileNav
-            navItems={navItems}
-            active={active}
-            navigateTo={navigateTo}
-            isMenuOpen={isMenuOpen}
-            setIsMenuOpen={setIsMenuOpen}
-            className={isMenuOpen ? "pt-6" : "pt-0 h-0 overflow-hidden"}
-          />
-        </div> */}
           </nav>
-          {/* <ContactModal /> */}
         </div>
-        <div ref={downMenuRef} className="fixed flex items-center gap-2 bg-white py-2 px-4 rounded-xl shadow-sm cursor-pointer z-100 -bottom-[10vh] right-[5%]">
-          {/* <DownNavOptions> */}
+        <div ref={downMenuRef} className="fixed flex items-center gap-2 bg-white py-2 px-2 rounded-xl shadow-sm cursor-pointer z-100 -bottom-[10vh] right-[5%]">
           <LanguageOptions downMenu={true} />
           <div
             className={`text-black text-3xl flex items-center justify-center cursor-pointer p-1 ${isMenuOpen ? "text-white" : "text-black"
@@ -116,7 +83,6 @@ const Navbar = () => {
           >
             <Hamburger isMenuOpen={true} />
           </div>
-          {/* </DownNavOptions> */}
         </div>
       </div >}
       <SideNavMenu onClick={() => setIsMenuOpen(false)} isMenuOpen={isMenuOpen} />

@@ -17,10 +17,10 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
     { id: 1, name: "Home", href: "/", toggle: false },
     { id: 2, name: "Services", href: "#", toggle: true },
     { id: 3, name: "Products", href: "#", toggle: true },
-    { id: 4, name: "Industries", href: "#", toggle: false },
-    { id: 5, name: "Investors", href: "#", toggle: false },
-    { id: 6, name: "Jobs", href: "#", toggle: false },
-    { id: 7, name: "About", href: "#", toggle: false },
+    { id: 4, name: "Industries", href: "/industries", toggle: false },
+    { id: 5, name: "Investors", href: "/investors", toggle: false },
+    { id: 6, name: "Jobs", href: "/jobs", toggle: false },
+    { id: 7, name: "About", href: "/about", toggle: false },
   ];
 
   // Helper function to add refs in map
@@ -32,31 +32,39 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
 
   useGSAP(() => {
     const overlay = sideNavOverlay.current;
+    const sideNavOverlayBackdrop = sideNavOverlay.current.children[0];
     const menu = sideNavMenu.current;
     const items = navItemsRef.current;
+    const tl = gsap.timeline();
 
     if (isMenuOpen) {
       // open animation
-      gsap.to(overlay, { x: 0, duration: 0.5, ease: "power2.inOut" });
-      gsap.to(menu, { x: 0, duration: 0.5, ease: "power2.inOut" });
-      gsap.fromTo(
+      tl.to(overlay, { x: 0, duration: 0.3, ease: "power2.inOut" });
+      tl.to(sideNavOverlayBackdrop, { x: 0, duration: 0.3, ease: "power2.inOut" }, "<0.1");
+      tl.to(menu, { x: 0, duration: 0.3, ease: "power2.inOut" });
+      tl.to(
         items,
-        { x: 100, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.4, stagger: 0.1, ease: "power2.out" }
+        { x: 0, opacity: 1, duration: 0.3, stagger: 0.1, ease: "power2.out" }
       );
     } else {
       // close animation
-      gsap.to(items, { x: 50, opacity: 0, duration: 0.3, ease: "power2.in" });
-      gsap.to(menu, { x: '40vw', duration: 0.4, ease: "power2.inOut" });
-      gsap.to(overlay, { x: '100vw', duration: 0.4, ease: "power2.inOut" });
+      tl.to(
+        items,
+        { x: 300, opacity: 0, duration: 0.3, stagger: -0.1, ease: "power2.out" }
+      );
+      tl.to(menu, { x: '40vw', duration: 0.3, ease: "power2.inOut" });
+      tl.to(sideNavOverlayBackdrop, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, "<0.1");
+      tl.to(overlay, { x: '100vw', duration: 0.3, ease: "power2.inOut" });
     }
   }, [isMenuOpen]);
 
   return (
     <div
       ref={sideNavOverlay}
-      className="sideNavOverlay w-screen h-screen fixed flex justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw]"
+      className="sideNavOverlay w-screen h-screen fixed flex flex-row justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw]"
     >
+      <div className="sideNavOverlayBackdrop w-0 lg:w-[60vw] h-screen translate-x-[100vw]"
+        onClick={onClick}></div>
       <div
         ref={sideNavMenu}
         className="sideNavMenu flex flex-col justify-start h-screen w-screen lg:w-[40vw] bg-cst-neutral-1 gap-2 p-2 rounded-l-2xl translate-x-[40vw]"
@@ -64,10 +72,10 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
         <div className="flex items-center justify-between rounded-xl bg-white p-4 capitalize text-3xl font-bold">
           <BrandLogo />
           <div
-            className="border border-cst-neutral-2 p-2 rounded-full cursor-pointer"
+            className="group border border-cst-neutral-2 hover:border-cst-primary-1 p-2 rounded-full cursor-pointer hover:bg-cst-neutral-4 transition-all ease-in-out duration-300"
             onClick={onClick}
           >
-            <RxCross1 className="text-2xl" />
+            <RxCross1 className="text-2xl group-hover:text-cst-primary-1 group-hover:text-white group-hover:rotate-360 transition-all ease-in-out duration-700" />
           </div>
         </div>
 
@@ -76,7 +84,7 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
             <div
               key={item.id}
               ref={addToRefs}
-              className="flex items-center justify-start gap-2 hover:gap-4 py-2 transition-all duration-300 ease-in-out cursor-pointer"
+              className="item flex items-center justify-start gap-2 hover:gap-4 py-2 transition-all duration-300 ease-in-out cursor-pointer translate-[300px] opacity-0"
             >
               <Link
                 href={item.href}
