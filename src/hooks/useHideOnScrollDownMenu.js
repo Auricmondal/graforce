@@ -17,15 +17,15 @@ const useHideOnScrollNav = (menuRef, isMenuOpen) => {
         y: "0%",
         x: "0%",
         duration: 0.5,
-        ease: "power.out",
+        ease: "power2.out",
       });
     };
 
     const hideNavigation = () => {
       gsap.to(menu, {
-        y: "-15vh",
+        y: -150,
         duration: 0.5,
-        ease: "power.out",
+        ease: "power2.out",
       });
     };
 

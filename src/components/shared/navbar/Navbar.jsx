@@ -9,6 +9,11 @@ import MobileNav from "./nav/navigation/MobileNav";
 import useClickOutside from "@/hooks/useClickOutside";
 import useHideOnScrollNav from "@/hooks/useHideOnScrollNav";
 import ContactModal from "./nav/ContactModal";
+import Hamburger from "./nav/Hamburger";
+import DownNavOptions from "./nav/DownNavOptions";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import SideNavMenu from "./nav/navigation/SideNavMenu";
 
 const Navbar = () => {
   const router = useRouter();
@@ -16,6 +21,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
   const navRef = React.useRef(null);
+  const downMenuRef = React.useRef(null);
   const navItems = [
     { id: 1, name: "Home", href: "/", toggle: false },
     { id: 2, name: "Services", href: "/services", toggle: true },
@@ -32,41 +38,62 @@ const Navbar = () => {
 
   useClickOutside(menuRef, () => setIsMenuOpen(false));
 
-  useHideOnScrollNav(menuRef, navRef, isMenuOpen);
+  useHideOnScrollNav(menuRef, isMenuOpen);
+
+  useHideOnScrollNav(downMenuRef, isMenuOpen);
+
+  // useGSAP(() => {
+  //   if (!downMenuRef.current) return;
+  //   const el = downMenuRef.current;
+  //   gsap.fromTo(
+  //     el,
+  //     { y: 100, opacity: 0, display: "none" },
+  //     { y: 0, opacity: 1, display: "block", duration: 0.5 }
+  //   );
+  // }, [isMenuOpen]);
 
   return (
-    <div
-      className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out ${
-        isMenuOpen ? "h-full" : "h-14"
-      }`}
-      ref={menuRef}
-    >
-      <nav
-        ref={navRef}
-        className={`mx-auto flex-1 items-center justify-between px-4 py-2 bg-white shadow-sm [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto transition-all duration-300 ease-in-out
-        ${
-          isMenuOpen
-            ? "h-full w-full transition-all duration-500 ease-in-out origin-top mt-0 bg-gradient-to-l from-[#1E428A] to-[#081124]"
-            : "h-14 transition-all duration-500 ease-in-out origin-top mt-3  rounded-2xl w-[85%]"
-        }
+    <>
+      {!isMenuOpen && <div className="">
+        <div
+          className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out ${isMenuOpen ? "h-full" : "h-fit"
+            }`}
+          ref={menuRef}
+        >
+          <nav
+            ref={navRef}
+            className={`mx-auto flex-1 items-center justify-between px-4 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top mt-3  rounded-2xl w-[90%]
+        
         `}
-      >
-        <div className="justify-between items-center flex sm:px-1 md:px-2 lg:px-4">
-          <BrandLogo
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            isMenuOpen={isMenuOpen}
-          />
-          <DesktopNav
-            navItems={navItems}
-            active={active}
-            navigateTo={navigateTo}
-            isMenuOpen={isMenuOpen}
-          />
-          <div className="language">
-            <LanguageOptions />
-          </div>
-        </div>
-        <div className="flex flex-col justify-start">
+          // ${isMenuOpen
+          //     ? "h-full w-full transition-all duration-500 ease-in-out origin-top mt-0 bg-gradient-to-l from-[#1E428A] to-[#081124]"
+          //     : "h-14 transition-all duration-500 ease-in-out origin-top mt-3  rounded-2xl w-[85%]"
+          //   }
+          // `}
+          >
+            <div className="justify-between items-center flex sm:px-1 md:px-2 lg:px-4">
+              <BrandLogo
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                isMenuOpen={isMenuOpen}
+              />
+              {/* <DesktopNav
+              navItems={navItems}
+              active={active}
+              navigateTo={navigateTo}
+              isMenuOpen={isMenuOpen}
+            /> */}
+              <div className="language flex items-center gap-2">
+                <LanguageOptions />
+                <div
+                  className={`text-black text-3xl flex items-center justify-center cursor-pointer p-1 ${isMenuOpen ? "text-white" : "text-black"
+                    }`}
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                  <Hamburger isMenuOpen={true} />
+                </div>
+              </div>
+            </div>
+            {/* <div className="flex flex-col justify-start">
           <MobileNav
             navItems={navItems}
             active={active}
@@ -75,10 +102,25 @@ const Navbar = () => {
             setIsMenuOpen={setIsMenuOpen}
             className={isMenuOpen ? "pt-6" : "pt-0 h-0 overflow-hidden"}
           />
+        </div> */}
+          </nav>
+          {/* <ContactModal /> */}
         </div>
-      </nav>
-      {/* <ContactModal /> */}
-    </div>
+        <div ref={downMenuRef} className="fixed flex items-center gap-2 bg-white py-2 px-4 rounded-xl shadow-sm cursor-pointer z-100 -bottom-[10vh] right-[5%]">
+          {/* <DownNavOptions> */}
+          <LanguageOptions downMenu={true} />
+          <div
+            className={`text-black text-3xl flex items-center justify-center cursor-pointer p-1 ${isMenuOpen ? "text-white" : "text-black"
+              }`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <Hamburger isMenuOpen={true} />
+          </div>
+          {/* </DownNavOptions> */}
+        </div>
+      </div >}
+      <SideNavMenu onClick={() => setIsMenuOpen(false)} isMenuOpen={isMenuOpen} />
+    </>
   );
 };
 
