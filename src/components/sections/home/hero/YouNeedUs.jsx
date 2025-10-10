@@ -1,7 +1,6 @@
 "use client";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-// import Tower from '@/components/utils/heroutils/Tower'
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import React, { useRef, useState, useEffect } from "react";
@@ -34,7 +33,6 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
   const needRef = useRef(null);
   const labelRef = useRef(null); // <-- added
   const [isMobile, setIsMobile] = useState(false);
-  // const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
   // Check if mobile
   useEffect(() => {
@@ -158,8 +156,6 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
 
           {/* Desktop: Animated single section */}
           <div className="hidden md:grid grid-cols-2 gap-2 w-full h-full">
-            {/* {" "} */}
-            {/* ensure height */}
             <CardWrapper
               color="transparent"
               align="left"
@@ -193,8 +189,6 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
               </div>
             </CardWrapper>
             <div className={`flex items-center justify-center p-0 w-full h-full`}>
-              {/* <Tower className={`w-full h-full`} /> */}
-              {/* <Image src={Tower} className="object-cover w-full lg:w-fit md:scale-135 lg:scale-170 xl:scale-180 2xl:scale-380 transition-transform duration-300 ease-in-out" alt="tower" /> */}
               <Image src={sectionImage} className="object-cover w-full lg:w-fit" alt="tower" />
             </div>
           </div>
@@ -231,7 +225,6 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
                   </div>
                 </CardWrapper>
                 <div className="flex items-center justify-center">
-                  {/* <Tower className="" /> */}
                   <Image
                     src={sectionImage}
                     className={"object-cover w-full h-full"}
