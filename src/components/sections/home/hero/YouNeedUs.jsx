@@ -177,11 +177,11 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
                 // No dangerouslySetInnerHTML here, handled by GSAP
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base border-2 border-transparent hover:border-cst-neutral-1 hover:bg-transparent hover:shadow-md`}>
+                  <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColor === "blue" ? "border-2 border-transparent hover:border-black/15 hover:opacity-[0.5px] hover:bg-transparent hover:shadow-md" : ""}`}>
                     Learn More
                   </PrimaryButton>
                   {doubleButton && (
-                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base border-2 border-transparent hover:border-cst-neutral-1 hover:bg-transparent hover:shadow-md`}>
+                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColor === "blue" ? "border-2 border-transparent hover:border-black/15 hover:opacity-[0.5px] hover:bg-transparent hover:shadow-md" : ""}`}>
                       Specifications
                     </PrimaryButton>
                   )}

@@ -1,6 +1,6 @@
 import React from 'react'
 import YouNeedUs from '../home/hero/YouNeedUs';
-import Electrolysis from '@/assets/electrolysis.png';
+import Electrolysis from '@/assets/Electrolysis.png';
 
 const Achievements = () => {
   return (
