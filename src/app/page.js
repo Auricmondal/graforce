@@ -6,6 +6,7 @@ import Solution from "@/components/sections/home/SolutionSection";
 import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 import WhatDoWeDo from "@/components/sections/home/WhatDoWeDo";
 import YouNeedUs from "@/components/sections/home/hero/YouNeedUs";
+import Tower from "@/assets/tower.png";
 
 const Home = async () => {
   return (
@@ -15,7 +16,7 @@ const Home = async () => {
         <WhatDoWeDo />
         <Solution />
         {/* <WorldNeedsUs /> */}
-        <YouNeedUs />
+        <YouNeedUs sectionHeader="This is why you need us" sectionSubHeader="Powering every sector" sectionColor="dark" sectionImage={Tower} />
         <AboutUs />
         <FinalCTA />
       </div>

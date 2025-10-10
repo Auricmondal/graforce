@@ -29,7 +29,7 @@ const sectorsData = [
   },
 ];
 
-const YouNeedUs = () => {
+const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader = "Subheader should be here", sectionImage = Tower, sectionColor = "default", doubleButton = false }) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
   const labelRef = useRef(null); // <-- added
@@ -132,23 +132,25 @@ const YouNeedUs = () => {
       <div ref={sectionRef} className="flex items-start h-fit md:h-screen">
         <CardWrapper
           variant="custom"
-          color="dark"
+          color={sectionColor}
           align="center"
           className="p-2 gap-2 h-full" // changed: allow inner columns to stretch so justify-between works
         >
           <div className="w-full">
             <CardWrapper
-              color="dark"
+              color="transparent"
               align="left"
-              className="border border-cst-neutral-3 gap-2"
+              className="gap-2"
             >
               <SectionLabel
-                text="This is why you need us"
-                textColor="text-white"
+                text={sectionHeader}
+                textColor={sectionColor === "default" ? "text-black" : "text-white"}
+                icon={true}
+                invertIcon={sectionColor === "blue"}
               />
-              <AnimatedHeader>
-                <h2 className="text-xl capitalized text-white">
-                  Powering every sector
+              <AnimatedHeader className={`text-xl capitalize ${sectionColor === "default" ? "text-black" : "text-white"}`}>
+                <h2 className={`text-xl capitalize ${sectionColor === "default" ? "text-black" : "text-white"}`}>
+                  {sectionSubHeader}
                 </h2>
               </AnimatedHeader>
             </CardWrapper>
@@ -159,14 +161,14 @@ const YouNeedUs = () => {
             {/* {" "} */}
             {/* ensure height */}
             <CardWrapper
-              color="dark"
+              color="transparent"
               align="left"
-              className="flex flex-col justify-between items-start border border-cst-neutral-3 gap-2 sm:gap-4 p-4 h-full"
+              className="flex flex-col justify-between items-start gap-2 sm:gap-4 p-4 h-full"
             >
               {/* animated label controlled via labelRef */}
               <div
                 ref={labelRef}
-                className="text-white capitalize"
+                className={`capitalize ${sectionColor === "default" ? "text-black" : "text-white"}`}
                 aria-hidden={false}
               >
                 {sectorsData[0].label}
@@ -176,19 +178,24 @@ const YouNeedUs = () => {
                   ref={needRef}
                   className="text-white/10 text-base font-semibold md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
                   data-sector="0"
-                  // No dangerouslySetInnerHTML here, handled by GSAP
+                // No dangerouslySetInnerHTML here, handled by GSAP
                 />
-                <div className="pt-6 w-full">
-                  <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-base">
+                <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
+                  <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base border-2 border-transparent hover:border-cst-neutral-1 hover:bg-transparent hover:shadow-md`}>
                     Learn More
                   </PrimaryButton>
+                  {doubleButton && (
+                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base border-2 border-transparent hover:border-cst-neutral-1 hover:bg-transparent hover:shadow-md`}>
+                      Specifications
+                    </PrimaryButton>
+                  )}
                 </div>
               </div>
             </CardWrapper>
             <div className={`flex items-center justify-center p-0 w-full h-full`}>
               {/* <Tower className={`w-full h-full`} /> */}
               {/* <Image src={Tower} className="object-cover w-full lg:w-fit md:scale-135 lg:scale-170 xl:scale-180 2xl:scale-380 transition-transform duration-300 ease-in-out" alt="tower" /> */}
-              <Image src={Tower} className="object-cover w-full lg:w-fit" alt="tower" />
+              <Image src={sectionImage} className="object-cover w-full lg:w-fit" alt="tower" />
             </div>
           </div>
 
@@ -197,32 +204,37 @@ const YouNeedUs = () => {
             {sectorsData.map((sector) => (
               <div key={sector.id} className="grid grid-cols-1 w-full gap-4">
                 <CardWrapper
-                  color="dark"
+                  color="transparent"
                   align="left"
-                  className="justify-between items-center border border-cst-neutral-3 gap-2 sm:gap-4 p-4 text-left"
+                  className="justify-between items-center gap-2 sm:gap-4 p-4 text-left"
                 >
                   <div className="text-left flex items-start">
                     <SectionLabel
                       icon={false}
                       text={sector.label}
-                      textColor="text-white"
+                      textColor={sectionColor === "default" ? "text-black" : "text-white"}
                     />
                   </div>
                   <h3
-                    className="text-white text-base font-semibold md:text-lg pt-[150px]"
+                    className={`text-base font-semibold md:text-lg pt-[150px] ${sectionColor === "default" ? "text-black" : "text-white"}`}
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
-                  <div className="pt-6 w-full">
-                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-base">
+                  <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
+                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
                       Learn More
                     </PrimaryButton>
+                    {doubleButton && (
+                      <PrimaryButton className="bg-black text-cst-neutral-1 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
+                        Specifications
+                      </PrimaryButton>
+                    )}
                   </div>
                 </CardWrapper>
                 <div className="flex items-center justify-center">
                   {/* <Tower className="" /> */}
                   <Image
-                    src={Tower}
-                    className="object-cover w-full h-full"
+                    src={sectionImage}
+                    className={"object-cover w-full h-full"}
                     alt="tower"
                   />
                 </div>
