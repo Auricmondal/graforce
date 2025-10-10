@@ -3,7 +3,7 @@ import useClickOutside from "@/hooks/useClickOutside";
 import Image from "next/image";
 import React, { useState, useRef } from "react";
 
-const LanguageOptions = () => {
+const LanguageOptions = ({ downMenu = false }) => {
   const [showLanguageOptions, setShowLanguageOptions] = useState(false);
   const dropdownRef = useRef(null);
   const [Lang, setLang] = useState('GB')
@@ -20,7 +20,7 @@ const LanguageOptions = () => {
   useClickOutside(dropdownRef, () => setShowLanguageOptions(false));
 
   return (
-    <div ref={dropdownRef} className="">
+    <div ref={dropdownRef} className={`${downMenu ? "flex flex-col" : ""}`}>
       <div className="flex gap-2 items-center">
         <div
           onClick={toggleLanguageOptions}
@@ -43,9 +43,11 @@ const LanguageOptions = () => {
       </div>
 
       <div
-        className={`absolute gap-2 flex flex-col w-50 rounded-xl shadow bg-[#edf0f7] overflow-hidden p-4 my-6 [@media(min-width:645px)]:translate-x-[-25%] [@media(min-width:470px)]:translate-x-[-23%] translate-x-[-80%] transition-transform duration-300 ease-in-out origin-top-right sm:origin-top text-black ${
+        className={`absolute gap-2 flex flex-col w-50 rounded-xl shadow bg-[#edf0f7] overflow-hidden p-4 my-6 [@media(min-width:645px)]:translate-x-[-25%] [@media(min-width:470px)]:translate-x-[-23%] translate-x-[-80%] transition-transform duration-300 ease-in-out text-black ${
           showLanguageOptions ? "scale-100" : "scale-0 z-50"
-        }`}
+        }
+        ${downMenu ? "order-first -translate-y-[140%] origin-bottom-right sm:origin-bottom" : " origin-top-right sm:origin-top"}
+        `}
       >
         {/* German Option */}
         <div className="flex items-center gap-2 px-3 py-1 rounded-lg bg-white hover:bg-[#adc0ec] transition-all ease-in-out duration-300 cursor-pointer" onClick={()=>setLanguage('DE')}>
