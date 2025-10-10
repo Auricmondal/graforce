@@ -28,7 +28,7 @@ const sectorsData = [
   },
 ];
 
-const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader = "Subheader should be here", sectionImage = Tower, sectionColor = "default", doubleButton = false }) => {
+const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader = "Subheader should be here", sectionImage = Tower, sectionColorVariant = "default", sectionColor = "", doubleButton = false }) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
   const labelRef = useRef(null); // <-- added
@@ -113,8 +113,13 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
           (self.progress * sectorsData.length - sectorIndex) * chars.length
         );
         chars.forEach((char, i) => {
+          if (sectionColorVariant === "default") {
+            char.style.color =
+            i < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
+          } else {
           char.style.color =
             i < charsToShow ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.1)";
+          }
         });
       },
     });
@@ -130,9 +135,9 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
       <div ref={sectionRef} className="flex items-start h-fit md:h-screen">
         <CardWrapper
           variant="custom"
-          color={sectionColor}
+          color={sectionColorVariant}
           align="center"
-          className="p-2 gap-2 h-full" // changed: allow inner columns to stretch so justify-between works
+          className={`p-2 gap-2 h-full ${sectionColorVariant === "custom" ? sectionColor : ""}`} // changed: allow inner columns to stretch so justify-between works
         >
           <div className="w-full">
             <CardWrapper
@@ -142,12 +147,12 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
             >
               <SectionLabel
                 text={sectionHeader}
-                textColor={sectionColor === "default" ? "text-black" : "text-white"}
+                textColor={sectionColorVariant === "default" ? "text-black" : "text-white"}
                 icon={true}
-                invertIcon={sectionColor === "blue"}
+                invertIcon={sectionColorVariant === "blue"}
               />
-              <AnimatedHeader className={`text-xl capitalize ${sectionColor === "default" ? "text-black" : "text-white"}`}>
-                <h2 className={`text-xl capitalize ${sectionColor === "default" ? "text-black" : "text-white"}`}>
+              <AnimatedHeader className={`text-xl capitalize ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}>
+                <h2 className={`text-xl capitalize ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}>
                   {sectionSubHeader}
                 </h2>
               </AnimatedHeader>
@@ -164,7 +169,7 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
               {/* animated label controlled via labelRef */}
               <div
                 ref={labelRef}
-                className={`capitalize ${sectionColor === "default" ? "text-black" : "text-white"}`}
+                className={`capitalize ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}
                 aria-hidden={false}
               >
                 {sectorsData[0].label}
@@ -177,11 +182,17 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
                 // No dangerouslySetInnerHTML here, handled by GSAP
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColor === "blue" ? "border-2 border-transparent hover:border-black/15 hover:opacity-[0.5px] hover:bg-transparent hover:shadow-md" : ""}`}>
+                  <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`} 
+                    hoverText={sectionColorVariant === "blue" ? "text-cst-neutral-1" : "text-white"}
+                    hoverBgColor={sectionColorVariant === "blue" ? "bg-cst-neutral-3" : "bg-primary"}
+                  >
                     Learn More
                   </PrimaryButton>
                   {doubleButton && (
-                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColor === "blue" ? "border-2 border-transparent hover:border-black/15 hover:opacity-[0.5px] hover:bg-transparent hover:shadow-md" : ""}`}>
+                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                      hoverText={sectionColorVariant === "blue" ? "text-cst-neutral-1" : "text-white"}
+                      hoverBgColor={sectionColorVariant === "blue" ? "bg-cst-neutral-3" : "bg-primary"}
+                    >
                       Specifications
                     </PrimaryButton>
                   )}
@@ -206,11 +217,11 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
                     <SectionLabel
                       icon={false}
                       text={sector.label}
-                      textColor={sectionColor === "default" ? "text-black" : "text-white"}
+                      textColor={sectionColorVariant === "default" ? "text-black" : "text-white"}
                     />
                   </div>
                   <h3
-                    className={`text-base font-semibold md:text-lg pt-[150px] ${sectionColor === "default" ? "text-black" : "text-white"}`}
+                    className={`text-base font-semibold md:text-lg pt-[150px] ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
@@ -218,7 +229,7 @@ const YouNeedUs = ({ sectionHeader = "Header should be here", sectionSubHeader =
                       Learn More
                     </PrimaryButton>
                     {doubleButton && (
-                      <PrimaryButton className="bg-black text-cst-neutral-1 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
+                      <PrimaryButton className="bg-black text-cst-neutral-2 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
                         Specifications
                       </PrimaryButton>
                     )}
