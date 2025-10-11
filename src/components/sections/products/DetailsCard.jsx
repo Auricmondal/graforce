@@ -19,7 +19,7 @@ export default function DetailsCard({
     <CardWrapper
       variant="custom"
       className={`!justify-between !bg-secondary-light py-8 px-4 transition-all duration-300 ease-in-out ${
-        isActive ? "md:flex-1" : ""
+        isActive ? "md:flex-1 h-full" : ""
       }`}
     >
       <div className="flex items-center justify-between w-full">
@@ -58,7 +58,9 @@ export default function DetailsCard({
             <div className="text-xl leading-[100%]">{title}</div>
           </AnimatedHeader>
         </div>
-        <IoArrowDownCircleOutline className="h-7 w-7 font-light" />
+        {!isActive && (
+          <IoArrowDownCircleOutline className="h-7 w-7 font-light" />
+        )}
       </div>
 
       {/* Only show full content if active */}

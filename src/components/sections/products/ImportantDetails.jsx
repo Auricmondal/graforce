@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, act } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,6 +11,8 @@ import DetailsCard from "./DetailsCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/Chart";
+import Image from "next/image";
+import importantDetailsImg from "@/assets/product/imp-details.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +22,7 @@ export default function ImportantDetails() {
   const triggerRef = useRef(null);
 
   useGSAP(() => {
-    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
     if (!triggerRef.current || !isDesktop) return;
 
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -61,10 +63,18 @@ export default function ImportantDetails() {
     });
   }, []);
 
+  const handleCardClick = (index) => {
+    // Only handle click for tablet and mobile (non-desktop)
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    if (!isDesktop) {
+      setActiveStep(index);
+    }
+  };
+
   return (
-    <main className="md:relative w-full bg-cst-neutral-1 p-2">
+    <main className="lg:relative w-full bg-cst-neutral-1 p-2">
       <CardWrapper
-        className="rounded-lg gap-2 !bg-secondary-light py-8 px-4 md:px-6 mb-2"
+        className="rounded-lg gap-2 !bg-secondary-light py-8 px-4 lg:px-6"
         variant="custom"
       >
         <SectionLabel text={"Important Details"} />
@@ -74,44 +84,95 @@ export default function ImportantDetails() {
           </div>
         </AnimatedHeader>
       </CardWrapper>
-      <div className="md:sticky top-0 left-0 w-full md:h-[98vh] z-30 flex flex-col md:flex-row gap-2 h-fit">
+      <div className="lg:sticky top-0 left-0 w-full lg:h-[98vh] z-30 flex flex-col lg:flex-row gap-2 h-fit mt-2">
         {/* Left Side */}
-        <div className="w-full md:flex-5/8 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-[100dvh] md:min-h-0"></div>
+        <div className="w-full hidden lg:block lg:flex-5/8 bg-primary rounded-lg bg-cover bg-center min-h-[100dvh] lg:min-h-0">
+          <Image
+            src={importantDetailsImg}
+            height={800}
+            width={1000}
+            alt="imp-details"
+            style={{ objectFit: "contain", width: "100%" }}
+          />
+        </div>
 
         {/* Right Side */}
-        <div className="w-full md:flex-3/8 flex gap-2">
+        <div className="w-full lg:flex-3/8 flex gap-2">
           <div className="flex flex-col gap-2 w-full">
             {/* Solution card */}
-            {details.map((problem, index) => (
-              <DetailsCard
+            {/* {details.map((problem, index) => (
+              <div
+                className={`${
+                  index === activeStep
+                    ? "min-h-[100dvh] lg:min-h-0 lg:grow"
+                    : "min-h-0"
+                } flex flex-col gap-2 transition-all duration-300 ease-in-out`}
                 key={problem.id}
-                id={problem.id}
-                title={problem.title}
-                description={problem.description}
-                progress={index === activeStep ? scrollProgress : 0}
-                isActive={index === activeStep}
-              />
+                onClick={() => handleCardClick(index)}
+              >
+                <div className="flex-1/2 ">
+                  <DetailsCard
+                    key={problem.id}
+                    id={problem.id}
+                    title={problem.title}
+                    description={problem.description}
+                    progress={index === activeStep ? scrollProgress : 0}
+                    isActive={index === activeStep}
+                  />
+                </div>
+                {index === activeStep && (
+                  <div className="w-full flex-1/2 lg:hidden bg-primary rounded-lg bg-cover bg-center lg:min-h-0">
+                    <Image
+                      src={importantDetailsImg}
+                      height={800}
+                      width={1000}
+                      alt="imp-details"
+                      style={{ objectFit: "contain", width: "100%" }}
+                    />
+                  </div>
+                )}
+              </div>
+            ))} */}
+            {details.map((problem, index) => (
+              <div
+                className={`${
+                  index === activeStep
+                    ? "min-h-[100dvh] lg:min-h-0 lg:grow"
+                    : "min-h-0"
+                } flex flex-col gap-2 transition-all duration-500 ease-in-out`}
+                key={problem.id}
+                onClick={() => handleCardClick(index)}
+              >
+                <div className="flex-1/2 ">
+                  <DetailsCard
+                    key={problem.id}
+                    id={problem.id}
+                    title={problem.title}
+                    description={problem.description}
+                    progress={index === activeStep ? scrollProgress : 0}
+                    isActive={index === activeStep}
+                  />
+                </div>
+                {index === activeStep && (
+                  <div className="w-full flex-1/2 lg:hidden bg-primary rounded-lg bg-cover bg-center lg:min-h-0 animate-in slide-in-from-top delay-300 duration-300 ease-in-out">
+                    <Image
+                      src={importantDetailsImg}
+                      height={800}
+                      width={1000}
+                      alt="imp-details"
+                      style={{ objectFit: "contain", width: "100%" }}
+                    />
+                  </div>
+                )}
+              </div>
             ))}
-
-            {/* <div className="md:hidden flex flex-col gap-2">
-              {details.map((problem, index) => (
-                <DetailsCard
-                  key={problem.id}
-                  id={problem.id}
-                  title={problem.title}
-                  description={problem.description}
-                  progress={scrollProgress}
-                />
-              ))}
-            </div> */}
-
             {/* Solution card end */}
           </div>
         </div>
       </div>
 
       {/* Scroll space for GSAP ScrollTrigger */}
-      <div ref={triggerRef} className="relative z-10 hidden md:block">
+      <div ref={triggerRef} className="relative z-10 hidden lg:block">
         {details.map((_, i) => (
           <div
             key={i}
@@ -122,7 +183,7 @@ export default function ImportantDetails() {
           </div>
         ))}
       </div>
-      <div className="hidden md:block w-full" style={{ height: "100vh" }} />
+      <div className="hidden lg:block w-full" style={{ height: "100vh" }} />
     </main>
   );
 }
