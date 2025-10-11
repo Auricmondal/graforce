@@ -1,8 +1,11 @@
 import React from 'react'
+import YouNeedUs from '../home/hero/YouNeedUs'
 
 const WhyWorldNeedsUs = () => {
   return (
-    <div>WhyWorldNeedsUs</div>
+    <div>
+      <YouNeedUs sectionColorVariant='default' />
+    </div>
   )
 }
 

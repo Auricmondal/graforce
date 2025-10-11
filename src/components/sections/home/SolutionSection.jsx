@@ -58,6 +58,20 @@ export default function SolutionSection() {
         });
       }
     });
+
+    // Add smooth exit transition to prevent lag
+    ScrollTrigger.create({
+      trigger: triggerRef.current,
+      start: "bottom bottom",
+      end: "bottom top",
+      scrub: true,
+      onLeave: () => {
+        // Force a refresh to clean up any lingering effects
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
+      },
+    });
   }, []);
 
   return (
@@ -97,7 +111,7 @@ export default function SolutionSection() {
                   id={step.id}
                   title={step.title}
                   description={step.description}
-                  progress={scrollProgress}
+                  progress={index === activeStep ? scrollProgress : 0}
                 />
               ))}
             </div>
@@ -108,7 +122,7 @@ export default function SolutionSection() {
 
         {/* Right Side */}
         <div
-          className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-screen md:min-h-0"
+          className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-[100dvh] md:min-h-0"
           style={{
             backgroundImage: `url(${solutionImg.src})`,
           }}
@@ -121,12 +135,15 @@ export default function SolutionSection() {
           <div
             key={i}
             className="flex items-center justify-center"
-            style={{ minHeight: "300vh" }}
+            style={{ minHeight: "250vh" }}
           >
             {/* Individual scroll trigger zones */}
           </div>
         ))}
       </div>
+
+      {/* Smooth transition buffer to prevent lag */}
+      <div className="hidden md:block h-[100vh] bg-secondary-light relative z-0"></div>
     </main>
   );
 }

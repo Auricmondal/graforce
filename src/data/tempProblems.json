@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "Rising Emissions Over Decades",
+    "description": "Global fossil CO₂ emissions have grown by over 60% since 1990, reaching nearly 37.6 billion metric tons in 2024."
+  },
+  {
+    "id": 2,
+    "title": "Water Scarcity Intensifies Globally",
+    "description": "By 2025, two-thirds of the world population may face water shortages, with freshwater demand rising sharply."
+  },
+  {
+    "id": 3,
+    "title": "Energy Demand Surges in Urban Areas",
+    "description": "Urbanization has led to a 75% increase in energy consumption in cities since 2000, straining infrastructure."
+  },
+  {
+    "id": 4,
+    "title": "Plastic Pollution Escalates in Oceans",
+    "description": "Over 8 million tons of plastic enter the oceans annually, threatening marine life and ecosystems."
+  }
+]
