@@ -31,8 +31,9 @@ const sectorsData = [
 const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader = "Powering Every Sector", sectionImage = Tower, sectionColorVariant = "default", sectionColor = "", doubleButton = false }) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
-  const labelRef = useRef(null); // <-- added
+  const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const triggerRef = useRef(null); // Store trigger reference
 
   // Check if mobile
   useEffect(() => {
@@ -46,10 +47,31 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Cleanup function
+  const cleanup = () => {
+    if (triggerRef.current) {
+      triggerRef.current.kill();
+      triggerRef.current = null;
+    }
+    // Kill all ScrollTriggers related to this component
+    ScrollTrigger.getAll().forEach((trigger) => {
+      if (trigger.trigger === sectionRef.current) {
+        trigger.kill();
+      }
+    });
+  };
+
   useGSAP(() => {
-    if (isMobile || !needRef.current || !sectionRef.current) return;
+    // Always cleanup first
+    cleanup();
+    
+    // Exit early if mobile or refs not available
+    if (isMobile || !needRef.current || !sectionRef.current) {
+      return;
+    }
 
     const text = needRef.current;
+    
     // Helper to wrap each character in a span
     const wrapCharacters = (html) => {
       const tempDiv = document.createElement("div");
@@ -84,10 +106,10 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
     // Initial render
     text.innerHTML = "";
     text.appendChild(wrapCharacters(sectorsData[0].title));
-    if (labelRef.current) labelRef.current.textContent = sectorsData[0].label; // <-- set initial label
+    if (labelRef.current) labelRef.current.textContent = sectorsData[0].label;
 
-    // Pin the section and animate text as user scrolls
-    const trigger = ScrollTrigger.create({
+    // Create ScrollTrigger only for desktop
+    triggerRef.current = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top top",
       end: `+=${sectorsData.length * 400}`,
@@ -105,7 +127,7 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
           text.appendChild(wrapCharacters(sectorsData[sectorIndex].title));
           text.dataset.sector = String(sectorIndex);
           if (labelRef.current)
-            labelRef.current.textContent = sectorsData[sectorIndex].label; // <-- update label
+            labelRef.current.textContent = sectorsData[sectorIndex].label;
         }
         // Animate character reveal
         const chars = text.querySelectorAll("span");
@@ -124,20 +146,22 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
       },
     });
 
-    return () => {
-      trigger.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, [isMobile]);
+    return cleanup;
+  }, [isMobile, sectionColorVariant]); // Add dependencies
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return cleanup;
+  }, []);
 
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
-      <div ref={sectionRef} className="flex items-start h-fit md:h-screen">
+      <div ref={sectionRef} className={`flex items-start ${isMobile ? 'h-fit' : 'h-fit md:h-screen'}`}>
         <CardWrapper
           variant="custom"
           color={sectionColorVariant}
           align="center"
-          className={`p-2 gap-2 h-full ${sectionColorVariant === "custom" ? sectionColor : ""}`} // changed: allow inner columns to stretch so justify-between works
+          className={`p-2 gap-2 h-full ${sectionColorVariant === "custom" ? sectionColor : ""}`}
         >
           <div className="w-full">
             <CardWrapper
@@ -179,7 +203,6 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
                   ref={needRef}
                   className="text-white/10 text-base font-semibold md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
                   data-sector="0"
-                // No dangerouslySetInnerHTML here, handled by GSAP
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
                   <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`} 
