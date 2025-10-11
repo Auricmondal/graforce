@@ -7,7 +7,7 @@ const SectionLabel = ({ text, icon = true, textColor = "text-black", invertIcon 
   return (
     <div className={`flex items-center space-x-2 ${textColor}`}>
       {icon && <Image src={invertIcon ? DropBlackSvg : dropSvg} alt="Drop Icon" className={`w-6 h-6`} />}
-      <span>{text}</span>
+      <span className={`capitalize`}>{text}</span>
     </div>
   );
 };

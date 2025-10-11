@@ -205,16 +205,16 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
                   data-sector="0"
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton className={`bg-cst-neutral-1 text-black rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`} 
-                    hoverText={sectionColorVariant === "blue" ? "text-cst-neutral-1" : "text-white"}
-                    hoverBgColor={sectionColorVariant === "blue" ? "bg-cst-neutral-3" : "bg-primary"}
+                  <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`} 
+                    hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                    hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                   >
                     Learn More
                   </PrimaryButton>
                   {doubleButton && (
                     <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
-                      hoverText={sectionColorVariant === "blue" ? "text-cst-neutral-1" : "text-white"}
-                      hoverBgColor={sectionColorVariant === "blue" ? "bg-cst-neutral-3" : "bg-primary"}
+                      hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                      hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                     >
                       Specifications
                     </PrimaryButton>

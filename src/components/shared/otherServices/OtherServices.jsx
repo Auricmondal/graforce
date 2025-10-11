@@ -1,153 +1,43 @@
-"use client";
-import GradientBadge from "@/components/utils/badges/GradientBadge";
-import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { TbSquareRotatedFilled } from "react-icons/tb";
-import ServiceSolution from "@/assets/service/ServiceSolution2.jpg";
-import ServiceSolution1 from "@/assets/service/ServiceSolution1.jpg";
-import Image from "next/image";
-import { gsap } from "gsap";
+'use client'
+import SectionLabel from '@/components/utils/badges/SectionLabel'
+import CardWrapper from '@/wrappers/CardWrapper'
+import SectionWrapper from '@/wrappers/SectionWrapper'
+import Image from 'next/image'
+import shapeDiamond from '@/assets/service/shapeDiamond.png'
+import React from 'react'
+import ServicesOption from './ServicesOption'
+import { useRouter } from 'next/navigation'
 
 const OtherServices = () => {
   const router = useRouter();
-  const desktopImage = React.useRef(null);
-  const [isActive, setIsActive] = useState(1);
-  const [activeImage, setActiveImage] = useState(ServiceSolution);
-  const otherServices = [
-    {
-      id: 1,
-      title: "Water purification",
-      image: ServiceSolution,
-    },
-    {
-      id: 2,
-      title: "Energy generation",
-      image: ServiceSolution1,
-    },
+  const servicesOptions = [
+    { index: 1, title: "Wastewater Plasmalyzer®", onClick: () => router.push('/services/wastewater-plasmalyzer') },
+    { index: 2, title: "Plasma Ammonia Cracker", onClick: () => router.push('/services/plasma-ammonia-cracker') },
+    { index: 3, title: "Used components and equipment", onClick: () => router.push('/services/used-components') },
+    { index: 4, title: "H2/natural gas refuelling", onClick: () => router.push('/services/h2-natural-gas-refuelling') },
+    { index: 5, title: "Synthetic carbon", onClick: () => router.push('/services/synthetic-carbon') },
+    { index: 6, title: "Properties and Qualities of Our synthetic Carbon", onClick: () => router.push('/services/properties-and-qualities-of-our-synthetic-carbon') },
+    { index: 7, title: "Syngas Production", onClick: () => router.push('/services/syngas-production') },
   ];
-
-  const handleNavigate = () => {
-    const activeService = otherServices.find((s) => s.id === isActive);
-    // if (!activeService) return;
-
-    const formattedTitle = activeService.title
-      .toLowerCase()
-      .replace(/\s+/g, "-");
-    router.push("/services/" + formattedTitle);
-  };
-
-  React.useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
-      desktopImage.current,
-      { opacity: 1, y: 0 },
-      { opacity: 0, y: 50, duration: 0.2, ease: "power2.inOut" },
-      0
-    ).fromTo(
-      desktopImage.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.3, ease: "power2.inOut" },
-      0.4
-    );
-  }, [isActive]);
-
   return (
-    <SectionWrapper
-      className={`bg-gradient-to-tr from-[#081124] via-[#132957] to-[#1E428A]`}
-    >
-      <div className="flex flex-row text-white mx-auto items-start justify-between w-full max-w-[2000px] xl:max-h-[600px]">
-        <div className="flex flex-col gap-2 items-start w-full min-[1100px]:w-[50%]">
-          <div className="block">
-            <GradientBadge
-              variant="services"
-              text="Other Services"
-              className={`p-[4px_16px] rounded-full opacity-100 inline-flex items-center justify-start bg-gradient-to-r from-primary-50 to-primary-300 text-white text-xs md:text-sm font-medium`}
-              icon={<TbSquareRotatedFilled className="rotate-45" />}
-            />
-          </div>
-          <div className="flex-1 gap-1 sm:gap-2 md:gap-3 lg:gap-6 flex flex-col w-full">
-            <div className="text-3xl md:text-4xl lg:text-7xl text-white">
-              Explore Our Other Solutions
-            </div>
-            <div className="mt-4 gap-2 justify-start items-start flex flex-col lg:gap-6">
-              {otherServices.map((service) => (
-                <div
-                  onMouseEnter={() => {
-                    setIsActive(service.id);
-                    setActiveImage(service.image);
-                  }}
-                  key={service.id}
-                  className="flex flex-col items-start justify-start gap-5 w-full cursor-pointer"
-                >
-                  <div
-                    className="flex flex-row items-center justify-start gap-3"
-                    onClick={() => {
-                      router.push(
-                        "/services/" +
-                          service.title.toLowerCase().replace(/\s+/g, "-")
-                      );
-                    }}
-                  >
-                    <div
-                      className={`text-xl transition-all duration-300 ease-in-out ${
-                        isActive === service.id
-                          ? "text-primary-200"
-                          : "text-primary-200 md:text-gray-500"
-                      }`}
-                    >
-                      0{service.id}
-                    </div>
-                    <div
-                      className={`text-3xl sm:text-4xl md:text-6xl transition-all duration-300 ease-in-out capitalize ${
-                        isActive === service.id
-                          ? "text-white"
-                          : "text-white md:text-gray-500"
-                      }`}
-                    >
-                      {service.title}
-                    </div>
-                  </div>
-                  <div className="flex flex-col w-full min-[1100px]:hidden">
-                    <div
-                      className={`w-full bg-transparent transition-all duration-300 ease-in-out origin-bottom ${
-                        isActive ? " h-[50vh]" : "h-0"
-                      }`}
-                      onClick={() => {
-                        router.push(
-                          "/services/" +
-                            service.title.toLowerCase().replace(/\s+/g, "-")
-                        );
-                      }}
-                    >
-                      <Image
-                        src={activeImage}
-                        alt="Service Solution"
-                        className="object-cover w-full h-full rounded-lg transition-all duration-300 ease-in-out origin-bottom"
-                      />
-                    </div>
-                  </div>
-                </div>
+    <SectionWrapper sectionClassName='bg-cst-neutral-1'>
+      <CardWrapper className='relative pt-2 md:pt-8 min-h-screen overflow-hidden' variant='standard' color='dark' align='left'>
+        <div className="absolute top-0 right-0 h-full w-full lg:w-1/2 opacity-30 translate-x-[50%] lg:translate-x-0">
+          <Image src={shapeDiamond} alt="Shape" className="object-fit h-full w-full" />
+        </div>
+        <div className="relative flex flex-row justify-center items-center my-auto h-full w-full">
+          <div className='relative z-10 flex flex-col h-full w-full items-start justify-center gap-8 pr-4 md:pr-0'>
+            <SectionLabel text='explore our services' textColor='text-white' />
+            <div className="flex flex-col gap-4">
+              {servicesOptions.map((option) => (
+                <ServicesOption key={option.index} {...option} />
               ))}
             </div>
           </div>
         </div>
-        <div className="hidden min-[1100px]:flex justify-end w-full min-[1100px]:w-[50%]">
-          <div
-            ref={desktopImage}
-            className={`image w-full h-[60vh] max-h-[400px] rounded-lg bg-white transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden`}
-            onClick={() => handleNavigate()}
-          >
-            <Image
-              src={activeImage}
-              alt="Service Solution"
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </div>
-      </div>
+      </CardWrapper>
     </SectionWrapper>
-  );
-};
+  )
+}
 
-export default OtherServices;
+export default OtherServices
