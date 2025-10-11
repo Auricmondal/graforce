@@ -21,6 +21,20 @@ export default function ImportantDetails() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
 
+  const leftTypes = {
+    1: (
+      <Image
+        src={importantDetailsImg}
+        height={800}
+        width={1000}
+        alt="imp-details"
+        style={{ objectFit: "contain", width: "100%" }}
+      />
+    ),
+    2: <div>Hello</div>,
+    3: <div>Hello</div>,
+  };
+
   useGSAP(() => {
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
     if (!triggerRef.current || !isDesktop) return;
@@ -87,13 +101,7 @@ export default function ImportantDetails() {
       <div className="lg:sticky top-0 left-0 w-full lg:h-[98vh] z-30 flex flex-col lg:flex-row gap-2 h-fit mt-2">
         {/* Left Side */}
         <div className="w-full hidden lg:block lg:flex-5/8 bg-primary rounded-lg bg-cover bg-center min-h-[100dvh] lg:min-h-0">
-          <Image
-            src={importantDetailsImg}
-            height={800}
-            width={1000}
-            alt="imp-details"
-            style={{ objectFit: "contain", width: "100%" }}
-          />
+          {leftTypes[details[activeStep].leftType] || null}
         </div>
 
         {/* Right Side */}
@@ -155,13 +163,7 @@ export default function ImportantDetails() {
                 </div>
                 {index === activeStep && (
                   <div className="w-full flex-1/2 lg:hidden bg-primary rounded-lg bg-cover bg-center lg:min-h-0 animate-in slide-in-from-top delay-300 duration-300 ease-in-out">
-                    <Image
-                      src={importantDetailsImg}
-                      height={800}
-                      width={1000}
-                      alt="imp-details"
-                      style={{ objectFit: "contain", width: "100%" }}
-                    />
+                    {leftTypes[problem.leftType] || null}
                   </div>
                 )}
               </div>
