@@ -51,9 +51,9 @@ const News = () => {
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {newsData.map((article) => (
-              <div key={article.id} className="group cursor-pointer">
+              <div key={article.id} className="group space-y-2 cursor-pointer">
                 {/* Image Container */}
-                <div className="relative w-full h-64 mb-4 overflow-hidden rounded-2xl group-hover:rounded-[96px] transition-all duration-500 ease-in-out">
+                <div className="relative w-full h-64 overflow-hidden rounded-2xl group-hover:rounded-[96px] transition-all duration-500 ease-in-out">
                   <Image
                     src={article.image}
                     alt={article.title}
@@ -63,19 +63,19 @@ const News = () => {
                 </div>
 
                 {/* Tag */}
-                <div className="mb-3">
-                  <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium rounded-xl">
+                <div className="">
+                  <span className="inline-block px-4 py-1 bg-primary text-white text-xs md:text-sm font-medium rounded-xl">
                     {article.tag}
                   </span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-2xl md:text-3xl font-semibold text-black mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-normal text-black group-hover:text-primary transition-colors duration-300 ease-in-out">
                   <AnimatedHeader>{article.title}</AnimatedHeader>
                 </h3>
 
                 {/* Date */}
-                <p className="text-cst-neutral-3 text-xl">
+                <p className="text-cst-neutral-3 text-sm md:text-base">
                   <AnimatedHeader>Posted on {article.date}</AnimatedHeader>
                 </p>
               </div>
