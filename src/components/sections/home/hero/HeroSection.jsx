@@ -50,7 +50,7 @@ const HeroSection = () => {
             </AnimatedHeader>
           </h1>
         </div>
-        <div className="flex-1 lg:flex-0 flex flex-col lg:flex-row items-center lg:justify-between w-full lg:pb-8 gap-4">
+        <div className="flex-1 lg:flex-0 flex flex-col lg:flex-row items-end lg:justify-between w-full lg:pb-8 gap-4">
           <div className="flex flex-col md:flex-row gap-4 w-full md:w-fit">
             <PrimaryButton
               className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
@@ -66,7 +66,7 @@ const HeroSection = () => {
             </PrimaryButton>
           </div>
 
-          <p className="cursor-pointer flex gap-1 items-center w-fit">
+          <p className="cursor-pointer flex gap-1 items-center w-fit md:mr-4">
             Scroll Down{" "}
             <IoArrowDownCircleOutline className="text-xl animate-bounce" />
           </p>
