@@ -1,9 +1,9 @@
 import React from "react";
 
-const PrimaryButton = ({ className, children, onClick, ...props }) => {
+const PrimaryButton = ({ className, children, onClick, hoverText = "text-white", hoverBgColor = "bg-primary", ...props }) => {
   return (
     <button
-      className={`${className} hover:text-white hover:bg-primary transition-colors duration-300 ease-in-out`}
+      className={`${className} ${`hover:`+hoverText} ${`hover:`+hoverBgColor} transition-colors duration-300 ease-in-out`}
       onClick={onClick}
       {...props}
     >

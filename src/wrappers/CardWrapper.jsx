@@ -17,8 +17,9 @@ const CardWrapper = ({
 
   const cardColors = {
     default: "bg-white",
-    blue: "bg-[#E6E6E64D]",
+    blue: "bg-primary",
     dark: "bg-cst-neutral-5",
+    transparent: "bg-transparent",
     custom: "",
   };
 
@@ -41,6 +42,7 @@ const CardWrapper = ({
       className={`
         flex flex-col
         ${className}
+        ${color === "default" ? "border border-cst-neutral-1" : color === "transparent" ? "" : "border border-cst-neutral-1"}
         ${variants[variant]}
         ${cardColors[color]}
         ${cardRadius[radius]}
