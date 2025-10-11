@@ -46,11 +46,11 @@ const Navbar = () => {
             ref={menuRef}
           >
             <nav
-              className={`mx-auto flex-1 items-center justify-between px-2 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
+              className={`mx-auto flex-1 items-center justify-between px-3 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
         
         `}
             >
-              <div className="justify-between items-center flex sm:px-1 md:px-2 lg:px-4">
+              <div className="justify-between items-center flex sm:px-4 md:px-2 lg:px-4">
                 <BrandLogo
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                   isMenuOpen={isMenuOpen}
