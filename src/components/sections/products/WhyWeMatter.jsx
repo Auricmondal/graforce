@@ -10,11 +10,11 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
-import Chart from "@/components/utils/charts/TempChart";
+import Chart from "@/components/utils/charts/Chart";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EmissionPage() {
+export default function WhyWeMatter() {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
@@ -34,17 +34,21 @@ export default function EmissionPage() {
           end: "bottom 25%",
           scrub: 1,
           onEnter: () => {
+            console.log(`Entering step ${i}`);
             setActiveStep(i);
-            setScrollProgress(0);
+            setScrollProgress(0); // Reset progress when entering new step
           },
           onEnterBack: () => {
+            console.log(`Entering back step ${i}`);
             setActiveStep(i);
-            setScrollProgress(0);
+            setScrollProgress(0); // Reset progress when entering back
           },
           onUpdate: (self) => {
+            // Only update progress for current step being scrolled
             setScrollProgress(self.progress * 100);
           },
           onLeave: () => {
+            // When leaving a step, set progress to 100%
             if (i < problemData.length - 1) {
               setScrollProgress(100);
             }
@@ -54,20 +58,6 @@ export default function EmissionPage() {
           },
         });
       }
-    });
-
-    // Add smooth exit transition to prevent lag
-    ScrollTrigger.create({
-      trigger: triggerRef.current,
-      start: "bottom bottom",
-      end: "bottom top",
-      scrub: true,
-      onLeave: () => {
-        // Force a refresh to clean up any lingering effects
-        requestAnimationFrame(() => {
-          ScrollTrigger.refresh();
-        });
-      },
     });
   }, []);
 
@@ -81,9 +71,9 @@ export default function EmissionPage() {
               className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
               variant="custom"
             >
-              <SectionLabel text={"The Problem We Discovered"} />
+              <SectionLabel text={"Here is Why We Matter"} />
               <AnimatedHeader>
-                <div className="text-xl">The Emission Burden</div>
+                <div className="text-xl">Our Mission is to Save the Earth</div>
               </AnimatedHeader>
             </CardWrapper>
 
@@ -105,10 +95,12 @@ export default function EmissionPage() {
                   id={problem.id}
                   title={problem.title}
                   description={problem.description}
-                  progress={index === activeStep ? scrollProgress : 0}
+                  progress={scrollProgress}
                 />
               ))}
             </div>
+
+            {/* Solution card end */}
           </div>
         </div>
 
@@ -127,15 +119,12 @@ export default function EmissionPage() {
           <div
             key={i}
             className="flex items-center justify-center"
-            style={{ minHeight: "250vh" }}
+            style={{ minHeight: "300vh" }}
           >
             {/* Individual scroll trigger zones */}
           </div>
         ))}
       </div>
-
-      {/* Smooth transition buffer to prevent lag */}
-      <div className="hidden md:block h-[100vh] bg-secondary-light relative z-0"></div>
     </main>
   );
 }
