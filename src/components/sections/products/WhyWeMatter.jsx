@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import problemData from "@/data/problems.json";
+import problemData from "@/data/tempProblems.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
