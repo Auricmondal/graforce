@@ -11,8 +11,7 @@ import DetailsCard from "./DetailsCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/Chart";
-import Image from "next/image";
-import importantDetailsImg from "@/assets/product/imp-details.webp";
+import { leftTypes } from "./ImpDetailsLefts";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,20 +19,6 @@ export default function ImportantDetails() {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
-
-  const leftTypes = {
-    1: (
-      <Image
-        src={importantDetailsImg}
-        height={800}
-        width={1000}
-        alt="imp-details"
-        style={{ objectFit: "contain", width: "100%" }}
-      />
-    ),
-    2: <div>Hello</div>,
-    3: <div>Hello</div>,
-  };
 
   useGSAP(() => {
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
@@ -107,40 +92,6 @@ export default function ImportantDetails() {
         {/* Right Side */}
         <div className="w-full lg:flex-3/8 flex gap-2">
           <div className="flex flex-col gap-2 w-full">
-            {/* Solution card */}
-            {/* {details.map((problem, index) => (
-              <div
-                className={`${
-                  index === activeStep
-                    ? "min-h-[100dvh] lg:min-h-0 lg:grow"
-                    : "min-h-0"
-                } flex flex-col gap-2 transition-all duration-300 ease-in-out`}
-                key={problem.id}
-                onClick={() => handleCardClick(index)}
-              >
-                <div className="flex-1/2 ">
-                  <DetailsCard
-                    key={problem.id}
-                    id={problem.id}
-                    title={problem.title}
-                    description={problem.description}
-                    progress={index === activeStep ? scrollProgress : 0}
-                    isActive={index === activeStep}
-                  />
-                </div>
-                {index === activeStep && (
-                  <div className="w-full flex-1/2 lg:hidden bg-primary rounded-lg bg-cover bg-center lg:min-h-0">
-                    <Image
-                      src={importantDetailsImg}
-                      height={800}
-                      width={1000}
-                      alt="imp-details"
-                      style={{ objectFit: "contain", width: "100%" }}
-                    />
-                  </div>
-                )}
-              </div>
-            ))} */}
             {details.map((problem, index) => (
               <div
                 className={`${
