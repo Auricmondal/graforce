@@ -46,8 +46,7 @@ const Navbar = () => {
     <>
       {!isMenuOpen && <div className="">
         <div
-          className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out ${isMenuOpen ? "h-full" : "h-fit"
-            }`}
+          className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out h-fit`}
           ref={menuRef}
         >
           <nav
