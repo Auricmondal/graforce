@@ -40,12 +40,12 @@ const Navbar = () => {
     <>
       {!isMenuOpen && <div className="">
         <div
-          className={`fixed top-0 right-0 w-full z-100 transition-all duration-500 ease-in-out h-fit`}
+          className={`fixed top-0 right-0 w-full z-100  h-fit`}
           ref={menuRef}
         >
           <nav
             ref={navRef}
-            className={`mx-auto flex-1 items-center justify-between px-2 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
+            className={`mx-auto flex-1 items-center justify-between px-3 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
         
         `}
             >
