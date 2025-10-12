@@ -15,6 +15,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
   const downMenuRef = React.useRef(null);
+  const navRef = React.useRef(null);
   const navItems = [
     { id: 1, name: "Home", href: "/", toggle: false },
     { id: 2, name: "Services", href: "/services", toggle: true },
@@ -82,7 +83,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      )}
+      }
       <SideNavMenu
         onClick={() => setIsMenuOpen(false)}
         isMenuOpen={isMenuOpen}
