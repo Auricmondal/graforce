@@ -37,9 +37,9 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
   {
     subItem: "Services",
     contents: [
-      { id: 1, name: "Consulting", href: "/services/consulting", toggle: false },
-      { id: 2, name: "Implementation", href: "/services/implementation", toggle: false },
-      { id: 3, name: "Support", href: "/services/support", toggle: false }
+      { id: 1, name: "Consulting", href: "/services/hydrogen-production", toggle: false },
+      { id: 2, name: "Implementation", href: "/services/water-purification", toggle: false },
+      { id: 3, name: "Support", href: "/services/co2-free-energy-generation", toggle: false }
     ]
   }];
 
