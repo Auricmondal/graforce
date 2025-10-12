@@ -1,153 +1,75 @@
-"use client";
-import GradientBadge from "@/components/utils/badges/GradientBadge";
-import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { TbSquareRotatedFilled } from "react-icons/tb";
-import ServiceSolution from "@/assets/service/ServiceSolution2.jpg";
-import ServiceSolution1 from "@/assets/service/ServiceSolution1.jpg";
-import Image from "next/image";
-import { gsap } from "gsap";
+'use client'
+import SectionLabel from '@/components/utils/badges/SectionLabel'
+import CardWrapper from '@/wrappers/CardWrapper'
+import SectionWrapper from '@/wrappers/SectionWrapper'
+import Image from 'next/image'
+import shapeDiamond1 from '@/assets/service/shapeDiamond.png'
+import shapeDiamond2 from '@/assets/service/shapeDiamond2.png'
+import shapeDiamond3 from '@/assets/service/shapeDiamond3.png'
+import React, { useState } from 'react'
+import ServicesOption from './ServicesOption'
+import { useRouter } from 'next/navigation'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
 
 const OtherServices = () => {
   const router = useRouter();
-  const desktopImage = React.useRef(null);
-  const [isActive, setIsActive] = useState(1);
-  const [activeImage, setActiveImage] = useState(ServiceSolution);
-  const otherServices = [
+  const [serviceImage, setServiceImage] = useState(shapeDiamond1);
+  const serviceImageRef = React.useRef();
+  const servicesOptions = [
     {
-      id: 1,
-      title: "Water purification",
-      image: ServiceSolution,
+      index: 1,
+      title: "Hydrogen production",
+      onClick: () => router.push('/services/hydrogen-production'),
+      image: shapeDiamond1,
     },
     {
-      id: 2,
-      title: "Energy generation",
-      image: ServiceSolution1,
+      index: 2,
+      title: "Water purification",
+      onClick: () => router.push('/services/water-purification'),
+      image: shapeDiamond2,
+    },
+    {
+      index: 3,
+      title: "Co2 free energy generation",
+      onClick: () => router.push('/services/co2-free-energy-generation'),
+      image: shapeDiamond3,
     },
   ];
 
-  const handleNavigate = () => {
-    const activeService = otherServices.find((s) => s.id === isActive);
-    // if (!activeService) return;
-
-    const formattedTitle = activeService.title
-      .toLowerCase()
-      .replace(/\s+/g, "-");
-    router.push("/services/" + formattedTitle);
-  };
-
-  React.useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
-      desktopImage.current,
-      { opacity: 1, y: 0 },
-      { opacity: 0, y: 50, duration: 0.2, ease: "power2.inOut" },
-      0
-    ).fromTo(
-      desktopImage.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.3, ease: "power2.inOut" },
-      0.4
-    );
-  }, [isActive]);
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(serviceImageRef.current, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5 });
+    });
+    return () => ctx.revert();
+  }, [serviceImage]);
 
   return (
-    <SectionWrapper
-      className={`bg-gradient-to-tr from-[#081124] via-[#132957] to-[#1E428A]`}
-    >
-      <div className="flex flex-row text-white mx-auto items-start justify-between w-full max-w-[2000px] xl:max-h-[600px]">
-        <div className="flex flex-col gap-2 items-start w-full min-[1100px]:w-[50%]">
-          <div className="block">
-            <GradientBadge
-              variant="services"
-              text="Other Services"
-              className={`p-[4px_16px] rounded-full opacity-100 inline-flex items-center justify-start bg-gradient-to-r from-primary-50 to-primary-300 text-white text-xs md:text-sm font-medium`}
-              icon={<TbSquareRotatedFilled className="rotate-45" />}
-            />
-          </div>
-          <div className="flex-1 gap-1 sm:gap-2 md:gap-3 lg:gap-6 flex flex-col w-full">
-            <div className="text-3xl md:text-4xl lg:text-7xl text-white">
-              Explore Our Other Solutions
-            </div>
-            <div className="mt-4 gap-2 justify-start items-start flex flex-col lg:gap-6">
-              {otherServices.map((service) => (
-                <div
-                  onMouseEnter={() => {
-                    setIsActive(service.id);
-                    setActiveImage(service.image);
+    <SectionWrapper sectionClassName='bg-cst-neutral-1'>
+      <CardWrapper className='relative pt-2 md:pt-8 min-h-screen overflow-hidden' variant='standard' color='dark' align='left'>
+        <div ref={serviceImageRef} className="absolute top-0 right-0 h-full w-full lg:w-1/2 opacity-30 translate-x-[50%] lg:translate-x-0">
+          <Image src={serviceImage} alt="Shape" className="object-fit h-full w-full" />
+        </div>
+        <div className="relative flex flex-row justify-center items-center my-auto h-full w-full">
+          <div className='relative z-10 flex flex-col h-full w-full items-start justify-center gap-8 pr-4 md:pr-0'>
+            <SectionLabel text='explore our services' textColor='text-white' />
+            <div className="flex flex-col gap-4">
+              {servicesOptions.map((option) => (
+                <ServicesOption
+                  key={option.index}
+                  onHover={() => {
+                    setServiceImage(option.image);
                   }}
-                  key={service.id}
-                  className="flex flex-col items-start justify-start gap-5 w-full cursor-pointer"
-                >
-                  <div
-                    className="flex flex-row items-center justify-start gap-3"
-                    onClick={() => {
-                      router.push(
-                        "/services/" +
-                          service.title.toLowerCase().replace(/\s+/g, "-")
-                      );
-                    }}
-                  >
-                    <div
-                      className={`text-xl transition-all duration-300 ease-in-out ${
-                        isActive === service.id
-                          ? "text-primary-200"
-                          : "text-primary-200 md:text-gray-500"
-                      }`}
-                    >
-                      0{service.id}
-                    </div>
-                    <div
-                      className={`text-3xl sm:text-4xl md:text-6xl transition-all duration-300 ease-in-out capitalize ${
-                        isActive === service.id
-                          ? "text-white"
-                          : "text-white md:text-gray-500"
-                      }`}
-                    >
-                      {service.title}
-                    </div>
-                  </div>
-                  <div className="flex flex-col w-full min-[1100px]:hidden">
-                    <div
-                      className={`w-full bg-transparent transition-all duration-300 ease-in-out origin-bottom ${
-                        isActive ? " h-[50vh]" : "h-0"
-                      }`}
-                      onClick={() => {
-                        router.push(
-                          "/services/" +
-                            service.title.toLowerCase().replace(/\s+/g, "-")
-                        );
-                      }}
-                    >
-                      <Image
-                        src={activeImage}
-                        alt="Service Solution"
-                        className="object-cover w-full h-full rounded-lg transition-all duration-300 ease-in-out origin-bottom"
-                      />
-                    </div>
-                  </div>
-                </div>
+                  onClick={option.onClick}
+                  {...option}
+                />
               ))}
             </div>
           </div>
         </div>
-        <div className="hidden min-[1100px]:flex justify-end w-full min-[1100px]:w-[50%]">
-          <div
-            ref={desktopImage}
-            className={`image w-full h-[60vh] max-h-[400px] rounded-lg bg-white transition-all duration-300 ease-in-out transform hover:scale-105 overflow-hidden`}
-            onClick={() => handleNavigate()}
-          >
-            <Image
-              src={activeImage}
-              alt="Service Solution"
-              className="object-cover w-full h-full"
-            />
-          </div>
-        </div>
-      </div>
+      </CardWrapper>
     </SectionWrapper>
-  );
-};
+  )
+}
 
-export default OtherServices;
+export default OtherServices

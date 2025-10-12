@@ -20,7 +20,7 @@ const FinalCTA = () => {
   };
   return (
     <div className="bg-cst-neutral-1 p-2">
-      <section className="relative bg-cst-neutral-5 flex items-center justify-center rounded-2xl py-28 px-4 md:px-16">
+      <section className="relative bg-cst-neutral-5 flex items-center justify-center rounded-2xl py-28 px-4 md:px-16 overflow-y-hidden">
 
         <div className="absolute left-0 bottom-0 w-2/3 md:w-1/2 lg:w-1/3 z-0">
           <Image
