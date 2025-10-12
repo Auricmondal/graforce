@@ -16,7 +16,7 @@ const WhatDoWeDo = () => {
         <SectionLabel text="What Do We Do" />
         <AnimatedHeader className="mt-[20vh] lg:mt-0">
           <h6 className="text-2xl font-semibold">
-            We convert <span className="text-primary">Waste</span> and{" "}
+            We convert <span className="text-primary">Methane(CH4)</span> and{" "}
             <span className="text-primary">Renewable Energy</span> into{" "}
             <span className="text-primary">Clean Hydrogen</span>. Our technology
             replaces fossil fuels and{" "}
