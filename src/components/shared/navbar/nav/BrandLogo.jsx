@@ -10,17 +10,17 @@ const BrandLogo = ({ onClick, isMenuOpen }) => {
     <div
       className={`flex items-center justify-center brand cursor-pointer gap-2`}
     >
-      <div
-        className={`[@media(min-width:1080px)]:hidden text-black text-3xl flex items-center cursor-pointer p-1 ${
+      {/* <div
+        className={`[@media(min-width:1080px)]:hidden text-black text-3xl flex items-center justify-center cursor-pointer p-1 ${
           isMenuOpen ? "text-white" : "text-black"
         }`}
         // onMouseEnter={onClick}
         onClick={onClick}
       >
-        <Hamburger isMenuOpen={isMenuOpen} />
-        {/* <HiOutlineMenuAlt1 /> */}
-        {/* <MenuRive isMenuOpen={isMenuOpen} /> */}
-      </div>
+        <Hamburger isMenuOpen={isMenuOpen} /> */}
+      {/* <HiOutlineMenuAlt1 /> */}
+      {/* <MenuRive isMenuOpen={isMenuOpen} /> */}
+      {/* </div> */}
       <div
         className={`group flex text-3xl font-bold brand cursor-pointer ${
           isMenuOpen
