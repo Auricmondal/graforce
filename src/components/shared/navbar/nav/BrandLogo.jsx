@@ -18,8 +18,8 @@ const BrandLogo = ({ onClick, isMenuOpen }) => {
         onClick={onClick}
       >
         <Hamburger isMenuOpen={isMenuOpen} /> */}
-        {/* <HiOutlineMenuAlt1 /> */}
-        {/* <MenuRive isMenuOpen={isMenuOpen} /> */}
+      {/* <HiOutlineMenuAlt1 /> */}
+      {/* <MenuRive isMenuOpen={isMenuOpen} /> */}
       {/* </div> */}
       <div
         className={`group flex text-3xl font-bold brand cursor-pointer ${
