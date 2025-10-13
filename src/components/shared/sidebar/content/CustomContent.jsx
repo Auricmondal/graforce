@@ -52,10 +52,10 @@ const CustomContent = () => {
   );
   
   const selectedContentType = {
-    job: <CustomJobContent />,
+    job: <CustomJobContent content={contentData} />,
     project: <div>Custom Project Content Component</div>,
-    specification: <CustomSpecContent />,
-    blog: <CustomBlogContent />,
+    specification: <CustomSpecContent content={contentData} />,
+    blog: <CustomBlogContent content={contentData} />,
     faq: <div>Custom FAQ Content Component</div>,
     default: defaultContent,
   };

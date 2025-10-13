@@ -5,9 +5,49 @@ import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
 const HeroSection = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
+  const { showCustomContent } = useSidebarActions();
+
+  const customContentExample = {
+    // title: "Custom Sidebar Content",
+    // description: "This is an example of custom content in the sidebar",
+    type: "job", // job, project, specification, blog, testimonial, faq
+    content: {
+      title: "Senior Software Engineer",
+      postedOn: "August 15, 2024",
+      location: "Remote",
+      applyBy: "September 15, 2024",
+      aboutUs:
+        "We are a leading tech company specializing in innovative solutions for a sustainable future. Join our dynamic team and contribute to cutting-edge projects that make a real impact.",
+      aboutUsPoints: [
+        "Innovative and collaborative work environment",
+        "Opportunities for professional growth and development",
+      ],
+      jobDescription:
+        "We are looking for a Senior Software Engineer to lead the development of our next-generation applications. You will work closely with cross-functional teams to design, develop, and deploy high-quality software solutions.",
+      jobDescriptionPoints: [
+        "Lead the design and implementation of software solutions",
+        "Collaborate with cross-functional teams to define project requirements",
+        "Ensure code quality and maintainability through best practices",
+      ],
+    },
+    actions: [
+      {
+        label: "Primary Action",
+        primary: true,
+        onClick: () => alert("Primary action clicked!")
+      },
+      {
+        label: "Secondary Action",
+        primary: false,
+        onClick: () => alert("Secondary action clicked!")
+      }
+    ]
+  };
 
   const handleContactModal = () => {
     if (!isOpen) {
@@ -54,7 +94,10 @@ const HeroSection = () => {
           <div className="flex flex-col md:flex-row gap-4 w-full md:w-fit">
             <PrimaryButton
               className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
-              onClick={handleContactModal}
+              onClick={() => {
+                sidebarUtils.openCustom();
+                showCustomContent(customContentExample);
+              }}
             >
               Book a Demo <FaChevronRight />
             </PrimaryButton>
