@@ -81,6 +81,9 @@ const DynamicSidebar = () => {
 
   // Render content based on type
   const renderContent = () => {
+    // console.log('DynamicSidebar - renderContent - contentType:', contentType);
+    // console.log('DynamicSidebar - SIDEBAR_TYPES.CUSTOM:', SIDEBAR_TYPES.CUSTOM);
+    
     switch (contentType) {
       case SIDEBAR_TYPES.NAVIGATION:
         return <NavigationContent />;

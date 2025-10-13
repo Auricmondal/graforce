@@ -71,6 +71,27 @@ const SidebarExamples = () => {
     ]
   };
 
+  const jobContentExample = {
+    type: "job",
+    title: "Senior Plasma Engineer",
+    postedOn: "October 10, 2025",
+    location: "Berlin, Germany",
+    applyBy: "November 15, 2025",
+    aboutUs: "Graforce is a leading company in plasma technology for sustainable energy solutions.",
+    aboutUsPoints: [
+      "Innovative plasma technology solutions",
+      "Focus on environmental sustainability", 
+      "Global leader in clean energy"
+    ],
+    jobDescription: "We are looking for a Senior Plasma Engineer to join our innovative team.",
+    jobDescriptionPoints: [
+      "Design and develop plasma systems",
+      "Collaborate with cross-functional teams",
+      "Research new plasma applications",
+      "Optimize existing plasma processes"
+    ]
+  };
+
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-8">Sidebar Examples</h1>
@@ -78,7 +99,7 @@ const SidebarExamples = () => {
       {/* Basic Sidebar Controls */}
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Basic Controls</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
           <PrimaryButton onClick={showNavigation}>
             Show Navigation
           </PrimaryButton>
@@ -90,6 +111,9 @@ const SidebarExamples = () => {
           </PrimaryButton>
           <PrimaryButton onClick={() => showCustomContent(customContentExample)}>
             Show Custom Content
+          </PrimaryButton>
+          <PrimaryButton onClick={() => showCustomContent(jobContentExample)}>
+            Show Job Content
           </PrimaryButton>
         </div>
       </section>
@@ -147,6 +171,9 @@ const SidebarExamples = () => {
           <PrimaryButton onClick={() => sidebarUtils.showArticle("Utils Article", "This article was opened using utility functions!")}>
             Utils: Show Article
           </PrimaryButton>
+          <PrimaryButton onClick={() => sidebarUtils.openCustom(jobContentExample, "Job Opening")}>
+            Utils: Show Job
+          </PrimaryButton>
         </div>
       </section>
 
@@ -178,7 +205,19 @@ import { sidebarUtils } from '@/utils/sidebarUtils';
 // Can be called from anywhere
 sidebarUtils.openContact();
 sidebarUtils.showProduct("Product Name", "Description");
-sidebarUtils.showArticle("Title", "Content");`}
+sidebarUtils.showArticle("Title", "Content");
+
+// Custom job content
+const jobData = {
+  type: "job",
+  title: "Senior Engineer",
+  location: "Berlin",
+  postedOn: "Oct 10, 2025",
+  applyBy: "Nov 15, 2025",
+  aboutUs: "Company description...",
+  jobDescription: "Role details..."
+};
+sidebarUtils.openCustom(jobData, "Job Opening");`}
           </pre>
         </div>
       </section>

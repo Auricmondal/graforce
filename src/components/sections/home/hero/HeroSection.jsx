@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { act } from "react";
 import { useContactModal } from "@/contexts/ContactModalContext";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
@@ -13,8 +13,6 @@ const HeroSection = () => {
   const { showCustomContent } = useSidebarActions();
 
   const customContentExample = {
-    // title: "Custom Sidebar Content",
-    // description: "This is an example of custom content in the sidebar",
     type: "job", // job, project, specification, blog, testimonial, faq
     content: {
       title: "Senior Software Engineer",
@@ -33,7 +31,7 @@ const HeroSection = () => {
         "Lead the design and implementation of software solutions",
         "Collaborate with cross-functional teams to define project requirements",
         "Ensure code quality and maintainability through best practices",
-      ],
+      ]
     },
     actions: [
       {
@@ -41,11 +39,11 @@ const HeroSection = () => {
         primary: true,
         onClick: () => alert("Primary action clicked!")
       },
-      {
-        label: "Secondary Action",
-        primary: false,
-        onClick: () => alert("Secondary action clicked!")
-      }
+      // {
+      //   label: "Secondary Action",
+      //   primary: false,
+      //   onClick: () => alert("Secondary action clicked!")
+      // }
     ]
   };
 
@@ -95,7 +93,7 @@ const HeroSection = () => {
             <PrimaryButton
               className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
               onClick={() => {
-                sidebarUtils.openCustom();
+                // console.log('Button clicked - opening custom content:', customContentExample);
                 showCustomContent(customContentExample);
               }}
             >
