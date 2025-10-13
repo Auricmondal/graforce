@@ -17,7 +17,7 @@ export default function AnimatedHeader({
   className = "",
 }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { margin: "0px 0px -10% 0px" });
+  const inView = useInView(ref, { margin: "0px 0px -5% 0px" });
   const splitInstance = useRef(null);
   const tl = useRef(null);
 
