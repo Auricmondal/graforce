@@ -8,15 +8,17 @@ import finalCtaRightImg from "@/assets/spark.webp";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa6";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import { sidebarUtils } from "@/utils/sidebarUtils";
 
 const FinalCTA = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
   const handleContactModal = () => {
-    if (!isOpen) {
-      openModal();
-    } else {
-      closeModal();
-    }
+    // if (!isOpen) {
+    //   openModal();
+    // } else {
+    //   closeModal();
+    // }
+    sidebarUtils.openContact();
   };
   return (
     <div className="bg-cst-neutral-1 p-2">

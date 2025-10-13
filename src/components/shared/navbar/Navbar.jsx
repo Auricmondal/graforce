@@ -7,12 +7,12 @@ import BrandLogo from "./nav/BrandLogo";
 import useClickOutside from "@/hooks/useClickOutside";
 import useHideOnScrollNav from "@/hooks/useHideOnScrollNav";
 import Hamburger from "./nav/Hamburger";
-import SideNavMenu from "./nav/navigation/SideNavMenu";
+import { useSidebar } from "@/contexts/SidebarContext";
 
 const Navbar = () => {
   const router = useRouter();
+  const { isOpen, toggleSidebar } = useSidebar();
   const active = "rounded-full border border-gray-400";
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
   const downMenuRef = React.useRef(null);
   const navRef = React.useRef(null);
@@ -26,19 +26,15 @@ const Navbar = () => {
 
   const navigateTo = (href) => {
     router.push(href);
-    setIsMenuOpen(false);
   };
   // useDisableZoom();
 
-  useClickOutside(menuRef, () => setIsMenuOpen(false));
-
-  useHideOnScrollNav(menuRef, isMenuOpen);
-
-  useHideOnScrollNav(downMenuRef, isMenuOpen);
+  useHideOnScrollNav(menuRef, isOpen);
+  useHideOnScrollNav(downMenuRef, isOpen);
 
   return (
     <>
-      {!isMenuOpen && <div className="">
+      {!isOpen && <div className="">
         <div
           className={`fixed top-0 right-0 w-full z-100  h-fit`}
           ref={menuRef}
@@ -51,16 +47,16 @@ const Navbar = () => {
             >
               <div className="justify-between items-center flex sm:px-4 md:px-2 lg:px-4">
                 <BrandLogo
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  isMenuOpen={isMenuOpen}
+                  onClick={toggleSidebar}
+                  isMenuOpen={isOpen}
                 />
                 <div className="language flex items-center gap-2">
                   <LanguageOptions />
                   <div
                     className={`text-black text-3xl flex items-center justify-center cursor-pointer p-1 ${
-                      isMenuOpen ? "text-white" : "text-black"
+                      isOpen ? "text-white" : "text-black"
                     }`}
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    onClick={toggleSidebar}
                   >
                     <Hamburger isMenuOpen={true} />
                   </div>
@@ -75,19 +71,15 @@ const Navbar = () => {
             <LanguageOptions downMenu={true} />
             <div
               className={`text-black text-3xl flex items-center justify-center cursor-pointer p-1 ${
-                isMenuOpen ? "text-white" : "text-black"
+                isOpen ? "text-white" : "text-black"
               }`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggleSidebar}
             >
               <Hamburger isMenuOpen={true} />
             </div>
           </div>
         </div>
       }
-      <SideNavMenu
-        onClick={() => setIsMenuOpen(false)}
-        isMenuOpen={isMenuOpen}
-      />
     </>
   );
 };

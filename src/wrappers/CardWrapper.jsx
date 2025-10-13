@@ -7,6 +7,7 @@ const CardWrapper = ({
   color = "default",
   radius = "standard",
   align = "left",
+  flexColumn = true,
 }) => {
   const variants = {
     standard: "px-6 py-12 sm:px-6 sm:py-8",
@@ -40,9 +41,10 @@ const CardWrapper = ({
   return (
     <div
       className={`
-        flex flex-col
+        flex 
+        ${flexColumn ? "flex-col" : ""}
         ${className}
-        ${color === "default" ? "border border-cst-neutral-1" : color === "transparent" ? "" : "border border-cst-neutral-1"}
+        ${color === "default" ? "border border-cst-neutral-1" : color === "transparent" || color === "custom" ? "" : "border border-cst-neutral-1"}
         ${variants[variant]}
         ${cardColors[color]}
         ${cardRadius[radius]}

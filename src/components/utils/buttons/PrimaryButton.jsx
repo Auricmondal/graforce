@@ -23,6 +23,7 @@ const PrimaryButton = ({
     primary: "hover:bg-primary",
     white: "hover:bg-white",
     black: "hover:bg-black",
+    transparent: "hover:bg-transparent",
     "cst-neutral-1": "hover:bg-cst-neutral-1",
     "cst-neutral-2": "hover:bg-cst-neutral-2",
     "cst-neutral-3": "hover:bg-cst-neutral-3",

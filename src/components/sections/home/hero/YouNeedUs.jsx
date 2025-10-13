@@ -10,6 +10,8 @@ import Tower from "@/assets/tower.png";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,6 +43,7 @@ const YouNeedUs = ({
   const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const triggerRef = useRef(null); // Store trigger reference
+  const { showCustomContent } = useSidebarActions();
 
   // Check if mobile
   useEffect(() => {
@@ -161,6 +164,37 @@ const YouNeedUs = ({
     return cleanup;
   }, []);
 
+  const customContentExample = {
+    // title: "Custom Sidebar Content",
+    // description: "This is an example of custom content in the sidebar",
+    type: "job", // job, project, specification, blog, testimonial, faq
+    content: (
+      <div>
+        <p className="text-gray-600 mb-4">You can put any React components here!</p>
+        <div className="bg-blue-50 p-4 rounded-lg mb-4">
+          <h4 className="font-semibold text-blue-800 mb-2">Features:</h4>
+          <ul className="text-blue-700 space-y-1">
+            <li>• Dynamic content loading</li>
+            <li>• Custom styling</li>
+            <li>• Interactive elements</li>
+          </ul>
+        </div>
+      </div>
+    ),
+    actions: [
+      {
+        label: "Primary Action",
+        primary: true,
+        onClick: () => alert("Primary action clicked!")
+      },
+      {
+        label: "Secondary Action",
+        primary: false,
+        onClick: () => alert("Secondary action clicked!")
+      }
+    ]
+  };
+
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <div
@@ -239,46 +273,20 @@ const YouNeedUs = ({
                   data-sector="0"
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton
-                    className={`${
-                      sectionColorVariant === "default"
-                        ? "bg-cst-neutral-5 text-white"
-                        : "bg-cst-neutral-1 text-black"
-                    } rounded-xl py-4 px-6 w-full text-sm md:text-base ${
-                      sectionColorVariant === "blue"
-                        ? "border-2 border-transparent hover:shadow-md"
-                        : ""
-                    }`}
-                    hoverTextColor={
-                      sectionColorVariant === "blue"
-                        ? "cst-neutral-1"
-                        : "text-white"
-                    }
-                    hoverBgColor={
-                      sectionColorVariant === "blue"
-                        ? "cst-neutral-3"
-                        : "bg-primary"
-                    }
+                  <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                    hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                    hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                    onClick={() => {
+                      sidebarUtils.openCustom();
+                      showCustomContent(customContentExample);
+                    }}
                   >
                     Learn More
                   </PrimaryButton>
                   {doubleButton && (
-                    <PrimaryButton
-                      className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${
-                        sectionColorVariant === "blue"
-                          ? "border-2 border-transparent hover:shadow-md"
-                          : ""
-                      }`}
-                      hoverTextColor={
-                        sectionColorVariant === "blue"
-                          ? "cst-neutral-1"
-                          : "text-white"
-                      }
-                      hoverBgColor={
-                        sectionColorVariant === "blue"
-                          ? "cst-neutral-3"
-                          : "bg-primary"
-                      }
+                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                      hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                      hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                     >
                       Specifications
                     </PrimaryButton>

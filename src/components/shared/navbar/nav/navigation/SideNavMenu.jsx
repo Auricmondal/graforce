@@ -9,7 +9,6 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import PrimaryButton from '@/components/utils/buttons/PrimaryButton'
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import { set } from 'nprogress'
 
 const SideNavMenu = ({ onClick, isMenuOpen }) => {
   const sideNavOverlay = React.useRef(null);
@@ -94,20 +93,20 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
       // Close animation
       tl.to(".sideMenuTalkButton", { y: 50, opacity: 0, duration: 0.3, ease: "power2.in" });
       tl.fromTo(".menu-item", {
-          x: 0,
-          opacity: 1
-        }, {
-          x: 300,
-          opacity: 0,
-          duration: 0.3,
-          stagger: -0.05,
-          ease: "power2.in"
-        });
+        x: 0,
+        opacity: 1
+      }, {
+        x: 300,
+        opacity: 0,
+        duration: 0.3,
+        stagger: -0.05,
+        ease: "power2.in"
+      });
       tl.to(menuContainer, { x: '40vw', duration: 0.3, ease: "power2.inOut" });
       tl.to(sideNavOverlayBackdrop, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, "<0.1");
       tl.to(overlay, { x: '100vw', duration: 0.3, ease: "power2.inOut" });
     }
-  }, [isMenuOpen, playAnimation]);
+  }, [isMenuOpen, playAnimation, isSubMenuOpen]);
 
   // Animate menu transitions
   const animateMenuTransition = (callback) => {
@@ -182,13 +181,13 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
       className="sideNavOverlay w-screen h-screen fixed flex flex-row justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw]"
     >
       <div
-        className="sideNavOverlayBackdrop w-0 lg:w-[60vw] h-screen translate-x-[100vw]"
+        className="sideNavOverlayBackdrop hidden min-[1130px]:block w-0 lg:w-[60vw] h-screen translate-x-[100vw]"
         onClick={onClick}
       ></div>
 
       <div
         ref={sideNavMenu}
-        className="sideNavMenu flex flex-col justify-start h-screen w-screen lg:w-[40vw] bg-cst-neutral-1 gap-2 p-2 rounded-l-2xl translate-x-[40vw]"
+        className="sideNavMenu flex flex-col justify-start h-screen w-screen min-[1130px]:w-[40vw] bg-cst-neutral-1 gap-2 p-2 min-[1130px]:rounded-l-2xl translate-x-[40vw]"
       >
         {/* Header */}
         <div className="flex items-center justify-between rounded-xl bg-white p-4 capitalize text-3xl font-bold">
@@ -218,42 +217,44 @@ const SideNavMenu = ({ onClick, isMenuOpen }) => {
             )}
 
             {/* Menu Items Container */}
-            <div className={`${isSubMenuOpen ? "border border-cst-neutral-3 rounded-lg p-3" : ""}`}>
-              {menu.map((item, index) => (
-                <div
-                  key={`${isSubMenuOpen ? 'sub' : 'main'}-${item.id || index}`}
-                  className='menu-item group flex items-center py-0 cursor-pointer gap-2 my-4'
-                >
-                  <div className="flex items-center gap-3">
-                    {!item.toggle ? (
-                      <Link
-                        href={item.href}
-                        className="font-bold"
-                        onClick={onClick}
-                      >
-                        <AnimatedText textSize={isSubMenuOpen ? "text-lg md:text-3xl" : "text-xl md:text-4xl"} className={`border-b-2 `}>
-                          {item.name}
-                        </AnimatedText>
-                      </Link>
-                    ) : (
-                      <div
-                        className="font-bold"
-                        onClick={() => openSubMenu(item.name)}
-                      >
-                        <AnimatedText textSize="text-xl md:text-4xl" className={`border-b-2 `}>
-                          {item.name}
-                        </AnimatedText>
-                      </div>
+            <div className={`h-fit ${isSubMenuOpen ? "border border-cst-neutral-3 rounded-lg p-3" : ""}`}>
+              <div className="">
+                {menu.map((item, index) => (
+                  <div
+                    key={`${isSubMenuOpen ? 'sub' : 'main'}-${item.id || index}`}
+                    className='menu-item group flex items-center py-0 cursor-pointer gap-2 my-4'
+                  >
+                    <div className="flex items-center justify-start gap-3">
+                      {!item.toggle ? (
+                        <Link
+                          href={item.href}
+                          className="font-bold text-left"
+                          onClick={onClick}
+                        >
+                          <AnimatedText textSize={isSubMenuOpen ? "text-lg md:text-3xl" : "text-2xl md:text-4xl"} className={`border-b-2 `}>
+                            {item.name}
+                          </AnimatedText>
+                        </Link>
+                      ) : (
+                        <div
+                          className="font-bold text-left"
+                          onClick={() => openSubMenu(item.name)}
+                        >
+                          <AnimatedText textSize={isSubMenuOpen ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"} className={`border-b-2 `}>
+                            {item.name}
+                          </AnimatedText>
+                        </div>
+                      )}
+                    </div>
+
+                    {item.toggle && (
+                      <span className="text-cst-primary-1 text-xl group-hover:translate-x-2 transition-all duration-300 ease-in-out">
+                        <FiArrowRightCircle />
+                      </span>
                     )}
                   </div>
-
-                  {item.toggle && (
-                    <span className="text-cst-primary-1 text-xl group-hover:translate-x-2 transition-all duration-300 ease-in-out">
-                      <FiArrowRightCircle />
-                    </span>
-                  )}
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
