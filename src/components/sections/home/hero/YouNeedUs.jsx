@@ -12,7 +12,8 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { sidebarUtils } from "@/utils/sidebarUtils";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomJobContentData from "@/data/CustomJobContentData.json"
+import CustomJobData from "@/data/CustomJobData.json";
+import CustomSpecData from "@/data/CustomSpecData.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +45,7 @@ const YouNeedUs = ({
   const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showCustomContent } = useSidebarActions();
+  const { showCustomContent, showSpecificationsContent } = useSidebarActions();
 
   // Check if mobile
   useEffect(() => {
@@ -247,8 +248,7 @@ const YouNeedUs = ({
                     hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
                     hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                     onClick={() => {
-                      // sidebarUtils.openCustom();
-                      showCustomContent(CustomJobContentData);
+                      showCustomContent(CustomJobData);
                     }}
                   >
                     Learn More
@@ -257,6 +257,9 @@ const YouNeedUs = ({
                     <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
                       hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
                       hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                      onClick={() => {
+                        showSpecificationsContent(CustomSpecData);
+                      }}
                     >
                       Specifications
                     </PrimaryButton>
