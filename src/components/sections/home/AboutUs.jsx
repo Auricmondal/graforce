@@ -11,7 +11,6 @@ import aboutUsImage from "@/assets/home/aboutimg.png";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
-
 const AboutUs = () => {
   const brandLogoBase = "/brand/img/";
 
@@ -114,10 +113,12 @@ const AboutUs = () => {
           <div className="flex-col w-full">
             <div className="flex flex-row items-center justify-between gap-4 text-sm sm:text-lg">
               <div className="flex items-center gap-1">
-                <LuClock3 className="text-base sm:text-2xl" />Founded in {foundation}
+                <LuClock3 className="text-base sm:text-2xl" />
+                Founded in {foundation}
               </div>
               <div className="flex items-center gap-1">
-                <MdOutlineLocationOn className="text-base sm:text-2xl" />{location}
+                <MdOutlineLocationOn className="text-base sm:text-2xl" />
+                {location}
               </div>
             </div>
             <div className="flex-row pt-6 sm:pt-10 w-full">
@@ -128,15 +129,21 @@ const AboutUs = () => {
                   <div className="w-full h-full flex flex-col justify-between space-y-[70px] sm:space-y-[70px]">
                     <div className="text-[48px] text-left capitalize font-bold">
                       <h2 className="">
-                        <AnimatedHeader>
-                          graforce
-                        </AnimatedHeader>
+                        <AnimatedHeader>graforce</AnimatedHeader>
                       </h2>
                     </div>
                     <div className="">
                       <AnimatedHeader>
                         <p className="text-black text-base text-left">
-                          Power-to-X plants for the generation of CO<sub>2</sub>-free or CO<sub>2</sub>-negative hydrogen and synthetic raw materials the technology leader in sustainable solutions and negative emission technologies holds three patents for the application of different plasma processes {"("}high-frequency discharge, dielectric barrier discharge, coronal low-frequency discharge{")"} production capacities: Methane Plasmalysis  expansion to up to 50 MW/a through customers and partners.
+                          Power-to-X plants generate CO<sub>2</sub>-free or CO
+                          <sub>2</sub>-negative hydrogen and synthetic raw
+                          materials. The technology leader in sustainable
+                          solutions and negative emission technologies holds
+                          three patents for applying different plasma processes
+                          (high-frequency discharge, dielectric barrier
+                          discharge and coronal low-frequency discharge).
+                          Production capacities: Methane plasmalysis expansion
+                          to up to 50 MW/a. through customers and partners.{" "}
                         </p>
                       </AnimatedHeader>
                       <div className="pt-6">

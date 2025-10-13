@@ -88,7 +88,7 @@ export default function SolutionSection() {
               <SectionLabel text={"Our Solution"} />
               <AnimatedHeader>
                 <div className="text-xl">
-                  Hydrogen Today Pollutes. We Change That
+                  Splitting methane into solid carbon and clean hydrogen.
                 </div>
               </AnimatedHeader>
             </CardWrapper>

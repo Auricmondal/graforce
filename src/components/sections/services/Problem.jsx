@@ -81,7 +81,7 @@ export default function EmissionPage() {
               className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
               variant="custom"
             >
-              <SectionLabel text={"The Problem We Discovered"} />
+              <SectionLabel text={"The Problem"} />
               <AnimatedHeader>
                 <div className="text-xl">The Emission Burden</div>
               </AnimatedHeader>

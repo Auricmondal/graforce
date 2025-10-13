@@ -28,7 +28,14 @@ const sectorsData = [
   },
 ];
 
-const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader = "Powering Every Sector", sectionImage = Tower, sectionColorVariant = "default", sectionColor = "", doubleButton = false }) => {
+const YouNeedUs = ({
+  sectionHeader = "Our contribution",
+  sectionSubHeader = "Powering Every Sector",
+  sectionImage = Tower,
+  sectionColorVariant = "default",
+  sectionColor = "",
+  doubleButton = false,
+}) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
   const labelRef = useRef(null);
@@ -64,14 +71,14 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
   useGSAP(() => {
     // Always cleanup first
     cleanup();
-    
+
     // Exit early if mobile or refs not available
     if (isMobile || !needRef.current || !sectionRef.current) {
       return;
     }
 
     const text = needRef.current;
-    
+
     // Helper to wrap each character in a span
     const wrapCharacters = (html) => {
       const tempDiv = document.createElement("div");
@@ -137,10 +144,10 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
         chars.forEach((char, i) => {
           if (sectionColorVariant === "default") {
             char.style.color =
-            i < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
+              i < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
           } else {
-          char.style.color =
-            i < charsToShow ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.1)";
+            char.style.color =
+              i < charsToShow ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.1)";
           }
         });
       },
@@ -156,12 +163,19 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
 
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
-      <div ref={sectionRef} className={`flex items-start ${isMobile ? 'h-fit' : 'h-fit md:h-screen'}`}>
+      <div
+        ref={sectionRef}
+        className={`flex items-start ${
+          isMobile ? "h-fit" : "h-fit md:h-screen"
+        }`}
+      >
         <CardWrapper
           variant="custom"
           color={sectionColorVariant}
           align="center"
-          className={`p-2 gap-2 h-full ${sectionColorVariant === "custom" ? sectionColor : ""}`}
+          className={`p-2 gap-2 h-full ${
+            sectionColorVariant === "custom" ? sectionColor : ""
+          }`}
         >
           <div className="w-full">
             <CardWrapper
@@ -171,12 +185,28 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
             >
               <SectionLabel
                 text={sectionHeader}
-                textColor={sectionColorVariant === "default" ? "text-black" : "text-white"}
+                textColor={
+                  sectionColorVariant === "default"
+                    ? "text-black"
+                    : "text-white"
+                }
                 icon={true}
                 invertIcon={sectionColorVariant === "blue"}
               />
-              <AnimatedHeader className={`text-xl capitalize ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}>
-                <h2 className={`text-xl capitalize ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}>
+              <AnimatedHeader
+                className={`text-xl capitalize ${
+                  sectionColorVariant === "default"
+                    ? "text-black"
+                    : "text-white"
+                }`}
+              >
+                <h2
+                  className={`text-xl capitalize ${
+                    sectionColorVariant === "default"
+                      ? "text-black"
+                      : "text-white"
+                  }`}
+                >
                   {sectionSubHeader}
                 </h2>
               </AnimatedHeader>
@@ -193,7 +223,11 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
               {/* animated label controlled via labelRef */}
               <div
                 ref={labelRef}
-                className={`capitalize ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}
+                className={`capitalize ${
+                  sectionColorVariant === "default"
+                    ? "text-black"
+                    : "text-white"
+                }`}
                 aria-hidden={false}
               >
                 {sectorsData[0].label}
@@ -205,16 +239,46 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
                   data-sector="0"
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`} 
-                    hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
-                    hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                  <PrimaryButton
+                    className={`${
+                      sectionColorVariant === "default"
+                        ? "bg-cst-neutral-5 text-white"
+                        : "bg-cst-neutral-1 text-black"
+                    } rounded-xl py-4 px-6 w-full text-sm md:text-base ${
+                      sectionColorVariant === "blue"
+                        ? "border-2 border-transparent hover:shadow-md"
+                        : ""
+                    }`}
+                    hoverTextColor={
+                      sectionColorVariant === "blue"
+                        ? "cst-neutral-1"
+                        : "text-white"
+                    }
+                    hoverBgColor={
+                      sectionColorVariant === "blue"
+                        ? "cst-neutral-3"
+                        : "bg-primary"
+                    }
                   >
                     Learn More
                   </PrimaryButton>
                   {doubleButton && (
-                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${ sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
-                      hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
-                      hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                    <PrimaryButton
+                      className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${
+                        sectionColorVariant === "blue"
+                          ? "border-2 border-transparent hover:shadow-md"
+                          : ""
+                      }`}
+                      hoverTextColor={
+                        sectionColorVariant === "blue"
+                          ? "cst-neutral-1"
+                          : "text-white"
+                      }
+                      hoverBgColor={
+                        sectionColorVariant === "blue"
+                          ? "cst-neutral-3"
+                          : "bg-primary"
+                      }
                     >
                       Specifications
                     </PrimaryButton>
@@ -222,8 +286,14 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
                 </div>
               </div>
             </CardWrapper>
-            <div className={`flex items-center justify-center p-0 w-full h-full`}>
-              <Image src={sectionImage} className="object-cover w-full lg:w-fit" alt="tower" />
+            <div
+              className={`flex items-center justify-center p-0 w-full h-full`}
+            >
+              <Image
+                src={sectionImage}
+                className="object-cover w-full lg:w-fit"
+                alt="tower"
+              />
             </div>
           </div>
 
@@ -240,11 +310,19 @@ const YouNeedUs = ({ sectionHeader = "This is Why You Need Us", sectionSubHeader
                     <SectionLabel
                       icon={false}
                       text={sector.label}
-                      textColor={sectionColorVariant === "default" ? "text-black" : "text-white"}
+                      textColor={
+                        sectionColorVariant === "default"
+                          ? "text-black"
+                          : "text-white"
+                      }
                     />
                   </div>
                   <h3
-                    className={`text-base font-semibold md:text-lg pt-[150px] ${sectionColorVariant === "default" ? "text-black" : "text-white"}`}
+                    className={`text-base font-semibold md:text-lg pt-[150px] ${
+                      sectionColorVariant === "default"
+                        ? "text-black"
+                        : "text-white"
+                    }`}
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
