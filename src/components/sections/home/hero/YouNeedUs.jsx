@@ -12,8 +12,8 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { sidebarUtils } from "@/utils/sidebarUtils";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomJobData from "@/data/CustomJobData.json";
-import CustomSpecData from "@/data/CustomSpecData.json";
+import CustomJobData from "@/data/customJobData.json";
+import CustomSpecData from "@/data/customSpecData.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
