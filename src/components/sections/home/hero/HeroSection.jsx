@@ -17,13 +17,15 @@ const HeroSection = () => {
 
   const handleLearnMore = (e) => {
     e.preventDefault();
-    const section = document.getElementById("solutions-section");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    showReadingContent(CustomBlogData);
+    // Scroll to solutions section
+    // const section = document.getElementById("solutions-section");
+    // if (section) {
+    //   section.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "start",
+    //   });
+    // }
   };
 
   return (
