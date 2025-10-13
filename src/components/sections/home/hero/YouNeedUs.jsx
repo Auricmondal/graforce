@@ -12,6 +12,7 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { sidebarUtils } from "@/utils/sidebarUtils";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomJobContentData from "@/data/CustomJobContentData.json"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -164,37 +165,6 @@ const YouNeedUs = ({
     return cleanup;
   }, []);
 
-  const customContentExample = {
-    // title: "Custom Sidebar Content",
-    // description: "This is an example of custom content in the sidebar",
-    type: "job", // job, project, specification, blog, testimonial, faq
-    content: (
-      <div>
-        <p className="text-gray-600 mb-4">You can put any React components here!</p>
-        <div className="bg-blue-50 p-4 rounded-lg mb-4">
-          <h4 className="font-semibold text-blue-800 mb-2">Features:</h4>
-          <ul className="text-blue-700 space-y-1">
-            <li>• Dynamic content loading</li>
-            <li>• Custom styling</li>
-            <li>• Interactive elements</li>
-          </ul>
-        </div>
-      </div>
-    ),
-    actions: [
-      {
-        label: "Primary Action",
-        primary: true,
-        onClick: () => alert("Primary action clicked!")
-      },
-      {
-        label: "Secondary Action",
-        primary: false,
-        onClick: () => alert("Secondary action clicked!")
-      }
-    ]
-  };
-
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <div
@@ -277,8 +247,8 @@ const YouNeedUs = ({
                     hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
                     hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                     onClick={() => {
-                      sidebarUtils.openCustom();
-                      showCustomContent(customContentExample);
+                      // sidebarUtils.openCustom();
+                      showCustomContent(CustomJobContentData);
                     }}
                   >
                     Learn More

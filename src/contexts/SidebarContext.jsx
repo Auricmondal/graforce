@@ -17,6 +17,7 @@ export const SIDEBAR_TYPES = {
   NAVIGATION: 'navigation',
   CONTACT: 'contact', 
   READING: 'reading',
+  SPECIFICATIONS: 'specifications',
   CUSTOM: 'custom'
 };
 
@@ -68,6 +69,10 @@ export const SidebarProvider = ({ children }) => {
     openSidebar(SIDEBAR_TYPES.READING, readingData, sidebarTitle);
   }, [openSidebar]);
 
+  const openSpecifications = useCallback((specificationsData) => {
+    openSidebar(SIDEBAR_TYPES.SPECIFICATIONS, specificationsData, "Specifications");
+  }, [openSidebar]);
+
   const openCustom = useCallback((customData, customTitle = "Custom") => {
     openSidebar(SIDEBAR_TYPES.CUSTOM, customData, customTitle);
   }, [openSidebar]);
@@ -88,6 +93,7 @@ export const SidebarProvider = ({ children }) => {
     openNavigation,
     openContact,
     openReading,
+    openSpecifications,
     openCustom,
     
     // Constants

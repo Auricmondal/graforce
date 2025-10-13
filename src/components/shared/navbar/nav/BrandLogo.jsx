@@ -4,7 +4,7 @@ import Hamburger from "./Hamburger";
 // import { HiOutlineMenuAlt1 } from "react-icons/hi";
 // import MenuRive from "./MenuRive";
 
-const BrandLogo = ({ onClick, isMenuOpen, className }) => {
+const BrandLogo = ({ onClick, isMenuOpen, className, size = "text-3xl" }) => {
   const router = useRouter();
   return (
     <div
@@ -30,7 +30,7 @@ const BrandLogo = ({ onClick, isMenuOpen, className }) => {
         onClick={() => router.push("/")}
       > */}
       <div
-        className={`group flex text-3xl font-bold brand cursor-pointer transition-all duration-300 ease-in-out`}
+        className={`group flex ${size} font-bold brand cursor-pointer transition-all duration-300 ease-in-out`}
         onClick={() => router.push("/")}
       >
         Graforce

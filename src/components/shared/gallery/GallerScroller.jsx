@@ -4,7 +4,7 @@ import AboutImage from "@/assets/home/aboutimg.png"
 import React from 'react'
 import gsap from 'gsap';
 
-const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }) => {
+const GalleryScroller = ({ className = "", direction = 'left', sideBlur = false }) => {
   const galleryScroll = React.useRef(null);
   const galleryImageStock = [
     AboutImage,
@@ -71,4 +71,4 @@ const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }
   )
 }
 
-export default GallerScroller
+export default GalleryScroller

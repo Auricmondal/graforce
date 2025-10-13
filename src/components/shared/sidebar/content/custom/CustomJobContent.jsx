@@ -17,13 +17,6 @@ const CustomJobContent = ({ contentData }) => {
     return `${day}-${month}-${year}`;
   }
 
-  // Example usage
-  const oldDate = "September 15, 2024";
-  const newDate = formatDate(oldDate);
-
-  console.log(newDate); // Output: 15-09-2024
-
-
   return (
     <>
       <div className='relative gap-2 h-full'>
@@ -58,11 +51,12 @@ const CustomJobContent = ({ contentData }) => {
           </div>
         </div>
       </div >
-      {actions && <div className='sticky flex gap-2 z-10 bottom-0 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_2px_10px_0_rgba(0,0,0,0.1)] p-2 rounded-lg'>
+      {actions && <div className='sticky flex gap-2 z-10 bottom-0 mt-2 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_2px_10px_0_rgba(0,0,0,0.1)] p-2 rounded-lg'>
         {actions.map((action, index) => (
           <PrimaryButton key={index} className={`${action.primary ? 'bg-cst-neutral-5 hover:!bg-primary' : 'bg-primary hover:!bg-cst-neutral-3'} text-white rounded-xl py-4 px-6 w-full text-sm md:text-base hover:border-cst-neutral-2 border-1 border-transparent transition-all duration-300`} onClick={() => {
             if (action) {
-              action.onClick();
+              const fn = eval(action.onClick);
+              fn();
             }
           }}>
             {action.label ? action.label : "Action"}

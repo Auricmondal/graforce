@@ -9,6 +9,7 @@ export const useSidebarActions = () => {
     openNavigation, 
     openContact, 
     openReading, 
+    openSpecifications, 
     openCustom, 
     closeSidebar,
     toggleSidebar,
@@ -52,6 +53,16 @@ export const useSidebarActions = () => {
   };
 
   /**
+   * Opens sidebar with specifications content
+   * @param {Object} specificationsData - Content data for specifications
+   * @param {string} specificationsData.title - Content title
+   * @param {Array<Object>} specificationsData.specifications - List of specifications
+   */
+  const showSpecificationsContent = (specificationsData) => {
+    openSpecifications(specificationsData);
+  };
+
+  /**
    * Opens sidebar with custom content
    * @param {React.ReactNode|Object} customData - Custom content or component
    * @param {string} title - Sidebar title
@@ -79,6 +90,7 @@ export const useSidebarActions = () => {
     showNavigation,
     showContactForm,
     showReadingContent,
+    showSpecificationsContent,
     showCustomContent,
     hideSidebar,
     toggleNav,
@@ -89,6 +101,7 @@ export const useSidebarActions = () => {
     // Quick access methods
     showContact: showContactForm,
     showReading: showReadingContent,
+    showSpecifications: showSpecificationsContent,
     showCustom: showCustomContent,
     hide: hideSidebar,
     toggle: toggleNav

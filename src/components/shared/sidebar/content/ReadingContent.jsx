@@ -1,12 +1,10 @@
 'use client'
 import React from 'react';
 import { useSidebar } from '@/contexts/SidebarContext';
-import { FiClock, FiUser, FiCalendar, FiExternalLink, FiBookmark } from 'react-icons/fi';
-import { BsArrowLeftCircle } from 'react-icons/bs';
 import PrimaryButton from '@/components/utils/buttons/PrimaryButton';
 
 const ReadingContent = () => {
-  const { closeSidebar, contentData, openContact } = useSidebar();
+  const { contentData } = useSidebar();
 
   if (!contentData) {
     return (
@@ -16,147 +14,68 @@ const ReadingContent = () => {
     );
   }
 
-  const {
-    title,
-    content,
-    author,
-    date,
-    readTime,
-    category,
-    tags,
-    relatedLinks,
-    ctaText,
-    ctaAction
-  } = contentData;
+  const content = contentData.content || {};
+  const actions = contentData.actions || [];
 
-  const handleCtaClick = () => {
-    if (ctaAction === 'contact') {
-      openContact({ 
-        subject: `Inquiry about: ${title}`,
-        showSubject: true,
-        additionalInfo: 'I would like to know more about this topic.'
-      });
-    } else if (ctaAction && typeof ctaAction === 'function') {
-      ctaAction();
-    }
-  };
+  // const {
+  //   title,
+  //   content,
+  //   author,
+  //   date,
+  //   readTime,
+  //   category,
+  //   tags,
+  //   relatedLinks,
+  //   ctaText,
+  //   ctaAction
+  // } = contentData;
+
+  // const handleCtaClick = () => {
+  //   if (ctaAction === 'contact') {
+  //     openContact({
+  //       subject: `Inquiry about: ${title}`,
+  //       showSubject: true,
+  //       additionalInfo: 'I would like to know more about this topic.'
+  //     });
+  //   } else if (ctaAction && typeof ctaAction === 'function') {
+  //     ctaAction();
+  //   }
+  // };
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Header with Back Button */}
-      <div className="mb-4 pb-4 border-b border-gray-200">
-        <div className="flex items-center gap-2 mb-3 ml-1">
-          <button
-            onClick={closeSidebar}
-            className="group flex items-center gap-2 text-gray-600 hover:text-primary transition-colors"
-          >
-            <BsArrowLeftCircle className='text-xl group-hover:translate-x-[-4px] transition-all duration-300 ease-in-out' />
-            <span className="text-sm">Back</span>
-          </button>
-        </div>
-        
-        {category && (
-          <div className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium mb-3">
-            {category}
-          </div>
-        )}
-        
-        <h2 className="text-xl font-bold text-gray-800 leading-tight mb-3">
-          {title}
-        </h2>
-
-        {/* Meta Information */}
-        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-          {author && (
-            <div className="flex items-center gap-1">
-              <FiUser className="text-xs" />
-              <span>{author}</span>
-            </div>
-          )}
-          {date && (
-            <div className="flex items-center gap-1">
-              <FiCalendar className="text-xs" />
-              <span>{date}</span>
-            </div>
-          )}
-          {readTime && (
-            <div className="flex items-center gap-1">
-              <FiClock className="text-xs" />
-              <span>{readTime}</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto">
-        <div className="prose prose-sm max-w-none">
-          {typeof content === 'string' ? (
-            <div 
-              className="text-gray-700 leading-relaxed whitespace-pre-wrap"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-          ) : (
-            <div className="text-gray-700 leading-relaxed">
-              {content}
-            </div>
-          )}
-        </div>
-
-        {/* Tags */}
-        {tags && tags.length > 0 && (
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <div className="flex items-center gap-2 mb-2">
-              <FiBookmark className="text-gray-400 text-sm" />
-              <span className="text-sm font-medium text-gray-600">Tags:</span>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag, index) => (
-                <span
-                  key={index}
-                  className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs"
-                >
-                  #{tag}
-                </span>
-              ))}
+    <>
+      <div className='relative gap-2 h-fit'>
+        <div className="flex flex-col gap-2 h-full">
+          <div className='w-full text-2xl font-semibold md:text-3xl capitalize'>{content.title ? content.title : "Job Posting Title"}</div>
+          <div className='w-full h-full gap-2 flex flex-col'>
+            <div className="flex flex-col items-start justify-start gap-4 border border-cst-neutral-2 rounded-lg h-full p-2">
+              {content.blogContent ? content.blogContent.map((content, index) => (
+                <div key={index} className="flex flex-col gap-4 pt-4 justify-start">
+                  <h3 className='text-2xl'>{content.subtitle}</h3>
+                  <p className='text-base'>{content.body}</p>
+                  <img src={content.image} alt={content.subtitle} className="object-cover rounded-lg w-full h-60" />
+                </div>
+              )) : <div className="flex flex-col gap-4 pt-4 justify-start">
+                <h3 className='text-xl'>N/A</h3>
+                <p className='text-base'>N/A</p>
+              </div>}
             </div>
           </div>
-        )}
-
-        {/* Related Links */}
-        {relatedLinks && relatedLinks.length > 0 && (
-          <div className="mt-6 pt-4 border-t border-gray-200">
-            <h4 className="font-medium text-gray-800 mb-3">Related Links</h4>
-            <div className="space-y-2">
-              {relatedLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors text-sm group"
-                >
-                  <FiExternalLink className="text-xs group-hover:translate-x-1 transition-transform" />
-                  <span>{link.title}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Call to Action */}
-      {ctaText && (
-        <div className="mt-auto pt-4 border-t border-gray-200">
-          <PrimaryButton
-            onClick={handleCtaClick}
-            className="w-full bg-primary text-white rounded-lg py-3 px-4"
-          >
-            {ctaText}
+        </div>
+      </div >
+      {actions && <div className='sticky flex gap-2 z-10 bottom-0 mt-2 w-full bg-white shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1),0_2px_10px_0_rgba(0,0,0,0.1)] p-2 rounded-lg'>
+        {actions.map((action, index) => (
+          <PrimaryButton key={index} className={`${action.primary ? 'bg-cst-neutral-5 hover:!bg-primary' : 'bg-primary hover:!bg-cst-neutral-3'} text-white rounded-xl py-4 px-6 w-full text-sm md:text-base hover:border-cst-neutral-2 border-1 border-transparent transition-all duration-300`} onClick={() => {
+            if (action) {
+              const fn = eval(action.onClick);
+              fn();
+            }
+          }}>
+            {action.label ? action.label : "Action"}
           </PrimaryButton>
-        </div>
-      )}
-    </div>
+        ))}
+      </div>}
+    </>
   );
 };
 

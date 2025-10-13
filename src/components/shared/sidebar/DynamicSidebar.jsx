@@ -6,6 +6,7 @@ import BrandLogo from '@/components/shared/navbar/nav/BrandLogo';
 import NavigationContent from './content/NavigationContent';
 import ContactContent from './content/ContactContent';
 import ReadingContent from './content/ReadingContent';
+import SpecificationsContent from './content/SpecificationsContent';
 import CustomContent from './content/CustomContent';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -91,6 +92,8 @@ const DynamicSidebar = () => {
         return <ContactContent />;
       case SIDEBAR_TYPES.READING:
         return <ReadingContent />;
+      case SIDEBAR_TYPES.SPECIFICATIONS:
+        return <SpecificationsContent />;
       case SIDEBAR_TYPES.CUSTOM:
         return <CustomContent />;
       default:
@@ -117,9 +120,9 @@ const DynamicSidebar = () => {
         className={`sidebar-menu flex flex-col justify-start h-screen w-screen min-[1130px]:w-[45vw] gap-2 p-2 min-[1130px]:rounded-l-2xl translate-x-[40vw] overflow-hidden ${contentType === SIDEBAR_TYPES.CONTACT ? "bg-cst-neutral-3" : "bg-cst-neutral-1"}`}
       >
         {/* Header */}
-        <CardWrapper variant='custom' color={contentType === SIDEBAR_TYPES.CONTACT ? "custom" : "default"} flexColumn={false} className={`sidebar-content-item flex items-center justify-between rounded-xl p-4 capitalize text-3xl font-bold ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : ""}`}>
+        <CardWrapper variant='custom' color={contentType === SIDEBAR_TYPES.CONTACT ? "custom" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "blue" : "default"} flexColumn={false} className={`sidebar-content-item flex items-center justify-between rounded-xl p-4 capitalize text-3xl font-bold ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "bg-primary text-cst-neutral-1" : "bg-white text-cst-neutral-5"}`}>
           <div className="flex items-center gap-3">
-            <BrandLogo />
+            <BrandLogo size='text-4xl' />
             {/* {contentType !== SIDEBAR_TYPES.NAVIGATION && (
               <span className="text-lg font-semibold text-gray-700">
                 {title}
@@ -127,7 +130,7 @@ const DynamicSidebar = () => {
             )} */}
           </div>
           <div
-            className="group border border-cst-neutral-2 hover:border-primary p-2 rounded-full cursor-pointer hover:bg-primary transition-all ease-in-out duration-300"
+            className={`group border border-cst-neutral-2 p-2 rounded-full cursor-pointer transition-all ease-in-out duration-300 hover:bg-primary ${contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "hover:border-cst-neutral-1 hover:text-cst-neutral-5" : "hover:border-primary "}`}
             onClick={closeSidebar}
           >
             <RxCross1 className="text-2xl group-hover:text-white group-hover:rotate-180 transition-all ease-in-out duration-300" />
@@ -135,8 +138,8 @@ const DynamicSidebar = () => {
         </CardWrapper>
 
         {/* Content Area */}
-        <div className={`sidebar-content-item flex flex-col rounded-xl p-4 h-full overflow-hidden ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : "bg-white"}`}>
-          <div className="flex-1 overflow-y-auto overflow-x-hidden sidebar-scroll">
+        <div className={`sidebar-content-item flex flex-col rounded-xl p-4 h-full overflow-hidden ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "bg-primary text-cst-neutral-1" : "bg-white"}`}>
+          <div className="relative flex-1 overflow-y-auto overflow-x-hidden sidebar-scroll">
             {renderContent()}
           </div>
         </div>

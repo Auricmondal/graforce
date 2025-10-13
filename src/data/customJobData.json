@@ -1,0 +1,36 @@
+{
+    "type": "job",
+    "content": {
+      "title": "Senior Software Engineer",
+      "postedOn": "August 15, 2024",
+      "location": "Remote",
+      "applyBy": "September 15, 2024",
+      "aboutUs":
+        "We are a leading tech company specializing in innovative solutions for a sustainable future. Join our dynamic team and contribute to cutting-edge projects that make a real impact.",
+      "aboutUsPoints": [
+        "Innovative and collaborative work environment",
+        "Opportunities for professional growth and development"
+      ],
+      "jobDescription":
+        "We are looking for a Senior Software Engineer to lead the development of our next-generation applications. You will work closely with cross-functional teams to design, develop, and deploy high-quality software solutions.",
+      "jobDescriptionPoints": [
+        "Lead the design and implementation of software solutions",
+        "Collaborate with cross-functional teams to define project requirements",
+        "Ensure code quality and maintainability through best practices"
+      ]
+    },
+    "actions": [
+      {
+        "required": true,
+        "label": "Primary Action",
+        "primary": true,
+        "onClick": "() => alert('Primary action clicked!')"
+      },
+      {
+        "required": true,
+        "label": "Secondary Action",
+        "primary": false,
+        "onClick": "() => alert('Secondary action clicked!')"
+      }
+    ]
+  }

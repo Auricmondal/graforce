@@ -8,8 +8,6 @@ import CustomBlogContent from './custom/CustomBlogContent';
 const CustomContent = () => {
   const { contentData } = useSidebar();
 
-  // console.log('CustomContent - contentData:', contentData);
-
   if (!contentData) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -40,7 +38,7 @@ const CustomContent = () => {
       switch (contentData.type) {
         case 'job':
           return <CustomJobContent contentData={contentData} />;
-        case 'specification':
+        case 'specifications':
           return <CustomSpecContent contentData={contentData} />;
         case 'blog':
           return <CustomBlogContent contentData={contentData} />;
