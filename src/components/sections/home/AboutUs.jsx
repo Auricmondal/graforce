@@ -11,7 +11,7 @@ import aboutUsImage from "@/assets/home/aboutimg.png";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomSpecData from "@/data/CustomSpecData.json";
+import CustomSpecData from "@/data/customSpecData.json";
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();

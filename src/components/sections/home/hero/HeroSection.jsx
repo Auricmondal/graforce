@@ -7,9 +7,9 @@ import { IoArrowDownCircleOutline } from "react-icons/io5";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import { sidebarUtils } from "@/utils/sidebarUtils";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomJobData from "@/data/CustomJobData.json"
-import CustomBlogData from "@/data/CustomBlogData.json";
-import CustomSpecData from "@/data/CustomSpecData.json";
+import CustomJobData from "@/data/customJobData.json"
+import CustomBlogData from "@/data/customBlogData.json";
+import CustomSpecData from "@/data/customSpecData.json";
 
 const HeroSection = () => {
   const { isOpen, closeModal, openModal } = useContactModal();

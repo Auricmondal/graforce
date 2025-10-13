@@ -307,11 +307,19 @@ const YouNeedUs = ({
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
+                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
+                      onClick={() => {
+                        showCustomContent(CustomJobData);
+                      }}
+                    >
                       Learn More
                     </PrimaryButton>
                     {doubleButton && (
-                      <PrimaryButton className="bg-black text-cst-neutral-2 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
+                      <PrimaryButton className="bg-black text-cst-neutral-2 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
+                        onClick={() => {
+                          showSpecificationsContent(CustomSpecData);
+                        }}
+                      >
                         Specifications
                       </PrimaryButton>
                     )}

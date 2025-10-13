@@ -2,7 +2,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CardWrapper from "@/wrappers/CardWrapper";
-import CustomBlogData from "@/data/CustomBlogData.json";
+import CustomBlogData from "@/data/customBlogData.json";
 
 export default function SolutionCard({ id, title, description, progress }) {
   const { showReadingContent } = useSidebarActions();
