@@ -3,7 +3,7 @@ import SectionLabel from '@/components/utils/badges/SectionLabel'
 import CardWrapper from '@/wrappers/CardWrapper'
 import SectionWrapper from '@/wrappers/SectionWrapper'
 import React from 'react'
-import GallerScroller from './GallerScroller'
+import GalleryScroller from './GallerScroller'
 
 const ProductGallery = () => {
   return (
@@ -18,8 +18,8 @@ const ProductGallery = () => {
           <SectionLabel className={`capitalize`} text={`Product Gallery`}/>
         </div>
         <div className="flex flex-col w-full gap-4">
-          <GallerScroller direction='left' />
-          <GallerScroller direction='right' />
+          <GalleryScroller direction='left' />
+          <GalleryScroller direction='right' />
         </div>
       </CardWrapper>
     </SectionWrapper>

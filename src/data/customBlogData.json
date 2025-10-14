@@ -1,0 +1,28 @@
+{
+  "type": "blog",
+  "content": {
+    "title": "Understanding React Hooks",
+    "author": "Jane Doe",
+    "date": "2024-09-15",
+    "blogContent": [
+      {
+        "subtitle": "The world of React Hooks",
+        "body": "React Hooks are functions that let you use state and other React features without writing a class. They were introduced in React 16.8 and have since become a fundamental part of modern React development. In this blog post, we'll explore the most commonly used hooks, including useState, useEffect, and useContext, and provide examples of how to use them effectively in your applications.",
+        "image": "/test/img/test-image.jpg"
+      },
+      {
+        "subtitle": "Why Use React Hooks?",
+        "body": "Hooks allow you to reuse stateful logic without changing your component hierarchy. This makes it easy to share hooks among many components or even with the community. Additionally, hooks can help you avoid complex patterns like render props and higher-order components, leading to cleaner and more maintainable code.",
+        "image": "/test/img/ServiceSolution1.jpg"
+      }
+    ]
+  },
+  "actions": [
+    {
+      "required": true,
+      "label": "Download Brochure",
+      "primary": true,
+      "onClick": "() => alert('Download brochure clicked!')"
+    }
+  ]
+}

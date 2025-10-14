@@ -10,6 +10,10 @@ import Tower from "@/assets/tower.png";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomJobData from "@/data/customJobData.json";
+import CustomSpecData from "@/data/customSpecData.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,6 +45,7 @@ const YouNeedUs = ({
   const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const triggerRef = useRef(null); // Store trigger reference
+  const { showCustomContent, showSpecificationsContent } = useSidebarActions();
 
   // Check if mobile
   useEffect(() => {
@@ -239,46 +244,22 @@ const YouNeedUs = ({
                   data-sector="0"
                 />
                 <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton
-                    className={`${
-                      sectionColorVariant === "default"
-                        ? "bg-cst-neutral-5 text-white"
-                        : "bg-cst-neutral-1 text-black"
-                    } rounded-xl py-4 px-6 w-full text-sm md:text-base ${
-                      sectionColorVariant === "blue"
-                        ? "border-2 border-transparent hover:shadow-md"
-                        : ""
-                    }`}
-                    hoverTextColor={
-                      sectionColorVariant === "blue"
-                        ? "cst-neutral-1"
-                        : "text-white"
-                    }
-                    hoverBgColor={
-                      sectionColorVariant === "blue"
-                        ? "cst-neutral-3"
-                        : "bg-primary"
-                    }
+                  <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                    hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                    hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                    onClick={() => {
+                      showCustomContent(CustomJobData);
+                    }}
                   >
                     Learn More
                   </PrimaryButton>
                   {doubleButton && (
-                    <PrimaryButton
-                      className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${
-                        sectionColorVariant === "blue"
-                          ? "border-2 border-transparent hover:shadow-md"
-                          : ""
-                      }`}
-                      hoverTextColor={
-                        sectionColorVariant === "blue"
-                          ? "cst-neutral-1"
-                          : "text-white"
-                      }
-                      hoverBgColor={
-                        sectionColorVariant === "blue"
-                          ? "cst-neutral-3"
-                          : "bg-primary"
-                      }
+                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                      hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                      hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                      onClick={() => {
+                        showSpecificationsContent(CustomSpecData);
+                      }}
                     >
                       Specifications
                     </PrimaryButton>
@@ -326,11 +307,19 @@ const YouNeedUs = ({
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
+                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
+                      onClick={() => {
+                        showCustomContent(CustomJobData);
+                      }}
+                    >
                       Learn More
                     </PrimaryButton>
                     {doubleButton && (
-                      <PrimaryButton className="bg-black text-cst-neutral-2 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base">
+                      <PrimaryButton className="bg-black text-cst-neutral-2 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
+                        onClick={() => {
+                          showSpecificationsContent(CustomSpecData);
+                        }}
+                      >
                         Specifications
                       </PrimaryButton>
                     )}

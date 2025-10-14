@@ -4,9 +4,9 @@ import AboutImage from "@/assets/home/aboutimg.png"
 import React from 'react'
 import gsap from 'gsap';
 
-const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }) => {
+const GalleryScroller = ({ className = "", direction = 'left', sideBlur = false }) => {
   const galleryScroll = React.useRef(null);
-  const galleryImages = [
+  const galleryImageStock = [
     AboutImage,
     AboutImage,
     AboutImage,
@@ -16,6 +16,8 @@ const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }
     AboutImage,
     AboutImage,
   ];
+
+  const galleryImages = [...galleryImageStock, ...galleryImageStock, ...galleryImageStock];
 
   React.useEffect(() => {
     const el = galleryScroll.current;
@@ -30,12 +32,17 @@ const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }
       el.dataset.duplicated = 'true';
     }
 
-    // distance is 50% because content was duplicated (move half the full strip)
-    const distancePercent = 50;
+    // distance is 100% because content was duplicated (move half the full strip)
+    const distancePercent = 100;
     const durationSeconds = galleryImages.length * 10; // increase for slower, decrease for faster
 
+    // Set initial position based on direction
+    if (direction === 'right') {
+      gsap.set(el, { xPercent: -distancePercent + 20 });
+    }
+
     const tween = gsap.to(el, {
-      xPercent: direction === 'left' ? -distancePercent : distancePercent,
+      xPercent: direction === 'left' ? -distancePercent : 0,
       ease: 'none',
       repeat: -1,
       duration: durationSeconds,
@@ -49,7 +56,7 @@ const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }
 
   return (
     <div className={`${className} relative overflow-hidden flex items-center shrink-0 rounded-xl`}>
-      <div ref={galleryScroll} className={`flex shrink-0 gap-2 ${direction === 'left' ? '-translate-x-[0%]' : '-translate-x-[80%]'}`}>
+      <div ref={galleryScroll} className="flex shrink-0 gap-2">
         {galleryImages.map((image, index) => (
           <div key={index} className='flex gap-2 shrink-0'>
             <Image src={image} alt={`Gallery Image ${index + 1}`} width={(index%2) ? 500 : 400} height={'400'} className='aspect-[2/1] object-cover rounded-lg ' />
@@ -64,4 +71,4 @@ const GallerScroller = ({ className = "", direction = 'left', sideBlur = false }
   )
 }
 
-export default GallerScroller
+export default GalleryScroller

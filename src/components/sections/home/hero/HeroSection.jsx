@@ -1,31 +1,31 @@
 "use client";
-import React from "react";
+import React, { act } from "react";
 import { useContactModal } from "@/contexts/ContactModalContext";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomJobData from "@/data/customJobData.json"
+import CustomBlogData from "@/data/customBlogData.json";
+import CustomSpecData from "@/data/customSpecData.json";
 
 const HeroSection = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
-
-  const handleContactModal = () => {
-    if (!isOpen) {
-      openModal();
-    } else {
-      closeModal();
-    }
-  };
+  const { showCustomContent, showSpecificationsContent, showReadingContent, showContactForm } = useSidebarActions();
 
   const handleLearnMore = (e) => {
     e.preventDefault();
-    const section = document.getElementById("solutions-section");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    showReadingContent(CustomBlogData);
+    // Scroll to solutions section
+    // const section = document.getElementById("solutions-section");
+    // if (section) {
+    //   section.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "start",
+    //   });
+    // }
   };
 
   return (
@@ -54,7 +54,29 @@ const HeroSection = () => {
           <div className="flex flex-col md:flex-row gap-4 w-full md:w-fit">
             <PrimaryButton
               className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
-              onClick={handleContactModal}
+              onClick={() => {
+                /*
+                * Show custom content in sidebar
+                */
+                // showCustomContent(CustomJobData);
+                /*
+                * Show reading content in sidebar
+                */
+                // showReadingContent(CustomBlogData);
+                /*
+                * Show specifications content in sidebar
+                */
+                // showSpecificationsContent(CustomSpecData);
+
+                /*
+                * Show contact form in sidebar
+                */
+                showContactForm();
+
+                // showCustomContent(CustomJobData);
+                // showReadingContent(CustomBlogData);
+                // showSpecificationsContent(CustomSpecData);
+              }}
             >
               Book a Demo <FaChevronRight />
             </PrimaryButton>

@@ -1,8 +1,11 @@
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CardWrapper from "@/wrappers/CardWrapper";
+import CustomBlogData from "@/data/customBlogData.json";
 
 export default function SolutionCard({ id, title, description, progress }) {
+  const { showReadingContent } = useSidebarActions();
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
@@ -55,7 +58,9 @@ export default function SolutionCard({ id, title, description, progress }) {
         <AnimatedHeader>
           <p className="text-black">{description}</p>
         </AnimatedHeader>
-        <PrimaryButton className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6">
+        <PrimaryButton className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6"
+          onClick={() => showReadingContent(CustomBlogData)}
+        >
           Learn More
         </PrimaryButton>
       </div>

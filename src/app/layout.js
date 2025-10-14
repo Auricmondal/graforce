@@ -9,8 +9,10 @@ import LoaderProvider from "@/wrappers/LoaderProvider";
 // import { LoaderContextProvider } from "@/contexts/LoaderContext";
 import ContactModal from "@/components/shared/navbar/nav/ContactModal";
 import { ContactModalProvider } from "@/contexts/ContactModalContext";
+import { SidebarProvider } from "@/contexts/SidebarContext";
 import { FooterProvider } from "@/contexts/FooterContext";
 import { ReactLenis } from "@/components/utils/lenis/LenisProvider";
+import DynamicSidebar from "@/components/shared/sidebar/DynamicSidebar";
 
 export const metadata = {
   title: "Graforce",
@@ -26,10 +28,11 @@ export default function RootLayout({ children }) {
       <ReactLenis root>
         {/* <LoaderContextProvider> */}
         <ContactModalProvider>
-          <FooterProvider>
-            <body
-              className={`${oxygen.variable} ${dmSans.variable} antialiased`}
-            >
+          <SidebarProvider>
+            <FooterProvider>
+              <body
+                className={`${oxygen.variable} ${dmSans.variable} antialiased`}
+              >
               {/* <LoaderProvider> */}
               <div className="relative z-10">
                 <Navbar />
@@ -43,9 +46,11 @@ export default function RootLayout({ children }) {
                 <Footer2 />
               </div>
               <ContactModal clickOutside={true} />
+              <DynamicSidebar />
               {/* </LoaderProvider> */}
             </body>
           </FooterProvider>
+          </SidebarProvider>
         </ContactModalProvider>
         {/* </LoaderContextProvider> */}
       </ReactLenis>
