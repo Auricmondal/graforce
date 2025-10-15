@@ -25,9 +25,9 @@ export default function WhyWeMatter() {
 
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    setTimeout(() => {
-      if (!triggerRef.current) return;
-
+    if (!triggerRef.current) return;
+    
+    requestAnimationFrame(() => {
       problemData.forEach((_, i) => {
         const stepElement = triggerRef.current.children[i];
         if (stepElement) {
