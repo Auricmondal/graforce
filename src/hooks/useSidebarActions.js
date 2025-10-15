@@ -10,6 +10,7 @@ export const useSidebarActions = () => {
     openContact, 
     openReading, 
     openSpecifications, 
+    openJob, 
     openCustom, 
     closeSidebar,
     toggleSidebar,
@@ -63,6 +64,16 @@ export const useSidebarActions = () => {
   };
 
   /**
+   * Opens sidebar with job content
+   * @param {Object} jobData - Content data for job
+   * @param {string} jobData.title - Job title
+   * @param {string} jobData.description - Job description
+   */
+  const showJobContent = (jobData) => {
+    openJob(jobData);
+  };
+
+  /**
    * Opens sidebar with custom content
    * @param {React.ReactNode|Object} customData - Custom content or component
    * @param {string} title - Sidebar title
@@ -91,6 +102,7 @@ export const useSidebarActions = () => {
     showContactForm,
     showReadingContent,
     showSpecificationsContent,
+    showJobContent,
     showCustomContent,
     hideSidebar,
     toggleNav,
@@ -102,6 +114,7 @@ export const useSidebarActions = () => {
     showContact: showContactForm,
     showReading: showReadingContent,
     showSpecifications: showSpecificationsContent,
+    showJob: showJobContent,
     showCustom: showCustomContent,
     hide: hideSidebar,
     toggle: toggleNav
