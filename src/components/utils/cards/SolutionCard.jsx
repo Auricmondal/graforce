@@ -27,7 +27,7 @@ export default function SolutionCard({ id, title, description, progress }) {
               cy="32"
               r={radius}
               stroke="#b3b3b3"
-              strokeWidth="1.5"
+              strokeWidth="2.5"
               fill="none"
             />
             <circle
@@ -35,7 +35,7 @@ export default function SolutionCard({ id, title, description, progress }) {
               cy="32"
               r={radius}
               stroke="#416DD2"
-              strokeWidth="1.5"
+              strokeWidth="2.5"
               fill="none"
               strokeDasharray={`${circumference}`}
               strokeDashoffset={`${offset}`}

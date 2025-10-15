@@ -10,7 +10,7 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
-import Chart from "@/components/utils/charts/Chart";
+import Chart from "@/components/utils/charts/TempChart";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,40 +25,46 @@ export default function WhyWeMatter() {
 
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    problemData.forEach((_, i) => {
-      const stepElement = triggerRef.current.children[i];
-      if (stepElement) {
-        ScrollTrigger.create({
-          trigger: stepElement,
-          start: "top 75%",
-          end: "bottom 25%",
-          scrub: 1,
-          onEnter: () => {
-            console.log(`Entering step ${i}`);
-            setActiveStep(i);
-            setScrollProgress(0); // Reset progress when entering new step
-          },
-          onEnterBack: () => {
-            console.log(`Entering back step ${i}`);
-            setActiveStep(i);
-            setScrollProgress(0); // Reset progress when entering back
-          },
-          onUpdate: (self) => {
-            // Only update progress for current step being scrolled
-            setScrollProgress(self.progress * 100);
-          },
-          onLeave: () => {
-            // When leaving a step, set progress to 100%
-            if (i < problemData.length - 1) {
-              setScrollProgress(100);
-            }
-          },
-          onLeaveBack: () => {
-            setScrollProgress(0);
-          },
-        });
-      }
-    });
+    setTimeout(() => {
+      if (!triggerRef.current) return;
+
+      problemData.forEach((_, i) => {
+        const stepElement = triggerRef.current.children[i];
+        if (stepElement) {
+          ScrollTrigger.create({
+            trigger: stepElement,
+            start: "top 80%",
+            end: "bottom 20%",
+            scrub: 1,
+            onEnter: () => {
+              setActiveStep(i);
+              setScrollProgress(0);
+            },
+            onEnterBack: () => {
+              setActiveStep(i);
+              setScrollProgress(0);
+            },
+            onUpdate: (self) => {
+              setScrollProgress(self.progress * 100);
+            },
+            onLeave: () => {
+              if (i < problemData.length - 1) {
+                setScrollProgress(100);
+              }
+            },
+            onLeaveBack: () => {
+              setScrollProgress(0);
+            },
+          });
+        }
+      });
+
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
   }, []);
 
   return (
@@ -81,9 +87,9 @@ export default function WhyWeMatter() {
             <div className="hidden md:flex flex-col h-full">
               <SolutionCard
                 key={activeStep}
-                id={problemData[activeStep].id}
-                title={problemData[activeStep].title}
-                description={problemData[activeStep].description}
+                id={problemData[activeStep]?.id}
+                title={problemData[activeStep]?.title}
+                description={problemData[activeStep]?.description}
                 progress={scrollProgress}
               />
             </div>
@@ -95,19 +101,17 @@ export default function WhyWeMatter() {
                   id={problem.id}
                   title={problem.title}
                   description={problem.description}
-                  progress={scrollProgress}
+                  progress={index === activeStep ? scrollProgress : 0}
                 />
               ))}
             </div>
-
-            {/* Solution card end */}
           </div>
         </div>
 
         {/* Right Side */}
         <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-[100dvh] md:min-h-0">
           <Chart
-            data={problemData[activeStep ?? 0].data}
+            data={problemData[activeStep ?? 0]?.data}
             dataIndex={activeStep ?? 0}
           />
         </div>
@@ -119,12 +123,15 @@ export default function WhyWeMatter() {
           <div
             key={i}
             className="flex items-center justify-center"
-            style={{ minHeight: "300vh" }}
+            style={{ minHeight: "250vh" }}
           >
-            {/* Individual scroll trigger zones */}
+            {/* Invisible scroll zone */}
           </div>
         ))}
       </div>
+
+      {/* Smooth transition buffer to prevent lag */}
+      <div className="hidden md:block h-[100vh] bg-secondary-light relative z-0"></div>
     </main>
   );
 }
