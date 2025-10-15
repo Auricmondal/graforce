@@ -13,7 +13,7 @@ const GraforceSolutionCard = ({ icon, title, description, className, onClick }) 
         <div className='flex flex-row items-center md:justify-between gap-4 w-[60%] md:w-[70%]'>
           <Image src={icon} alt={title} width={48} height={48} className='w-12 h-12' />
           <div className="flex md:mx-auto text-center">
-            <h3 className='text-2xl md:text-3xl font-semibold'>{title}</h3>
+            <h3 className='text-2xl md:text-3xl font-semibold capitalize'>{title}</h3>
           </div>
         </div>
         <div className='flex items-center justify-end w-[40%] md:w-[30%]'>
