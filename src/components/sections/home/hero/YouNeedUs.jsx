@@ -45,7 +45,7 @@ const YouNeedUs = ({
   const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showCustomContent, showSpecificationsContent } = useSidebarActions();
+  const { showCustomContent, showSpecificationsContent, showJobContent } = useSidebarActions();
 
   // Check if mobile
   useEffect(() => {
@@ -248,7 +248,7 @@ const YouNeedUs = ({
                     hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
                     hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                     onClick={() => {
-                      showCustomContent(CustomJobData);
+                      showJobContent(CustomJobData);
                     }}
                   >
                     Learn More
@@ -309,7 +309,7 @@ const YouNeedUs = ({
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
                     <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
                       onClick={() => {
-                        showCustomContent(CustomJobData);
+                        showJobContent(CustomJobData);
                       }}
                     >
                       Learn More
