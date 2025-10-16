@@ -12,6 +12,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import CardWrapper from '@/wrappers/CardWrapper';
 import { useScrollLock, useScrollPrevention } from '@/hooks/useScrollLock';
+import JobContent from './content/JobContent';
 
 const DynamicSidebar = () => {
   const {
@@ -94,6 +95,8 @@ const DynamicSidebar = () => {
         return <ReadingContent />;
       case SIDEBAR_TYPES.SPECIFICATIONS:
         return <SpecificationsContent />;
+      case SIDEBAR_TYPES.JOB:
+        return <JobContent />;
       case SIDEBAR_TYPES.CUSTOM:
         return <CustomContent />;
       default:
