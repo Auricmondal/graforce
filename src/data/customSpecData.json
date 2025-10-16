@@ -1,0 +1,43 @@
+{
+  "type": "specifications",
+  "content": {
+    "title": "Product Specifications",
+    "specifications": [
+      {
+        "subtitle": "Dimensions",
+        "details": "These are the physical dimensions of the product. They are important for understanding the size and fit of the product in various environments. Make sure to consider these dimensions when planning for installation or usage. Accurate measurements can help avoid issues related to space constraints and ensure optimal performance.",
+        "points": [
+          "It has a height of 150mm",
+          "It has a width of 75mm",
+          "It has a depth of 8mm"
+        ]
+      },
+      {
+        "subtitle": "Performance",
+        "details": "These are the performance specifications of the product. They provide insights into the processing power, memory capacity, and storage options available. High performance specifications are crucial for ensuring that the product can handle demanding tasks and applications efficiently. Consider these specifications when evaluating the product's suitability for your needs.",
+        "points": [
+          "It has a processor of Octa-core 2.0 GHz",
+          "It has RAM of 8GB",
+          "It has storage of 128GB"
+        ]
+      },
+      {
+        "subtitle": "Display",
+        "details": "These are the display specifications of the product. They provide insights into the screen technology, size, and resolution. High-quality display specifications are crucial for ensuring that the product can deliver an optimal visual experience. Consider these specifications when evaluating the product's suitability for your needs.",
+        "points": [
+          "It has a type of AMOLED",
+          "It has a size of 6.5 inches",
+          "It has a resolution of 1080 x 2400 pixels"
+        ]
+      }
+    ]
+  },
+  "actions": [
+    {
+      "required": false,
+      "label": "Download Spec Sheet",
+      "primary": true,
+      "onClick": "() => alert('Download spec sheet clicked!')"
+    }
+  ]
+}

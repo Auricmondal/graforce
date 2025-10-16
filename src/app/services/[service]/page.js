@@ -1,17 +1,63 @@
 import React from "react";
-import Hero from "@/components/sections/services/Hero";
-import Problem from "@/components/sections/services/Problem";
-import Solution from "@/components/sections/services/Solutions";
-import SolutionWorks from "@/components/sections/services/SolutionWorks";
-import Testimonials from "@/components/sections/services/Testimonials";
-import FAQ from "@/components/sections/services/FAQ";
-import OtherServices from "@/components/sections/services/OtherServices";
-import News from "@/components/sections/services/News";
-import FinalCTA from "@/components/shared/finalCta/FinalCTA";
-
 import { notFound } from "next/navigation";
 
-const ALLOWED_SLUGS = ["hydrogen-production", "water-purification", "energy-generation"];
+import Hero from "@/components/sections/services/Hero";
+import Problem from "@/components/sections/services/Problem";
+import Achievements from "@/components/sections/services/Achievements";
+import WhyWorldNeedsUs from "@/components/sections/services/WhyWorldNeedsUs";
+
+import SolutionWorks from "@/components/shared/solutionWorks/SolutionWorks";
+import ProductGallery from "@/components/shared/gallery/ProductGallery";
+import Testimonials from "@/components/shared/testimonials/Testimonials";
+import OtherServices from "@/components/shared/otherServices/OtherServices";
+import FinalCTA from "@/components/shared/finalCta/FinalCTA";
+import News from "@/components/shared/news/News";
+import FAQ from "@/components/shared/faq/FAQ";
+
+const ALLOWED_SLUGS = [
+  "hydrogen-production",
+  "water-purification",
+  "energy-generation",
+];
+
+const serviceComponents = {
+  "hydrogen-production": {
+    hero: true,
+    problem: true,
+    achievements: true,
+    productGallery: true,
+    whyWorldNeedsUs: true,
+    otherServices: true,
+    solutionWorks: true,
+    testimonials: true,
+    faq: true,
+    news: true,
+  },
+  "water-purification": {
+    hero: true,
+    problem: false,
+    achievements: false,
+    productGallery: false,
+    whyWorldNeedsUs: false,
+    otherServices: true,
+    solutionWorks: false,
+    testimonials: true,
+    faq: true,
+    news: true,
+  },
+  "energy-generation": {
+    hero: true,
+    problem: true,
+    achievements: false,
+    productGallery: false,
+    whyWorldNeedsUs: false,
+    otherServices: true,
+    solutionWorks: true,
+    testimonials: false,
+    faq: false,
+    news: true,
+  },
+};
 
 export default async function ServicePage({ params }) {
   const { service } = await params;
@@ -20,16 +66,20 @@ export default async function ServicePage({ params }) {
     notFound();
   }
 
+  const config = serviceComponents[service];
+
   return (
     <>
-      <Hero />
-      <Problem />
-      <Solution />
-      <SolutionWorks />
-      <Testimonials />
-      <FAQ />
-      <OtherServices />
-      <News />
+      {config.hero && <Hero />}
+      {config.problem && <Problem />}
+      {config.achievements && <Achievements />}
+      {config.productGallery && <ProductGallery />}
+      {config.whyWorldNeedsUs && <WhyWorldNeedsUs />}
+      {config.solutionWorks && <SolutionWorks />}
+      {config.otherServices && <OtherServices />}
+      {config.testimonials && <Testimonials />}
+      {config.faq && <FAQ />}
+      {config.news && <News />}
       <FinalCTA />
     </>
   );

@@ -1,150 +1,97 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import ScrollReveal from "@/wrappers/ScrollReveal";
-import Path from "@/assets/home/hero/Path.png";
-import Rectangle from "@/assets/home/hero/Rectangle-5.png";
-import Bulb from "@/assets/bulb.png";
-import FloatingTip from "@/components/utils/heroutils/FloatingTip";
-import FloatingBolt from "@/components/utils/heroutils/FloatingBolt";
-import FloatupButton from "@/components/utils/buttons/FloatupButton";
-import ElevatedButton from "@/components/utils/buttons/ElevatedButton";
-import Customer1 from "@/assets/home/hero/Ellipse-10.png";
-import Customer2 from "@/assets/home/hero/Ellipse-11.png";
-import Customer3 from "@/assets/home/hero/Ellipse-15.png";
+import React, { act } from "react";
 import { useContactModal } from "@/contexts/ContactModalContext";
+import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { FaChevronRight } from "react-icons/fa";
+import { IoArrowDownCircleOutline } from "react-icons/io5";
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomJobData from "@/data/customJobData.json"
+import CustomBlogData from "@/data/customBlogData.json";
+import CustomSpecData from "@/data/customSpecData.json";
 
 const HeroSection = () => {
   const { isOpen, closeModal, openModal } = useContactModal();
-
-  const handleContactModal = () => {
-    if (!isOpen) {
-      openModal();
-    } else {
-      closeModal();
-    }
-  };
+  const { showCustomContent, showSpecificationsContent, showReadingContent, showContactForm } = useSidebarActions();
 
   const handleLearnMore = (e) => {
     e.preventDefault();
-    const section = document.getElementById("solutions-section");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  const CustomerAvatar = ({ src, className = "" }) => {
-    return (
-      <Image
-        src={src}
-        alt="Avatar"
-        className={`w-10 h-10 rounded-full ${className}`}
-      />
-    );
+    showReadingContent(CustomBlogData);
+    // Scroll to solutions section
+    // const section = document.getElementById("solutions-section");
+    // if (section) {
+    //   section.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "start",
+    //   });
+    // }
   };
 
   return (
-    <div>
-      <div className="flex items-center justify-center h-screen relative overflow-hidden bg-gradient-to-br from-white to-primary-300">
-        <Image
-          src={Path}
-          alt="Path"
-          className="absolute -bottom-1/5 left-0 min-h-full object-cover object-right"
-        />
-        {/* <Image
-          src={Rectangle}
-          width={500}
-          alt="Rectangle"
-          className="absolute top-0 right-0 object-contain"
-        /> */}
-        <Image
-          src={Bulb}
-          width={200}
-          alt="Rectangle"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2"
-        />
+    <div className="flex items-center justify-center h-screen relative overflow-hidden bg-cst-neutral-1 p-2">
+      <video
+        id="video-section"
+        src="/hero-video.webm"
+        playsInline
+        muted
+        autoPlay
+        loop
+        className="w-full h-full rounded-lg object-cover"
+      />
 
-        <div className="z-10 w-full mb-8">
-          <ScrollReveal>
-            <div className="flex flex-col gap-6 sm:gap-12 items-center px-4 sm:px-0">
-              <h1
-                id="hero-title"
-                className="text-4xl md:text-[6vw] text-center"
-              >
-                Fueling a Carbon Free Future
-              </h1>
-              <div className="flex gap-2 sm:gap-4 flex-col sm:flex-row w-full sm:w-auto ">
-                <FloatupButton
-                  className=" cursor-pointer !w-full sm:!w-auto"
-                  icon={"❯"}
-                  onClick={handleContactModal}
-                >
-                  Book a Demo
-                </FloatupButton>
-                <ElevatedButton
-                  className="!w-full sm:!w-auto"
-                  onClick={handleLearnMore}
-                >
-                  Learn More
-                </ElevatedButton>
-              </div>
-            </div>
-          </ScrollReveal>
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center lg:items-start justify-between text-center lg:text-start text-white">
+        <div className="flex-3 flex items-center">
+          <h1 className="text-[clamp(40px,10vw,128px)] font-semibold max-w-8xl w-full lg:px-6 leading-[110%]">
+            <AnimatedHeader delay={0.8}>
+              Powering the Future with{" "}
+              <span className="text-primary">Hydrogen</span>
+            </AnimatedHeader>
+          </h1>
         </div>
-        <FloatingTip
-          className="top-30 right-4 md:right-1/8 -translate-y-10 md:translate-0"
-          delay={1}
-        >
-          • 100% Carbon Value
-        </FloatingTip>
-        <FloatingTip
-          className="top-85 left-4 md:left-1/8 -translate-y-10 md:translate-0"
-          delay={0.2}
-        >
-          • 0% CO₂ Costs
-        </FloatingTip>
-        <FloatingTip
-          className="bottom-20 sm:bottom-40 left-1/2 -translate-y-10 md:translate-0"
-          delay={0.6}
-        >
-          • 50% Energy Savings
-        </FloatingTip>
+        <div className="flex-1 lg:flex-0 flex flex-col lg:flex-row items-center lg:items-end lg:justify-between w-full px-6 lg:pb-8 gap-4">
+          <div className="flex flex-col md:flex-row gap-4 w-full md:w-fit">
+            <PrimaryButton
+              className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
+              onClick={() => {
+                /*
+                * Show custom content in sidebar
+                */
+                // showCustomContent(CustomJobData);
+                /*
+                * Show reading content in sidebar
+                */
+                // showReadingContent(CustomBlogData);
+                /*
+                * Show specifications content in sidebar
+                */
+                // showSpecificationsContent(CustomSpecData);
 
-        <FloatingBolt
-          className="top-16 md:top-12 right-1/16"
-          size="w-6 md:w-12 h-6 md:h-12"
-        />
-        <FloatingBolt
-          className="top-30  left-1/6"
-          size="w-10 md:w-16 h-10 md:h-16"
-        />
-        <FloatingBolt className="bottom-30 left-1/20" />
-        <FloatingBolt className="bottom-70 right-1/4" />
-        <FloatingBolt className="bottom-10 right-1/6" size="w-8 h-8" />
+                /*
+                * Show contact form in sidebar
+                */
+                showContactForm();
 
-        <div
-          className="
-              absolute z-2 bottom-10 
-              left-1/2 -translate-x-1/2  
-              md:left-auto md:right-4 md:translate-x-0 
-              flex flex-col gap-4 items-center 
-              bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 shadow-lg
-            "
-        >
-          <h4 className="text-sm text-center font-light">Happy Customers</h4>
-          <div className="flex flex-col md:flex-col items-center gap-4">
-            <div className="flex -space-x-4">
-              <CustomerAvatar src={Customer1} />
-              <CustomerAvatar src={Customer2} />
-              <CustomerAvatar src={Customer3} />
-            </div>
-            <p className="text-3xl md:text-4xl text-primary-400 font-bold">
-              39+
-            </p>
+                // showCustomContent(CustomJobData);
+                // showReadingContent(CustomBlogData);
+                // showSpecificationsContent(CustomSpecData);
+              }}
+            >
+              Book a Demo <FaChevronRight />
+            </PrimaryButton>
+            <PrimaryButton
+              className="bg-black/30 backdrop-blur-[9.7px] text-white py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl transition font-medium lg:text-2xl text-sm sm:text-base w-full md:w-fit"
+              onClick={handleLearnMore}
+            >
+              Learn More
+            </PrimaryButton>
           </div>
+
+          <p className="cursor-pointer flex gap-1 items-center w-fit">
+            Scroll Down{" "}
+            <IoArrowDownCircleOutline className="text-xl animate-bounce" />
+          </p>
         </div>
       </div>
     </div>
