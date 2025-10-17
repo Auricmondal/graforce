@@ -154,16 +154,16 @@ const CaseStudies = () => {
           variant="custom"
           color="custom"
           align="center"
-          className={`p-2 gap-2 h-full bg-[linear-gradient(269.79deg,_#5527D8_0.13%,_#2D1572_99.77%)]`}
+          className={`gap-2 h-full`}
         >
           {/* Desktop: Animated single section */}
-          <div className="hidden lg:grid grid-cols-2 gap-2 w-full h-full">
+          <div className="hidden lg:grid grid-cols-2 gap-2 w-full h-full bg-[linear-gradient(269.79deg,_#5527D8_0.13%,_#2D1572_99.77%)] p-2 rounded-2xl">
             <div className="flex flex-col gap-2">
               <div className="w-full">
                 <CardWrapper
                   color="transparent"
                   align="left"
-                  className="gap-2 border border-[#5426D6]"
+                  className="gap-2 border border-[#5426D6] !rounded-2xl"
                 >
                   <SectionLabel
                     text="The Impact Opportunity"
@@ -180,7 +180,7 @@ const CaseStudies = () => {
               <CardWrapper
                 color="transparent"
                 align="left"
-                className="flex flex-col justify-between items-start gap-2 sm:gap-4 p-4 h-full border border-[#5426D6]"
+                className="flex flex-col !rounded-2xl justify-between items-start gap-2 sm:gap-4 p-4 h-full border border-[#5426D6]"
               >
                 {/* animated label controlled via labelRef */}
                 <div
@@ -221,13 +221,30 @@ const CaseStudies = () => {
           </div>
 
           {/* Mobile: Stacked all sections */}
-          <div className="lg:hidden flex flex-col gap-4 w-full">
-            {cases.map((sector) => (
-              <div key={sector.id} className="grid grid-cols-1 w-full gap-4">
+          <div className="lg:hidden flex flex-col gap-2 w-full">
+            {cases.map((sector, index) => (
+              <div key={sector.id} className={`grid grid-cols-1 w-full gap-2 ${index%2 === 1 ?  "bg-[linear-gradient(269.79deg,_#416DD2_0.13%,_#204088_99.77%)]" :"bg-[linear-gradient(269.79deg,_#5527D8_0.13%,_#2D1572_99.77%)]"} p-2 rounded-2xl`}>
                 <CardWrapper
                   color="transparent"
                   align="left"
-                  className="justify-between items-center gap-2 sm:gap-4 p-4 text-left border border-[#5426D6]"
+                  className={`gap-2 border border-[#5426D6] !rounded-2xl`}
+                >
+                  <SectionLabel
+                    text="The Impact Opportunity"
+                    textColor="text-white"
+                  />
+                  <h2 className={`text-xl capitalize text-white`}>
+                    <AnimatedHeader>
+                      Graforce&apos;s technology aligns with global energy and
+                      climate goals.
+                    </AnimatedHeader>
+                  </h2>
+                </CardWrapper>
+
+                <CardWrapper
+                  color="transparent"
+                  align="left"
+                  className="justify-between items-center gap-2 sm:gap-4 p-4 text-left border border-[#5426D6] !rounded-2xl"
                 >
                   <div className="text-left flex items-start">
                     <SectionLabel
