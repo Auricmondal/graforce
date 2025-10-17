@@ -12,18 +12,18 @@ export default function MarketEntry() {
     >
       {/* Large Left Box */}
       <div className="w-full lg:w-[500px] rounded-lg flex flex-col justify-end relative overflow-hidden bg-[linear-gradient(90.04deg,_#102044_0.03%,_#2850AA_99.96%)] backdrop-blur-[9.300000190734863px] h-1/2 lg:h-full pt-8 pb-16 px-6 gap-[10px]">
-        <div className="absolute top-0 left-0 w-full h-full ">
+        <div className="absolute top-0 left-0 w-full h-full">
           <Image
             src={globeImg}
             alt="Globe"
-            className="object-cover select-none absolute"
-            fill
+            className="object-contain select-none absolute"
             style={{
               transform: "rotate(140deg)",
               opacity: 1,
-              scale: "2",
-              top: "22.91%",
+              scale: "3",
+              top: "42.91%",
               left: "-20%",
+              objectFit: "contain"
             }}
           />
         </div>
