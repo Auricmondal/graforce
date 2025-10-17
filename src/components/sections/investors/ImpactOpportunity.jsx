@@ -40,7 +40,7 @@ const impactCardData = [
   },
 ];
 
-const GraforceSolution = () => {
+const ImpactOpportunity = () => {
   return (
     <div>
       <SectionWrapper sectionClassName="bg-cst-neutral-1" className="space-y-2">
@@ -68,4 +68,4 @@ const GraforceSolution = () => {
   );
 };
 
-export default GraforceSolution;
+export default ImpactOpportunity;
