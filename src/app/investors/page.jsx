@@ -1,14 +1,18 @@
-import Hero from '@/components/sections/investors/Hero'
-import GraforceSolution from '@/components/sections/investors/ImpactOpportunity'
-import React from 'react'
+import React from "react";
+
+import CaseStudies from "@/components/sections/investors/CaseStudies";
+import Hero from "@/components/sections/investors/Hero";
+import ImpactOpportunity from "@/components/sections/investors/ImpactOpportunity";
+
 
 const Investors = () => {
   return (
     <div>
-        <Hero/>
-        <GraforceSolution />
+      <Hero />
+      <ImpactOpportunity />
+      <CaseStudies />
     </div>
-  )
-}
+  );
+};
 
-export default Investors
+export default Investors;
