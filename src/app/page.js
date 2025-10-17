@@ -7,7 +7,7 @@ import WhatDoWeDo from "@/components/sections/home/WhatDoWeDo";
 import YouNeedUs from "@/components/sections/home/hero/YouNeedUs";
 import Tower from "@/assets/tower.png";
 
-const Home = async () => {
+const Home = () => {
   return (
     <>
       <Hero />

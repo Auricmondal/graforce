@@ -12,12 +12,34 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomSpecData from "@/data/customSpecData.json";
+import client from "@/lib/sanityClient";
+import urlFor from "@/lib/urlFor";
+
+const GROQ_QUERY = `
+  *[_type == "home"][0]{
+    "aboutUs": aboutUsSection{
+      title,
+      foundation,
+      location,
+      companyName,
+      description,
+      buttonText,
+      buttonUrl,
+      image,
+      brandLogos[] {
+        name,
+        logo
+      }
+    }
+  }
+`;
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
+
   const brandLogoBase = "/brand/img/";
 
-  // Hardcoded fallback logos
+  // Default fallback data
   const fallbackLogos = [
     { src: `${brandLogoBase}digicert_icon.png.webp`, name: "Brand 1" },
     { src: `${brandLogoBase}Group.webp`, name: "Brand 2" },
@@ -27,50 +49,68 @@ const AboutUs = () => {
     { src: `${brandLogoBase}Vector.webp`, name: "Brand 6" },
   ];
 
-  const [brandLogos, setBrandLogos] = useState(fallbackLogos); // default = fallback
+  const [brandLogos, setBrandLogos] = useState(fallbackLogos);
   const [foundation, setFoundation] = useState(2012);
   const [location, setLocation] = useState("Berlin Adlershof");
+  const [title, setTitle] = useState("Trusted. Proven. Driven.");
+  const [companyName, setCompanyName] = useState("graforce");
+  const [description, setDescription] = useState(
+    "Power-to-X plants generate CO₂-free or CO₂-negative hydrogen and synthetic raw materials."
+  );
+  const [buttonText, setButtonText] = useState("Learn More");
+  const [buttonUrl, setButtonUrl] = useState("#");
+  const [mainImage, setMainImage] = useState(aboutUsImage);
   const [loading, setLoading] = useState(true);
 
-  const API_URL = "/api/brands"; // replace with your real endpoint
-
+  // 🧠 Fetch data from Sanity
   useEffect(() => {
-    const fetchLogos = async () => {
+    const fetchData = async () => {
       try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error("Failed to fetch logos");
+        const sanityData = await client.fetch(GROQ_QUERY);
+        const about = sanityData?.aboutUs;
 
-        const data = await res.json();
+        if (about) {
+          setTitle(about.title || title);
+          setFoundation(about.foundation || foundation);
+          setLocation(about.location || location);
+          setCompanyName(about.companyName || companyName);
+          setDescription(about.description || description);
+          setButtonText(about.buttonText || buttonText);
+          setButtonUrl(about.buttonUrl || buttonUrl);
+          setMainImage(
+            about.image ? urlFor(about.image).url() : aboutUsImage
+          );
 
-        // If API returns logos, use them; else use fallback
-        if (data && Array.isArray(data.logos) && data.logos.length > 0) {
-          setBrandLogos(data.logos);
-        } else {
-          setBrandLogos(fallbackLogos);
+          if (Array.isArray(about.brandLogos) && about.brandLogos.length > 0) {
+            const logos = about.brandLogos.map((logo) => ({
+              name: logo.name,
+              src: logo.logo ? urlFor(logo.logo).url() : `${brandLogoBase}default-logo.webp`,
+            }));
+            setBrandLogos(logos);
+          }
         }
       } catch (err) {
-        console.warn("API fetch failed, using fallback logos:", err);
-        setBrandLogos(fallbackLogos);
+        console.warn("⚠️ Failed to fetch from Sanity. Using fallback data.", err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchLogos();
+    fetchData();
   }, []);
 
-  // Local fallback for individual broken images
+  // 🖼️ Handle broken logos
   const handleImgError = (e) => {
     e.target.src = `${brandLogoBase}default-logo.webp`;
   };
 
   return (
     <SectionWrapper
-      // maxWidth="2000px"
-      className="bg-[#E6E6E6] text-black space-y-10 "
+      className="bg-[#E6E6E6] text-black space-y-10"
       sectionStyle={{ backgroundColor: "#E6E6E6" }}
     >
       <div className="space-y-4">
+        {/* Header Section */}
         <CardWrapper
           className="gap-2"
           variant="featured"
@@ -80,11 +120,12 @@ const AboutUs = () => {
           <SectionLabel text="About Us" />
           <AnimatedHeader>
             <h2 className="text-2xl md:text-3xl md:text-[48px] tracking-tight">
-              Trusted. Proven. Driven.
+              {title}
             </h2>
           </AnimatedHeader>
         </CardWrapper>
 
+        {/* Brand Logos */}
         {loading ? (
           <p className="text-center text-gray-500">Loading brand logos...</p>
         ) : (
@@ -107,6 +148,8 @@ const AboutUs = () => {
             ))}
           </div>
         )}
+
+        {/* About Section */}
         <CardWrapper
           variant="custom"
           align="center"
@@ -124,47 +167,46 @@ const AboutUs = () => {
                 {location}
               </div>
             </div>
+
             <div className="flex-row pt-6 sm:pt-10 w-full">
-              {/* Partners + Image Section */}
               <section className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start w-full h-full">
-                {/* Partners */}
+                {/* Left Section */}
                 <div className="h-full">
                   <div className="w-full h-full flex flex-col justify-between space-y-[70px] sm:space-y-[70px]">
                     <div className="text-[48px] text-left capitalize font-bold">
-                      <h2 className="">
-                        <AnimatedHeader>graforce</AnimatedHeader>
+                      <h2>
+                        <AnimatedHeader>{companyName}</AnimatedHeader>
                       </h2>
                     </div>
-                    <div className="">
+                    <div>
                       <AnimatedHeader>
                         <p className="text-black text-base text-left">
-                          Power-to-X plants generate CO<sub>2</sub>-free or CO
-                          <sub>2</sub>-negative hydrogen and synthetic raw
-                          materials. The technology leader in sustainable
-                          solutions and negative emission technologies holds
-                          three patents for applying different plasma processes
-                          (high-frequency discharge, dielectric barrier
-                          discharge and coronal low-frequency discharge).
-                          Production capacities: Methane plasmalysis expansion
-                          to up to 50 MW/a. through customers and partners.{" "}
+                          {description}
                         </p>
                       </AnimatedHeader>
                       <div className="pt-6">
-                        <PrimaryButton className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full" onClick={() => {showSpecificationsContent(CustomSpecData)}}>
-                          Learn More
+                        <PrimaryButton
+                          className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full"
+                          onClick={() =>
+                            buttonUrl
+                              ? window.open(buttonUrl, "_blank")
+                              : showSpecificationsContent(CustomSpecData)
+                          }
+                        >
+                          {buttonText}
                         </PrimaryButton>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Technology Image */}
+                {/* Right Image */}
                 <div className="relative w-full h-full order-first md:order-last">
                   <div className="absolute w-[100%] h-[100%] bg-cst-neutral-2 rounded-3xl z-0 translate-3"></div>
                   <div className="relative z-10 rounded-3xl overflow-hidden w-[100%] h-[100%]">
                     <Image
-                      src={aboutUsImage}
-                      alt="Graforce Technology"
+                      src={mainImage}
+                      alt={`${companyName} Technology`}
                       width={600}
                       height={450}
                       className="object-cover w-full h-full aspect-[3/4] sm:aspect-auto"
