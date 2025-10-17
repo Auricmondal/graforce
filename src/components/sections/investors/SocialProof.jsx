@@ -6,7 +6,7 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 
-const AboutUs = () => {
+const SocialProof = () => {
   const brandLogoBase = "/brand/img/";
 
   // Hardcoded fallback logos
@@ -37,7 +37,7 @@ const AboutUs = () => {
           align="center"
         >
           <SectionLabel text="Social Proof" />
-          <h2 className="text-2xl lg:text-5xl md:text-[48px] tracking-tight">
+          <h2 className="text-2xl lg:text-5xl md:text-[48px] tracking-tight font-medium">
             <AnimatedHeader>Recognized by Industry Leaders</AnimatedHeader>
           </h2>
 
@@ -71,4 +71,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default SocialProof;

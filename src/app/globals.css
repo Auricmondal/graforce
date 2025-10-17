@@ -49,6 +49,7 @@
   /* Font */
   --font-dm-sans: var(--font-dm-sans);
   --font-oxygen: var(--font-oxygen);
+  --font-dancing-script: var(--font-dancing-script);
 }
 
 body {
