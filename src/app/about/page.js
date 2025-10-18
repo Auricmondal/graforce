@@ -4,7 +4,7 @@ import OurFounder from '@/components/sections/about/OurFounder'
 import OurTeam from '@/components/sections/about/OurTeam'
 import React from 'react'
 
-const AboutUs = () => {
+const About = () => {
   return (
     <div>
       <Hero />
@@ -15,4 +15,4 @@ const AboutUs = () => {
   )
 }
 
-export default AboutUs
+export default About
