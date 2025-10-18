@@ -52,11 +52,11 @@ const HeroBlogs = () => {
           On this page, we regularly share the latest updates about our company
           and our groundbreaking plasma technology.
         </p>
-        <a href="#">
+        {/* <a href="#">
           <p className="hero-text text-xl text-white lg:max-w-[60%] mx-auto">
             Follow us on <FaLinkedin className="inline mr-2" />
           </p>
-        </a>
+        </a> */}
       </div>
     </SectionWrapper>
   );
