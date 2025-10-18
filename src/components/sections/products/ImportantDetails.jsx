@@ -15,7 +15,7 @@ import { leftTypes } from "./ImpDetailsLefts";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ImportantDetails() {
+export default function ImportantDetails({ sectionLabel = "Important Details", sectionHeader = "Technical And Other Details About Plasmalyzer" }) {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
@@ -76,10 +76,10 @@ export default function ImportantDetails() {
         className="rounded-lg gap-2 !bg-secondary-light py-8 px-4 lg:px-6"
         variant="custom"
       >
-        <SectionLabel text={"Important Details"} />
+        <SectionLabel text={sectionLabel} />
         <AnimatedHeader>
           <div className="text-xl">
-            Technical And Other Details About Plasmalyzer
+            {sectionHeader}
           </div>
         </AnimatedHeader>
       </CardWrapper>

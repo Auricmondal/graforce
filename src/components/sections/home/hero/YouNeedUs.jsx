@@ -39,6 +39,7 @@ const YouNeedUs = ({
   sectionColorVariant = "default",
   sectionColor = "",
   doubleButton = false,
+  fullWidthHeader = true,
 }) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
@@ -170,23 +171,21 @@ const YouNeedUs = ({
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <div
         ref={sectionRef}
-        className={`flex items-start ${
-          isMobile ? "h-fit" : "h-fit md:h-screen"
-        }`}
+        className={`flex items-start ${isMobile ? "h-fit" : "h-fit md:h-screen"
+          }`}
       >
         <CardWrapper
           variant="custom"
           color={sectionColorVariant}
           align="center"
-          className={`p-2 gap-2 h-full ${
-            sectionColorVariant === "custom" ? sectionColor : ""
-          }`}
+          className={`p-2 gap-2 h-full ${sectionColorVariant === "custom" ? sectionColor : ""
+            }`}
         >
-          <div className="w-full">
+          {fullWidthHeader && <div className="w-full">
             <CardWrapper
               color="transparent"
               align="left"
-              className="gap-2 border border-cst-neutral-2"
+              className={`gap-2 border ${fullWidthHeader ? "border-cst-neutral-2" : "!border-primary"}`}
             >
               <SectionLabel
                 text={sectionHeader}
@@ -199,76 +198,108 @@ const YouNeedUs = ({
                 invertIcon={sectionColorVariant === "blue"}
               />
               <AnimatedHeader
-                className={`text-xl capitalize ${
-                  sectionColorVariant === "default"
-                    ? "text-black"
-                    : "text-white"
-                }`}
+                className={`text-xl capitalize ${sectionColorVariant === "default"
+                  ? "text-black"
+                  : "text-white"
+                  }`}
               >
                 <h2
-                  className={`text-xl capitalize ${
-                    sectionColorVariant === "default"
-                      ? "text-black"
-                      : "text-white"
-                  }`}
+                  className={`text-xl capitalize ${sectionColorVariant === "default"
+                    ? "text-black"
+                    : "text-white"
+                    }`}
                 >
                   {sectionSubHeader}
                 </h2>
               </AnimatedHeader>
             </CardWrapper>
-          </div>
+          </div>}
 
           {/* Desktop: Animated single section */}
           <div className="hidden md:grid grid-cols-2 gap-2 w-full h-full">
-            <CardWrapper
-              color="transparent"
-              align="left"
-              className="flex flex-col justify-between items-start gap-2 sm:gap-4 p-4 h-full border border-cst-neutral-2"
-            >
-              {/* animated label controlled via labelRef */}
-              <div
-                ref={labelRef}
-                className={`capitalize ${
-                  sectionColorVariant === "default"
+            <div className="flex flex-col gap-2">
+              {!fullWidthHeader && <div className="w-full">
+                <CardWrapper
+                  color="transparent"
+                  align="left"
+                  className={`gap-2 border ${fullWidthHeader ? "border-cst-neutral-2" : "!border-primary"}`}
+                >
+                  <SectionLabel
+                    text={sectionHeader}
+                    textColor={
+                      sectionColorVariant === "default"
+                        ? "text-black"
+                        : "text-white"
+                    }
+                    icon={true}
+                    invertIcon={sectionColorVariant === "blue"}
+                  />
+                  <AnimatedHeader
+                    className={`text-xl capitalize ${sectionColorVariant === "default"
+                      ? "text-black"
+                      : "text-white"
+                      }`}
+                  >
+                    <h2
+                      className={`text-xl capitalize ${sectionColorVariant === "default"
+                        ? "text-black"
+                        : "text-white"
+                        }`}
+                    >
+                      {sectionSubHeader}
+                    </h2>
+                  </AnimatedHeader>
+                </CardWrapper>
+              </div>}
+              <CardWrapper
+                color="transparent"
+                align="left"
+                className={`flex flex-col justify-between items-start gap-2 sm:gap-4 p-4 h-full border ${fullWidthHeader ? "border-cst-neutral-2" : "!border-primary"}`}
+              >
+                {/* animated label controlled via labelRef */}
+                <div
+                  ref={labelRef}
+                  className={`capitalize ${sectionColorVariant === "default"
                     ? "text-black"
                     : "text-white"
-                }`}
-                aria-hidden={false}
-              >
-                {sectorsData[0].label}
-              </div>
-              <div className="">
-                <h3
-                  ref={needRef}
-                  className="text-white/10 text-base font-semibold md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
-                  data-sector="0"
-                />
-                <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                  <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
-                    hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
-                    hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
-                    onClick={() => {
-                      showJobContent(CustomJobData);
-                    }}
-                  >
-                    Learn More
-                  </PrimaryButton>
-                  {doubleButton && (
-                    <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                    }`}
+                  aria-hidden={false}
+                >
+                  {sectorsData[0].label}
+                </div>
+                <div className="">
+                  <h3
+                    ref={needRef}
+                    className="text-white/10 text-base font-semibold md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
+                    data-sector="0"
+                  />
+                  <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
+                    <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
                       hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
                       hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
                       onClick={() => {
-                        showSpecificationsContent(CustomSpecData);
+                        showJobContent(CustomJobData);
                       }}
                     >
-                      Specifications
+                      Learn More
                     </PrimaryButton>
-                  )}
+                    {doubleButton && (
+                      <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                        hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                        hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                        onClick={() => {
+                          showSpecificationsContent(CustomSpecData);
+                        }}
+                      >
+                        Specifications
+                      </PrimaryButton>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </CardWrapper>
+              </CardWrapper>
+            </div>
             <div
-              className={`flex items-center justify-center p-0 w-full h-full`}
+              className={`flex items-center justify-center p-0 w-full h-full ${fullWidthHeader ? "" : "border !border-primary rounded-lg"}`}
             >
               <Image
                 src={sectionImage}
@@ -299,11 +330,10 @@ const YouNeedUs = ({
                     />
                   </div>
                   <h3
-                    className={`text-base font-semibold md:text-lg pt-[150px] ${
-                      sectionColorVariant === "default"
-                        ? "text-black"
-                        : "text-white"
-                    }`}
+                    className={`text-base font-semibold md:text-lg pt-[150px] ${sectionColorVariant === "default"
+                      ? "text-black"
+                      : "text-white"
+                      }`}
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
