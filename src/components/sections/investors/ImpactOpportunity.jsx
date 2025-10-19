@@ -4,7 +4,7 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import thunderImg from "@/assets/investor/thunder.webp";
 import React from "react";
-import ImpactCard from "./ImpactCard";
+import ImpactCard from "../../utils/cards/HoverCard";
 
 const impactCardData = [
   {

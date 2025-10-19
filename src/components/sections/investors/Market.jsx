@@ -11,7 +11,7 @@ export default function MarketEntry() {
       className="flex w-full gap-2 flex-col lg:flex-row h-full"
     >
       {/* Large Left Box */}
-      <div className="w-full lg:w-[500px] rounded-lg flex flex-col justify-end relative overflow-hidden bg-[linear-gradient(90.04deg,_#102044_0.03%,_#2850AA_99.96%)] backdrop-blur-[9.300000190734863px] h-1/2 lg:h-full pt-8 pb-16 px-6 gap-[10px]">
+      <div className="w-full lg:w-[500px] rounded-lg flex flex-col justify-end relative overflow-hidden bg-[linear-gradient(90.04deg,_#102044_0.03%,_#2850AA_99.96%)] backdrop-blur-[9.300000190734863px] min-h-[50%] lg:h-full pt-8 pb-16 px-6 gap-[10px] h-max">
         <div className="absolute top-0 left-0 w-full h-full">
           <Image
             src={globeImg}
