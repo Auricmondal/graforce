@@ -2,6 +2,7 @@ import Hero from '@/components/sections/about/Hero'
 import ImpactOpportunity from '@/components/sections/about/ImpactOpportunity'
 import OurFounder from '@/components/sections/about/OurFounder'
 import OurTeam from '@/components/sections/about/OurTeam'
+import Stats from '@/components/sections/about/Stats'
 import React from 'react'
 
 const About = () => {
@@ -9,6 +10,7 @@ const About = () => {
     <div>
       <Hero />
       <ImpactOpportunity />
+      <Stats />
       <OurFounder />
       <OurTeam />
     </div>

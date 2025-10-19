@@ -20,7 +20,7 @@ const ImpactOpportunity = () => {
                 </h2>
               </AnimatedHeader>
             </div>
-            <div className="relative z-1 mt-4 flex flex-col gap-4">
+            <div className="relative z-1 mt-16 sm:mt-0 flex flex-col gap-4">
               <p className={`text-base sm:text-lg md:text-xl text-white`}>
                 The transition to a zero-emission world presents both challenges and opportunities for innovation and growth.
               </p>
