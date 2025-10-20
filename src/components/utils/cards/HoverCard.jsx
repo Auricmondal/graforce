@@ -94,7 +94,7 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
             height={48}
             className="w-12 h-12"
           />
-          <div className="flex md:mx-auto text-center">
+          <div className="flex md:mx-auto md:text-center">
             <h3 className=" md:text-[32px] font-medium capitalize">{title}</h3>
           </div>
         </div>
@@ -123,7 +123,7 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
             }}
           >
             <PrimaryButton
-              className="group/button flex items-center md:gap-2 bg-transparent border border-primary text-primary rounded-xl py-3 px-3 md:px-8"
+              className="group/button flex items-center md:gap-2 bg-transparent border border-primary text-primary text-xs md:text-base rounded-xl py-3 px-3 md:px-8"
               onClick={() => {
                 if (onClick) {
                   const fn = eval(onClick); // Replace if you can
