@@ -4,14 +4,6 @@ import { FaChevronRight } from "react-icons/fa";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import JobScroller from "./JobScroller";
 
-const images = [
-  "/images/building.jpg",
-  "/images/black-white-columns.jpg",
-  "/images/people-walking.jpg",
-  "/images/woman-festive.jpg",
-  "/images/car-headlight.jpg",
-];
-
 export default function HeroSection() {
   return (
     <SectionWrapper
@@ -22,7 +14,6 @@ export default function HeroSection() {
       <div className="text-center flex flex-col items-center gap-6 px-4 md:px-6 lg:px-16">
         <div className="flex flex-col gap-2">
           <div className="relative flex items-center justify-center w-fit mx-auto p-2 bg-[#416DD21A] rounded-full">
-            {/* <span className="absolute inline-flex h-9 w-24 rounded-full bg-[#416DD21A] opacity-75 animate-ping"></span> */}
             <div className="relative px-8 py-2 h-14 bg-[#416DD238] text-primary font-medium rounded-full flex items-center justify-center z-10">
               We Are Hiring
             </div>

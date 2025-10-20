@@ -56,7 +56,7 @@ const Ourvalues = () => {
             <AnimatedHeader>The Four Pillars Of Graforce</AnimatedHeader>
           </h2>
         </CardWrapper>
-        <CardWrapper className="p-4 grid grid-cols-1 md:grid-cols-2 gap-2">
+        <CardWrapper className="!px-3 md:!px-6 grid grid-cols-1 md:grid-cols-2 gap-2">
           {values.map((value) => (
             <div
               className={`rounded-lg p-6 col-span-1 text-white h-[483px] flex flex-col justify-between relative ${value.color} overflow-hidden`}
