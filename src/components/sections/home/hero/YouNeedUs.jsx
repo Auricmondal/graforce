@@ -125,8 +125,8 @@ const YouNeedUs = ({
     triggerRef.current = ScrollTrigger.create({
       trigger: sectionRef.current,
       start: "top top",
-      end: `+=${sectorsData.length * 400}`,
-      scrub: 1,
+      end: `+=${sectorsData.length * 1000}`, // Much longer scroll distance
+      scrub: 1.5, // Slightly slower scrub
       pin: true,
       onUpdate: (self) => {
         // Calculate which sector to show
@@ -142,11 +142,12 @@ const YouNeedUs = ({
           if (labelRef.current)
             labelRef.current.textContent = sectorsData[sectorIndex].label;
         }
-        // Animate character reveal
+        // Animate character reveal with slower, smoother progression
         const chars = text.querySelectorAll("span");
-        const charsToShow = Math.floor(
-          (self.progress * sectorsData.length - sectorIndex) * chars.length
-        );
+        const sectorProgress = (self.progress * sectorsData.length - sectorIndex);
+        const easedProgress = Math.pow(sectorProgress, 0.8); // Gentle easing
+        const charsToShow = Math.floor(easedProgress * chars.length);
+
         chars.forEach((char, i) => {
           if (sectionColorVariant === "default") {
             char.style.color =
@@ -259,7 +260,7 @@ const YouNeedUs = ({
                 {/* animated label controlled via labelRef */}
                 <div
                   ref={labelRef}
-                  className={`capitalize ${sectionColorVariant === "default"
+                  className={`capitalize text-2xl ${sectionColorVariant === "default"
                     ? "text-black"
                     : "text-white"
                     }`}
@@ -270,7 +271,7 @@ const YouNeedUs = ({
                 <div className="">
                   <h3
                     ref={needRef}
-                    className="text-white/10 text-base font-semibold md:text-xl lg:text-2xl pt-[100px] sm:pt-0"
+                    className="text-white/10 text-base font-semibold md:text-base lg:text-base pt-[100px] sm:pt-0"
                     data-sector="0"
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
@@ -318,7 +319,7 @@ const YouNeedUs = ({
                   align="left"
                   className="justify-between items-center gap-2 sm:gap-4 p-4 text-left border border-cst-neutral-2"
                 >
-                  <div className="text-left flex items-start">
+                  <div className="text-left flex items-start text-xl">
                     <SectionLabel
                       icon={false}
                       text={sector.label}
@@ -330,7 +331,7 @@ const YouNeedUs = ({
                     />
                   </div>
                   <h3
-                    className={`text-base font-semibold md:text-lg pt-[150px] ${sectionColorVariant === "default"
+                    className={`text-sm font-semibold md:text-base pt-[150px] ${sectionColorVariant === "default"
                       ? "text-black"
                       : "text-white"
                       }`}
