@@ -1,5 +1,5 @@
 import "./globals.css";
-import { oxygen, dmSans } from "./font";
+import { oxygen, dmSans, dancingScript } from "./font";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
 import Footer2 from "@/components/shared/footer/Footer2";
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
           <SidebarProvider>
             <FooterProvider>
               <body
-                className={`${oxygen.variable} ${dmSans.variable} antialiased`}
+                className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
               >
               {/* <LoaderProvider> */}
               <div className="relative z-10">

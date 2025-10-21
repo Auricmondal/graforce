@@ -33,7 +33,7 @@ const sectorsData = [
 ];
 
 const YouNeedUs = ({
-  sectionHeader = "Our contribution",
+  sectionHeader = "Our contribution",
   sectionSubHeader = "Powering Every Sector",
   sectionImage = Tower,
   sectionColorVariant = "default",
@@ -75,51 +75,50 @@ const YouNeedUs = ({
   };
 
   useGSAP(() => {
-    // Always cleanup first
     cleanup();
 
-    // Exit early if mobile or refs not available
     if (isMobile || !needRef.current || !sectionRef.current) {
       return;
     }
 
     const text = needRef.current;
 
-    // Helper to wrap each character in a span
-    const wrapCharacters = (html) => {
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = html;
-      const processNode = (node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const chars = node.textContent.split("");
-          const fragment = document.createDocumentFragment();
-          chars.forEach((char) => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.style.color = "rgba(255,255,255,0.1)";
-            fragment.appendChild(span);
-          });
-          return fragment;
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const newNode = node.cloneNode(false);
-          Array.from(node.childNodes).forEach((child) => {
-            newNode.appendChild(processNode(child));
-          });
-          return newNode;
-        }
-        return node.cloneNode(true);
+    requestAnimationFrame(() => {
+      // Helper to wrap each character in a span
+      const wrapCharacters = (html) => {
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = html;
+        const processNode = (node) => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            const chars = node.textContent.split("");
+            const fragment = document.createDocumentFragment();
+            chars.forEach((char) => {
+              const span = document.createElement("span");
+              span.textContent = char;
+              span.style.color = "rgba(255,255,255,0.1)";
+              fragment.appendChild(span);
+            });
+            return fragment;
+          } else if (node.nodeType === Node.ELEMENT_NODE) {
+            const newNode = node.cloneNode(false);
+            Array.from(node.childNodes).forEach((child) => {
+              newNode.appendChild(processNode(child));
+            });
+            return newNode;
+          }
+          return node.cloneNode(true);
+        };
+        const processed = document.createDocumentFragment();
+        Array.from(tempDiv.childNodes).forEach((child) => {
+          processed.appendChild(processNode(child));
+        });
+        return processed;
       };
-      const processed = document.createDocumentFragment();
-      Array.from(tempDiv.childNodes).forEach((child) => {
-        processed.appendChild(processNode(child));
-      });
-      return processed;
-    };
 
-    // Initial render
-    text.innerHTML = "";
-    text.appendChild(wrapCharacters(sectorsData[0].title));
-    if (labelRef.current) labelRef.current.textContent = sectorsData[0].label;
+      // Initial render
+      text.innerHTML = "";
+      text.appendChild(wrapCharacters(sectorsData[0].title));
+      if (labelRef.current) labelRef.current.textContent = sectorsData[0].label;
 
     // Create ScrollTrigger only for desktop
     triggerRef.current = ScrollTrigger.create({
@@ -304,7 +303,7 @@ const YouNeedUs = ({
             >
               <Image
                 src={sectionImage}
-                className="object-cover w-full lg:w-fit"
+                className="object-cover w-full lg:w-fit aspect-[1] h-full"
                 alt="tower"
               />
             </div>
