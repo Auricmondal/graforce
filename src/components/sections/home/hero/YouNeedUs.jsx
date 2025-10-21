@@ -75,92 +75,93 @@ const YouNeedUs = ({
   };
 
   useGSAP(() => {
-    cleanup();
-
-    if (isMobile || !needRef.current || !sectionRef.current) {
-      return;
-    }
-
-    const text = needRef.current;
-
-    requestAnimationFrame(() => {
-      // Helper to wrap each character in a span
-      const wrapCharacters = (html) => {
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = html;
-        const processNode = (node) => {
-          if (node.nodeType === Node.TEXT_NODE) {
-            const chars = node.textContent.split("");
-            const fragment = document.createDocumentFragment();
-            chars.forEach((char) => {
-              const span = document.createElement("span");
-              span.textContent = char;
-              span.style.color = "rgba(255,255,255,0.1)";
-              fragment.appendChild(span);
-            });
-            return fragment;
-          } else if (node.nodeType === Node.ELEMENT_NODE) {
-            const newNode = node.cloneNode(false);
-            Array.from(node.childNodes).forEach((child) => {
-              newNode.appendChild(processNode(child));
-            });
-            return newNode;
-          }
-          return node.cloneNode(true);
+      cleanup();
+  
+      if (isMobile || !needRef.current || !sectionRef.current) {
+        return;
+      }
+  
+      const text = needRef.current;
+  
+      requestAnimationFrame(() => {
+        // Helper to wrap each character in a span
+        const wrapCharacters = (html) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = html;
+          const processNode = (node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              const chars = node.textContent.split("");
+              const fragment = document.createDocumentFragment();
+              chars.forEach((char) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                span.style.color = "rgba(255,255,255,0.1)";
+                fragment.appendChild(span);
+              });
+              return fragment;
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+              const newNode = node.cloneNode(false);
+              Array.from(node.childNodes).forEach((child) => {
+                newNode.appendChild(processNode(child));
+              });
+              return newNode;
+            }
+            return node.cloneNode(true);
+          };
+          const processed = document.createDocumentFragment();
+          Array.from(tempDiv.childNodes).forEach((child) => {
+            processed.appendChild(processNode(child));
+          });
+          return processed;
         };
-        const processed = document.createDocumentFragment();
-        Array.from(tempDiv.childNodes).forEach((child) => {
-          processed.appendChild(processNode(child));
+  
+        // Initial render
+        text.innerHTML = "";
+        text.appendChild(wrapCharacters(sectorsData[0].title));
+        if (labelRef.current) labelRef.current.textContent = sectorsData[0].label;
+  
+        // Create ScrollTrigger only for desktop
+        triggerRef.current = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${sectorsData.length * 1000}`, // Much longer scroll distance
+          scrub: 1.5, // Slightly slower scrub
+          pin: true,
+          onUpdate: (self) => {
+            // Calculate which sector to show
+            const sectorIndex = Math.min(
+              sectorsData.length - 1,
+              Math.floor(self.progress * sectorsData.length)
+            );
+            // Only update if different
+            if (text.dataset.sector !== String(sectorIndex)) {
+              text.innerHTML = "";
+              text.appendChild(wrapCharacters(sectorsData[sectorIndex].title));
+              text.dataset.sector = String(sectorIndex);
+              if (labelRef.current)
+                labelRef.current.textContent = sectorsData[sectorIndex].label;
+            }
+            // Animate character reveal with slower, smoother progression
+            const chars = text.querySelectorAll("span");
+            const sectorProgress = (self.progress * sectorsData.length - sectorIndex);
+            const easedProgress = Math.pow(sectorProgress, 0.8); // Gentle easing
+            const charsToShow = Math.floor(easedProgress * chars.length);
+  
+            chars.forEach((char, i) => {
+              if (sectionColorVariant === "default") {
+                char.style.color =
+                  i < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
+              } else {
+                char.style.color =
+                  i < charsToShow ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.1)";
+              }
+            });
+          },
         });
-        return processed;
-      };
-
-      // Initial render
-      text.innerHTML = "";
-      text.appendChild(wrapCharacters(sectorsData[0].title));
-      if (labelRef.current) labelRef.current.textContent = sectorsData[0].label;
-
-    // Create ScrollTrigger only for desktop
-    triggerRef.current = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: `+=${sectorsData.length * 1000}`, // Much longer scroll distance
-      scrub: 1.5, // Slightly slower scrub
-      pin: true,
-      onUpdate: (self) => {
-        // Calculate which sector to show
-        const sectorIndex = Math.min(
-          sectorsData.length - 1,
-          Math.floor(self.progress * sectorsData.length)
-        );
-        // Only update if different
-        if (text.dataset.sector !== String(sectorIndex)) {
-          text.innerHTML = "";
-          text.appendChild(wrapCharacters(sectorsData[sectorIndex].title));
-          text.dataset.sector = String(sectorIndex);
-          if (labelRef.current)
-            labelRef.current.textContent = sectorsData[sectorIndex].label;
-        }
-        // Animate character reveal with slower, smoother progression
-        const chars = text.querySelectorAll("span");
-        const sectorProgress = (self.progress * sectorsData.length - sectorIndex);
-        const easedProgress = Math.pow(sectorProgress, 0.8); // Gentle easing
-        const charsToShow = Math.floor(easedProgress * chars.length);
-
-        chars.forEach((char, i) => {
-          if (sectionColorVariant === "default") {
-            char.style.color =
-              i < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
-          } else {
-            char.style.color =
-              i < charsToShow ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.1)";
-          }
-        });
-      },
-    });
-
-    return cleanup;
-  }, [isMobile, sectionColorVariant]); // Add dependencies
+      }); // close requestAnimationFrame callback
+  
+      return cleanup;
+    }, [isMobile, sectionColorVariant]); // Add dependencies
 
   // Cleanup on unmount
   useEffect(() => {
