@@ -35,21 +35,50 @@ const Stats = () => {
     },
   ];
 
-  const startCounting = () => {
+  const startCounter = () => {
     setCounter(statsData.map(stat => stat.value));
   };
 
+  const resetCounter = () => {
+    setCounter([0, 0, 0]);
+  };
+
   useGSAP(() => {
-    gsap.to('.stat-item', {
-      opacity: 1,
-      scrollTrigger: {
-        trigger: '.stat-item',
-        start: 'top 70%',
-        onEnter: () => startCounting(),
-        once: true,
-        markers: false,
-      },
-    });
+    if (window.innerWidth >= 1024) {
+      gsap.to('.stat-item', {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: '.stat-item',
+          start: 'top 90%',
+          end: 'top 0%',
+          onEnter: () => startCounter(),
+          onLeave: () => resetCounter(),
+          onEnterBack: () => startCounter(),
+          onLeaveBack: () => resetCounter(),
+          // once: true,  //* Uncomment this line to trigger only once
+          markers: false,  //Todo Remove this line in production
+          toggleActions: 'play none none reverse',  // Play on enter, reverse on leave back
+          scrub: 2,  // Smooth scrubbing
+        },
+      });
+    } else {
+      gsap.to('.stat-item', {
+        opacity: 1,
+        scrollTrigger: {
+          trigger: '.stat-item',
+          start: 'top 80%',
+          // end: 'top 0%',
+          onEnter: () => startCounter(),
+          // onLeave: () => resetCounter(),
+          // onEnterBack: () => startCounter(),
+          // onLeaveBack: () => resetCounter(),
+          once: true,  //* Uncomment this line to trigger only once
+          markers: false,  //Todo Remove this line in production
+          // toggleActions: 'play none none reverse',  // Play on enter, reverse on leave back
+          scrub: 2,  // Smooth scrubbing
+        },
+      });
+    }
   }, []);
 
   return (
@@ -65,8 +94,8 @@ const Stats = () => {
         <div className="grid grid-cols-1 min-[910px]:grid-cols-3 gap-4 justify-evenly w-full mt-8">
           {statsData.map((stat, index) => (
             <div
-            key={index}
-            className="relative flex flex-col gap-2 items-center bg-white p-6 rounded-full aspect-square mx-auto justify-center w-full sm:w-1/2 md:w-auto scale-80"
+              key={index}
+              className="relative flex flex-col gap-2 items-center bg-white p-6 rounded-full aspect-square mx-auto justify-center w-full sm:w-1/2 md:w-auto scale-80"
             // style={{ transform: `rotate(${ -45 + 45 * index }deg)` }}
             >
               <div className="relative z-2 flex flex-col">
@@ -77,10 +106,10 @@ const Stats = () => {
                     {index === 0 ? '+' : '%'}
                   </h3>
                 </div>
-                <p className="text-sm text-cst-neutral-5">{stat.suffix}</p>
+                <p className="text-base text-cst-neutral-5">{stat.suffix}</p>
               </div>
-              <p className="relative text-sm text-cst-neutral-5 text-center z-2">{stat.description}</p>
-              <div className="gradient-circle absolute z-1" style={{ transform: `rotate(${ -45 + 45 * index }deg)` }}></div>
+              <p className="relative text-base text-cst-neutral-5 text-center z-2">{stat.description}</p>
+              <div className="gradient-circle absolute z-1" style={{ transform: `rotate(${-45 + 45 * index}deg)` }}></div>
             </div>
           ))}
         </div>
