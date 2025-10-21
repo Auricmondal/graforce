@@ -59,7 +59,7 @@ const InfoCard = ({
       )}
 
       {/* Bars */}
-      <div className="md:flex justify-between">
+      <div className="mt-4 md:mt-0 flex justify-between">
         <div className="flex flex-col">
           <div className="flex items-end gap-2 h-full relative">
             {barData.map(({ label, height, color, opacity = 1 }, idx) => (
