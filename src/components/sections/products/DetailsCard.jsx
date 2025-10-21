@@ -35,7 +35,7 @@ export default function DetailsCard({
                 cy="32"
                 r={radius}
                 stroke="#b3b3b3"
-                strokeWidth="1.5"
+                strokeWidth="2"
                 fill="none"
               />
               <circle
@@ -43,7 +43,7 @@ export default function DetailsCard({
                 cy="32"
                 r={radius}
                 stroke="#416DD2"
-                strokeWidth="1.5"
+                strokeWidth="2"
                 fill="none"
                 strokeDasharray={`${circumference}`}
                 strokeDashoffset={`${offset}`}
