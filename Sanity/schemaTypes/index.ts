@@ -3,7 +3,5 @@ import AboutUs from "./home/AboutUs"
 
 export const schemaTypes = [
     home,
-AboutUs,
-
-
+    AboutUs
 ]

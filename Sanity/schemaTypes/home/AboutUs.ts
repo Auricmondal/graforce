@@ -90,8 +90,11 @@ export default defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "companyName",
+      language: "language",
+      companyName: "companyName",
       media: "image",
     },
+
   },
+
 });
