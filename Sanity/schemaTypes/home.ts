@@ -26,11 +26,7 @@ export default defineType({
     prepare(selection) {
       const { language, title } = selection;
       
-      const languageNames = {
-        en: 'English',
-        de: 'German'
-      };
-      
+
       return {
         title: `Home Page [${language?.toUpperCase() || '??'}]`,
         subtitle: title || 'No content yet',
