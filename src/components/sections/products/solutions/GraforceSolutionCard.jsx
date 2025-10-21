@@ -10,27 +10,45 @@ import { IoMdArrowForward } from 'react-icons/io'
 const GraforceSolutionCard = ({ icon, title, description, className, onClick }) => {
   const descriptionRef = React.useRef(null);
   const buttonRef = React.useRef(null);
+  const tl = gsap.timeline();
   const hoverIn = () => {
-    gsap.to(descriptionRef.current, {
-      opacity: 0, y: 20, duration: 0.3, ease: 'power2.out', onStart: () => {
-        if (window.innerWidth >= 768) {
-          gsap.to(descriptionRef.current, { display: 'none', duration: 0.3 });
-          gsap.to(buttonRef.current, { display: 'block', delay: 0.3, duration: 0.3 });
-        }
-      }
-    });
-    gsap.to(buttonRef.current, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+    if (window.innerWidth >= 768) {
+      tl.to(descriptionRef.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+      tl.fromTo(buttonRef.current, {
+        opacity: 0,
+        y: 20,
+      }, {
+        opacity: 1,
+        y: 0,
+        duration: 0.2,
+        ease: 'power2.out'
+      });
+    }
   }
   const hoverOut = () => {
-    gsap.to(descriptionRef.current, {
-      opacity: 1, y: 0, duration: 0.3, ease: 'power2.out', onStart: () => {
-        if (window.innerWidth >= 768) {
-          gsap.to(buttonRef.current, { display: 'none', duration: 0.3 });
-          gsap.to(descriptionRef.current, { display: 'block', delay: 0.3, duration: 0.3 });
-        }
-      }
-    });
-    gsap.to(buttonRef.current, { opacity: 0, y: 20, duration: 0.3, ease: 'power2.out' });
+    if (window.innerWidth >= 768) {
+      tl.fromTo(buttonRef.current, {
+        opacity: 1,
+        y: 0,
+      }, {
+        Opacity: 0,
+        y: 20,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+
+      tl.to(descriptionRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.2,
+        ease: 'power2.out',
+      });
+    }
   }
 
   return (
@@ -42,11 +60,11 @@ const GraforceSolutionCard = ({ icon, title, description, className, onClick }) 
             <h3 className='text-lg md:text-3xl font-semibold capitalize'>{title}</h3>
           </div>
         </div>
-        <div className='flex items-center justify-end w-[40%] md:w-[30%]'>
+        <div className='relative  flex items-center justify-end w-[40%] md:w-[30%]'>
           <div ref={descriptionRef} className="hidden md:flex md:grop-hover:hidden">
             <p className='text-base text-cst-neutral-5'>{description}</p>
           </div>
-          <div ref={buttonRef} className='md:hidden md:grop-hover:block'>
+          <div ref={buttonRef} className='md:absolute md:translate-y-[20px] md:opacity-0'>
             <PrimaryButton className='group/button flex items-center gap-0 md:gap-2 bg-transparent border border-primary text-primary rounded-xl py-2 md:py-4 px-2 md:px-8 text-sm' onClick={() => {
               if (onClick) {
                 const fn = eval(onClick);
@@ -54,7 +72,7 @@ const GraforceSolutionCard = ({ icon, title, description, className, onClick }) 
               }
             }}>
               Learn More
-              <IoMdArrowForward className='ml-0 md:ml-2 text-2xl group-hover/button:translate-x-2 transition-transform duration-200' />
+              <IoMdArrowForward className='hidden sm:flex ml-0 md:ml-2 text-2xl group-hover/button:translate-x-2 transition-transform duration-200' />
             </PrimaryButton>
           </div>
         </div>
