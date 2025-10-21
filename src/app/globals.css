@@ -49,6 +49,7 @@
   /* Font */
   --font-dm-sans: var(--font-dm-sans);
   --font-oxygen: var(--font-oxygen);
+  --font-dancing-script: var(--font-dancing-script);
 }
 
 body {
@@ -92,4 +93,93 @@ body {
 #nprogress .bar {
   background: white;
   height: 3px;
+}
+
+@layer utilities {
+  /* Custom slow spin */
+  .animate-spin-slow {
+    animation: spin 6s linear infinite;
+  }
+
+  /* Custom slow ping */
+  .animate-ping-slow {
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  @keyframes ripple-rect {
+    0% {
+      transform: scale(0.98);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.01); /* Slight ripple but within 8px max total */
+      opacity: 0;
+    }
+  }
+
+  .animate-ripple-rect {
+    animation: ripple-rect 0.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-gradient {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.animated-border-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem; /* Tailwind's rounded-xl */
+  padding: 1.5px; /* Border thickness */
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.animated-border-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+
+  background: conic-gradient(
+    from var(--angle),
+    rgba(190, 209, 255, 0) 20deg,
+    #24489a 90deg,
+    rgba(190, 209, 255, 0) 180deg,
+    #24489a 270deg,
+    rgba(190, 209, 255, 0) 360deg
+  );
+  animation: rotate-gradient 8s linear infinite;
+
+  /* Mask the center */
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  background-clip: border-box;
+  padding: 1.5px;
+}
+
+.animated-border-content {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem; /* Tailwind's p-5 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px); /* optional */
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
 }

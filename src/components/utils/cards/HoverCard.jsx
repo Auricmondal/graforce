@@ -94,7 +94,8 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
             height={48}
             className="w-12 h-12"
           />
-          <div className="flex md:mx-auto md:text-center">
+          <div className="flex md:mx-auto text-center">
+
             <h3 className=" md:text-[32px] font-medium capitalize">{title}</h3>
           </div>
         </div>
