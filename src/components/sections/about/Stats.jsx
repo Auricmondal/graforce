@@ -44,9 +44,10 @@ const Stats = () => {
       opacity: 1,
       scrollTrigger: {
         trigger: '.stat-item',
-        start: 'top 80%',
+        start: 'top 70%',
         onEnter: () => startCounting(),
         once: true,
+        markers: false,
       },
     });
   }, []);
@@ -54,31 +55,32 @@ const Stats = () => {
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <CardWrapper variant="standard" className="flex flex-col justify-center items-center md:h-fit" color="default" align="center">
-        <button
+        {/* <button
           className="border border-black text-black rounded-full hover:text-white hover:bg-gray-700 cursor-pointer p-4 px-10 transition-all duration-300 ease-in-out"
           onClick={startCounting}
         >
           Start
-        </button>
+        </button> */}
 
         <div className="grid grid-cols-1 min-[910px]:grid-cols-3 gap-4 justify-evenly w-full mt-8">
           {statsData.map((stat, index) => (
             <div
-              key={index}
-              className="flex flex-col gap-2 items-center border-2 border-primary bg-white p-6 rounded-full aspect-square mx-auto justify-center w-full sm:w-1/2 md:w-auto scale-80"
-              // style={{ transform: `rotate(${ -45 + 45 * index }deg)` }}
+            key={index}
+            className="relative flex flex-col gap-2 items-center bg-white p-6 rounded-full aspect-square mx-auto justify-center w-full sm:w-1/2 md:w-auto scale-80"
+            // style={{ transform: `rotate(${ -45 + 45 * index }deg)` }}
             >
-              <div className="flex flex-col">
+              <div className="relative z-2 flex flex-col">
                 <div className="flex gap-2 items-end text-sm text-cst-neutral-5">
                   <div className="mb-1">{stat.prefix}</div>
-                  <h3 className="stat-item opacity-0 text-5xl md:text-6xl flex items-end">
+                  <h3 className="stat-item text-5xl md:text-6xl flex items-end">
                     <CountUp start={0} end={counter[index]} duration={4.75} separator="," />
                     {index === 0 ? '+' : '%'}
                   </h3>
                 </div>
                 <p className="text-sm text-cst-neutral-5">{stat.suffix}</p>
               </div>
-              <p className="text-sm text-cst-neutral-5 text-center">{stat.description}</p>
+              <p className="relative text-sm text-cst-neutral-5 text-center z-2">{stat.description}</p>
+              <div className="gradient-circle absolute z-1" style={{ transform: `rotate(${ -45 + 45 * index }deg)` }}></div>
             </div>
           ))}
         </div>
