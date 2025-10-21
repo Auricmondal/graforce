@@ -14,17 +14,20 @@ const Stats = () => {
   const statsData = [
     {
       value: 120000,
+      value: 120000,
       prefix: '',
       description: 'CO₂ avoided annually through hydrogen-based fuel and process innovations.',
       suffix: 'tons',
     },
     {
       value: 35,
+      value: 35,
       prefix: '',
       description: 'Higher energy efficiency compared to conventional hydrogen production methods.',
       suffix: '',
     },
     {
+      value: 70,
       value: 70,
       prefix: 'Up to',
       description: 'Reduction in operational emissions through process optimization.',

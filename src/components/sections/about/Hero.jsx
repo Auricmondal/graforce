@@ -4,7 +4,10 @@ import SectionWrapper from '@/wrappers/SectionWrapper'
 import Image from 'next/image'
 import AboutImage from "@/assets/about/aboutus.jpg"
 import React, { useRef } from 'react'
+import React, { useRef } from 'react'
 import AnimatedHeader from '@/components/utils/animations/AnimatedHeader'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
@@ -31,6 +34,7 @@ const Hero = () => {
             </AnimatedHeader>
           </div>
           <Image
+          ref={AboutImageRef}
           ref={AboutImageRef}
             src={AboutImage}
             alt="About Us"
