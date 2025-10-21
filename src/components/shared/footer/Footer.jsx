@@ -6,7 +6,7 @@ import AnimatedText from '@/components/utils/animations/AnimatedText';
 
 const Footer = () => {
   return (
-      <footer className="bg-primary-900 text-white  relative overflow-hidden">
+      <footer className="bg-dark text-white  relative overflow-hidden">
         <div className="max-w-[2000px] mx-auto">
           <div className='pt-12 px-6 md:px-16'>
           <div className="mb-8">

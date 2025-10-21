@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AnimatedText({ className, children, icon, variant, ...props }) {
+export default function AnimatedText({ className, children, icon, variant, textSize, ...props }) {
   if (variant === "Footer") {
     const isRightAligned = className?.includes('text-right');
     
@@ -38,19 +38,19 @@ export default function AnimatedText({ className, children, icon, variant, ...pr
       {...props}
     >
       <span className="relative block overflow-hidden">
-        <span className="flex transform transition-transform duration-300 group-hover:-translate-y-full text-[14px] md:text-[16px]">
+        <span className={`flex transform transition-transform duration-300 group-hover:-translate-y-full ${textSize} text-center h-fit m-auto`}>
           {children}
         </span>
-        <span className="flex absolute left-0 top-0 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-[14px] md:text-[16px]">
+        <span className={`flex absolute left-0 top-0 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 ${textSize} text-center h-fit m-auto`}>
           {children}
         </span>
       </span>
       {icon && (
         <span className="relative w-5 h-5 block overflow-hidden text-center">
-          <span className="absolute inset-0 transform transition-opacity duration-300 group-hover:opacity-0 text-[14px] md:text-[16px] text-center h-fit m-auto">
+          <span className={`absolute inset-0 transform transition-opacity duration-300 group-hover:opacity-0 ${textSize} text-center h-fit m-auto`}>
             {icon}
           </span>
-          <span className="flex absolute left-0 top-0 transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 text-[14px] md:text-[16px] text-center h-fit m-auto">
+          <span className={`flex absolute left-0 top-0 transform -translate-x-full transition-transform duration-300 group-hover:translate-x-0 ${textSize} text-center h-fit m-auto`}>
             {icon}
           </span>
         </span>
