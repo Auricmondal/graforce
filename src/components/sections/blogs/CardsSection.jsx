@@ -42,14 +42,18 @@ export default function CardsSection() {
     rows.push(
       <div
         key={`row-${patternIndex}`}
-        className={`grid grid-cols-${cols} gap-6 mb-6 w-full`}
+        className={`grid gap-6 mb-6 w-full`}
+        style={{
+          gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+        }}
       >
         {rowItems.map((item) => (
-          <BlogCard
-            key={item.id}
-            blog={item}
-            variant={patternCount === 1 ? "side" : "default"}
-          />
+          <div className="col-span-1" key={item.id}>
+            <BlogCard
+              blog={item}
+              variant={patternCount === 1 ? "side" : "default"}
+            />
+          </div>
         ))}
       </div>
     );

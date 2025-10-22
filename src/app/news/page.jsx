@@ -3,6 +3,7 @@
 import React from "react";
 import CardsSection from "@/components/sections/blogs/CardsSection";
 import FinalCTA from "@/components/shared/finalCta/FinalCTA";
+import OtherServices from "@/components/shared/otherServices/OtherServices";
 
 const Blogs = () => {
   return (
@@ -10,7 +11,7 @@ const Blogs = () => {
       {/* Hero */}
       {/* Latest news */}
       <CardsSection />
-      {/* OtherServices */}
+      <OtherServices />
       <FinalCTA />
     </div>
   );
