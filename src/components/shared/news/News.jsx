@@ -1,15 +1,14 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import GradientBadge from "@/components/utils/badges/GradientBadge";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import { TbSquareRotatedFilled } from "react-icons/tb";
 
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
-const News = ({ newsData }) => {
+import { newsData as tempNewsData } from "@/data/news";
+
+const News = ({ newsData = tempNewsData }) => {
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <CardWrapper>

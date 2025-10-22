@@ -11,9 +11,11 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/TempChart";
 
+import tempProblemData from "@/data/tempProblems.json";
+
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EmissionPage({ problemData }) {
+export default function EmissionPage({ problemData = tempProblemData }) {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);

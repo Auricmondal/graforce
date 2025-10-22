@@ -7,7 +7,9 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import FlipCard from "./FlipCard";
 
-const Testimonial = ({ cards }) => {
+import reviewsData from "@/data/reviews.json";
+
+const Testimonial = ({ cards = reviewsData }) => {
   return (
     <SectionWrapper
       className="w-full"
