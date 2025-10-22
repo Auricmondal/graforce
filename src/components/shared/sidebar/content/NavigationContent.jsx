@@ -9,6 +9,7 @@ import { useSidebar } from '@/contexts/SidebarContext';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { sidebarUtils } from '@/utils/sidebarUtils';
+import { set } from 'nprogress';
 
 const NavigationContent = () => {
   const { closeSidebar } = useSidebar();
@@ -185,7 +186,11 @@ const NavigationContent = () => {
                     <Link
                       href={item.href}
                       className="font-bold text-left"
-                      onClick={closeSidebar}
+                      onClick={() => {
+                        closeSidebar();
+                        setIsSubMenuOpen(false);
+                        setMenu(navItems);
+                      }}
                     >
                       <AnimatedText textSize={isSubMenuOpen ? "text-lg md:text-3xl" : "text-2xl md:text-4xl"} className={`border-b-2 `}>
                         {item.name}
