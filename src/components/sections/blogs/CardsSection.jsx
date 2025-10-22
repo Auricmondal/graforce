@@ -79,7 +79,7 @@ export default function CardsSection() {
       <CardWrapper variant="custom" className="py-6 px-4 md:px-6">
         {rows}
         {hasMore && (
-          <div className="flex justify-center w-full m-6">
+          <div className="flex justify-center w-full my-6">
             <PrimaryButton
               icon={"❯"}
               onClick={loadMore}
