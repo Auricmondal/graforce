@@ -34,10 +34,9 @@ const Hero = () => {
             ref={AboutImageRef}
             src={AboutImage}
             alt="About Us"
-            layout="fill"
-            objectFit="cover"
-            className='absolute top-0 left-0 w-full h-full z-0 brightness-60 scale-150 blur-md'
+            className="absolute inset-0 w-full h-full object-cover z-0 brightness-60 scale-150 blur-md"
           />
+
         </CardWrapper>
       </SectionWrapper>
     </div>

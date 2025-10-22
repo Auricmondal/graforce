@@ -6,6 +6,7 @@ import FounderImage from "@/assets/about/FounderImage.png"
 import { TfiLinkedin } from 'react-icons/tfi'
 import Image from 'next/image'
 import React from 'react'
+import StampImages from '@/components/utils/stampImages/StampImages'
 
 const OurFounder = () => {
   const founderDetails = {
@@ -38,16 +39,14 @@ const OurFounder = () => {
                 </div>
               </div>
             </div>
-            <div className="relative flex w-full min-[910px]:w-[40%] lg:w-[35%]">
+            <StampImages className='min-[910px]:w-[40%] lg:w-[35%]' Image={FounderImage} />
+            {/* <div className="relative flex w-full min-[910px]:w-[40%] lg:w-[35%]">
               <Image
                 src={FounderImage}
                 alt="Our Founder"
-                layout="responsive"
-                width={500}
-                height={500}
-                objectFit="contain"
-                className='translat-y-10 min-[910px]:-translate-y-10 min-[910px]:translate-x-10 scale-110 min-[910px]:scale-100'
+                className="w-[500px] h-[500px] object-contain translate-y-10 min-[910px]:-translate-y-10 min-[910px]:translate-x-10 scale-110 min-[910px]:scale-100"
               />
+
               <div className="absolute bottom-2 left-2 min-[910px]:bottom-12 min-[910px]:left-12">
                 <div className="bg-white/28 p-2 rounded-lg backdrop-blur-xs">
                   <div className="bg-white/50 backdrop-blur-xs px-4 py-2 rounded-lg">
@@ -58,7 +57,7 @@ const OurFounder = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </CardWrapper>
       </SectionWrapper>

@@ -79,6 +79,12 @@ const Stats = () => {
         },
       });
     }
+    return {
+      // Cleanup function to reset the counter when the component unmounts
+      onUnmount: () => {
+        resetCounter();
+      },
+    }
   }, []);
 
   return (

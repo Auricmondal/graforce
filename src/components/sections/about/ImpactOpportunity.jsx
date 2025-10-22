@@ -33,9 +33,9 @@ const ImpactOpportunity = () => {
             <Image
               src={Globe}
               alt="Impact Opportunity"
-              layout="responsive"
-              className="absolute object-contain w-full scale-110 -bottom-20 -right-20 sm:scale-120 md:scale-110 sm:-bottom-10 sm:-right-10 md:-bottom-40 md:-right-30 transition-all duration-300 ease-in-out"
+              className="absolute object-contain w-full h-auto scale-110 -bottom-20 -right-20 sm:scale-120 md:scale-110 sm:-bottom-10 sm:-right-10 md:-bottom-40 md:-right-30 transition-all duration-300 ease-in-out"
             />
+
           </div>
         </CardWrapper>
       </SectionWrapper>
