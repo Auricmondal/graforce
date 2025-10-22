@@ -10,7 +10,7 @@ const BlogCard = ({ blog, variant = "default" }) => {
   return (
     <div key={blog.id} className={`group cursor-pointer ${variants[variant]}`}>
       {/* Image Container */}
-      <div className="relative w-full h-64 overflow-hidden rounded-2xl group-hover:rounded-[96px] transition-all duration-500 ease-in-out">
+      <div className="relative w-full h-[188px] overflow-hidden rounded-2xl group-hover:rounded-[96px] transition-all duration-500 ease-in-out">
         <Image
           src={blog.image}
           alt={blog.title}
@@ -20,20 +20,20 @@ const BlogCard = ({ blog, variant = "default" }) => {
       </div>
 
       {/* Tag */}
-      <div className="">
-        <div className="my-3">
-          <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium rounded-lg">
+      <div className="flex flex-col gap-2 my-4">
+        {/* <div className=""> */}
+          <span className="inline-block px-4 py-1 bg-primary text-white text-sm font-medium rounded-lg w-fit">
             {blog.tag}
           </span>
-        </div>
+        {/* </div> */}
 
         {/* Title */}
-        <h3 className="text-2xl lg:text-[32px] text-black mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
+        <h3 className="text-xl md:text-2xl text-black leading-tight group-hover:text-primary-600 transition-colors duration-300">
           {blog.title}
         </h3>
 
         {/* Date */}
-        <p className="text-cst-neutral-600">Posted on {blog.date}</p>
+        <p className="text-cst-neutral-4 font-light text-sm md:text-base">Posted on {blog.date}</p>
       </div>
     </div>
   );
