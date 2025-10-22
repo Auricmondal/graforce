@@ -1,6 +1,6 @@
 import React from "react";
 
-import Hero from "@/components/sections/services/hero/HydrogenHero";
+import Hero from "@/components/sections/services/hero/EnergyHero";
 import Problem from "@/components/sections/services/Problem";
 import Achievements from "@/components/sections/services/Achievements";
 import WhyWorldNeedsUs from "@/components/sections/services/WhyWorldNeedsUs";
