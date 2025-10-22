@@ -64,7 +64,7 @@ const Hero = () => {
           src={bgImg.src}
           alt="Background Image"
           fill
-          className="z-0 object-cover rounded-2xl"
+          className="z-0 object-cover rounded-2xl brightness-60"
           style={{ objectFit: "cover" }}
         />
       </div>

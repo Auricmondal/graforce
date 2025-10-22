@@ -35,7 +35,7 @@ const Hero = () => {
       <div className="bg-[linear-gradient(180deg,_#3D6AD1_0%,_#102044_100%)] flex flex-col w-full rounded-2xl relative pt-[20vh] lg:pt-[8vh] pb-2 px-[3vw] h-full">
         <div className="flex flex-col gap-8 absolute inset-0 z-10 justify-center h-fit my-auto">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 md:px-12 leading-[100%] max-w-6xl mx-auto text-center ">
-            <AnimatedHeader delay={0.8}>
+            <AnimatedHeader delay={0.4}>
               Transforming Water. Sustaining Life.
             </AnimatedHeader>
           </h2>
