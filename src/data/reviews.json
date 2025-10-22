@@ -1,0 +1,30 @@
+[
+  {
+    "companyName": "Company Name",
+    "logo": "/company.svg",
+    "review": "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
+    "reviewer": "Name of Reviewer",
+    "designation": "Designation"
+  },
+  {
+    "companyName": "Company Name",
+    "logo": "/company.svg",
+    "review": "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
+    "reviewer": "Name of Reviewer",
+    "designation": "Designation"
+  },
+  {
+    "companyName": "Company Name",
+    "logo": "/company.svg",
+    "review": "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
+    "reviewer": "Name of Reviewer",
+    "designation": "Designation"
+  },
+  {
+    "companyName": "Company Name",
+    "logo": "/company.svg",
+    "review": "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
+    "reviewer": "Name of Reviewer",
+    "designation": "Designation"
+  }
+]

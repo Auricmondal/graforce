@@ -37,7 +37,7 @@ const HeroSection = () => {
         muted
         autoPlay
         loop
-        className="w-full h-full rounded-lg object-cover"
+        className="w-full h-full rounded-lg object-cover brightness-80"
       />
 
       {/* Content */}
