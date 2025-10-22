@@ -6,7 +6,7 @@ const SmartLink = ({ type, value, className }) => {
   }[type] || value;
 
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={`text-primary-300 text-xl hover:underline ${className}`}>
+    <a href={href} target="_blank" rel="noopener noreferrer" className={`text-primary text-xl hover:underline ${className}`}>
       {value}
     </a>
   );
