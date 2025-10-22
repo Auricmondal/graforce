@@ -10,7 +10,7 @@ const BlogCard = ({ blog, variant = "default" }) => {
   return (
     <div key={blog.id} className={`group cursor-pointer ${variants[variant]}`}>
       {/* Image Container */}
-      <div className="relative w-full h-[188px] overflow-hidden rounded-2xl group-hover:rounded-[96px] transition-all duration-500 ease-in-out">
+      <div className="relative w-full h-[188px] overflow-hidden rounded-2xl group-hover:rounded-[72px] transition-all duration-500 ease-in-out">
         <Image
           src={blog.image}
           alt={blog.title}
