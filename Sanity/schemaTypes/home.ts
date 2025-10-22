@@ -13,9 +13,34 @@ export default defineType({
       hidden: true,
     }),
     defineField({
+      name: "heroSection",
+      title: "Hero Section",
+      type: "heroSection", 
+    }),
+    defineField({
       name: "aboutUsSection",
       title: "About Us Section",
       type: "aboutUsSection", 
+    }),
+    defineField({
+      name: "solutionSection",
+      title: "Solution Section",
+      type: "solutionSection", 
+    }),
+    defineField({
+      name: "finalCTASection",
+      title: "Final CTA Section",
+      type: "finalCTASection", 
+    }),
+    defineField({
+      name: "whatDoWeDoSection",
+      title: "What Do We Do Section",
+      type: "whatDoWeDoSection", 
+    }),
+    defineField({
+      name: "youNeedUsSection",
+      title: "You Need Us Section",
+      type: "youNeedUsSection", 
     }),
   ],
   preview: {
