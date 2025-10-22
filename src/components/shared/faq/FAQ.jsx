@@ -23,26 +23,7 @@ const containerVariants = {
   },
 };
 
-const faqs = [
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-];
-
-export default function FAQSection() {
+export default function FAQSection({ faqs }) {
   const imageRef = useRef(null);
   const faqContainerRef = useRef(null);
 

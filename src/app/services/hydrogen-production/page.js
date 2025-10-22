@@ -13,6 +13,10 @@ import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 import News from "@/components/shared/news/News";
 import FAQ from "@/components/shared/faq/FAQ";
 
+import problemData from "@/data/tempProblems.json";
+import reviewsData from "@/data/reviews.json";
+import faqData from "@/data/faq.json";
+import { newsData } from "@/data/news";
 
 // To handle component rendering based on service type
 const config = {
@@ -32,15 +36,15 @@ export default async function HydrogenProduction() {
   return (
     <>
       <Hero />
-      {config.problem && <Problem />}
+      {config.problem && <Problem problemData={problemData} />}
       {config.achievements && <Achievements />}
       {config.productGallery && <ProductGallery />}
       {config.whyWorldNeedsUs && <WhyWorldNeedsUs />}
       {config.solutionWorks && <SolutionWorks />}
       {config.otherServices && <OtherServices />}
-      {config.testimonials && <Testimonials />}
-      {config.faq && <FAQ />}
-      {config.news && <News />}
+      {config.testimonials && <Testimonials cards={reviewsData} />}
+      {config.faq && <FAQ faqs={faqData} />}
+      {config.news && <News newsData={newsData} />}
       <FinalCTA />
     </>
   );

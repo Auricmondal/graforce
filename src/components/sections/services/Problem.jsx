@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import problemData from "@/data/tempProblems.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
@@ -14,7 +13,7 @@ import Chart from "@/components/utils/charts/TempChart";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EmissionPage() {
+export default function EmissionPage({ problemData }) {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
