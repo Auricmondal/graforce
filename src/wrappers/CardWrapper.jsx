@@ -12,7 +12,7 @@ const CardWrapper = ({
   const variants = {
     standard: "px-6 py-12 sm:px-6 sm:py-8",
     compact: "py-6 px-8",
-    normal: "py-20 px-6",
+    normal: "py-20 px-4 md:px-6",
     featured:"pt-20 sm:pt-28 pb-10 px-10",
     custom: "",
   };
