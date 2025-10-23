@@ -3,7 +3,6 @@ import SectionLabel from '@/components/utils/badges/SectionLabel'
 import CardWrapper from '@/wrappers/CardWrapper'
 import SectionWrapper from '@/wrappers/SectionWrapper'
 import React from 'react'
-import Brands from '../home/Brands'
 import BrandLogos from '@/components/shared/brands/brands'
 
 const OurTeam = () => {
