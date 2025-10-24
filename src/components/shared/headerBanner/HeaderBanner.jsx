@@ -21,7 +21,7 @@ export default function HeaderBanner({
   };
 
   return (
-    <div className="flex items-center justify-between bg-cst-neutral-5 text-white px-4 py-2 shadow-md absolute top-0 left-0 z-100 w-full">
+    <div className="flex items-center justify-between bg-cst-neutral-5 text-white p-4 shadow-md fixed top-0 left-0 z-100 w-full">
       <span className="px-2 py-1 border border-cst-neutral-1 rounded-full text-xs hidden md:inline-block">
         New
       </span>

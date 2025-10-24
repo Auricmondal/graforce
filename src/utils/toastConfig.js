@@ -3,7 +3,6 @@ import { IoCloudCircleSharp } from "react-icons/io5";
 import { TiWarning } from "react-icons/ti";
 import { LuLoaderCircle } from "react-icons/lu";
 
-
 export const defaultToastOptions = {
   position: "top-right",
   duration: 4000,
@@ -18,24 +17,24 @@ export const defaultToastOptions = {
 export const variantConfig = {
   success: {
     icon: <IoIosCheckmarkCircle className="text-2xl" />,
-    style: { background: "var(--color-success)" },
+    style: { color: "#02521f" },
   },
   error: {
     icon: <IoMdCloseCircle className="text-2xl" />,
-    style: { background: "var(--color-error)" },
+    style: { color: "#d93232" },
   },
   info: {
     icon: <IoCloudCircleSharp className="text-2xl" />,
-    style: { background: "var(--color-info)", color: "var(--color-dark)" },
+    style: { color: "var(--color-primary)" },
   },
   warning: {
     icon: <TiWarning className="text-2xl" />,
-    style: { background: "var(--color-warning)" },
+    style: { color: "#a1710a" },
   },
   loading: {
     icon: <LuLoaderCircle className="text-2xl animate-spin" />,
-    duration: 100, // Loading toasts stay until dismissed
-    style: { background: "var(--color-cst-neutral-2)" },
+    duration: 10000, // Loading toasts stay until dismissed
+    style: { color: "var(--color-dark)" },
   },
   default: {
     background: "var(--secondary-light)",

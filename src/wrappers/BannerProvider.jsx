@@ -10,7 +10,10 @@ export default function BannerProvider({ children }) {
       <HeaderBanner
         text="We've launched a new feature! Check it out now."
         readMoreLink=""
-        onReadMore={()=>toast.success("This is a toast demo")}
+        onReadMore={()=>toast.warning({
+            title: "Profile updated",
+            description: "Your changes have been saved successfully.",
+          })}
       />
       {children}
     </>

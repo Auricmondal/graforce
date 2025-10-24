@@ -2,17 +2,32 @@
 
 import { toast } from "react-hot-toast";
 import { variantConfig } from "@/utils/toastConfig";
+import ToastMessage from "@/components/shared/toast/ToastMsg";
 
 export const useToast = () => {
-  const show = (message, options = {}) => {
+  const show = ({ title, description }, options = {}) => {
     const { variant = "default", ...rest } = options;
     const config = variantConfig[variant] || variantConfig.default;
 
-    return toast(message, {
-      ...config,
-      ...rest,
-      style: { ...config.style, ...rest.style },
-    });
+    const icon = config.icon;
+    const mergedStyle = { ...config.style, ...rest.style };
+
+    return toast.custom(
+      (t) => (
+        <ToastMessage
+          t={t}
+          icon={icon}
+          title={title}
+          description={description}
+          style={mergedStyle}
+        />
+      ),
+      {
+        duration: config.duration || 4000,
+        position: rest.position || "top-right",
+        id: rest.id,
+      }
+    );
   };
 
   const success = (msg, opts = {}) =>
