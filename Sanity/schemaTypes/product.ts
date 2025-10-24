@@ -1,8 +1,8 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "service",
-  title: "Service Page",
+  name: "product",
+  title: "Product Page",
   type: "document",
   fields: [
     defineField({
@@ -13,24 +13,29 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "serviceHeroSection",
+      name: "productHeroSection",
       title: "Hero Section",
-      type: "serviceHeroSection",
+      type: "productHeroSection",
     }),
     defineField({
-      name: "problemSection",
-      title: "Emission Problems",
-      type: "problemSection",
+      name: "whyWeMatterSection",
+      title: "Why We Matter Section",
+      type: "whyWeMatterSection",
     }),
     defineField({
-      name: "achievementsSection",
-      title: "Achievements Section",
-      type: "youNeedUsSection",
+      name: "graforceSolutionSection",
+      title: "Graforce Solution Section",
+      type: "graforceSolutionSection",
     }),
     defineField({
-      name: "whyWorldNeedsUsSection",
-      title: "Why World Needs Us Section",
-      type: "youNeedUsSection",
+      name: "howThisWorksSection",
+      title: "How This Works Section",
+      type: "howThisWorksSection",
+    }),
+    defineField({
+      name: "importantDetailsSection",
+      title: "Important Details Section",
+      type: "importantDetailsSection",
     }),
     defineField({
       name: "solutionWorksSection",
@@ -48,14 +53,14 @@ export default defineType({
       type: "testimonialSection",
     }),
     defineField({
-      name: "finalCTASection",
-      title: "Final CTA Section",
-      type: "finalCTASection",
-    }),
-    defineField({
       name: "otherServicesSection",
       title: "Other Services Section",
       type: "otherServicesSection",
+    }),
+    defineField({
+      name: "finalCTASection",
+      title: "Final CTA Section",
+      type: "finalCTASection",
     }),
     defineField({
       name: "newsSection",
@@ -71,12 +76,12 @@ export default defineType({
   preview: {
     select: {
       language: "language",
-      title: "serviceHeroSection.title",
+      title: "productHeroSection.title",
     },
     prepare(selection) {
       const { language, title } = selection;
       return {
-        title: `Service Page [${language?.toUpperCase() || "??"}]`,
+        title: `Product Page [${language?.toUpperCase() || "??"}]`,
         subtitle: title || "No content yet",
       };
     },

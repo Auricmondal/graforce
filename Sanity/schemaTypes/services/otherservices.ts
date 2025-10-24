@@ -6,26 +6,46 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      name: "sectionHeader",
-      title: "Section Header",
+      name: "sectionLabel",
+      title: "Section Label",
       type: "string",
+      description:
+        "Small label text displayed above the service options (e.g., 'Explore our services').",
     }),
     defineField({
       name: "services",
-      title: "Services",
+      title: "Services List",
       type: "array",
+      description:
+        "List of service options displayed with hover images and links.",
       of: [
         {
           type: "object",
+          name: "serviceItem",
+          title: "Service Item",
           fields: [
-            { name: "title", type: "string", title: "Service Title" },
-            { name: "slug", type: "slug", title: "Service URL Slug" },
-            {
+            defineField({
+              name: "title",
+              title: "Service Title",
+              type: "string",
+              description: "Name of the service (e.g., Hydrogen Production).",
+            }),
+            defineField({
+              name: "slug",
+              title: "Service Slug / URL Path",
+              type: "slug",
+              description:
+                "Used for navigation (e.g., /services/hydrogen-production).",
+              options: { source: "title", maxLength: 96 },
+            }),
+            defineField({
               name: "image",
-              type: "image",
               title: "Service Image",
+              type: "image",
+              description:
+                "Displayed on hover or as background when user interacts with this service option.",
               options: { hotspot: true },
-            },
+            }),
           ],
         },
       ],
