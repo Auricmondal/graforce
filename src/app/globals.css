@@ -17,10 +17,10 @@
   --cst-neutral-5: #1a1a1a;
 
   /* Symantics */
-  --error: #416dd2;
-  --success: #ccf6c6;
-  --warning: #f1ee9d;
-  --info: #ced9f3;
+  --error: #FDBFBF;
+  --success: #CCF6C6;
+  --warning: #F7F5C5;
+  --info: #C9D6F2;
 }
 
 @theme inline {
