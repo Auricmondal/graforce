@@ -8,11 +8,11 @@ const TeamCard = ({ name, position, department, description, linkedin, imagePath
       <Image src={imagePath} alt={name} className='w-full aspect-2/1 object-cover rounded-lg' />
       <div className="flex flex-col gap-4 pt-6">
         <div className="flex flex-col gap-0">
-          <h3 className='text-[40px]'>{name}</h3>
-          <p className='text-base text-cst-neutral-2'>{position}, {department}</p>
+          <h3 className='text-2xl md:text-[40px]'>{name}</h3>
+          <p className='text-sm md:text-base text-cst-neutral-2'>{position}, {department}</p>
         </div>
         <div className="">
-          <p className='text-base'>{description}</p>
+          <p className='text-base line-clamp-3'>{description}</p>
         </div>
         <div className="">
           <a href={linkedin} className='text-cst-neutral-4'>

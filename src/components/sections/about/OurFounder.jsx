@@ -17,8 +17,8 @@ const OurFounder = () => {
     <div>
       <SectionWrapper sectionClassName='bg-cst-neutral-1 overflow-hidden '>
         <CardWrapper variant='custom' color='dark' className='overflow-hidden'>
-          <div className="flex flex-col min-[910px]:flex-row gap-8 min-[910px]:gap-0 w-full">
-            <div className="flex flex-col w-full min-[910px]:w-[60%] lg:w-[65%] py-10 px-6 text-white gap-16">
+          <div className="flex flex-col min-[910px]:flex-row gap-0 min-[910px]:gap-0 w-full">
+            <div className="flex flex-col w-full min-[910px]:w-[60%] lg:w-[65%] py-20 px-6 text-white gap-16">
               <div className="flex flex-col gap-4">
                 <SectionLabel text={'Our Founder'} invertIcon={true} textColor='text-white' />
                 <AnimatedHeader>

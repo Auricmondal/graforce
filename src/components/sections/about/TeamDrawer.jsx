@@ -126,7 +126,7 @@ const TeamDrawer = ({ className, ref, setIsDrawerOpen }) => {
         <div className="flex items-start justify-center h-full">
           <div className="flex flex-col gap-6 w-full">
             <div className="flex flex-col text-center gap-2">
-              <h2 className='text-5xl capitalize'>Visionary Leadership</h2>
+              <h2 className='text-3xl md:text-5xl capitalize'>Visionary Leadership</h2>
               <p>Meet the people steering innovation and integrity at the top.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
@@ -144,7 +144,7 @@ const TeamDrawer = ({ className, ref, setIsDrawerOpen }) => {
             </div>
             <div className="flex flex-col gap-8 mt-8">
               <div className="flex flex-col text-center gap-2">
-                <h2 className='text-4xl capitalize'>The minds behind the mission</h2>
+                <h2 className='text-2xl md:text-4xl capitalize'>The minds behind the mission</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                 {TeamData.map((member, index) => (

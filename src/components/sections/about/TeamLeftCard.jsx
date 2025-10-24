@@ -23,21 +23,21 @@ const TeamLeftCard = ({ className }) => {
     const drawer = drawerRef.current;
     const tl = gsap.timeline();
     if (isDrawerOpen) {
-      tl.to(drawer, { y: 0, duration: 0.5, ease: "power2.out" });
+      tl.to(drawer, { y: 0, duration: 1, ease: "power2.out" });
     } else {
-      tl.to(drawer, { y: "100vh", duration: 0.5, ease: "power2.in" });
+      tl.to(drawer, { y: "200vh", duration: 1, ease: "power2.in" });
     }
   }, [isDrawerOpen]);
 
   return (
-    <CardWrapper color='transparent' className={`${className} flex flex-col h-full justify-center gap-6`}>
+    <CardWrapper variant='custom' color='transparent' className={`${className} flex flex-col h-full justify-center gap-6`}>
       <SectionLabel text='Our Team' className='mb-4' />
       <AnimatedHeader>
         <h3 className='text-3xl'>Driven by Purpose. Defined by Clarity.</h3>
       </AnimatedHeader>
       <p>Our interdisciplinary and highly specialized team of physicists, engineers and designers makes us the technology leader for sustainable and economical energy solutions for use in hydrogen production. Our interdisciplinary knowledge, commitment and experience from the fields of plasma physics, electrical engineering, mechanical engineering and process engineering guarantee quality, know-how and safety at the highest level.</p>
       <ExploreButton buttonContent='Meet the Team' icon={false} isShowContentButton={false} onClick={openDrawer} />
-      <TeamDrawer ref={drawerRef} className={`translate-y-[100vh]`} setIsDrawerOpen={setIsDrawerOpen} />
+      <TeamDrawer ref={drawerRef} className={`translate-y-[200vh]`} setIsDrawerOpen={setIsDrawerOpen} />
     </CardWrapper>
   )
 }

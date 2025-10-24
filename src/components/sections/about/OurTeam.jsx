@@ -3,7 +3,6 @@ import SectionLabel from '@/components/utils/badges/SectionLabel'
 import CardWrapper from '@/wrappers/CardWrapper'
 import SectionWrapper from '@/wrappers/SectionWrapper'
 import React from 'react'
-import Brands from '../home/Brands'
 import BrandLogos from '@/components/shared/brands/brands'
 
 const OurTeam = () => {
@@ -14,7 +13,7 @@ const OurTeam = () => {
           <div className="flex flex-col justify-center items-center gap-4">
             <SectionLabel text={'Our Team'} invertIcon={false} textColor='text-black' />
             <AnimatedHeader>
-              <h2 className={`text-5xl sm:text-2xl md:text-3xl capitalize`}>
+              <h2 className={`text-2xl md:text-3xl capitalize`}>
                 Backed By Top Brands
               </h2>
             </AnimatedHeader>

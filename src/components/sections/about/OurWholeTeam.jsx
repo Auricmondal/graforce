@@ -7,7 +7,7 @@ import TeamRightCard from './TeamRightCard'
 const OurWholeTeam = () => {
   return (
     <SectionWrapper sectionClassName='bg-cst-neutral-1 h-fit md:h-screen' className='h-full'>
-      <CardWrapper variant='normal' className='grid grid-cols-1 md:grid-cols-2 md:gap-6 w-full h-full'>
+      <CardWrapper variant='normal' className='grid grid-cols-1 md:grid-cols-2 gap-6 w-full h-full'>
         <div className='h-full w-full'>
           <TeamLeftCard />
         </div>

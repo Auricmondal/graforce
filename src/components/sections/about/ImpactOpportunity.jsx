@@ -47,7 +47,7 @@ const ImpactOpportunity = () => {
         <div className='relative flex justify-end h-full w-full sm:w-1/2 md:w-[60%]'>
           <video
             ref={videoRef}
-            src='https://cdn.sanity.io/files/sib3yr4f/production/5fc9dd4dd9abd4c27d7a229f2f6dcff07b1cab8f.webm'
+            src='https://cdn.sanity.io/files/sib3yr4f/production/f125f737cd7466d06b29fb7d319aa9620c55a7f9.webm'
             className='absolute object-contain w-full h-auto bg-transparent scale-110 -bottom-20 -right-20 sm:scale-120 md:scale-110 sm:-bottom-10 sm:-right-10 md:-bottom-40 md:-right-30 transition-all duration-300 ease-in-out'
             autoPlay
             loop
