@@ -46,12 +46,22 @@ const Footer = () => {
                 Graforce GmbH, Berlin, Germany
               </p>
               <p className="flex justify-start items-center gap-2">
-                <LuMail size={18} />
-                info@graforce.com
+                <a
+                  href="mailto:info@graforce.com"
+                  className="flex justify-start items-center gap-2"
+                >
+                  <LuMail size={18} />
+                  info@graforce.com
+                </a>
               </p>
               <p className="flex justify-start items-center gap-2">
-                <LuPhoneCall size={18} />
-                +49 (0)30 915 409 000
+                <a
+                  href="tel:+49030915409000"
+                  className="flex justify-start items-center gap-2"
+                >
+                  <LuPhoneCall size={18} />
+                  +49 (0)30 915 409 000
+                </a>
               </p>
             </div>
 
@@ -119,12 +129,22 @@ const Footer = () => {
                 <span>Graforce GmbH, Berlin, Germany</span>
               </li>
               <li className="flex items-center gap-3">
-                <LuPhoneCall size={18} />
-                <span>+49 (0)30 915 409 000</span>
+                <a
+                  href="tel:+49030915409000"
+                  className="flex justify-start items-center gap-2"
+                >
+                  <LuPhoneCall size={18} />
+                  <span>+49 (0)30 915 409 000</span>
+                </a>
               </li>
               <li className="flex items-center gap-3">
-                <LuMail size={18} />
-                <span>info@graforce.com</span>
+                <a
+                  href="mailto:info@graforce.com"
+                  className="flex justify-start items-center gap-2"
+                >
+                  <LuMail size={18} />
+                  <span>info@graforce.com</span>
+                </a>
               </li>
             </ul>
           </div>
