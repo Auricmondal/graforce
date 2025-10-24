@@ -8,7 +8,10 @@ import CardWrapper from "@/wrappers/CardWrapper";
 
 const WhatDoWeDo = () => {
   return (
-    <div className="flex flex-col md:flex-row gap-2 bg-cst-neutral-1 p-2">
+    <div
+      className="flex flex-col md:flex-row gap-2 bg-cst-neutral-1 p-2"
+      id="what-do-we-do"
+    >
       <CardWrapper
         className="flex-1 rounded-2xl px-6 py-8 lg:gap-4"
         variant="custom"
