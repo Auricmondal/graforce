@@ -106,11 +106,11 @@ const TeamDrawer = ({ className, ref, setIsDrawerOpen }) => {
   return (
     <div
       ref={ref}
-      className={`fixed top-0 left-0 z-2000 h-screen w-full backdrop-blur-md bg-white rounded-t-xl border border-cst-neutral-2 pt-2 ${className}`}
+      className={`fixed top-0 left-0 z-2000 h-screen w-full backdrop-blur-md bg-white rounded-t-xl border border-cst-neutral-2 pt-4 ${className}`}
     // onClick={() => setIsDrawerOpen(false)}
     >
       <div
-        className="relative h-full w-full top-0 md:top-0 overflow-auto p-6"
+        className="relative h-full w-full top-0 md:top-0 overflow-auto rounded-t-xl p-6"
       // onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -142,11 +142,11 @@ const TeamDrawer = ({ className, ref, setIsDrawerOpen }) => {
                 />
               ))}
             </div>
-            <div className="flex flex-col gap-8 mt-8">
+            <div className="flex flex-col gap-4 mt-8">
               <div className="flex flex-col text-center gap-2">
                 <h2 className='text-2xl md:text-4xl capitalize'>The minds behind the mission</h2>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full my-6">
                 {TeamData.map((member, index) => (
                   <TeamCard
                     key={index}

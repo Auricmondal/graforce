@@ -23,9 +23,9 @@ const TeamLeftCard = ({ className }) => {
     const drawer = drawerRef.current;
     const tl = gsap.timeline();
     if (isDrawerOpen) {
-      tl.to(drawer, { y: 0, duration: 1, ease: "power2.out" });
+      tl.to(drawer, { y: 0, duration: 0.7, ease: "power2.out" });
     } else {
-      tl.to(drawer, { y: "200vh", duration: 1, ease: "power2.in" });
+      tl.to(drawer, { y: "200vh", duration: 0.7, ease: "power2.in" });
     }
   }, [isDrawerOpen]);
 
