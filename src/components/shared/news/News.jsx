@@ -1,51 +1,21 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import GradientBadge from "@/components/utils/badges/GradientBadge";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import { TbSquareRotatedFilled } from "react-icons/tb";
 
-import img from "@/assets/service/ServiceSolution2.jpg";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
-const News = () => {
-  const newsData = [
-    {
-      id: 1,
-      image: img,
-      tag: "Tag",
-      title: "Some News Title That says Something",
-      date: "08th Sept, 2025",
-    },
-    {
-      id: 2,
-      image: img, // Replace with your actual image path
-      tag: "Tag",
-      title: "Some News Title That says Something",
-      date: "08th Sept, 2025",
-    },
-    {
-      id: 3,
-      image: img, // Replace with your actual image path
-      tag: "Tag",
-      title: "Some News Title That says Something",
-      date: "08th Sept, 2025",
-    },
-  ];
+import { newsData as tempNewsData } from "@/data/news";
 
+const News = ({ newsData = tempNewsData }) => {
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <CardWrapper>
         <div className="flex flex-col gap-4 md:gap-8 w-full">
           {/* Header */}
           <div className="">
-            <SectionLabel
-              text="News"
-              icon={true}
-              invertIcon={false}
-            />
+            <SectionLabel text="News" icon={true} invertIcon={false} />
           </div>
 
           {/* News Grid */}

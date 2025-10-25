@@ -33,7 +33,7 @@ const Hero = () => {
       <div className="bg-cst-neutral-5 flex flex-col w-full rounded-2xl relative pt-[20vh] lg:pt-[8vh] pb-2 px-[3vw] h-full">
         <div className="flex flex-col gap-6">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
-            <AnimatedHeader delay={0.8}>
+            <AnimatedHeader delay={0.4}>
               Renewable <span className="text-primary">Hydrogen</span>{" "}
               Production
             </AnimatedHeader>

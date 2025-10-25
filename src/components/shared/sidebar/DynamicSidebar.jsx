@@ -130,7 +130,7 @@ const DynamicSidebar = () => {
               <span className="text-lg font-semibold text-gray-700">
                 {title}
               </span>
-            )} */}
+            )} */} 
           </div>
           <div
             className={`group border border-cst-neutral-2 p-2 rounded-full cursor-pointer transition-all ease-in-out duration-300 hover:bg-primary ${contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "hover:border-cst-neutral-1 hover:text-cst-neutral-5" : "hover:border-primary "}`}
@@ -141,7 +141,7 @@ const DynamicSidebar = () => {
         </CardWrapper>
 
         {/* Content Area */}
-        <div className={`sidebar-content-item flex flex-col rounded-xl p-4 h-full overflow-hidden ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "bg-primary text-cst-neutral-1" : "bg-white"}`}>
+        <div className={`sidebar-content-item flex flex-col rounded-xl p-4 h-screen overflow-hidden ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "bg-primary text-cst-neutral-1" : "bg-white"}`}>
           <div className="relative flex-1 overflow-y-auto overflow-x-hidden sidebar-scroll">
             {renderContent()}
           </div>

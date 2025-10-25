@@ -7,42 +7,9 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import FlipCard from "./FlipCard";
 
-const cards = [
-  {
-    companyName: "Company Name",
-    logo: "/company.svg",
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
-    reviewer: "Name of Reviewer",
-    designation: "Designation",
-  },
-  {
-    companyName: "Company Name",
-    logo: "/company.svg",
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
-    reviewer: "Name of Reviewer",
-    designation: "Designation",
-  },
-  {
-    companyName: "Company Name",
-    logo: "/company.svg",
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
-    reviewer: "Name of Reviewer",
-    designation: "Designation",
-  },
-  {
-    companyName: "Company Name",
-    logo: "/company.svg",
-    review:
-      "Lorem ipsum dolor sit amet consectetur. Cras donec non est in pretium pharetra in.",
-    reviewer: "Name of Reviewer",
-    designation: "Designation",
-  },
-];
+import reviewsData from "@/data/reviews.json";
 
-const Testimonial = () => {
+const Testimonial = ({ cards = reviewsData }) => {
   return (
     <SectionWrapper
       className="w-full"

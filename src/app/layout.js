@@ -1,5 +1,5 @@
 import "./globals.css";
-import { oxygen, dmSans } from "./font";
+import { oxygen, dmSans, dancingScript } from "./font";
 import Navbar from "@/components/shared/navbar/Navbar";
 import Footer from "@/components/shared/footer/Footer";
 import Footer2 from "@/components/shared/footer/Footer2";
@@ -13,6 +13,9 @@ import { SidebarProvider } from "@/contexts/SidebarContext";
 import { FooterProvider } from "@/contexts/FooterContext";
 import { ReactLenis } from "@/components/utils/lenis/LenisProvider";
 import DynamicSidebar from "@/components/shared/sidebar/DynamicSidebar";
+
+import ToastProvider from "@/wrappers/ToastProvider";
+import BannerProvider from "@/wrappers/BannerProvider";
 
 export const metadata = {
   title: "Graforce",
@@ -31,25 +34,28 @@ export default function RootLayout({ children }) {
           <SidebarProvider>
             <FooterProvider>
               <body
-                className={`${oxygen.variable} ${dmSans.variable} antialiased`}
+                className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
               >
-              {/* <LoaderProvider> */}
-              <div className="relative z-10">
-                <Navbar />
-                <ProgressProvider>{children}</ProgressProvider>
-                <Footer />
-              </div>
-              <div className="relative z-10 pointer-events-none ">
-                <FooterRevealer />
-              </div>
-              <div className="fixed w-full bottom-0 z-0">
-                <Footer2 />
-              </div>
-              <ContactModal clickOutside={true} />
-              <DynamicSidebar />
-              {/* </LoaderProvider> */}
-            </body>
-          </FooterProvider>
+                <BannerProvider>
+                  <ToastProvider />
+                  {/* <LoaderProvider> */}
+                  <div className="relative z-10">
+                    <Navbar />
+                    <ProgressProvider>{children}</ProgressProvider>
+                    <Footer />
+                  </div>
+                  <div className="relative z-10 pointer-events-none ">
+                    <FooterRevealer />
+                  </div>
+                  <div className="fixed w-full bottom-0 z-0">
+                    <Footer2 />
+                  </div>
+                  <ContactModal clickOutside={true} />
+                  <DynamicSidebar />
+                </BannerProvider>
+                {/* </LoaderProvider> */}
+              </body>
+            </FooterProvider>
           </SidebarProvider>
         </ContactModalProvider>
         {/* </LoaderContextProvider> */}

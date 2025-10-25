@@ -1,31 +1,20 @@
 "use client";
-import React, { act } from "react";
-import { useContactModal } from "@/contexts/ContactModalContext";
+import React from "react";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
 import { IoArrowDownCircleOutline } from "react-icons/io5";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
-import { sidebarUtils } from "@/utils/sidebarUtils";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomJobData from "@/data/customJobData.json"
-import CustomBlogData from "@/data/customBlogData.json";
-import CustomSpecData from "@/data/customSpecData.json";
 
 const HeroSection = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
-  const { showCustomContent, showSpecificationsContent, showReadingContent, showContactForm } = useSidebarActions();
+  const { showContactForm } = useSidebarActions();
 
   const handleLearnMore = (e) => {
-    e.preventDefault();
-    showReadingContent(CustomBlogData);
-    // Scroll to solutions section
-    // const section = document.getElementById("solutions-section");
-    // if (section) {
-    //   section.scrollIntoView({
-    //     behavior: "smooth",
-    //     block: "start",
-    //   });
-    // }
+    const el = document.getElementById("what-do-we-do");
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
   };
 
   return (
@@ -37,7 +26,7 @@ const HeroSection = () => {
         muted
         autoPlay
         loop
-        className="w-full h-full rounded-lg object-cover"
+        className="w-full h-full rounded-lg object-cover brightness-80"
       />
 
       {/* Content */}
@@ -56,21 +45,21 @@ const HeroSection = () => {
               className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
               onClick={() => {
                 /*
-                * Show custom content in sidebar
-                */
+                 * Show custom content in sidebar
+                 */
                 // showCustomContent(CustomJobData);
                 /*
-                * Show reading content in sidebar
-                */
+                 * Show reading content in sidebar
+                 */
                 // showReadingContent(CustomBlogData);
                 /*
-                * Show specifications content in sidebar
-                */
+                 * Show specifications content in sidebar
+                 */
                 // showSpecificationsContent(CustomSpecData);
 
                 /*
-                * Show contact form in sidebar
-                */
+                 * Show contact form in sidebar
+                 */
                 showContactForm();
 
                 // showCustomContent(CustomJobData);

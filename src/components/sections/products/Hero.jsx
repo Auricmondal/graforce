@@ -66,10 +66,10 @@ const Hero = () => {
         <div className="flex flex-col gap-6 h-fit my-auto z-10">
           <div className="flex flex-col gap-4">
             <h2 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
-              <AnimatedHeader delay={0.8}>Methane Plasmalyzer®</AnimatedHeader>
+              <AnimatedHeader delay={0.4}>Methane Plasmalyzer®</AnimatedHeader>
             </h2>
             <p className="max-w-3xl mx-auto md:text-xl font-light text-center">
-              <AnimatedHeader delay={0.8}>
+              <AnimatedHeader delay={0.4}>
                 We turn methane into clean hydrogen and solid carbon using
                 advanced plasma technology. Our process delivers zero CO₂
                 emissions and is fully scalable for industrial demand.

@@ -15,7 +15,7 @@ const Footer2 = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-dark text-white  relative overflow-hidden"
+      className="bg-cst-neutral-5 text-white  relative overflow-hidden"
     >
       <div className="max-w-[2000px] mx-auto">
         <ScrollReveal>
