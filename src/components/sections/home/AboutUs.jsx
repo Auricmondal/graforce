@@ -12,6 +12,7 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomSpecData from "@/data/customSpecData.json";
+import Link from "next/link";
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
@@ -150,9 +151,11 @@ const AboutUs = () => {
                         </p>
                       </AnimatedHeader>
                       <div className="pt-6">
-                        <PrimaryButton className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full" onClick={() => {showSpecificationsContent(CustomSpecData)}}>
-                          Learn More
-                        </PrimaryButton>
+                        <Link href="/about" className="w-full">
+                          <PrimaryButton className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full">
+                            Learn More
+                          </PrimaryButton>
+                        </Link>
                       </div>
                     </div>
                   </div>

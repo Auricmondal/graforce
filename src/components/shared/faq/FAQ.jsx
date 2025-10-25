@@ -14,6 +14,8 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
+import faqData from "@/data/faq.json";
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -23,26 +25,7 @@ const containerVariants = {
   },
 };
 
-const faqs = [
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-  {
-    question: "Question",
-    answer: "Answer",
-  },
-];
-
-export default function FAQSection() {
+export default function FAQSection({ faqs = faqData }) {
   const imageRef = useRef(null);
   const faqContainerRef = useRef(null);
 
