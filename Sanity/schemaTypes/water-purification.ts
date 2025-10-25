@@ -1,8 +1,8 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "product",
-  title: "Product Page",
+  name: "service",
+  title: "Service Page",
   type: "document",
   fields: [
     defineField({
@@ -13,29 +13,24 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "productHeroSection",
+      name: "serviceHeroSection",
       title: "Hero Section",
-      type: "productHeroSection",
+      type: "serviceHeroSection",
     }),
     defineField({
-      name: "whyWeMatterSection",
-      title: "Why We Matter Section",
-      type: "whyWeMatterSection",
+      name: "problemSection",
+      title: "Emission Problems",
+      type: "problemSection",
     }),
     defineField({
-      name: "graforceSolutionSection",
-      title: "Graforce Solution Section",
-      type: "graforceSolutionSection",
-    }),
-    defineField({
-      name: "howThisWorksSection",
-      title: "How This Works Section",
+      name: "achievementsSection",
+      title: "Achievements Section",
       type: "youNeedUsSection",
     }),
     defineField({
-      name: "importantDetailsSection",
-      title: "Important Details Section",
-      type: "importantDetailsSection",
+      name: "whyWorldNeedsUsSection",
+      title: "Why World Needs Us Section",
+      type: "youNeedUsSection",
     }),
     defineField({
       name: "solutionWorksSection",
@@ -53,14 +48,14 @@ export default defineType({
       type: "testimonialSection",
     }),
     defineField({
-      name: "otherServicesSection",
-      title: "Other Services Section",
-      type: "otherServicesSection",
-    }),
-    defineField({
       name: "finalCTASection",
       title: "Final CTA Section",
       type: "finalCTASection",
+    }),
+    defineField({
+      name: "otherServicesSection",
+      title: "Other Services Section",
+      type: "otherServicesSection",
     }),
     defineField({
       name: "newsSection",
@@ -76,12 +71,12 @@ export default defineType({
   preview: {
     select: {
       language: "language",
-      title: "productHeroSection.title",
+      title: "serviceHeroSection.title",
     },
     prepare(selection) {
       const { language, title } = selection;
       return {
-        title: `Product Page [${language?.toUpperCase() || "??"}]`,
+        title: `Service Page [${language?.toUpperCase() || "??"}]`,
         subtitle: title || "No content yet",
       };
     },

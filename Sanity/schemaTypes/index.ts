@@ -6,15 +6,15 @@ import YouNeedUs from "./home/hero/YouNeedUs"
 import Solution from "./home/Solution"
 import WhatDoWeDo from "./home/WhatDoWeDo"
 
-import services from "./services"
-import faq from "./services/faq"
-import hero from "./services/hero"
-import news from "./services/news"
-import otherservices from "./services/otherservices"
-import problem from "./services/problem"
-import productgallery from "./services/productgallery"
-import solutionworks from "./services/solutionworks"
-import testimonials from "./services/testimonials"
+import co2FreeEnergyGeneration from "./co2-free-energy-generation"
+import faq from "./services/co2-free-energy-generation/faq"
+import hero from "./services/co2-free-energy-generation/hero"
+import news from "./services/co2-free-energy-generation/news"
+import otherservices from "./services/co2-free-energy-generation/otherservices"
+import problem from "./services/co2-free-energy-generation/problem"
+import productgallery from "./services/co2-free-energy-generation/productgallery"
+import solutionworks from "./services/co2-free-energy-generation/solutionworks"
+import testimonials from "./services/co2-free-energy-generation/testimonials"
 
 import product from "./product"
 import heroProduct from "./products/heroProduct"
@@ -22,6 +22,11 @@ import importantdetails from "./products/importantdetails"
 import whywematter from "./products/whywematter"
 import graforcesolution from "./products/graforcesolution"
 import howthisworks from "./products/howthisworks"
+import hydrogenProduction from "./hydrogen-production"
+import waterPurification from "./water-purification"
+import blog from "./news/blog"
+import cardsSection from "./news/cardsSection"
+
 
 
 export const schemaTypes = [
@@ -33,7 +38,7 @@ export const schemaTypes = [
     WhatDoWeDo,
     YouNeedUs,
 
-    services,
+    co2FreeEnergyGeneration,
     hero,
     problem,
     productgallery,
@@ -43,12 +48,19 @@ export const schemaTypes = [
     news,
     faq,
 
+    hydrogenProduction,
+    waterPurification,
+
     product,
     heroProduct,
     importantdetails,
     whywematter,
     graforcesolution,
-    howthisworks
+    howthisworks,
+
+    news,
+    blog,
+    cardsSection,
 
 
 ]
