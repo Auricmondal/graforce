@@ -20,9 +20,10 @@ export default function AnimatedHeader({
   const inView = useInView(ref, { margin: "0px 0px -5% 0px" });
   const splitInstance = useRef(null);
   const tl = useRef(null);
+  const hasAnimated = useRef(false);
 
   const splitAndAnimate = () => {
-    if (!ref.current) return;
+    if (!ref.current || hasAnimated.current) return;
 
     if (splitInstance.current) {
       splitInstance.current.revert();
@@ -62,9 +63,8 @@ export default function AnimatedHeader({
           ease: "power3.out",
         }
       );
-    } else {
-      gsap.set(splitInstance.current.lines, { opacity: 0, y: 32 });
-    }
+      hasAnimated.current = true;
+    } 
   };
 
   useGSAP(

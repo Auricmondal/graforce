@@ -8,7 +8,7 @@ const LegalSection = ({
   contentClassName = ""
 }) => {
   return (
-    <section className={`mb-8 ${className}`}>
+    <section className={`${className}`}>
       <h2 className={`text-[40px] font-semibold text-black mb-4 ${titleClassName}`}>
         {title}
       </h2>

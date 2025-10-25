@@ -1,3 +1,4 @@
+'use client'
 import { useSidebar } from '@/contexts/SidebarContext';
 
 /**
