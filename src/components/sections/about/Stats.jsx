@@ -89,7 +89,7 @@ const Stats = () => {
 
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
-      <CardWrapper variant="standard" className="flex flex-col justify-center items-center md:h-fit" color="default" align="center">
+      <CardWrapper variant="normal" className="flex flex-col justify-center items-center md:h-fit" color="default" align="center">
         {/* <button
           className="border border-black text-black rounded-full hover:text-white hover:bg-gray-700 cursor-pointer p-4 px-10 transition-all duration-300 ease-in-out"
           onClick={startCounting}
