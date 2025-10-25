@@ -66,7 +66,7 @@ const Navbar = () => {
           </div>
           <div
             ref={downMenuRef}
-            className="fixed flex items-center gap-2 bg-white py-2 px-4 rounded-xl shadow-sm cursor-pointer z-100 -bottom-[10vh] right-2"
+            className="fixed flex items-center gap-2 bg-white py-2 px-4 rounded-xl shadow-lg border border-cst-neutral-1 cursor-pointer z-100 -bottom-[10vh] right-2"
           >
             <LanguageOptions downMenu={true} />
             <div

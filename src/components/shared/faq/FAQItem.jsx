@@ -16,13 +16,13 @@ const questionVariants = {
   },
 };
 
-export default function FAQItem({ question, answer }) {
+export default function FAQItem({ question, answer, className }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
       <CardWrapper
-        className="overflow-hidden flex flex-col p-8"
+        className={`overflow-hidden flex flex-col p-8 ${className}`}
         variant="custom"
       >
         <button

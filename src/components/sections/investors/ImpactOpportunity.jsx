@@ -1,3 +1,5 @@
+"use client";
+
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
@@ -5,6 +7,8 @@ import SectionWrapper from "@/wrappers/SectionWrapper";
 import thunderImg from "@/assets/investor/thunder.webp";
 import React from "react";
 import ImpactCard from "../../utils/cards/HoverCard";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomBlogData from "@/data/customBlogData.json";
 
 const impactCardData = [
   {
@@ -13,7 +17,6 @@ const impactCardData = [
     title: "80% Lower Cost",
     description:
       "High-voltage plasma (1300–1500 °C) cracks methane into hydrogen and carbon.",
-    onClick: "() => { alert('Learn more about Plasma Power') }",
   },
   {
     id: 2,
@@ -21,14 +24,12 @@ const impactCardData = [
     title: "CO₂-Free Hydrogen",
     description:
       "No greenhouse gas emissions — byproduct carbon is stored or sold.",
-    onClick: "() => { alert('Learn more about High Efficiency') }",
   },
   {
     id: 3,
     icon: thunderImg,
     title: "Industrial Byproducts",
     description: "Carbon black + heat create additional revenue streams.",
-    onClick: "() => { alert('Learn more about Plasma Efficiency') }",
   },
   {
     id: 4,
@@ -36,11 +37,11 @@ const impactCardData = [
     title: "Ready for Market",
     description:
       "Demo plant operational in Austria, commercial rollout from 2025.",
-    onClick: "() => { alert('Learn more about Plasma Efficiency') }",
   },
 ];
 
 const ImpactOpportunity = () => {
+  const { showReadingContent } = useSidebarActions();
   return (
     <div>
       <SectionWrapper sectionClassName="bg-cst-neutral-1" className="space-y-2">
@@ -59,7 +60,7 @@ const ImpactOpportunity = () => {
               icon={card.icon}
               title={card.title}
               description={card.description}
-              onClick={card.onClick}
+              onClick={() => showReadingContent(CustomBlogData)}
             />
           ))}
         </div>

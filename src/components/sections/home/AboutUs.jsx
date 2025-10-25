@@ -12,58 +12,15 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomSpecData from "@/data/customSpecData.json";
+import BrandLogos from "@/components/shared/brands/Brands";
 import Link from "next/link";
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
-  const brandLogoBase = "/brand/img/";
 
-  // Hardcoded fallback logos
-  const fallbackLogos = [
-    { src: `${brandLogoBase}digicert_icon.png.webp`, name: "Brand 1" },
-    { src: `${brandLogoBase}Group.webp`, name: "Brand 2" },
-    { src: `${brandLogoBase}Vector.webp`, name: "Brand 3" },
-    { src: `${brandLogoBase}WSJ.webp`, name: "Brand 4" },
-    { src: `${brandLogoBase}WSJ.webp`, name: "Brand 5" },
-    { src: `${brandLogoBase}Vector.webp`, name: "Brand 6" },
-  ];
-
-  const [brandLogos, setBrandLogos] = useState(fallbackLogos); // default = fallback
   const [foundation, setFoundation] = useState(2012);
   const [location, setLocation] = useState("Berlin Adlershof");
   const [loading, setLoading] = useState(true);
-
-  const API_URL = "/api/brands"; // replace with your real endpoint
-
-  useEffect(() => {
-    const fetchLogos = async () => {
-      try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error("Failed to fetch logos");
-
-        const data = await res.json();
-
-        // If API returns logos, use them; else use fallback
-        if (data && Array.isArray(data.logos) && data.logos.length > 0) {
-          setBrandLogos(data.logos);
-        } else {
-          setBrandLogos(fallbackLogos);
-        }
-      } catch (err) {
-        console.warn("API fetch failed, using fallback logos:", err);
-        setBrandLogos(fallbackLogos);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLogos();
-  }, []);
-
-  // Local fallback for individual broken images
-  const handleImgError = (e) => {
-    e.target.src = `${brandLogoBase}default-logo.webp`;
-  };
 
   return (
     <SectionWrapper
@@ -85,29 +42,7 @@ const AboutUs = () => {
             </h2>
           </AnimatedHeader>
         </CardWrapper>
-
-        {loading ? (
-          <p className="text-center text-gray-500">Loading brand logos...</p>
-        ) : (
-          <div
-            id="brands"
-            className="grid md:grid-cols-3 grid-cols-2 gap-4 p-0 h-fit w-full bg-cst-neutral-1 rounded-lg"
-          >
-            {brandLogos.map((logo, i) => (
-              <div
-                key={i}
-                className="group flex items-center justify-center bg-cst-neutral-1 border border-cst-neutral-2 rounded-lg h-[131px] md:h-[196px]"
-              >
-                <img
-                  src={logo.src}
-                  alt={logo.name}
-                  onError={handleImgError}
-                  className="w-[25%] h-[25%] object-contain rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
-                />
-              </div>
-            ))}
-          </div>
-        )}
+        <BrandLogos />
         <CardWrapper
           variant="custom"
           align="center"
