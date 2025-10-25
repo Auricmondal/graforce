@@ -10,9 +10,10 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomJobData from "@/data/customJobData.json";
+import CustomBlogData from "@/data/customBlogData.json";
 import sideImg from "@/assets/service/shapeDiamond.png";
 import useIsDesktop from "@/hooks/useIsDesktop";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,7 +37,7 @@ const CaseStudies = () => {
   const needRef = useRef(null);
   const labelRef = useRef(null);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showJobContent } = useSidebarActions();
+  const { showReadingContent } = useSidebarActions();
 
   const isMobile = !useIsDesktop();
 
@@ -200,7 +201,7 @@ const CaseStudies = () => {
                     <PrimaryButton
                       className={`bg-[#5326D4] text-white rounded-xl py-4 px-6 w-full text-sm md:text-base`}
                       onClick={() => {
-                        showJobContent(CustomJobData);
+                        showReadingContent(CustomBlogData);
                       }}
                     >
                       Learn More
