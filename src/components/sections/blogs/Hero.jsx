@@ -38,13 +38,13 @@ const HeroBlogs = () => {
   }, []);
 
   return (
-    <SectionWrapper className="text-black py-10 space-y-10 mx-auto max-w-[2000px]">
-      <div className="mx-auto px-4 pt-20 text-center max-h-[450px] flex flex-col justify-center space-y-4 ">
-        <Image
-          src={heroImage}
-          alt="Blog Hero Image"
-          className="absolute object-cover w-full h-full hero-image  top-0 right-0 -z-10 opacity-100 max-h-[450px] overflow-hidden"
-        />
+    <div className="relative flex items-center md:items-end w-full text-black py-10 mx-auto h-screen md:h-[70vh] overflow-hidden">
+      <Image
+        src={heroImage}
+        alt="Blog Hero Image"
+        className="hiden absolute object-cover w-full h-full hero-image top-0 right-0 -z-0 opacity-100"
+      />
+      <div className="relative z-1 mx-auto px-4 pb-20 text-center flex flex-col justify-center space-y-4 h-fit w-full">
         <h1 className="hero-head text-4xl sm:text-7xl font-bold mb-4 text-white ">
           News
         </h1>
@@ -58,7 +58,7 @@ const HeroBlogs = () => {
           </p>
         </a> */}
       </div>
-    </SectionWrapper>
+    </div>
   );
 };
 
