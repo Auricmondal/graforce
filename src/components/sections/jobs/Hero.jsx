@@ -1,10 +1,23 @@
+"use client";
+
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import JobScroller from "./JobScroller";
 
-export default function HeroSection() {
+export default function HeroSection({ weAreHiring = false }) {
+  const handleExplore = (e) => {
+    e.preventDefault();
+    const section = document.getElementById("job-openings");
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <SectionWrapper
       sectionClassName="bg-cst-neutral-1"
@@ -13,11 +26,14 @@ export default function HeroSection() {
       {/* Top part */}
       <div className="text-center flex flex-col items-center gap-6 px-4 md:px-6 lg:px-16">
         <div className="flex flex-col gap-2">
-          <div className="relative flex items-center justify-center w-fit mx-auto p-2 bg-[#416DD21A] rounded-full">
-            <div className="relative px-8 py-2 h-14 bg-[#416DD238] text-primary font-medium rounded-full flex items-center justify-center z-10">
-              We Are Hiring
+          {weAreHiring && (
+            <div className="relative flex items-center justify-center w-fit mx-auto p-2 rounded-full">
+              <div className="absolute inset-0 rounded-full bg-[#416DD21A] animate-ripple-rect"></div>
+              <div className="relative px-8 py-2 h-14 bg-[#416DD238] text-primary font-medium rounded-full flex items-center justify-center z-10">
+                We Are Hiring
+              </div>
             </div>
-          </div>
+          )}
 
           <h1 className="text-5xl md:text-[64px] lg:text-[88px] font-medium leading-[100%]">
             <AnimatedHeader>
@@ -33,7 +49,10 @@ export default function HeroSection() {
             industries, and every contribution matters.
           </AnimatedHeader>
         </p>
-        <PrimaryButton className="bg-cst-neutral-5 text-white rounded-2xl py-4 px-6 font-medium flex items-center gap-2">
+        <PrimaryButton
+          className="bg-cst-neutral-5 text-white rounded-2xl py-4 px-6 font-medium flex items-center gap-2"
+          onClick={handleExplore}
+        >
           Explore Open Roles
           <FaChevronRight />
         </PrimaryButton>

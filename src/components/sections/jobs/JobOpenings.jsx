@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import CardWrapper from "@/wrappers/CardWrapper";
@@ -5,6 +7,8 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import HoverCard from "@/components/utils/cards/HoverCard";
 import thunderImg from "@/assets/thunder.webp";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomJobData from "@/data/customJobData.json";
 
 const sectorData = [
   {
@@ -33,6 +37,7 @@ const sectorData = [
 ];
 
 const JobOpenings = () => {
+  const { showJobContent } = useSidebarActions();
   return (
     <SectionWrapper
       sectionClassName="bg-cst-neutral-1"
@@ -43,7 +48,7 @@ const JobOpenings = () => {
         variant="custom"
       >
         <SectionLabel text="Job Openings" />
-        <h3 className="text-[32px] md:text-5xl font-medium">
+        <h3 className="text-[32px] md:text-5xl font-medium" id="job-openings">
           <AnimatedHeader className="">
             Build the future. Together.
           </AnimatedHeader>
@@ -65,7 +70,7 @@ const JobOpenings = () => {
             icon={card.icon}
             title={card.title}
             description={card.description}
-            onClick={card.onClick}
+            onClick={() => showJobContent(CustomJobData)}
           />
         ))}
       </div>
@@ -85,7 +90,7 @@ const JobOpenings = () => {
             icon={card.icon}
             title={card.title}
             description={card.description}
-            onClick={card.onClick}
+            onClick={() => showJobContent(CustomJobData)}
           />
         ))}
       </div>
