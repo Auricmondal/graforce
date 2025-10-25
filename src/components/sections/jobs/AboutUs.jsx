@@ -4,14 +4,14 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LuClock3 } from "react-icons/lu";
 import { MdOutlineLocationOn } from "react-icons/md";
 import aboutUsImage from "@/assets/home/aboutimg.png";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomSpecData from "@/data/customSpecData.json";
+import Link from "next/link";
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
@@ -82,14 +82,11 @@ const AboutUs = () => {
                         </p>
                       </AnimatedHeader>
                       <div className="pt-6">
-                        <PrimaryButton
-                          className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full"
-                          onClick={() => {
-                            showSpecificationsContent(CustomSpecData);
-                          }}
-                        >
-                          Learn More
-                        </PrimaryButton>
+                        <Link href="/about">
+                          <PrimaryButton className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full">
+                            Learn More
+                          </PrimaryButton>
+                        </Link>
                       </div>
                     </div>
                   </div>

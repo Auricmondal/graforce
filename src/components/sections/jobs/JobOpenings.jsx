@@ -43,7 +43,7 @@ const JobOpenings = () => {
         variant="custom"
       >
         <SectionLabel text="Job Openings" />
-        <h3 className="text-[32px] md:text-5xl font-medium">
+        <h3 className="text-[32px] md:text-5xl font-medium" id="job-openings">
           <AnimatedHeader className="">
             Build the future. Together.
           </AnimatedHeader>
