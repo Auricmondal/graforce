@@ -31,7 +31,7 @@ export default function TopSection() {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-3 items-center">
-        {[[blockData[0]], [blockData[1], blockData[1]], [blockData[0]]].map(
+        {[[blockData[0]], [blockData[1], blockData[2]], [blockData[3]]].map(
           (column, columnIndex) => (
             <div key={columnIndex} className="col-span-1">
               {column.map((block, blockIndex) => (
