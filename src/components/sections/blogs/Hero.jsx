@@ -44,7 +44,7 @@ const HeroBlogs = () => {
         alt="Blog Hero Image"
         className="hiden absolute object-cover w-full h-full hero-image top-0 right-0 -z-0 opacity-100"
       />
-      <div className="relative z-1 mx-auto px-4 pb-20 text-center flex flex-col justify-center space-y-4 h-fit w-full">
+      <div className="relative z-1 mx-auto px-4 pb-18 text-center flex flex-col justify-center gap-4 h-fit w-full">
         <h1 className="hero-head text-4xl sm:text-7xl font-bold mb-4 text-white ">
           News
         </h1>

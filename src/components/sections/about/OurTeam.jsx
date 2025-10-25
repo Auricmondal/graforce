@@ -13,7 +13,7 @@ const OurTeam = () => {
           variant="custom"
           color="transparent"
           align="center"
-          className="py-20 px-8 gap-4"
+          className="py-20 px-4 gap-4"
         >
           <div className="flex flex-col justify-center items-center gap-4">
             <SectionLabel
