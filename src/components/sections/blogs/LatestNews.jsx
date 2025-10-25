@@ -7,7 +7,6 @@ import ProfilePic from "@/assets/about/gallery-image-1.jpg";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Image from "next/image";
 import SplitLines from "@/components/utils/splitter/SplitLines";
-import { IoMdArrowRoundForward } from "react-icons/io";
 import AuthorBadge, { PartnershipBadge } from "./AuthorBadge";
 import ArrowBadge from "./ArrowBadge";
 import SideCard from "./SideCard";
