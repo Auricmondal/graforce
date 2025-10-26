@@ -33,7 +33,7 @@ const Hero = () => {
       });
     }
   };
-  //
+
   return (
     <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2">
       <div className="bg-[linear-gradient(90.53deg,_#102044_-1.02%,_#416DD2_99.51%)] flex flex-col w-full rounded-2xl relative pb-2 px-[3vw] h-full">
@@ -93,7 +93,6 @@ const Hero = () => {
             </PrimaryButton>
           </div>
         </div>
-
       </div>
     </main>
   );
