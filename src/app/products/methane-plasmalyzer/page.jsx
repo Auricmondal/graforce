@@ -37,7 +37,7 @@ export default async function MethanePlasmalyzer() {
       {config.graforceSolution && <GraforceSolution />}
       {config.howThisWorks && <HowThisWorks />}
       {config.productGallery && <ProductGallery />}
-      {config.importantDetails && <ImportantDetails />}
+      {config.importantDetails && <ImportantDetails isOneLeftType={false} />}
       {config.solutionWorks && <SolutionWorks />}
       {config.otherServices && <OtherServices />}
       {config.testimonials && <Testimonials />}
