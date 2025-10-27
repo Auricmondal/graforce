@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
 import { useContactModal } from "@/contexts/ContactModalContext";
-import bgImg from "@/assets/service/hero/co2-free.webp";
+import bgImg from "@/assets/product/synthetic-carbon-quality.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
@@ -61,18 +61,16 @@ const Hero = () => {
             </PrimaryButton>
           </div>
         </div>
-
-        {/* Background Video */}
       </div>
+
+      {/* background Image */}
       <div className="w-full h-full relative">
-        <video
-          id="video-section"
-          src="/hero-videos/natural-gas.webm"
-          playsInline
-          muted
-          autoPlay
-          loop
-          className="w-full h-full rounded-lg object-cover brightness-70"
+        <Image
+          src={bgImg.src}
+          alt="Background Image"
+          fill
+          className="z-0 object-cover rounded-2xl brightness-70"
+          style={{ objectFit: "cover" }}
         />
       </div>
     </main>
