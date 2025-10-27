@@ -5,7 +5,14 @@ import AuthorBadge, { PartnershipBadge } from './AuthorBadge';
 import ArrowBadge from './ArrowBadge';
 import Image from 'next/image';
 
-const SideCard = ({ picture = sidehotpic, badgeText = 'Technology', name = 'John Smith', date = '2024-06-10', description = 'Graforce & Kawasaki Partner for Zero Carbon Heat & Power', ProfilePicture = ProfilePic }) => {
+const SideCard = ({ 
+  picture = sidehotpic, 
+  badgeText = 'Technology', 
+  name = 'John Smith', 
+  date = '2024-06-10', 
+  description = 'Graforce & Kawasaki Partner for Zero Carbon Heat & Power',   
+  ProfilePicture = ProfilePic 
+}) => {
   return (
     <div className="relative rounded-2xl overflow-hidden h-[60vh]">
       <Image
@@ -14,27 +21,27 @@ const SideCard = ({ picture = sidehotpic, badgeText = 'Technology', name = 'John
         className="object-cover absolute brightness-75 w-full h-full"
       />
       <div className="absolute z-1 bg-blue-700/30 w-full h-full" />
-      <div className="relative z-1 grid grid-cols-1 py-4 sm:py-4 px-4 sm:px-6 w-full h-full">
+      <div className="relative z-1 grid grid-cols-1 py-2 md:py-4 px-2 md:px-6 w-full h-full">
         <div className="flex flex-col items-start gap-2 justify-start w-full">
           <div className="flex flex-row items-center justify-between w-full p-4 md:p-0">
-            <div className="flex md:hidden"></div>
+            <div className="flex min-[880px]:hidden"></div>
             <PartnershipBadge
               text={badgeText}
               bgColor="bg-white/60"
               textColor="text-black"
               border="none"
-              paddingX="px-6 sm:px-8"
-              className="hidden md:flex"
+              paddingX="small"
+              className="hidden min-[880px]:flex"
             />
             <ArrowBadge
               onClick={() => {
                 console.log("Clicked on arrow.");
               }}
               // size="small"
-              className="scale-125 md:scale-75"
+              className="scale-75 min-[880px]:scale-50"
             />
           </div>
-          <div className="hidden text-white text-base md:flex font-semibold">
+          <div className="hidden text-white text-base min-[880px]:flex font-semibold">
             {description}
           </div>
         </div>
@@ -45,9 +52,9 @@ const SideCard = ({ picture = sidehotpic, badgeText = 'Technology', name = 'John
             badgeImage={ProfilePicture}
             size="small"
             padding="small"
-            className="hidden md:flex"
+            className="hidden min-[880px]:flex"
           />
-          <div className="flex md:hidden text-white text-2xl font-semibold">
+          <div className="flex min-[880px]:hidden text-white text-xl font-semibold">
             {description}
           </div>
         </div>

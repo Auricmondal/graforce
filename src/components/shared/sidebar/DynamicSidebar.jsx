@@ -45,9 +45,9 @@ const DynamicSidebar = () => {
       gsap.set(".sidebar-action-button", { y: 50, opacity: 0 });
 
       // Open animation
-      tl.to(overlay, { x: 0, duration: 0.3, ease: "power2.inOut" });
-      tl.to(sidebarOverlayBackdrop, { x: 0, duration: 0.3, ease: "power2.inOut" }, "<0.1");
-      tl.to(menuContainer, { x: 0, duration: 0.3, ease: "power2.inOut" });
+      tl.to(overlay, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
+      tl.to(sidebarOverlayBackdrop, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
+      tl.to(menuContainer, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
 
       // Animate content items if they exist
       tl.to(".sidebar-content-item", {
@@ -67,17 +67,17 @@ const DynamicSidebar = () => {
       }, "<0.1");
     } else {
       // Close animation
-      tl.to(".sidebar-action-button", { y: 50, opacity: 0, duration: 0.2, ease: "power2.in" });
+      tl.to(".sidebar-action-button", { y: 50, opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
       tl.to(".sidebar-content-item", {
         x: 300,
         opacity: 0,
         duration: 0.2,
         stagger: -0.03,
         ease: "power2.in"
-      }, "<");
-      tl.to(menuContainer, { x: '40vw', duration: 0.3, ease: "power2.inOut" });
-      tl.to(sidebarOverlayBackdrop, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, "<0.1");
-      tl.to(overlay, { x: '100vw', duration: 0.3, ease: "power2.inOut" });
+      }, 0);
+      tl.to(menuContainer, { x: '40vw', duration: 0.3, ease: "power2.inOut" }, 0.06);
+      tl.to(sidebarOverlayBackdrop, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, 0.06);
+      tl.to(overlay, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, 0.06);
     }
   }, [isOpen]);
 
@@ -109,7 +109,7 @@ const DynamicSidebar = () => {
   return (
     <div
       ref={sidebarOverlayRef}
-      className="sidebar-overlay w-screen h-screen fixed flex flex-row justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw] overflow-hidden"
+      className="sidebar-overlay w-screen min-[1130px]:w-0 h-screen fixed flex flex-row justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw] overflow-hidden"
     >
       {/* Backdrop for desktop */}
       <div

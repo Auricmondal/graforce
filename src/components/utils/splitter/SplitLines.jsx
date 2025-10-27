@@ -4,7 +4,7 @@ import SplitText from "gsap/SplitText";
 
 gsap.registerPlugin(SplitText);
 
-export default function SplitLines({ children, className = "", textId = "" }) {
+export default function SplitLines({ children, className = "", textId = "", spanClassName = "" }) {
   const ref = useRef(null);
   const splitInstance = useRef(null);
 
@@ -14,7 +14,7 @@ export default function SplitLines({ children, className = "", textId = "" }) {
     // Split the text into lines
     splitInstance.current = new SplitText(ref.current, {
       type: "lines",
-      linesClass: `gsap-line`,
+      linesClass: `gsap-line ${spanClassName}`.trim(),
     });
 
     // Replace <div> with <span> for proper inline rendering and add unique IDs

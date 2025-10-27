@@ -9,10 +9,15 @@ export const PartnershipBadge = ({
   bgColor = "bg-transparent",
   border = "border-white",
   textColor = "text-white",
-  paddingX = "px-8 sm:px-16",
+  paddingX = "default",
 }) => {
+  const padding = {
+    default: "px-4 sm:px-8 text-xs sm:text-base",
+    small: "px-2 sm:px-4 text-xs md:taxt-sm",
+    large: "px-8 sm:px-16 text-xs sm:text-base"
+  }
   return (
-    <div className={`${paddingX} py-2 ${bgColor} ${textColor} text-xs sm:text-base ${border !== 'none' ? `border ${border}` : ''} rounded-full uppercase text-center ${className}`}>
+    <div className={`${padding[paddingX]} py-2 ${bgColor} ${textColor} ${border !== 'none' ? `border ${border}` : ''} rounded-full uppercase text-center ${className}`}>
       <div className="flex flex-row items-center justify-center gap-2">
         {icon && <GoDotFill />} {text}
       </div>

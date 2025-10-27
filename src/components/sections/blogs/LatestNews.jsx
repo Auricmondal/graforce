@@ -33,7 +33,7 @@ const LatestNews = () => {
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <CardWrapper variant="custom" className="px-4 py-8 sm:px-6 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-10 w-full gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-10 w-full gap-4">
           <div className="relative flex flex-col h-full sm:col-span-7 rounded-2xl space-y-8">
             <div className="text-cst-neutral-5 font-semibold capitalize">
               <h2 className="text-3xl sm:text-4xl md:text-6xl">Latest News</h2>
@@ -42,13 +42,13 @@ const LatestNews = () => {
               <Image
                 src={hotnews}
                 alt="Hot News"
-                className="absolute brightness-70 top-0 right-0 object-cover w-full h-full rounded-2xl overflow-hidden aspect-3/4 sm:aspect-auto"
+                className="absolute brightness-55 top-0 right-0 object-cover w-full h-full rounded-2xl overflow-hidden aspect-3/4 sm:aspect-auto"          
               />
               <div className="relative z-20 w-full flex flex-col justify-between items-start px-6 py-6 sm:py-8">
                 <div className="flex flex-col gap-4 items-start justify-start">
                   <PartnershipBadge />
-                  <div className="w-full text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-black mt-4">
-                    <SplitLines className="bg-white rounded-2xl">
+                  <div className="w-full text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-black drop-shadow-xl mt-4">
+                    <SplitLines className="text-white rounded-2xl h-fit">
                       Zero Carbon CHP with Kawasaki
                     </SplitLines>
                   </div>
