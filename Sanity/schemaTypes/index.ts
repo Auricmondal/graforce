@@ -8,13 +8,17 @@ import WhatDoWeDo from "./home/WhatDoWeDo"
 
 import co2FreeEnergyGeneration from "./co2-free-energy-generation"
 import faq from "./services/co2-free-energy-generation/faq"
-import hero from "./services/co2-free-energy-generation/hero"
 import news from "./services/co2-free-energy-generation/newsService"
 import otherservices from "./services/co2-free-energy-generation/otherservices"
 import problem from "./services/co2-free-energy-generation/problem"
 import productgallery from "./services/co2-free-energy-generation/productgallery"
 import solutionworks from "./services/co2-free-energy-generation/solutionworks"
 import testimonials from "./services/co2-free-energy-generation/testimonials"
+import Energyhero from "./services/co2-free-energy-generation/Energyhero"
+import Hydrogenhero from "./services/Hydrogen-production/Hydrogenhero"
+import Waterhero from "./services/Water-purification/Waterhero"
+import hydrogenProduction from "./hydrogen-production"
+import waterPurification from "./water-purification"
 
 import product from "./product"
 import heroProduct from "./products/heroProduct"
@@ -22,8 +26,7 @@ import importantdetails from "./products/importantdetails"
 import whywematter from "./products/whywematter"
 import graforcesolution from "./products/graforcesolution"
 import howthisworks from "./products/howthisworks"
-import hydrogenProduction from "./hydrogen-production"
-import waterPurification from "./water-purification"
+
 import blog from "./news/blog"
 import cardsSection from "./news/cardsSection"
 import jobs from "./jobs"
@@ -59,6 +62,7 @@ import specs from "./home/specs"
 
 
 
+
 export const schemaTypes = [
     home,
     herosection,
@@ -69,7 +73,7 @@ export const schemaTypes = [
     YouNeedUs,
 
     co2FreeEnergyGeneration,
-    hero,
+    Energyhero,
     specs,
     problem,
     productgallery,
@@ -80,7 +84,9 @@ export const schemaTypes = [
     faq,
 
     hydrogenProduction,
+    Hydrogenhero,
     waterPurification,
+    Waterhero,
 
     product,
     heroProduct,

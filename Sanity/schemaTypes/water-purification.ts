@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "serviceHeroSection",
+      name: "waterHeroSection",
       title: "Hero Section",
-      type: "serviceHeroSection",
+      type: "waterHeroSection",
     }),
     defineField({
       name: "problemSection",

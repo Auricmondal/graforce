@@ -47,4 +47,4 @@ const AboutFAQ = ({
   )
 }
 
-export default AboutFAQ
+export default AboutFAQ;

@@ -14,8 +14,9 @@ import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomSpecData from "@/data/customSpecData.json";
 import client from "@/lib/sanityClient";
 import urlFor from "@/lib/urlFor";
+import { aboutUsQuery } from "@/Queries/home/AboutUs";
 
-const GROQ_QUERY = `
+/*const GROQ_QUERY = `
   *[_type == "home"][0]{
     "aboutUs": aboutUsSection{
       title,
@@ -32,7 +33,7 @@ const GROQ_QUERY = `
       }
     }
   }
-`;
+`;*/
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
@@ -66,7 +67,7 @@ const AboutUs = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sanityData = await client.fetch(GROQ_QUERY);
+        const sanityData = await client.fetch(aboutUsQuery);
         const about = sanityData?.aboutUs;
 
         if (about) {

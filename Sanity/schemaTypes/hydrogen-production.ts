@@ -2,7 +2,7 @@ import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "hydrogen-production",
-  title: "Service Page",
+  title: "Hydrogen Production Page",
   type: "document",
   fields: [
     defineField({
@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "serviceHeroSection",
+      name: "hydrogenHeroSection",
       title: "Hero Section",
-      type: "serviceHeroSection",
+      type: "hydrogenHeroSection",
     }),
     defineField({
       name: "problemSection",
@@ -76,7 +76,7 @@ export default defineType({
     prepare(selection) {
       const { language, title } = selection;
       return {
-        title: `Service Page [${language?.toUpperCase() || "??"}]`,
+        title: `Hydrogen Prodution Page [${language?.toUpperCase() || "??"}]`,
         subtitle: title || "No content yet",
       };
     },
