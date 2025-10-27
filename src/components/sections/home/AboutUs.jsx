@@ -12,6 +12,7 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomSpecData from "@/data/customSpecData.json";
+<<<<<<< HEAD
 import client from "@/lib/sanityClient";
 import urlFor from "@/lib/urlFor";
 
@@ -50,6 +51,14 @@ const AboutUs = () => {
   ];
 
   const [brandLogos, setBrandLogos] = useState(fallbackLogos);
+=======
+import BrandLogos from "@/components/shared/brands/Brands";
+import Link from "next/link";
+
+const AboutUs = () => {
+  const { showSpecificationsContent } = useSidebarActions();
+
+>>>>>>> main
   const [foundation, setFoundation] = useState(2012);
   const [location, setLocation] = useState("Berlin Adlershof");
   const [title, setTitle] = useState("Trusted. Proven. Driven.");
@@ -62,6 +71,7 @@ const AboutUs = () => {
   const [mainImage, setMainImage] = useState(aboutUsImage);
   const [loading, setLoading] = useState(true);
 
+<<<<<<< HEAD
   // 🧠 Fetch data from Sanity
   useEffect(() => {
     const fetchData = async () => {
@@ -104,6 +114,8 @@ const AboutUs = () => {
     e.target.src = `${brandLogoBase}default-logo.webp`;
   };
 
+=======
+>>>>>>> main
   return (
     <SectionWrapper
       className="bg-[#E6E6E6] text-black space-y-10"
@@ -124,6 +136,7 @@ const AboutUs = () => {
             </h2>
           </AnimatedHeader>
         </CardWrapper>
+<<<<<<< HEAD
 
         {/* Brand Logos */}
         {loading ? (
@@ -150,6 +163,9 @@ const AboutUs = () => {
         )}
 
         {/* About Section */}
+=======
+        <BrandLogos />
+>>>>>>> main
         <CardWrapper
           variant="custom"
           align="center"
@@ -185,6 +201,7 @@ const AboutUs = () => {
                         </p>
                       </AnimatedHeader>
                       <div className="pt-6">
+<<<<<<< HEAD
                         <PrimaryButton
                           className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full"
                           onClick={() =>
@@ -195,6 +212,13 @@ const AboutUs = () => {
                         >
                           {buttonText}
                         </PrimaryButton>
+=======
+                        <Link href="/about" className="w-full">
+                          <PrimaryButton className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full">
+                            Learn More
+                          </PrimaryButton>
+                        </Link>
+>>>>>>> main
                       </div>
                     </div>
                   </div>
