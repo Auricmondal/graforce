@@ -41,7 +41,7 @@ const Navbar = () => {
         >
           <nav
             ref={navRef}
-            className={`mx-auto flex-1 items-center justify-between px-3 py-2 bg-transparent shadow-none [@media(min-width:1080px)]:overflow-hidden overflow-auto m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
+            className={`mx-auto flex-1 items-center justify-between px-3 py-2 bg-transparent shadow-none m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]
         
         `}
             >
