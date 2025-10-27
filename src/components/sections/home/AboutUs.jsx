@@ -14,10 +14,10 @@ import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomSpecData from "@/data/customSpecData.json";
 import client from "@/lib/sanityClient";
 import urlFor from "@/lib/urlFor";
-import { aboutUsQuery } from "@/Queries/home/AboutUs";
+import { useLanguage } from "@/hooks/useLanguage";
 
-/*const GROQ_QUERY = `
-  *[_type == "home"][0]{
+const GROQ_QUERY = `
+  *[_type == "home" && language == $language][0]{
     "aboutUs": aboutUsSection{
       title,
       foundation,
@@ -37,6 +37,7 @@ import { aboutUsQuery } from "@/Queries/home/AboutUs";
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
+  const { language } = useLanguage();
 
   const brandLogoBase = "/brand/img/";
 
@@ -60,47 +61,97 @@ const AboutUs = () => {
   );
   const [buttonText, setButtonText] = useState("Learn More");
   const [buttonUrl, setButtonUrl] = useState("#");
+  // mainImage may be a string URL (from urlFor) or a static import (aboutUsImage)
   const [mainImage, setMainImage] = useState(aboutUsImage);
   const [loading, setLoading] = useState(true);
 
-  // 🧠 Fetch data from Sanity
+  // Fetch data from Sanity (language-aware)
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const sanityData = await client.fetch(aboutUsQuery);
+        const lang = language || "en";
+        const sanityData = await client.fetch(GROQ_QUERY, { language: lang });
         const about = sanityData?.aboutUs;
+        console.log("about: ", about,about.companyName)
 
-        if (about) {
-          setTitle(about.title || title);
-          setFoundation(about.foundation || foundation);
-          setLocation(about.location || location);
-          setCompanyName(about.companyName || companyName);
-          setDescription(about.description || description);
-          setButtonText(about.buttonText || buttonText);
-          setButtonUrl(about.buttonUrl || buttonUrl);
-          setMainImage(
-            about.image ? urlFor(about.image).url() : aboutUsImage
-          );
-
-          if (Array.isArray(about.brandLogos) && about.brandLogos.length > 0) {
-            const logos = about.brandLogos.map((logo) => ({
-              name: logo.name,
-              src: logo.logo ? urlFor(logo.logo).url() : `${brandLogoBase}default-logo.webp`,
-            }));
-            setBrandLogos(logos);
+        if (about && typeof about === "object") {
+          setTitle(about.title || "Trusted. Proven. Driven.");
+          setFoundation(typeof about.foundation === "number" ? about.foundation : 2012);
+          setLocation(about.location || "Berlin Adlershof");
+          if (typeof about.companyName === "string" && about.companyName.trim().length > 0) {
+            setCompanyName(about.companyName);
           }
+
+          setDescription(
+            typeof about.description === "string" && about.description.trim().length > 0
+              ? about.description
+              : "Power-to-X plants generate CO₂-free or CO₂-negative hydrogen and synthetic raw materials."
+          );
+          setButtonText(about.buttonText || "Learn More");
+          setButtonUrl(about.buttonUrl || "#");
+
+          // Main image
+          try {
+            const hasAsset =
+              about.image &&
+              typeof about.image === "object" &&
+              about.image.asset &&
+              typeof about.image.asset === "object";
+            if (hasAsset) {
+              const imageUrl = urlFor(about.image)?.url?.();
+              setMainImage(imageUrl || aboutUsImage);
+            } else {
+              setMainImage(aboutUsImage);
+            }
+          } catch {
+            setMainImage(aboutUsImage);
+          }
+
+          // Brand logos
+          if (Array.isArray(about.brandLogos) && about.brandLogos.length > 0) {
+            const logos = about.brandLogos.map((logoItem) => {
+              const hasLogoAsset =
+                logoItem?.logo &&
+                typeof logoItem.logo === "object" &&
+                logoItem.logo.asset &&
+                typeof logoItem.logo.asset === "object";
+              let src = `${brandLogoBase}default-logo.webp`;
+              try {
+                if (hasLogoAsset) {
+                  const built = urlFor(logoItem.logo)?.url?.();
+                  if (built && typeof built === "string") src = built;
+                }
+              } catch {
+                // keep default
+              }
+              return {
+                name: logoItem?.name || "Brand",
+                src,
+              };
+            });
+            setBrandLogos(logos);
+          } else {
+            setBrandLogos(fallbackLogos);
+          }
+        } else {
+          setBrandLogos(fallbackLogos);
+          setMainImage(aboutUsImage);
         }
       } catch (err) {
         console.warn("⚠️ Failed to fetch from Sanity. Using fallback data.", err);
+        setBrandLogos(fallbackLogos);
+        setMainImage(aboutUsImage);
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
 
-  // 🖼️ Handle broken logos
+  // Handle broken logos
   const handleImgError = (e) => {
     e.target.src = `${brandLogoBase}default-logo.webp`;
   };
@@ -136,7 +187,7 @@ const AboutUs = () => {
           >
             {brandLogos.map((logo, i) => (
               <div
-                key={i}
+                key={`${logo.name}-${i}`}
                 className="group flex items-center justify-center bg-cst-neutral-1 border border-cst-neutral-2 rounded-lg h-[131px] md:h-[196px]"
               >
                 <img
@@ -159,13 +210,16 @@ const AboutUs = () => {
         >
           <div className="flex-col w-full">
             <div className="flex flex-row items-center justify-between gap-4 text-sm sm:text-lg">
-              <div className="flex items-center gap-1">
+              <div
+                className="flex items-center gap-1"
+                title={Number.isFinite(foundation) ? `Founded in ${foundation}` : "Founded"}
+              >
                 <LuClock3 className="text-base sm:text-2xl" />
-                Founded in {foundation}
+                Founded in {Number.isFinite(foundation) ? foundation : 2012}
               </div>
               <div className="flex items-center gap-1">
                 <MdOutlineLocationOn className="text-base sm:text-2xl" />
-                {location}
+                {location || "Berlin Adlershof"}
               </div>
             </div>
 
@@ -189,8 +243,8 @@ const AboutUs = () => {
                         <PrimaryButton
                           className="bg-cst-neutral-5 text-white rounded-xl py-4 px-6 w-full"
                           onClick={() =>
-                            buttonUrl
-                              ? window.open(buttonUrl, "_blank")
+                            buttonUrl && buttonUrl !== "#"
+                              ? window.open(buttonUrl, "_blank", "noopener,noreferrer")
                               : showSpecificationsContent(CustomSpecData)
                           }
                         >
@@ -206,11 +260,12 @@ const AboutUs = () => {
                   <div className="absolute w-[100%] h-[100%] bg-cst-neutral-2 rounded-3xl z-0 translate-3"></div>
                   <div className="relative z-10 rounded-3xl overflow-hidden w-[100%] h-[100%]">
                     <Image
-                      src={mainImage}
+                      src={typeof mainImage === "string" && mainImage ? mainImage : aboutUsImage}
                       alt={`${companyName} Technology`}
                       width={600}
                       height={450}
                       className="object-cover w-full h-full aspect-[3/4] sm:aspect-auto"
+                      unoptimized
                     />
                   </div>
                 </div>
