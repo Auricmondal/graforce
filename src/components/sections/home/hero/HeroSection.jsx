@@ -21,7 +21,7 @@ const HeroSection = () => {
     <div className="flex items-center justify-center h-screen relative overflow-hidden bg-cst-neutral-1 p-2">
       <video
         id="video-section"
-        src="/hero-video.webm"
+        src="/hero-videos/home-hero-video.webm"
         playsInline
         muted
         autoPlay

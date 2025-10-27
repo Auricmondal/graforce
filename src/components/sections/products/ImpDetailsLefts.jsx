@@ -2,6 +2,41 @@ import Image from "next/image";
 import importantDetailsImg from "@/assets/product/imp-details.webp";
 import leftImg from "@/assets/service/ServiceSolution1.jpg";
 import InfoCard from "./InfoCard";
+import DataCard from "./DataCard";
+import lightningImg from "@/assets/product/lightning.svg";
+import h2Img from "@/assets/product/h2.svg";
+import cImg from "@/assets/product/c.svg";
+
+const cards = [
+  {
+    title: "Sustainability",
+    text: "Biomethane doesn't just reduce emissions, it reverses them.",
+    icon: lightningImg.src,
+    bgColor: "bg-[#5B24D1]",
+    textColor: "text-white",
+  },
+  {
+    title: "Regulatory Advantage",
+    text: "Exempt from CO₂ tax.",
+    icon: lightningImg.src,
+    bgColor: "bg-cst-neutral-5", // black
+    textColor: "text-white",
+  },
+  {
+    title: "Hydrogen",
+    text: "CHP, SOFC fuel cells, hydrogen boilers",
+    icon: h2Img.src,
+    bgColor: "bg-cst-neutral-4", // dark gray
+    textColor: "text-white",
+  },
+  {
+    title: "Carbon",
+    text: "Asphalt, concrete, cement, soil conditioning",
+    icon: cImg.src,
+    bgColor: "bg-[#5B24D1]",
+    textColor: "text-white",
+  },
+];
 
 export const leftTypes = {
   1: (
@@ -64,11 +99,17 @@ export const leftTypes = {
   ),
   3: (
     <div className="flex h-full w-full bg-cst-neutral-1 gap-2">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-full w-full min-h-[80vh]">
-        <div className="bg-[#5626da] rounded-lg"></div>
-        <div className="bg-cst-neutral-5 rounded-lg"></div>
-        <div className="bg-cst-neutral-2 rounded-lg"></div>
-        <div className="bg-[#5626da] rounded-lg"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-full w-full min-h-[160vh] md:min-h-[80vh]">
+        {cards.map((card, index) => (
+          <DataCard
+            key={index}
+            title={card.title}
+            text={card.text}
+            icon={card.icon}
+            bgColor={card.bgColor}
+            textColor={card.textColor}
+          />
+        ))}
       </div>
     </div>
   ),
