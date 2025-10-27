@@ -33,7 +33,7 @@ const GROQ_QUERY = `
       }
     }
   }
-`;*/
+`;
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();

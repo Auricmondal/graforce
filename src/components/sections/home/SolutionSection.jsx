@@ -91,7 +91,7 @@ export default function SolutionSection() {
           },
           onLeave: () => {
             // When leaving a step, set progress to 100%
-            if (i < steps.length - 1) {
+            if (i < data.steps.length - 1) {
               setScrollProgress(100);
             }
           },
