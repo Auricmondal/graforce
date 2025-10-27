@@ -14,7 +14,6 @@ const blockData = [
 ];
 
 const AnimatedBlock = ({ header, subHeader }) => {
-  const { showContactForm } = useSidebarActions();
   return (
     <div className="animated-border-container !h-max">
       <div className="animated-border-layer"></div>
@@ -31,6 +30,7 @@ const AnimatedBlock = ({ header, subHeader }) => {
 };
 
 export default function TopSection() {
+  const { showContactForm } = useSidebarActions();
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-3 items-center">
