@@ -109,7 +109,7 @@ const DynamicSidebar = () => {
   return (
     <div
       ref={sidebarOverlayRef}
-      className="sidebar-overlay w-screen min-[1130px]:w-0 h-screen fixed flex flex-row justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw] overflow-hidden"
+      className="sidebar-overlay w-screen h-screen fixed flex flex-row justify-end top-0 right-0 bg-black/30 backdrop-blur-sm z-[200] translate-x-[100vw] overflow-hidden"
     >
       {/* Backdrop for desktop */}
       <div
