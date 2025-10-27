@@ -56,7 +56,7 @@ const DynamicSidebar = () => {
         duration: 0.3,
         stagger: 0.05,
         ease: "power2.out"
-      }, "<0.1");
+      }, ">-0.1");
 
       // Animate action buttons if they exist
       tl.to(".sidebar-action-button", {
@@ -64,7 +64,7 @@ const DynamicSidebar = () => {
         opacity: 1,
         duration: 0.3,
         ease: "power2.out"
-      }, "<0.1");
+      }, ">-0.1");
     } else {
       // Close animation
       tl.to(".sidebar-action-button", { y: 50, opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
