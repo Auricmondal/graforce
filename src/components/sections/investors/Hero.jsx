@@ -8,26 +8,11 @@ import bgImg from "@/assets/investor/investor-hero.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
-const Hero = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
-  const handleContactModal = () => {
-    if (!isOpen) {
-      openModal();
-    } else {
-      closeModal();
-    }
-  };
-  const handleLearnMore = (e) => {
-    e.preventDefault();
-    const section = document.getElementById("solutions-section-service");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+const Hero = () => {
+  const { showContactForm } = useSidebarActions();
+
   return (
     <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
       <div className="absolute inset-0 flex flex-col w-full h-full z-10 p-4">
@@ -46,13 +31,13 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <PrimaryButton
               className="text-black transition duration-300 py-3 px-4 md:py-4 md:px-6 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-3 bg-white w-full md:w-fit justify-center"
-              onClick={handleContactModal}
+              onClick={() => showContactForm()}
             >
               Contact Us <FaChevronRight />
             </PrimaryButton>
             <PrimaryButton
               className="text-white bg-cst-neutral-5 py-3 px-4 md:py-4 md:px-6 rounded-2xl transition font-medium text-sm sm:text-base w-full md:w-fit justify-center"
-              onClick={handleLearnMore}
+              onClick={() => showContactForm()}
             >
               Download Brochure
             </PrimaryButton>

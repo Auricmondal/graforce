@@ -4,6 +4,8 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa";
 
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+
 const blockData = [
   { header: "Graforce", subHeader: "Invest for a better Future" },
   { header: "€15M", subHeader: "Capital Need" },
@@ -12,6 +14,7 @@ const blockData = [
 ];
 
 const AnimatedBlock = ({ header, subHeader }) => {
+  const { showContactForm } = useSidebarActions();
   return (
     <div className="animated-border-container !h-max">
       <div className="animated-border-layer"></div>
@@ -49,11 +52,13 @@ export default function TopSection() {
       <div className="flex justify-center flex-col md:flex-row gap-3">
         <PrimaryButton
           className={`bg-cst-neutral-5 text-white rounded-2xl md:rounded-3xl py-4 px-6 md:py-6 md:px-8 lg:py-8 lg:px-12 w-full md:w-fit text-base md:text-lg lg:text-2xl flex items-center gap-2 justify-center`}
+          onClick={() => showContactForm()}
         >
           Book a Call <FaChevronRight />
         </PrimaryButton>
         <PrimaryButton
           className={`bg-cst-neutral-1 rounded-2xl md:rounded-3xl py-4 px-6 md:py-6 md:px-8 lg:py-8 lg:px-12 w-full md:w-fit text-base md:text-lg lg:text-2xl`}
+          onClick={() => showContactForm()}
         >
           Download Investor Deck
         </PrimaryButton>
