@@ -12,6 +12,8 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/TempChart";
 
 import tempProblemData from "@/data/tempProblems.json";
+import CustomBlogData from "@/data/customBlogData.json";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +21,8 @@ export default function EmissionPage({ problemData = tempProblemData }) {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
+
+  const { showReadingContent } = useSidebarActions();
 
   useGSAP(() => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
@@ -96,6 +100,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
                 title={problemData[activeStep].title}
                 description={problemData[activeStep].description}
                 progress={scrollProgress}
+                onClick={() => showReadingContent(CustomBlogData)}
               />
             </div>
 
@@ -107,6 +112,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
                   title={problem.title}
                   description={problem.description}
                   progress={index === activeStep ? scrollProgress : 0}
+                  onClick={() => showReadingContent(CustomBlogData)}
                 />
               ))}
             </div>

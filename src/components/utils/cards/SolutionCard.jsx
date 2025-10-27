@@ -1,3 +1,4 @@
+import React from "react";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import CardWrapper from "@/wrappers/CardWrapper";
@@ -9,10 +10,24 @@ export default function SolutionCard({
   description,
   progress,
   link,
+  onClick,
 }) {
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
+
+  const ButtonContent = (
+    <PrimaryButton
+      className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6 w-full"
+      onClick={onClick}
+    >
+      Learn More
+    </PrimaryButton>
+  );
+
+  const ButtonWrapper = link
+    ? (props) => <Link href={`products/${link}`} {...props} />
+    : (props) => <div className="">{props.children}</div>;
 
   return (
     <CardWrapper
@@ -62,11 +77,7 @@ export default function SolutionCard({
         <AnimatedHeader>
           <p className="text-black">{description}</p>
         </AnimatedHeader>
-        <Link href={`products/${link}`} className="w-full">
-          <PrimaryButton className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6 w-full">
-            Learn More
-          </PrimaryButton>
-        </Link>
+        <ButtonWrapper className="w-full">{ButtonContent}</ButtonWrapper>
       </div>
     </CardWrapper>
   );
