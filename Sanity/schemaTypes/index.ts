@@ -9,7 +9,7 @@ import WhatDoWeDo from "./home/WhatDoWeDo"
 import co2FreeEnergyGeneration from "./co2-free-energy-generation"
 import faq from "./services/co2-free-energy-generation/faq"
 import hero from "./services/co2-free-energy-generation/hero"
-import news from "./services/co2-free-energy-generation/news"
+import news from "./services/co2-free-energy-generation/newsService"
 import otherservices from "./services/co2-free-energy-generation/otherservices"
 import problem from "./services/co2-free-energy-generation/problem"
 import productgallery from "./services/co2-free-energy-generation/productgallery"
@@ -26,6 +26,36 @@ import hydrogenProduction from "./hydrogen-production"
 import waterPurification from "./water-purification"
 import blog from "./news/blog"
 import cardsSection from "./news/cardsSection"
+import jobs from "./jobs"
+import herojob from "./jobs/herojob"
+import jobOpening from "./jobs/jobOpening"
+import ourValues from "./jobs/ourValues"
+import secondaryCTA from "./jobs/secondaryCTA"
+import investors from "./investors"
+import investorHero from "./investors/investorHero"
+import caseStudies from "./investors/caseStudies"
+import joinUs from "./investors/joinUs"
+import market from "./investors/market"
+import socialProof from "./investors/socialProof"
+import team from "./investors/team"
+import industries from "./industries"
+import contribution from "./industries/contribution"
+import heroindustry from "./industries/heroindustry"
+import about from "./about"
+import aboutFAQ from "./about/aboutFAQ"
+import aboutTeam from "./about/aboutTeam"
+import exploreInvestment from "./about/exploreInvestment"
+import heroabout from "./about/heroabout"
+import impactoppurtunityabout from "./about/impactoppurtunityabout"
+import ourFounder from "./about/ourFounder"
+import ourWholeTeam from "./about/ourWholeTeam"
+import stats from "./about/stats"
+import impactOppurtunity from "./investors/ImpactOppurtunity"
+import AboutUsjob from "./jobs/AboutUsjob"
+import graforceCards from "./investors/graforceCards"
+import job from "./jobs/job"
+import newsPage from "./newsPage"
+import specs from "./home/specs"
 
 
 
@@ -40,6 +70,7 @@ export const schemaTypes = [
 
     co2FreeEnergyGeneration,
     hero,
+    specs,
     problem,
     productgallery,
     solutionworks,
@@ -58,9 +89,42 @@ export const schemaTypes = [
     graforcesolution,
     howthisworks,
 
-    news,
+    newsPage,
     blog,
     cardsSection,
+
+    jobs,
+    AboutUsjob,
+    herojob,
+    jobOpening,
+    job,
+    ourValues,
+    secondaryCTA,
+
+    investors,
+    investorHero,
+    caseStudies,
+    graforceCards,
+    impactOppurtunity,
+    joinUs,
+    market,
+    socialProof,
+    team,
+
+    industries,
+    contribution,
+    heroindustry,
+
+    about,
+    aboutFAQ,
+    aboutTeam,
+    exploreInvestment,
+    heroabout,
+    impactoppurtunityabout,
+    ourFounder,
+    ourWholeTeam,
+    stats,
+
 
 
 ]

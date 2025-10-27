@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "heroSection",
+      name: "industryHeroSection",
       title: "Hero Section",
-      type: "heroSection", // You need a separate object type for Hero
+      type: "industryHeroSection", // You need a separate object type for Hero
     }),
     defineField({
       name: "importantDetailsSection",

@@ -1,7 +1,7 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "service",
+  name: "co2-free-energy-generation",
   title: "Service Page",
   type: "document",
   fields: [

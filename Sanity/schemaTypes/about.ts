@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "heroSection",
+      name: "heroaboutSection",
       title: "Hero Section",
-      type: "heroSection", // you can create this object schema
+      type: "heroaboutSection", // you can create this object schema
     }),
     defineField({
       name: "impactOpportunity",

@@ -13,14 +13,14 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "heroSection",
+      name: "heroJobSection",
       title: "Hero Section",
-      type: "heroSection", // You can create a variant for Jobs if needed
+      type: "heroJobSection", // You can create a variant for Jobs if needed
     }),
     defineField({
-      name: "aboutUsSection",
+      name: "aboutUsjobsSection",
       title: "About Us Section",
-      type: "aboutUsSection",
+      type: "aboutUsjobsSection",
     }),
     defineField({
       name: "ourValuesSection",

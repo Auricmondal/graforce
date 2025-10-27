@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "heroSection",
+      name: "investorHero",
       title: "Hero Section",
-      type: "heroSection",
+      type: "investorHero",
     }),
     defineField({
       name: "impactOpportunitySection",

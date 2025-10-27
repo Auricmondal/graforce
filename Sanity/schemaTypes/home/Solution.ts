@@ -16,7 +16,6 @@ export default defineType({
       title: "Heading",
       type: "string",
       description: "Main heading for the solution section",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "steps",

@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "heroSection",
+      name: "heroHomeSection",
       title: "Hero Section",
-      type: "heroSection", 
+      type: "heroHomeSection", 
     }),
     defineField({
       name: "aboutUsSection",

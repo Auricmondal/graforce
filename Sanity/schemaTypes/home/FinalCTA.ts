@@ -15,19 +15,5 @@ export default {
       type: "string",
       description: "Text displayed on the CTA button",
     },
-    {
-      name: "leftImage",
-      title: "Left Background Image",
-      type: "image",
-      options: { hotspot: true },
-      description: "The decorative image shown on the left side",
-    },
-    {
-      name: "rightImage",
-      title: "Right Background Image",
-      type: "image",
-      options: { hotspot: true },
-      description: "The decorative image shown on the right side",
-    },
   ],
 };
