@@ -26,7 +26,7 @@ export default function SolutionCard({
   );
 
   const ButtonWrapper = link
-    ? (props) => <Link href={`products/${link}`} {...props} />
+    ? (props) => <Link href={link} {...props} />
     : (props) => <div className="">{props.children}</div>;
 
   return (

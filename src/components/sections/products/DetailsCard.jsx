@@ -10,6 +10,7 @@ export default function DetailsCard({
   description,
   progress,
   isActive,
+  learnMoreOnClick,
 }) {
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
@@ -69,7 +70,10 @@ export default function DetailsCard({
           <AnimatedHeader>
             <p className="text-black font-light">{description}</p>
           </AnimatedHeader>
-          <PrimaryButton className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6 text-sm">
+          <PrimaryButton
+            className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6 text-sm"
+            onClick={learnMoreOnClick}
+          >
             Learn More
           </PrimaryButton>
         </div>
