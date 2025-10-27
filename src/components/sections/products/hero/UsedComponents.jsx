@@ -32,18 +32,19 @@ const Hero = () => {
 
   return (
     <main className="text-white overflow-hidden h-fit bg-cst-neutral-1 p-2">
-      <div className="bg-cst-neutral-5 flex flex-col gap-2 w-full rounded-2xl relative p-2 md:p-16 md:pb-4 h-full">
+      <div className="bg-[linear-gradient(71.58deg,_#102044_3.29%,_#416DD2_95.99%)] flex flex-col gap-2 w-full rounded-2xl relative p-2 md:p-16 md:pb-4 h-full">
         <div className="flex flex-col gap-4 pt-16 lg:pt-0">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-medium max-w-9xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
             <AnimatedHeader delay={0.4}>
-              Hydrogen from Ammonia, Reinvented
+              Efficient Gas Separation & Compression
             </AnimatedHeader>
           </h2>
 
           <p className="max-w-2xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
-              Our plasma technology makes hydrogen production cleaner, safer,
-              and carbon-free.
+              Modular systems to separate, compress and store hydrogen and other
+              industrial gases — enabling scalable, emission-free
+              infrastructure.
             </AnimatedHeader>
           </p>
 
