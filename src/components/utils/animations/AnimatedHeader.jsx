@@ -22,21 +22,26 @@ export default function AnimatedHeader({
   const tl = useRef(null);
   const hasAnimated = useRef(false);
 
-  const splitAndAnimate = () => {
-    if (!ref.current || hasAnimated.current) return;
+  const rebuildSplit = () => {
+    if (!ref.current) return;
 
+    // clear prior split and timeline
     if (splitInstance.current) {
       splitInstance.current.revert();
       splitInstance.current = null;
     }
+    if (tl.current) {
+      tl.current.kill();
+      tl.current = null;
+    }
 
-    // Split the text into lines
+    // fresh split
     splitInstance.current = new SplitText(ref.current, {
       type: "lines",
       linesClass: "gsap-line",
     });
 
-    // Replace <div> with <span>
+    // ensure spans, not divs
     splitInstance.current.lines = splitInstance.current.lines.map((lineEl) => {
       if (lineEl.tagName === "DIV") {
         const span = document.createElement("span");
@@ -48,9 +53,12 @@ export default function AnimatedHeader({
       }
       return lineEl;
     });
+  };
 
-    // Animate lines
-    if (inView) {
+  const animateIfNeeded = () => {
+    if (!splitInstance.current?.lines?.length) return;
+
+    if (inView && !hasAnimated.current) {
       tl.current = gsap.fromTo(
         splitInstance.current.lines,
         { opacity: 0, y: 32 },
@@ -64,17 +72,25 @@ export default function AnimatedHeader({
         }
       );
       hasAnimated.current = true;
-    } 
+    } else {
+      // keep layout correct after resize or content swap without replay
+      gsap.set(splitInstance.current.lines, { opacity: 1, y: 0 });
+    }
   };
 
+  // Initial mount + inView changes
   useGSAP(
     () => {
-      splitAndAnimate();
+      // build once on mount and whenever inView flips, then animate accordingly
+      rebuildSplit();
+      animateIfNeeded();
 
       const handleResize = () => {
-        // debounce with requestAnimationFrame
+        // Rebuild split on next frame to match new line wrapping
         window.requestAnimationFrame(() => {
-          splitAndAnimate();
+          rebuildSplit();
+          // do not replay if already animated
+          animateIfNeeded();
         });
       };
 
@@ -94,6 +110,20 @@ export default function AnimatedHeader({
     },
     { scope: ref, dependencies: [inView] }
   );
+
+  // Rerun when parent changes the children
+  useEffect(() => {
+    // reset animation state so new text can animate
+    hasAnimated.current = false;
+
+    // wait for React to paint new children, then rebuild and animate
+    requestAnimationFrame(() => {
+      rebuildSplit();
+      animateIfNeeded();
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [children]);
 
   return (
     <span ref={ref} className={`will-change-transform ${className}`}>

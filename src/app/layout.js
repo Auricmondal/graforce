@@ -16,6 +16,10 @@ import DynamicSidebar from "@/components/shared/sidebar/DynamicSidebar";
 
 import ToastProvider from "@/wrappers/ToastProvider";
 import BannerProvider from "@/wrappers/BannerProvider";
+import { LanguageProvider } from "@/hooks/useLanguage";
+
+
+
 
 export const metadata = {
   title: "Graforce",
@@ -30,6 +34,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ReactLenis root>
         {/* <LoaderContextProvider> */}
+        <LanguageProvider>
         <ContactModalProvider>
           <SidebarProvider>
             <FooterProvider>
@@ -58,6 +63,7 @@ export default function RootLayout({ children }) {
             </FooterProvider>
           </SidebarProvider>
         </ContactModalProvider>
+        </LanguageProvider>
         {/* </LoaderContextProvider> */}
       </ReactLenis>
     </html>
