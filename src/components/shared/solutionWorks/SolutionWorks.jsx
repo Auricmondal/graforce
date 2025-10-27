@@ -16,12 +16,15 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
 const SolutionWorks = () => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+
+  const { showContactForm } = useSidebarActions();
 
   const togglePlay = () => {
     if (isPlaying) {
@@ -147,7 +150,10 @@ const SolutionWorks = () => {
           </div>
         </div>
 
-        <PrimaryButton className="bg-cst-neutral-5 text-white transition py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 justify-center">
+        <PrimaryButton
+          className="bg-cst-neutral-5 text-white transition py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 justify-center"
+          onClick={() => showContactForm()}
+        >
           Download Brochure <FaChevronRight />
         </PrimaryButton>
       </CardWrapper>

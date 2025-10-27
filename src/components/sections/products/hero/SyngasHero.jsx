@@ -8,26 +8,11 @@ import bgImg from "@/assets/product/syngas.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
-const Hero = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
-  const handleContactModal = () => {
-    if (!isOpen) {
-      openModal();
-    } else {
-      closeModal();
-    }
-  };
-  const handleLearnMore = (e) => {
-    e.preventDefault();
-    const section = document.getElementById("solutions-section-service");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+const Hero = () => {
+  const { showContactForm } = useSidebarActions();
+
   return (
     <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
       <div className="flex flex-col w-full rounded-2xl px-[3vw] h-full absolute inset-0 z-10 justify-center">
@@ -40,7 +25,8 @@ const Hero = () => {
 
           <p className="max-w-2xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
-              Turning methane, biogas or other gaseous residues into hydrogen and synthesis gas with zero CO₂.
+              Turning methane, biogas or other gaseous residues into hydrogen
+              and synthesis gas with zero CO₂.
             </AnimatedHeader>
           </p>
 
@@ -48,13 +34,13 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <PrimaryButton
               className="text-white transition duration-300 border-1 border-transparent hover:border-white py-3 px-4 md:py-4 md:px-6 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-3 bg-primary hover:!bg-cst-neutral-5 w-full md:w-fit justify-center"
-              onClick={handleContactModal}
+              onClick={() => showContactForm()}
             >
               Talk to an Expert <FaChevronRight />
             </PrimaryButton>
             <PrimaryButton
               className="text-black bg-cst-neutral-1 py-3 px-4 md:py-4 md:px-6 rounded-2xl transition font-medium text-sm sm:text-base w-full md:w-fit justify-center"
-              onClick={handleLearnMore}
+              onClick={() => showContactForm()}
             >
               Download Brochure
             </PrimaryButton>

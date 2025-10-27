@@ -13,6 +13,9 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/Chart";
 import { leftTypes } from "./ImpDetailsLefts";
 
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomBlogData from "@/data/customBlogData.json";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ImportantDetails({
@@ -23,6 +26,8 @@ export default function ImportantDetails({
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
+
+  const { showReadingContent } = useSidebarActions();
 
   useGSAP(() => {
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
@@ -114,6 +119,7 @@ export default function ImportantDetails({
                     description={problem.description}
                     progress={index === activeStep ? scrollProgress : 0}
                     isActive={index === activeStep}
+                    learnMoreOnClick={() => showReadingContent(CustomBlogData)}
                   />
                 </div>
                 {index === activeStep && (

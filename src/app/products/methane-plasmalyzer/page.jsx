@@ -14,6 +14,7 @@ import OtherServices from "@/components/shared/otherServices/OtherServices";
 import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 import News from "@/components/shared/news/News";
 import FAQ from "@/components/shared/faq/FAQ";
+import { productServices } from "@/components/sections/products/productServices";
 
 const config = {
   hero: true,
@@ -39,7 +40,7 @@ export default async function MethanePlasmalyzer() {
       {config.productGallery && <ProductGallery />}
       {config.importantDetails && <ImportantDetails isOneLeftType={false} />}
       {config.solutionWorks && <SolutionWorks />}
-      {config.otherServices && <OtherServices />}
+      {config.otherServices && <OtherServices servicesOptions={productServices}/>}
       {config.testimonials && <Testimonials />}
       {config.faq && <FAQ />}
       {config.news && <News />}

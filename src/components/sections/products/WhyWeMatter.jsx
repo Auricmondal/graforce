@@ -91,6 +91,7 @@ export default function WhyWeMatter() {
                 title={problemData[activeStep]?.title}
                 description={problemData[activeStep]?.description}
                 progress={scrollProgress}
+                link={"/industries"}
               />
             </div>
 
