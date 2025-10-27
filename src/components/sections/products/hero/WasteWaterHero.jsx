@@ -29,14 +29,14 @@ const Hero = () => {
     }
   };
   return (
-    <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2">
-      <div className="bg-[linear-gradient(107.13deg,_#5627DA_0%,_#2E1574_93.86%)] flex flex-col w-full rounded-2xl relative p-2 md:p-10 h-full">
+    <main className="text-white overflow-hidden h-fit bg-cst-neutral-1 p-2">
+      <div className="bg-[linear-gradient(107.13deg,_#5627DA_0%,_#2E1574_93.86%)] flex flex-col w-full rounded-2xl relative p-2 pb-10 md:p-10 h-full">
         <div className="flex flex-col gap-4 py-16">
-          <h2 className="relative text-[clamp(40px,6vw,128px)] font-medium max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
+          <h1 className="relative text-[clamp(40px,6vw,128px)] font-medium max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
             <AnimatedHeader delay={0.4}>
               Redefining Waste as a Resource
             </AnimatedHeader>
-          </h2>
+          </h1>
 
           <p className="max-w-3xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
@@ -62,14 +62,14 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Network Image */}
+        {/* Background Image */}
         <div className="w-auto flex-1 relative">
-          {/* Background network image */}
           <Image
             src={bgImg.src}
             alt="Hydrogen Network"
-            fill
-            className="mx-auto "
+            height={1000}
+            width={1000}
+            className="mx-auto w-full h-auto"
             style={{ objectFit: "contain" }}
           />
         </div>
