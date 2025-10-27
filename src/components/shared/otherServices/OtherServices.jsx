@@ -16,19 +16,19 @@ const defaultServicesOptions = [
   {
     index: 1,
     title: "Hydrogen production",
-    onClick: () => router.push("/services/hydrogen-production"),
+    link: "/services/hydrogen-production",
     image: shapeDiamond1,
   },
   {
     index: 2,
     title: "Water purification",
-    onClick: () => router.push("/services/water-purification"),
+    link: "/services/water-purification",
     image: shapeDiamond2,
   },
   {
     index: 3,
     title: "Co2 free energy generation",
-    onClick: () => router.push("/services/co2-free-energy-generation"),
+    link: "/services/co2-free-energy-generation",
     image: shapeDiamond3,
   },
 ];
@@ -77,7 +77,7 @@ const OtherServices = ({ servicesOptions = defaultServicesOptions }) => {
                   onHover={() => {
                     setServiceImage(option.image);
                   }}
-                  onClick={option.onClick}
+                  onClick={() => router.push(option.link)}
                   {...option}
                 />
               ))}
