@@ -9,7 +9,6 @@ import { useSidebar } from '@/contexts/SidebarContext';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { sidebarUtils } from '@/utils/sidebarUtils';
-import { set } from 'nprogress';
 
 const NavigationContent = () => {
   const { closeSidebar } = useSidebar();
@@ -201,7 +200,7 @@ const NavigationContent = () => {
                       className="font-bold text-left"
                       onClick={() => openSubMenu(item.name)}
                     >
-                      <AnimatedText textSize={isSubMenuOpen ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"} className={`border-b-2 `}>
+                      <AnimatedText textSize={isSubMenuOpen ? "text-xl md:text-3xl" : "text-2xl md:text-4xl"} className={`border-b-2 `} textAlignment='left'>
                         {item.name}
                       </AnimatedText>
                     </div>

@@ -45,9 +45,9 @@ const DynamicSidebar = () => {
       gsap.set(".sidebar-action-button", { y: 50, opacity: 0 });
 
       // Open animation
-      tl.to(overlay, { x: 0, duration: 0.3, ease: "power2.inOut" });
-      tl.to(sidebarOverlayBackdrop, { x: 0, duration: 0.3, ease: "power2.inOut" }, "<0.1");
-      tl.to(menuContainer, { x: 0, duration: 0.3, ease: "power2.inOut" });
+      tl.to(overlay, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
+      tl.to(sidebarOverlayBackdrop, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
+      tl.to(menuContainer, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
 
       // Animate content items if they exist
       tl.to(".sidebar-content-item", {
@@ -56,7 +56,7 @@ const DynamicSidebar = () => {
         duration: 0.3,
         stagger: 0.05,
         ease: "power2.out"
-      }, "<0.1");
+      }, ">-0.1");
 
       // Animate action buttons if they exist
       tl.to(".sidebar-action-button", {
@@ -64,20 +64,20 @@ const DynamicSidebar = () => {
         opacity: 1,
         duration: 0.3,
         ease: "power2.out"
-      }, "<0.1");
+      }, ">-0.1");
     } else {
       // Close animation
-      tl.to(".sidebar-action-button", { y: 50, opacity: 0, duration: 0.2, ease: "power2.in" });
+      tl.to(".sidebar-action-button", { y: 50, opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
       tl.to(".sidebar-content-item", {
         x: 300,
         opacity: 0,
         duration: 0.2,
         stagger: -0.03,
         ease: "power2.in"
-      }, "<");
-      tl.to(menuContainer, { x: '40vw', duration: 0.3, ease: "power2.inOut" });
-      tl.to(sidebarOverlayBackdrop, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, "<0.1");
-      tl.to(overlay, { x: '100vw', duration: 0.3, ease: "power2.inOut" });
+      }, 0);
+      tl.to(menuContainer, { x: '40vw', duration: 0.3, ease: "power2.inOut" }, 0.06);
+      tl.to(sidebarOverlayBackdrop, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, 0.06);
+      tl.to(overlay, { x: '100vw', duration: 0.3, ease: "power2.inOut" }, 0.06);
     }
   }, [isOpen]);
 
