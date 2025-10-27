@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
 import { useContactModal } from "@/contexts/ContactModalContext";
-import bgImg from "@/assets/product/plasma-ammonia-cracker.webp";
+import bgImg from "@/assets/product/syngas.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
@@ -18,7 +18,6 @@ const Hero = () => {
       closeModal();
     }
   };
-
   const handleLearnMore = (e) => {
     e.preventDefault();
     const section = document.getElementById("solutions-section-service");
@@ -29,22 +28,19 @@ const Hero = () => {
       });
     }
   };
-
   return (
-    <main className="text-white overflow-hidden h-fit bg-cst-neutral-1 p-2">
-      <div className="bg-cst-neutral-5 flex flex-col gap-2 w-full rounded-2xl relative p-2 md:p-16 md:pb-4 h-full">
-        <div className="flex flex-col gap-4 pt-16 lg:pt-0">
-          <h1 className="relative text-[clamp(40px,6vw,128px)] font-medium w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
-            <AnimatedHeader delay={0.4}>
-              Turning Solid Carbon into Sustainable Value
+    <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
+      <div className="flex flex-col w-full rounded-2xl px-[3vw] h-full absolute inset-0 z-10 justify-center">
+        <div className="flex flex-col gap-6">
+          <h1 className="relative text-[clamp(40px,6vw,128px)] font-medium max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
+            <AnimatedHeader>
+              Clean Syngas, Built from Residue Streams
             </AnimatedHeader>
           </h1>
 
           <p className="max-w-2xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
-              Produced via plasma technology, our carbon black delivers
-              technical performance while permanently storing CO₂ in concrete,
-              steel and more.
+              Turning methane, biogas or other gaseous residues into hydrogen and synthesis gas with zero CO₂.
             </AnimatedHeader>
           </p>
 
@@ -64,19 +60,17 @@ const Hero = () => {
             </PrimaryButton>
           </div>
         </div>
+      </div>
 
-        {/* Network Image */}
-        <div className="w-auto flex-1 relative">
-          {/* Background network image */}
-          <Image
-            src={bgImg.src}
-            alt="Hydrogen Network"
-            height={1000}
-            width={1000}
-            className="mx-auto w-full h-auto"
-            style={{ objectFit: "contain" }}
-          />
-        </div>
+      {/* background Image */}
+      <div className="w-full h-full relative">
+        <Image
+          src={bgImg.src}
+          alt="Background Image"
+          fill
+          className="z-0 object-cover rounded-2xl brightness-70"
+          style={{ objectFit: "cover" }}
+        />
       </div>
     </main>
   );

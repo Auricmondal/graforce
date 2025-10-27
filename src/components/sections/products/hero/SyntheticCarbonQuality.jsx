@@ -32,16 +32,16 @@ const Hero = () => {
     <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
       <div className="flex flex-col w-full rounded-2xl px-[3vw] h-full absolute inset-0 z-10 justify-center">
         <div className="flex flex-col gap-6">
-          <h1 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
+          <h1 className="relative text-[clamp(40px,6vw,128px)] font-medium  w-full px-6 leading-[100%] mx-auto text-center">
             <AnimatedHeader>
-              Hydrogen Refuelling for Natural Gas Systems
+              Exceptional Carbon. Engineered for Performance.
             </AnimatedHeader>
           </h1>
 
           <p className="max-w-2xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
-              Blend H₂ with natural gas for cleaner transport and energy —
-              reducing CO₂, CO and HC emissions by up to 60 %.
+              Deep-purity carbon with high thermal stability, electrical
+              conductivity and long-term structural integrity.
             </AnimatedHeader>
           </p>
 
