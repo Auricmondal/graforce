@@ -88,7 +88,7 @@ const SolutionWorks = () => {
         <div className="relative w-full rounded-2xl overflow-hidden h-[400px] sm:h-[500px] lg:h-[550px] xl:h-[800px] transition-all duration-200 ease-in-out">
           <video
             ref={videoRef}
-            src="/hero-video.webm"
+            src="/hero-videos/home-hero-video.webm"
             playsInline
             muted={isMuted}
             onTimeUpdate={handleProgress}
