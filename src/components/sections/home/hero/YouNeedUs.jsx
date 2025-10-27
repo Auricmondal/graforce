@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
@@ -33,6 +34,9 @@ const sectorsData = [
 ];
 
 const YouNeedUs = ({
+  learnMoreLink,
+  learnMoreOnClick,
+  specificationsOnClick,
   sectionHeader = "Our contribution",
   sectionSubHeader = "Powering Every Sector",
   sectionImage = Tower,
@@ -168,6 +172,10 @@ const YouNeedUs = ({
     return cleanup;
   }, []);
 
+  const ButtonWrapper = learnMoreLink
+    ? (props) => <Link className="w-full" href={learnMoreLink} {...props} />
+    : (props) => <div className="w-full">{props.children}</div>;
+
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <div
@@ -275,22 +283,20 @@ const YouNeedUs = ({
                     data-sector="0"
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                    <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
-                      hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
-                      hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
-                      onClick={() => {
-                        showJobContent(CustomJobData);
-                      }}
-                    >
-                      Learn More
-                    </PrimaryButton>
+                    <ButtonWrapper>
+                      <PrimaryButton className={`${sectionColorVariant === "default" ? "bg-cst-neutral-5 text-white" : "bg-cst-neutral-1 text-black"} rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
+                        hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
+                        hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
+                        onClick={() => learnMoreOnClick ? learnMoreOnClick() : !learnMoreLink?  showJobContent(CustomJobData): null}
+                      >
+                        Learn More
+                      </PrimaryButton>
+                    </ButtonWrapper>
                     {doubleButton && (
                       <PrimaryButton className={`bg-black text-cst-neutral-1 rounded-xl py-4 px-6 w-full text-sm md:text-base ${sectionColorVariant === "blue" ? "border-2 border-transparent hover:shadow-md" : ""}`}
                         hoverTextColor={sectionColorVariant === "blue" ? "cst-neutral-1" : "text-white"}
                         hoverBgColor={sectionColorVariant === "blue" ? "cst-neutral-3" : "bg-primary"}
-                        onClick={() => {
-                          showSpecificationsContent(CustomSpecData);
-                        }}
+                        onClick={() => specificationsOnClick ? specificationsOnClick() : showSpecificationsContent(CustomSpecData)}
                       >
                         Specifications
                       </PrimaryButton>
@@ -338,18 +344,16 @@ const YouNeedUs = ({
                     dangerouslySetInnerHTML={{ __html: sector.title }}
                   />
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
-                    <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
-                      onClick={() => {
-                        showJobContent(CustomJobData);
-                      }}
-                    >
-                      Learn More
-                    </PrimaryButton>
+                    <ButtonWrapper>
+                      <PrimaryButton className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
+                        onClick={() => learnMoreOnClick ? learnMoreOnClick() : !learnMoreLink?  showJobContent(CustomJobData): null}
+                      >
+                        Learn More
+                      </PrimaryButton>
+                    </ButtonWrapper>
                     {doubleButton && (
                       <PrimaryButton className="bg-black text-cst-neutral-2 rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
-                        onClick={() => {
-                          showSpecificationsContent(CustomSpecData);
-                        }}
+                        onClick={() => specificationsOnClick ? specificationsOnClick() : showSpecificationsContent(CustomSpecData)}
                       >
                         Specifications
                       </PrimaryButton>

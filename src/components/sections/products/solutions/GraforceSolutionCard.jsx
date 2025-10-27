@@ -65,12 +65,7 @@ const GraforceSolutionCard = ({ icon, title, description, className, onClick }) 
             <p className='text-base text-cst-neutral-5'>{description}</p>
           </div>
           <div ref={buttonRef} className='md:absolute md:translate-y-[20px] md:opacity-0'>
-            <PrimaryButton className='group/button flex items-center gap-0 md:gap-2 bg-transparent border border-primary text-primary rounded-xl py-2 md:py-4 px-2 md:px-8 text-sm' onClick={() => {
-              if (onClick) {
-                const fn = eval(onClick);
-                fn();
-              }
-            }}>
+            <PrimaryButton className='group/button flex items-center gap-0 md:gap-2 bg-transparent border border-primary text-primary rounded-xl py-2 md:py-4 px-2 md:px-8 text-sm' onClick={onClick}>
               Learn More
               <IoMdArrowForward className='hidden sm:flex ml-0 md:ml-2 text-2xl group-hover/button:translate-x-2 transition-transform duration-200' />
             </PrimaryButton>

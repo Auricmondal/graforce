@@ -10,7 +10,7 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomJobData from "@/data/customJobData.json";
+import CustomBlogData from "@/data/customBlogData.json";
 import sideImg from "@/assets/service/shapeDiamond.png";
 import useIsDesktop from "@/hooks/useIsDesktop";
 
@@ -36,7 +36,7 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
   const needRef = useRef(null);
   const labelRef = useRef(null);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showJobContent } = useSidebarActions();
+  const { showReadingContent } = useSidebarActions();
 
   const isMobile = !useIsDesktop();
 
@@ -165,14 +165,9 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
                   align="left"
                   className="gap-2 border border-[#5426D6] !rounded-2xl"
                 >
-                  <SectionLabel
-                    text={sectionHeader}
-                    textColor="text-white"
-                  />
+                  <SectionLabel text={sectionHeader} textColor="text-white" />
                   <h2 className={`text-xl capitalize text-white`}>
-                    <AnimatedHeader>
-                      {sectionSubHeader}
-                    </AnimatedHeader>
+                    <AnimatedHeader>{sectionSubHeader}</AnimatedHeader>
                   </h2>
                 </CardWrapper>
               </div>
@@ -199,7 +194,7 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
                     <PrimaryButton
                       className={`bg-[#5326D4] text-white rounded-xl py-4 px-6 w-full text-sm md:text-base`}
                       onClick={() => {
-                        showJobContent(CustomJobData);
+                        showReadingContent(CustomBlogData);
                       }}
                     >
                       Learn More
@@ -222,20 +217,22 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
           {/* Mobile: Stacked all sections */}
           <div className="lg:hidden flex flex-col gap-2 w-full">
             {cases.map((sector, index) => (
-              <div key={sector.id} className={`grid grid-cols-1 w-full gap-2 ${index%2 === 1 ?  "bg-[linear-gradient(269.79deg,_#416DD2_0.13%,_#204088_99.77%)]" :"bg-[linear-gradient(269.79deg,_#5527D8_0.13%,_#2D1572_99.77%)]"} p-2 rounded-2xl`}>
+              <div
+                key={sector.id}
+                className={`grid grid-cols-1 w-full gap-2 ${
+                  index % 2 === 1
+                    ? "bg-[linear-gradient(269.79deg,_#416DD2_0.13%,_#204088_99.77%)]"
+                    : "bg-[linear-gradient(269.79deg,_#5527D8_0.13%,_#2D1572_99.77%)]"
+                } p-2 rounded-2xl`}
+              >
                 <CardWrapper
                   color="transparent"
                   align="left"
                   className={`gap-2 border border-[#5426D6] !rounded-2xl`}
                 >
-                  <SectionLabel
-                    text={sectionHeader}
-                    textColor="text-white"
-                  />
+                  <SectionLabel text={sectionHeader} textColor="text-white" />
                   <h2 className={`text-xl capitalize text-white`}>
-                    <AnimatedHeader>
-                      {sectionSubHeader}
-                    </AnimatedHeader>
+                    <AnimatedHeader>{sectionSubHeader}</AnimatedHeader>
                   </h2>
                 </CardWrapper>
 
@@ -258,7 +255,7 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
                     <PrimaryButton
                       className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
                       onClick={() => {
-                        showJobContent(CustomJobData);
+                        showReadingContent(CustomBlogData);
                       }}
                     >
                       Learn More
