@@ -3,6 +3,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Link from "next/link";
+import useIsMobile from "@/hooks/useIsMobile";
 
 export default function SolutionCard({
   id,
@@ -15,6 +16,8 @@ export default function SolutionCard({
   const radius = 28;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
+
+  const isMobile = useIsMobile();
 
   const ButtonContent = (
     <PrimaryButton
@@ -45,7 +48,7 @@ export default function SolutionCard({
               cx="32"
               cy="32"
               r={radius}
-              stroke="#b3b3b3"
+              stroke={isMobile ? "#1a1a1a" : "#b3b3b3"}
               strokeWidth="2.5"
               fill="none"
             />
