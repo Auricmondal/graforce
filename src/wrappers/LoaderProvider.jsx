@@ -63,11 +63,24 @@ export default function LoaderProvider({ children }) {
                 ease: [0.6, 0.01, -0.05, 0.95],
               }}
             >
-              Graforce
+              {/* Graforce */}
+              <div className="loader">
+                <span className="g">G</span>
+                <span className="r">R</span>
+                <span className="a">A</span>
+                <span className="f">F</span>
+                <span className="o">O</span>
+                <span className="r2">R</span>
+                <span className="c">C</span>
+                <span className="e">E</span>
+              </div>
             </motion.span>
           </motion.div>
         )}
       </AnimatePresence>
+      {/* <style jsx>{`
+            
+      `}</style> */}
     </>
   );
 }
