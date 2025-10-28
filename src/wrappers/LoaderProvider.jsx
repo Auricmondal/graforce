@@ -56,7 +56,7 @@ export default function LoaderProvider({ children }) {
               opacity: 0,
               transition: {
                 duration: 2,
-                ease: [0.6, 0.01, -0.05, 0.95],
+                ease: [0.25, 0.46, 0.45, 0.94],
               },
             }}
           >
@@ -65,10 +65,10 @@ export default function LoaderProvider({ children }) {
               // initial={{ scale: 1 }}
               // animate={{ scale: 0 }}
               // exit={{ scale: 0 }}
-              transition={{
-                duration: 1.5,
-                ease: [0.6, 0.01, -0.05, 0.95],
-              }}
+              // transition={{
+              //   duration: 1.5,
+              //   ease: [0.6, 0.01, -0.05, 0.95],
+              // }}
             >
               {/* Graforce */}
               <div className="loader">
