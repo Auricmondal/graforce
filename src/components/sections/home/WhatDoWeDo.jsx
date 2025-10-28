@@ -30,20 +30,14 @@ const WhatDoWeDo = () => {
       </CardWrapper>
 
       <div className="relative flex-1 bg-white rounded-2xl overflow-hidden min-h-[50vh] lg:min-h-0">
-        {/* Globe Image */}
-        <Image
-          src={globeImg}
-          alt="Globe"
-          className="object-cover select-none absolute"
-          fill
-          style={{
-            transform: "rotateY(-180deg)",
-            opacity: 1,
-            scale: "2",
-            top: "-100px",
-            left: "-100px",
-          }}
-        />
+        {/* Globe Video */}
+        <video
+          src="/hero-videos/globe.webm"
+          autoPlay
+          loop
+          muted
+          className="absolute w-full h-full object-cover object-[top_center] top-0"
+        ></video>
 
         <FloatingTip
           className="top-8 right-4 md:right-1/8 -translate-y-10 md:translate-0"
