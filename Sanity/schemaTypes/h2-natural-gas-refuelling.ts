@@ -1,8 +1,8 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "product",
-  title: "Product Page",
+  name: "h2-natural-gas-refuelling",
+  title: "H2 Natural Gas Refuelling Page",
   type: "document",
   fields: [
     defineField({
@@ -13,9 +13,9 @@ export default defineType({
       hidden: true,
     }),
     defineField({
-      name: "productHeroSection",
+      name: "h2naturalgasHeroSection",
       title: "Hero Section",
-      type: "productHeroSection",
+      type: "h2naturalgasHeroSection",
     }),
     defineField({
       name: "whyWeMatterSection",
@@ -76,7 +76,7 @@ export default defineType({
   preview: {
     select: {
       language: "language",
-      title: "productHeroSection.title",
+      title: "h2naturalgasHeroSection.title",
     },
     prepare(selection) {
       const { language, title } = selection;

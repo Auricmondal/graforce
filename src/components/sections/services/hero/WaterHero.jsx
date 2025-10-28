@@ -3,17 +3,19 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
+import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+
 import bgImgLeft from "@/assets/service/hero/loopergroup-left.svg";
 import bgImgRight from "@/assets/service/hero/loopergroup-right.svg";
 import overlayImg from "@/assets/service/hero/overlay.svg";
-import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
-import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
 import client from "@/lib/sanityClient";
 import { waterHeroSectionQuery } from "@/Queries/services/water-purifiaction/Waterhero";
 
 const Hero = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
+  const { showContactForm } = useSidebarActions();
 
   const [heroData, setHeroData] = useState({
     title: "Transforming Water. Sustaining Life.",
@@ -32,7 +34,7 @@ const Hero = () => {
     const fetchHero = async () => {
       try {
         const res = await client.fetch(waterHeroSectionQuery);
-        const hero = res?.hero; // <-- correct key
+        const hero = res?.hero; // Sanity key for hero section
 
         if (hero) {
           setHeroData({
@@ -58,7 +60,7 @@ const Hero = () => {
 
   const handlePrimary = () => {
     if (heroData.primaryButtonAction === "openModal") {
-      !isOpen ? openModal() : closeModal();
+      showContactForm();
     } else if (heroData.primaryButtonAction === "scroll") {
       document.getElementById("solutions-section-service")?.scrollIntoView({
         behavior: "smooth",

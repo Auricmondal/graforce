@@ -3,20 +3,19 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useContactModal } from "@/contexts/ContactModalContext";
-import bgImg from "@/assets/service/hero/co2-free.webp"; // fallback
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
+import bgImgFallback from "@/assets/service/hero/co2-free.webp";
 import client from "@/lib/sanityClient";
 import { energyHeroSectionQuery } from "@/Queries/services/co2-free-energy-generation/energyhero";
 
 const Hero = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
-
+  const { showContactForm } = useSidebarActions();
   const [heroData, setHeroData] = useState({
     title: "Engineering the Future of CO₂ Free Power.",
-    backgroundImage: bgImg.src,
+    backgroundImage: bgImgFallback.src,
     primaryButtonText: "Talk to an Expert",
     primaryButtonAction: "openModal",
     secondaryButtonText: "Download Brochure",
@@ -32,12 +31,12 @@ const Hero = () => {
         const hero = res?.heroSection;
 
         setHeroData({
-          title: hero?.title || "Engineering the Future of CO₂ Free Power.",
-          backgroundImage: hero?.backgroundImage || bgImg.src,
-          primaryButtonText: hero?.primaryButtonText || "Talk to an Expert",
-          primaryButtonAction: hero?.primaryButtonAction || "openModal",
-          secondaryButtonText: hero?.secondaryButtonText || "Download Brochure",
-          secondaryButtonAction: hero?.secondaryButtonAction || "scroll",
+          title: hero?.title || heroData.title,
+          backgroundImage: hero?.backgroundImage?.asset?.url || bgImgFallback.src,
+          primaryButtonText: hero?.primaryButtonText || heroData.primaryButtonText,
+          primaryButtonAction: hero?.primaryButtonAction || heroData.primaryButtonAction,
+          secondaryButtonText: hero?.secondaryButtonText || heroData.secondaryButtonText,
+          secondaryButtonAction: hero?.secondaryButtonAction || heroData.secondaryButtonAction,
           secondaryButtonFile: hero?.secondaryButtonFile || "",
           secondaryButtonUrl: hero?.secondaryButtonUrl || "",
         });
@@ -51,7 +50,7 @@ const Hero = () => {
 
   const handlePrimary = () => {
     if (heroData.primaryButtonAction === "openModal") {
-      !isOpen ? openModal() : closeModal();
+      showContactForm();
     } else if (heroData.primaryButtonAction === "scroll") {
       const section = document.getElementById("solutions-section-service");
       section?.scrollIntoView({ behavior: "smooth", block: "start" });

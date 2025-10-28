@@ -20,8 +20,8 @@ import Waterhero from "./services/Water-purification/Waterhero"
 import hydrogenProduction from "./hydrogen-production"
 import waterPurification from "./water-purification"
 
-import product from "./product"
-import heroProduct from "./products/heroProduct"
+import h2NaturalGasRefuelling from "./h2-natural-gas-refuelling"
+import h2naturalgashero from "./products/h2-natural-gas-refuelling/methane-plasmalyzer/h2naturalgashero"
 import importantdetails from "./products/importantdetails"
 import whywematter from "./products/whywematter"
 import graforcesolution from "./products/graforcesolution"
@@ -59,6 +59,10 @@ import graforceCards from "./investors/graforceCards"
 import job from "./jobs/job"
 import newsPage from "./newsPage"
 import specs from "./home/specs"
+import methanePlasmalyzer from "./methane-plasmalyzer"
+import methaneplasmalyzerhero from "./products/methane-plasmalyzer/methaneplasmalyzerhero"
+import plasmaAmmoniaCracker from "./plasma-ammonia-cracker"
+import plasmaammoniacrackerhero from "./products/plasma-ammonia-cracker/plasmaammoniacrackerhero"
 
 
 
@@ -88,8 +92,12 @@ export const schemaTypes = [
     waterPurification,
     Waterhero,
 
-    product,
-    heroProduct,
+    h2NaturalGasRefuelling,
+    h2naturalgashero,
+    methanePlasmalyzer,
+    methaneplasmalyzerhero,
+    plasmaAmmoniaCracker,
+    plasmaammoniacrackerhero,
     importantdetails,
     whywematter,
     graforcesolution,

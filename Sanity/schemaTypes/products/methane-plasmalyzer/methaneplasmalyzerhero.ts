@@ -1,8 +1,8 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "productHeroSection",
-  title: "Product Hero Section",
+  name: "methaneplasmalyzerHeroSection",
+  title: "Hero Section",
   type: "object",
   fields: [
     defineField({
@@ -12,8 +12,8 @@ export default defineType({
       description: "The main heading for the product hero (e.g., Methane Plasmalyzer®)",
     }),
     defineField({
-      name: "description",
-      title: "Description",
+      name: "subTitle", // Changed from "description" to "subTitle"
+      title: "Subheading / Description",
       type: "text",
       description: "Short description or tagline for the hero section",
     }),
@@ -22,26 +22,17 @@ export default defineType({
       title: "Background Images",
       type: "array",
       description: "Images shown in the hero background (can be multiple decorative images)",
-      of: [
-        defineField({
-          name: "image",
-          title: "Image",
-          type: "image",
-          options: { hotspot: true },
-        }),
-      ],
+      of: [{ type: "image", options: { hotspot: true } }],
     }),
     defineField({
       name: "primaryButtonText",
       title: "Primary Button Text",
       type: "string",
-      description: "Text for the main CTA button (e.g., Talk to an Expert)",
     }),
     defineField({
       name: "primaryButtonAction",
       title: "Primary Button Action",
       type: "string",
-      description: "Defines what happens on click (e.g., open modal)",
       options: {
         list: [
           { title: "Open Contact Modal", value: "openModal" },
@@ -54,13 +45,11 @@ export default defineType({
       name: "secondaryButtonText",
       title: "Secondary Button Text",
       type: "string",
-      description: "Text for the secondary CTA button (e.g., Download Brochure)",
     }),
     defineField({
       name: "secondaryButtonAction",
       title: "Secondary Button Action",
       type: "string",
-      description: "Defines what happens on click (e.g., download file or scroll)",
       options: {
         list: [
           { title: "Download Brochure", value: "download" },

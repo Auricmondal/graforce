@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import bgImg from "@/assets/service/hero/service-hero.webp";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 
-// Sanity client
+import bgImgFallback from "@/assets/service/hero/service-hero.webp";
 import { client } from "@/lib/sanityClient";
 import { hydrogenHeroQuery } from "@/Queries/services/hydrogen-production/hydrogenhero";
 
 const Hero = () => {
-  const { isOpen, openModal, closeModal } = useContactModal();
+  const { showContactForm } = useSidebarActions();
   const [heroData, setHeroData] = useState(null);
 
   // Fetch Hero data from Sanity
@@ -29,35 +29,12 @@ const Hero = () => {
     fetchHero();
   }, []);
 
-  const handleContactModal = () => {
-    if (!isOpen) openModal();
-    else closeModal();
-  };
-
-  const handleLearnMore = (e) => {
-    e.preventDefault();
-
-    // Open external brochure if provided
-    if (heroData?.secondaryButtonUrl) {
-      window.open(heroData.secondaryButtonUrl, "_blank");
-      return;
-    }
-    if (heroData?.secondaryButtonLink?.asset?.url) {
-      window.open(heroData.secondaryButtonLink.asset.url, "_blank");
-      return;
-    }
-
-    // Scroll to section fallback
-    const section = document.getElementById("solutions-section-service");
-    if (section) section.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   // Fallback values
   const title = heroData?.title || "Renewable Hydrogen Production";
   const highlightedWord = heroData?.highlightedWord || "Hydrogen";
   const primaryButtonText = heroData?.primaryButtonText || "Talk to an Expert";
   const secondaryButtonText = heroData?.secondaryButtonText || "Download Brochure";
-  const backgroundImage = heroData?.backgroundImage?.asset?.url || bgImg.src;
+  const backgroundImage = heroData?.backgroundImage?.asset?.url || bgImgFallback.src;
   const backgroundAlt = heroData?.backgroundImage?.alt || "Hydrogen Network";
 
   const parts = title.split(highlightedWord);
@@ -65,8 +42,8 @@ const Hero = () => {
   if (!heroData) return null; // optional loader
 
   return (
-    <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2">
-      <div className="bg-cst-neutral-5 flex flex-col w-full rounded-2xl relative pt-[20vh] lg:pt-[8vh] pb-2 px-[3vw] h-full">
+    <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
+      <div className="flex flex-col w-full rounded-2xl px-[3vw] h-full absolute inset-0 z-10 justify-center">
         <div className="flex flex-col gap-6">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
             <AnimatedHeader delay={0.4}>
@@ -92,17 +69,17 @@ const Hero = () => {
             </PrimaryButton>
           </div>
         </div>
+      </div>
 
-        {/* Network Image */}
-        <div className="w-auto flex-1 relative">
-          <Image
-            src={backgroundImage}
-            alt={backgroundAlt}
-            fill
-            className="mx-auto"
-            style={{ objectFit: "contain" }}
-          />
-        </div>
+      {/* Background Image */}
+      <div className="w-full h-full relative">
+        <Image
+          src={backgroundImage}
+          alt={backgroundAlt}
+          fill
+          className="z-0 object-cover rounded-2xl brightness-70"
+          style={{ objectFit: "cover" }}
+        />
       </div>
     </main>
   );

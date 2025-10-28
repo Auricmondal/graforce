@@ -16,10 +16,9 @@ import DynamicSidebar from "@/components/shared/sidebar/DynamicSidebar";
 
 import ToastProvider from "@/wrappers/ToastProvider";
 import BannerProvider from "@/wrappers/BannerProvider";
+
+// ✅ Correct import for the LanguageProvider (keep it like this)
 import { LanguageProvider } from "@/hooks/useLanguage";
-
-
-
 
 export const metadata = {
   title: "Graforce",
@@ -37,28 +36,32 @@ export default function RootLayout({ children }) {
           <ContactModalProvider>
             <SidebarProvider>
               <FooterProvider>
-                <body
-                  className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
-                >
-                  <LoaderProvider>
-                    <BannerProvider>
-                      <ToastProvider />
-                      <div className="relative z-10">
-                        <Navbar />
-                        <ProgressProvider>{children}</ProgressProvider>
-                        <Footer />
-                      </div>
-                      <div className="relative z-10 pointer-events-none ">
-                        <FooterRevealer />
-                      </div>
-                      <div className="fixed w-full bottom-0 z-0">
-                        <Footer2 />
-                      </div>
-                      <ContactModal clickOutside={true} />
-                      <DynamicSidebar />
-                    </BannerProvider>
-                  </LoaderProvider>
-                </body>
+                {/* ✅ Wrap the entire app inside LanguageProvider */}
+                <LanguageProvider>
+                  <body
+                    className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
+                  >
+                    <LoaderProvider>
+                      <BannerProvider>
+                        <ToastProvider />
+                        <div className="relative z-10">
+                          <Navbar />
+                          <ProgressProvider>{children}</ProgressProvider>
+                          <Footer />
+                        </div>
+                        <div className="relative z-10 pointer-events-none ">
+                          <FooterRevealer />
+                        </div>
+                        <div className="fixed w-full bottom-0 z-0">
+                          <Footer2 />
+                        </div>
+                        <ContactModal clickOutside={true} />
+                        <DynamicSidebar />
+                      </BannerProvider>
+                    </LoaderProvider>
+                  </body>
+                </LanguageProvider>
+                {/* ✅ End LanguageProvider */}
               </FooterProvider>
             </SidebarProvider>
           </ContactModalProvider>

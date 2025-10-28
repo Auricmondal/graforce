@@ -151,7 +151,7 @@ export default function SolutionSection() {
                   title={step.title}
                   description={step.description}
                   progress={index === activeStep ? scrollProgress : 0}
-                  link={`/products/${steps[activeStep].link}`}
+                  link={`/products/${data.steps[activeStep].link}`}
                 />
               ))}
             </div>
