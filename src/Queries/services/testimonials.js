@@ -1,5 +1,5 @@
 export const testimonialSectionQuery = /* groq */ `
-  *[_type == "service"][0]{
+  *[_type == "hydrogen-production"][0]{
     "testimonialSection": testimonialSection{
       sectionHeader,
       sectionSubHeader,

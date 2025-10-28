@@ -1,31 +1,50 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 
-import { newsData as tempNewsData } from "@/data/news";
+import client from "@/lib/sanityClient";
+import { newsSectionQuery } from "@/Queries/services/news";
 
-const News = ({ newsData = tempNewsData }) => {
+const News = () => {
+  const [newsData, setNewsData] = useState([]);
+  const [sectionTitle, setSectionTitle] = useState("News");
+
+  useEffect(() => {
+    async function fetchNews() {
+      try {
+        const res = await client.fetch(newsSectionQuery);
+        const newsSection = res?.newsSection || {};
+        setSectionTitle(newsSection.sectionTitle || "News");
+        setNewsData(newsSection.newsItems || []);
+      } catch (error) {
+        console.error("Error fetching news section:", error);
+      }
+    }
+    fetchNews();
+  }, []);
+
   return (
     <SectionWrapper sectionClassName="bg-cst-neutral-1">
       <CardWrapper>
         <div className="flex flex-col gap-4 md:gap-8 w-full">
           {/* Header */}
-          <div className="">
-            <SectionLabel text="News" icon={true} invertIcon={false} />
+          <div>
+            <SectionLabel text={sectionTitle} icon={true} invertIcon={false} />
           </div>
 
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
             {newsData.map((article) => (
-              <div key={article.id} className="group space-y-2 cursor-pointer">
+              <div key={article.title} className="group space-y-2 cursor-pointer">
                 {/* Image Container */}
                 <div className="relative w-full h-64 overflow-hidden rounded-2xl group-hover:rounded-[96px] transition-all duration-500 ease-in-out">
                   <Image
-                    src={article.image}
+                    src={article.image?.asset?.url || "/placeholder.png"}
                     alt={article.title}
                     fill
                     className="object-cover"
@@ -33,7 +52,7 @@ const News = ({ newsData = tempNewsData }) => {
                 </div>
 
                 {/* Tag */}
-                <div className="">
+                <div>
                   <span className="inline-block px-4 py-1 bg-primary text-white text-xs md:text-sm font-medium rounded-xl">
                     {article.tag}
                   </span>

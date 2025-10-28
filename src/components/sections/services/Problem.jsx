@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,16 +11,41 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/TempChart";
 
-import tempProblemData from "@/data/tempProblems.json";
+import client from "@/lib/sanityClient";
+import { problemSectionQuery } from "@/Queries/services/problems";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function EmissionPage({ problemData = tempProblemData }) {
+export default function EmissionPage() {
+  const [problemData, setProblemData] = useState([]);
+  const [sectionTitle, setSectionTitle] = useState("The Problem");
+  const [sectionHeading, setSectionHeading] = useState("The Emission Burden");
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
 
+  // ✅ Fetch from Sanity
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await client.fetch(problemSectionQuery);
+        const problemSection = res?.problemSection || {};
+        setProblemData(problemSection.problems || []);
+        if (problemSection.sectionTitle)
+          setSectionTitle(problemSection.sectionTitle);
+        if (problemSection.sectionHeading)
+          setSectionHeading(problemSection.sectionHeading);
+      } catch (error) {
+        console.error("Error fetching Sanity data:", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  // ✅ GSAP Scroll logic
   useGSAP(() => {
+    if (!problemData.length) return;
+
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
     if (!triggerRef.current || !isDesktop) return;
 
@@ -46,9 +71,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
             setScrollProgress(self.progress * 100);
           },
           onLeave: () => {
-            if (i < problemData.length - 1) {
-              setScrollProgress(100);
-            }
+            if (i < problemData.length - 1) setScrollProgress(100);
           },
           onLeaveBack: () => {
             setScrollProgress(0);
@@ -57,20 +80,25 @@ export default function EmissionPage({ problemData = tempProblemData }) {
       }
     });
 
-    // Add smooth exit transition to prevent lag
     ScrollTrigger.create({
       trigger: triggerRef.current,
       start: "bottom bottom",
       end: "bottom top",
       scrub: true,
       onLeave: () => {
-        // Force a refresh to clean up any lingering effects
         requestAnimationFrame(() => {
           ScrollTrigger.refresh();
         });
       },
     });
-  }, []);
+  }, [problemData]);
+
+  if (!problemData.length)
+    return (
+      <main className="w-full flex justify-center items-center h-[100vh] bg-secondary-light">
+        Loading problems...
+      </main>
+    );
 
   return (
     <main className="md:relative w-full bg-secondary-light">
@@ -82,9 +110,9 @@ export default function EmissionPage({ problemData = tempProblemData }) {
               className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
               variant="custom"
             >
-              <SectionLabel text={"The Problem"} />
+              <SectionLabel text={sectionTitle} />
               <AnimatedHeader>
-                <div className="text-xl">The Emission Burden</div>
+                <div className="text-xl">{sectionHeading}</div>
               </AnimatedHeader>
             </CardWrapper>
 
@@ -129,13 +157,11 @@ export default function EmissionPage({ problemData = tempProblemData }) {
             key={i}
             className="flex items-center justify-center"
             style={{ minHeight: "250vh" }}
-          >
-            {/* Individual scroll trigger zones */}
-          </div>
+          ></div>
         ))}
       </div>
 
-      {/* Smooth transition buffer to prevent lag */}
+      {/* Smooth transition buffer */}
       <div className="hidden md:block h-[100vh] bg-secondary-light relative z-0"></div>
     </main>
   );

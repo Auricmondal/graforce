@@ -1,5 +1,5 @@
 export const otherServicesQuery = /* groq */ `
-  *[_type == "service"][0]{
+  *[_type == "hydrogen-production"][0]{
     "otherServicesSection": otherServicesSection{
       sectionLabel,
       services[]{

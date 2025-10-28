@@ -10,19 +10,19 @@ export default defineType({
       name: "header",
       title: "Header",
       type: "string",
-      description: "Main heading of the section",
+      description: "The main heading of the Explore Investment section. Example: 'We’re building the bridge between ambition and action.'",
     }),
     defineField({
       name: "subHeader",
       title: "Subheader",
       type: "text",
-      description: "Detailed description or subheading",
+      description: "Supporting text that explains or expands on the header. Give more context about the investment opportunities or section content.",
     }),
     defineField({
       name: "buttonContent",
       title: "Button Text",
       type: "string",
-      description: "Text displayed on the button",
+      description: "The text displayed on the call-to-action button. Example: 'Explore Investment Options'.",
     }),
     defineField({
       name: "image",
@@ -31,7 +31,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
-      description: "Image displayed alongside the text",
+      description: "The image displayed alongside the text. This should visually represent the section or investment opportunities.",
     }),
   ],
 });

@@ -1,5 +1,5 @@
 export const newsSectionQuery = /* groq */ `
-  *[_type == "service"][0]{
+  *[_type == "hydrogen-production"][0]{
     "newsSection": newsSection{
       sectionTitle,
       newsItems[]{

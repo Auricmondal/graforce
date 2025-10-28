@@ -1,5 +1,5 @@
 export const faqSectionQuery = /* groq */ `
-  *[_type == "service"][0]{
+  *[_type == "hydrogen-production"][0]{
     "faqSection": faqSection{
       sectionLabel,
       heading,

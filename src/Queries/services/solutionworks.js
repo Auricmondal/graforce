@@ -1,8 +1,9 @@
 export const solutionWorksSectionQuery = /* groq */ `
-  *[_type == "service"][0]{
+  *[_type == "hydrogen-production"][0]{
     "solutionWorksSection": solutionWorksSection{
       sectionHeader,
       sectionSubHeader,
+      description,
       videoFile{
         asset->{
           url

@@ -1,15 +1,19 @@
 export const problemSectionQuery = /* groq */ `
-  *[_type == "service"][0]{
-    "problemSection": problemSection{
-      problems[]{
+  *[_type == "hydrogen-production"][0]{
+    problemSection {
+      sectionTitle,
+      sectionHeading,
+      problems[] {
         id,
         title,
         description,
-        data[]{
+        data[] {
           year,
           value
         }
-      }
+      },
+      learnMoreText,
+      learnMoreLink
     }
   }
 `;
