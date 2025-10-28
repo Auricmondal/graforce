@@ -20,7 +20,7 @@ export default function LoaderProvider({ children }) {
 
       (async () => {
         await waitForPageReady();
-        await sleep(1500);
+        await sleep(2000);
         setLoading(false);
       })();
 
@@ -34,11 +34,9 @@ export default function LoaderProvider({ children }) {
       <AnimatePresence>
         {loading && (
           <motion.div
-            className="fixed bg-[linear-gradient(206.41deg,_var(--color-dark)_17.27%,_var(--color-primary-light)_47.98%,_var(--color-primary)_65.61%,_var(--color-secondary)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
+            // className="fixed bg-[linear-gradient(206.41deg,_var(--color-dark)_17.27%,_var(--color-primary-light)_47.98%,_var(--color-primary)_65.61%,_var(--color-secondary)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
+            className="fixed bg-cst-neutral-5 z-10 flex items-center justify-center w-screen h-screen"
             initial={{
-              width: 5000,
-              height: 5000,
-              borderRadius: "50%",
               x: "-50%",
               y: "-50%",
               top: "50%",
@@ -46,18 +44,27 @@ export default function LoaderProvider({ children }) {
               opacity: 1,
             }}
             animate={{
-              width: 0,
-              height: 0,
+              y: "-200vh",
               transition: {
-                duration: 1.5,
+                duration: 2.5,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.6,
+              },
+            }}
+            exit={{
+              y: "-200vh",
+              opacity: 0,
+              transition: {
+                duration: 2,
                 ease: [0.6, 0.01, -0.05, 0.95],
               },
             }}
           >
             <motion.span
               className="text-white text-[10vw] font-bold"
-              initial={{ scale: 1 }}
-              animate={{ scale: 0 }}
+              // initial={{ scale: 1 }}
+              // animate={{ scale: 0 }}
+              // exit={{ scale: 0 }}
               transition={{
                 duration: 1.5,
                 ease: [0.6, 0.01, -0.05, 0.95],
@@ -78,9 +85,6 @@ export default function LoaderProvider({ children }) {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* <style jsx>{`
-            
-      `}</style> */}
     </>
   );
 }

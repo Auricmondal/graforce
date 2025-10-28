@@ -249,7 +249,7 @@ body {
   margin: 0;
   animation-delay: 0s;
   transform: translateY(20vw);
-  animation: hideAndSeek 1s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
+  animation: hideAndSeek 0.7s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
   /* font-family: 'Arial Black', sans-serif; */
   font-family: "Rubik Glitch", system-ui;
   /* font-size: 3rem;
@@ -263,31 +263,31 @@ body {
 }
 
 .loader .r {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0.5);
 }
 
 .loader .a {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1.5);
 }
 
 .loader .f {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2.5);
 }
 
 .loader .o {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3.5);
 }
 
 .loader .r2 {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4.5);
 }
 
 .loader .c {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5.5);
 }
 
 .loader .e {
-  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 7);
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6.5);
 }
 
 @keyframes hideAndSeek {
