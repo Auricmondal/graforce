@@ -1,7 +1,5 @@
 import React from "react";
-import { notFound } from "next/navigation";
-
-import Hero from "@/components/sections/products/Hero";
+import Hero from "@/components/sections/products/hero/SyngasHero";
 
 import WhyWeMatter from "@/components/sections/products/WhyWeMatter";
 import GraforceSolution from "@/components/sections/products/GraforceSolution";
@@ -15,34 +13,23 @@ import OtherServices from "@/components/shared/otherServices/OtherServices";
 import FinalCTA from "@/components/shared/finalCta/FinalCTA";
 import News from "@/components/shared/news/News";
 import FAQ from "@/components/shared/faq/FAQ";
+import { productServices } from "@/components/sections/products/productServices";
 
-const ALLOWED_SLUGS = ["methane-plasmalyzer"];
-
-const productComponents = {
-  "methane-plasmalyzer": {
-    hero: true,
-    whyWeMatter: true,
-    graforceSolution: true,
-    howThisWorks: true,
-    productGallery: true,
-    importantDetails: true,
-    solutionWorks: true,
-    otherServices: true,
-    testimonials: true,
-    faq: true,
-    news: true,
-  },
+const config = {
+  hero: true,
+  whyWeMatter: true,
+  graforceSolution: true,
+  howThisWorks: true,
+  productGallery: true,
+  importantDetails: true,
+  solutionWorks: true,
+  otherServices: true,
+  testimonials: true,
+  faq: true,
+  news: true,
 };
 
-export default async function ProductPage({ params }) {
-  const { product } = await params;
-
-  if (!ALLOWED_SLUGS.includes(product)) {
-    notFound();
-  }
-
-  const config = productComponents[product];
-
+export default async function PlasmaAmmoniaCracker() {
   return (
     <>
       {config.hero && <Hero />}
@@ -50,25 +37,13 @@ export default async function ProductPage({ params }) {
       {config.graforceSolution && <GraforceSolution />}
       {config.howThisWorks && <HowThisWorks />}
       {config.productGallery && <ProductGallery />}
-      {config.importantDetails && <ImportantDetails />}
+      {config.importantDetails && <ImportantDetails isOneLeftType={false} />}
       {config.solutionWorks && <SolutionWorks />}
-      {config.otherServices && <OtherServices />}
+      {config.otherServices && <OtherServices servicesOptions={productServices}/>}
       {config.testimonials && <Testimonials />}
       {config.faq && <FAQ />}
       {config.news && <News />}
       <FinalCTA />
     </>
   );
-}
-
-/**
- * generateStaticParams:
- *
- * - This tells Next.js to pre-render only `/products/a`, `/products/b`, and `/products/c`
- *   at build time instead of rendering them on-demand at runtime.
- *   - Keep this if the set of slugs is small and fixed (like here: a, b, c).
- *   - Remove it if slugs might change dynamically (e.g., from a database or CMS).
- */
-export async function generateStaticParams() {
-  return ALLOWED_SLUGS.map((product) => ({ product }));
 }

@@ -117,7 +117,7 @@ const OtherServices = () => {
         </div>
       </CardWrapper>
     </SectionWrapper>
-  )
-}
+  );
+};
 
 export default OtherServices

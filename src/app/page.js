@@ -14,7 +14,7 @@ const Home = () => {
       <div className="relative z-10 mt-[100vh]">
         <WhatDoWeDo />
         <Solution />
-        <YouNeedUs sectionColorVariant="dark" />
+        <YouNeedUs sectionColorVariant="dark" learnMoreLink={"/industries"}/>
         <AboutUs />
         <FinalCTA />
       </div>

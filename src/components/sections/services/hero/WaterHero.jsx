@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useContactModal } from "@/contexts/ContactModalContext";
 import bgImgLeft from "@/assets/service/hero/loopergroup-left.svg";
 import bgImgRight from "@/assets/service/hero/loopergroup-right.svg";
 import overlayImg from "@/assets/service/hero/overlay.svg";

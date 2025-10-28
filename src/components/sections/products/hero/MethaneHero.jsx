@@ -12,28 +12,12 @@ import sparkImg from "@/assets/product/spark_hydro.svg";
 import carbonImg from "@/assets/product/carbon.webp";
 import hydrogenImg from "@/assets/product/hydrogen.webp";
 
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+import CustomBlogData from "@/data/customBlogData.json";
+
 const Hero = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
+  const { showContactForm } = useSidebarActions();
 
-  const handleContactModal = () => {
-    if (!isOpen) {
-      openModal();
-    } else {
-      closeModal();
-    }
-  };
-
-  const handleLearnMore = (e) => {
-    e.preventDefault();
-    const section = document.getElementById("solutions-section-service");
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-  //
   return (
     <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2">
       <div className="bg-[linear-gradient(90.53deg,_#102044_-1.02%,_#416DD2_99.51%)] flex flex-col w-full rounded-2xl relative pb-2 px-[3vw] h-full">
@@ -81,19 +65,18 @@ const Hero = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <PrimaryButton
               className="text-white transition duration-300 border-1 border-transparent hover:border-white py-3 px-4 md:py-4 md:px-6 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-3 bg-primary hover:!bg-cst-neutral-5 w-full md:w-fit justify-center"
-              onClick={handleContactModal}
+              onClick={() => showContactForm()}
             >
               Talk to an Expert <FaChevronRight />
             </PrimaryButton>
             <PrimaryButton
               className="text-black bg-secondary py-3 px-4 md:py-4 md:px-6 rounded-2xl transition font-medium text-sm sm:text-base w-full md:w-fit justify-center"
-              onClick={handleLearnMore}
+              onClick={() => showContactForm()}
             >
               Download Brochure
             </PrimaryButton>
           </div>
         </div>
-
       </div>
     </main>
   );

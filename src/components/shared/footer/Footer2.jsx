@@ -17,7 +17,7 @@ const Footer2 = () => {
       ref={footerRef}
       className="bg-cst-neutral-5 text-white  relative overflow-hidden"
     >
-      <div className="max-w-[2000px] mx-auto">
+      <div className="mx-auto">
         <ScrollReveal>
           <Image
             width={1000}

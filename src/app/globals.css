@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "nprogress/nprogress.css";
+@import 'nprogress/nprogress.css';
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
 
 :root {
   --primary: #416dd2;
@@ -113,6 +114,7 @@ body {
       transform: scale(0.98);
       opacity: 0;
     }
+
     50% {
       transform: scale(0.995);
       opacity: 1;
@@ -228,4 +230,72 @@ body {
   background: white;
   border-radius: 50%;
   z-index: 1;
+}
+
+.loader {
+  --ANIMATION-DELAY-MULTIPLIER: 70ms;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  gap: 8px;
+}
+
+.loader span {
+  padding: 0;
+  margin: 0;
+  animation-delay: 0s;
+  transform: translateY(20vw);
+  animation: hideAndSeek 0.7s alternate infinite cubic-bezier(0.86, 0, 0.07, 1);
+  /* font-family: 'Arial Black', sans-serif; */
+  font-family: "Rubik Glitch", system-ui;
+  /* font-size: 3rem;
+  font-weight: 900; */
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loader .g {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0);
+}
+
+.loader .r {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 0.5);
+}
+
+.loader .a {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 1.5);
+}
+
+.loader .f {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 2.5);
+}
+
+.loader .o {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 3.5);
+}
+
+.loader .r2 {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 4.5);
+}
+
+.loader .c {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 5.5);
+}
+
+.loader .e {
+  animation-delay: calc(var(--ANIMATION-DELAY-MULTIPLIER) * 6.5);
+}
+
+@keyframes hideAndSeek {
+  0% {
+    transform: translateY(15vw);
+  }
+
+  100% {
+    transform: translateY(0rem);
+  }
 }

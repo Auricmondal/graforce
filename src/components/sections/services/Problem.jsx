@@ -124,6 +124,7 @@ export default function EmissionPage() {
                 title={problemData[activeStep].title}
                 description={problemData[activeStep].description}
                 progress={scrollProgress}
+                onClick={() => showReadingContent(CustomBlogData)}
               />
             </div>
 
@@ -135,6 +136,7 @@ export default function EmissionPage() {
                   title={problem.title}
                   description={problem.description}
                   progress={index === activeStep ? scrollProgress : 0}
+                  onClick={() => showReadingContent(CustomBlogData)}
                 />
               ))}
             </div>
