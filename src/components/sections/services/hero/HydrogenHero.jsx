@@ -40,7 +40,7 @@ const Hero = () => {
         </div>
 
         {/* Network Image */}
-        <div className="w-auto flex-1 h-fit relative p-6 md:p-0">
+        <div className="w-auto flex-1 h-fit relative py-6 lg:p-0">
           <RiveAutoplay
             src={"/animations/heroanim.riv"}
             stateMachines={"heroanim"}
