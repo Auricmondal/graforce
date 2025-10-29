@@ -1,19 +1,18 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import bgImg from "@/assets/service/hero/service-hero.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
+import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 
 const Hero = () => {
   const { showContactForm } = useSidebarActions();
 
   return (
-    <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2">
+    <main className="text-white h-fit bg-cst-neutral-1 p-2">
       <div className="bg-cst-neutral-5 flex flex-col w-full rounded-2xl relative pt-[20vh] lg:pt-[8vh] pb-2 px-[3vw] h-full">
         <div className="flex flex-col gap-6">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
@@ -41,14 +40,10 @@ const Hero = () => {
         </div>
 
         {/* Network Image */}
-        <div className="w-auto flex-1 relative">
-          {/* Background network image */}
-          <Image
-            src={bgImg.src}
-            alt="Hydrogen Network"
-            fill
-            className="mx-auto "
-            style={{ objectFit: "contain" }}
+        <div className="w-auto flex-1 h-fit relative p-6 md:p-0">
+          <RiveAutoplay
+            src={"/animations/heroanim.riv"}
+            stateMachines={"heroanim"}
           />
         </div>
       </div>
