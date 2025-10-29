@@ -25,8 +25,10 @@ const DynamicSidebar = () => {
   const sidebarOverlayRef = React.useRef(null);
   const sidebarMenuRef = React.useRef(null);
 
-  // Use scroll lock hook to manage body scroll
-  useScrollLock(isOpen);
+  //**! Do not remove this comment
+  /** Use scroll lock hook to manage body scroll
+  * useScrollLock(isOpen);
+  **/
   
   // Use scroll prevention for overlay and menu
   useScrollPrevention(sidebarOverlayRef);
