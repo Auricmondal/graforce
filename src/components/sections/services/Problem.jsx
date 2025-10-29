@@ -83,7 +83,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
         <div className="w-full md:flex-3/7 flex gap-2">
           <div className="flex flex-col gap-2 w-full">
             <CardWrapper
-              className="md:sticky top-0 z-40 rounded-lg gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
+              className="md:sticky top-0 z-40 rounded-2xl gap-2 border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
               variant="custom"
             >
               <SectionLabel text={"The Problem"} />
@@ -120,7 +120,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
         </div>
 
         {/* Right Side */}
-        <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-lg bg-cover bg-center min-h-[100dvh] md:min-h-0">
+        <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-2xl bg-cover bg-center min-h-[100dvh] md:min-h-0">
           <Chart
             data={problemData[activeStep ?? 0].data}
             dataIndex={activeStep ?? 0}

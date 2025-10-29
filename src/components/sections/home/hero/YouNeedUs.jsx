@@ -16,7 +16,7 @@ import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomJobData from "@/data/customJobData.json";
 import CustomSpecData from "@/data/customSpecData.json";
 import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
-import { useRive } from "@rive-app/react-canvas";
+import { Layout, useRive } from "@rive-app/react-canvas";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -59,6 +59,10 @@ const YouNeedUs = ({
     src: "/animations/tower.riv",
     autoplay: true,
     stateMachines: "State Machine 1",
+    layout: new Layout({
+      fit: "cover",
+      alignment: "center",
+    }),
   });
 
   // Check if mobile
