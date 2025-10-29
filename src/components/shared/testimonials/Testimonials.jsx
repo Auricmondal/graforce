@@ -19,7 +19,7 @@ const Testimonial = ({ cards = reviewsData }) => {
     >
       {" "}
       <CardWrapper
-        className="rounded-lg gap-2 bg-white pt-[112px] pb-8 px-4 md:px-6"
+        className="gap-2 bg-white pt-[112px] pb-8 px-4 md:px-6"
         variant="custom"
       >
         <div className="flex flex-col gap-2">
@@ -32,7 +32,7 @@ const Testimonial = ({ cards = reviewsData }) => {
         </div>
       </CardWrapper>
       <CardWrapper
-        className="rounded-lg gap-2 bg-white py-8 px-4 lg:px-6 mt-2"
+        className="gap-2 bg-white py-8 px-4 lg:px-6 mt-2"
         variant="custom"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full">

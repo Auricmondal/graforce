@@ -13,7 +13,7 @@ const WhatDoWeDo = () => {
       id="what-do-we-do"
     >
       <CardWrapper
-        className="flex-1 rounded-2xl px-6 py-8 lg:gap-4"
+        className="flex-1 px-6 py-8 lg:gap-4"
         variant="custom"
       >
         <SectionLabel text="What Do We Do" />

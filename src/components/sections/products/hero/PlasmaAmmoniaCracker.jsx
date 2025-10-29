@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useContactModal } from "@/contexts/ContactModalContext";
-import bgImg from "@/assets/product/plasma-ammonia-cracker.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 
@@ -48,15 +46,11 @@ const Hero = () => {
         </div>
 
         {/* Network Image */}
-        <div className="w-auto flex-1 relative">
-          {/* Background network image */}
-          <Image
-            src={bgImg.src}
-            alt="Hydrogen Network"
-            height={1000}
-            width={1000}
-            className="mx-auto w-full h-auto"
-            style={{ objectFit: "contain" }}
+        <div className="w-auto flex-1 relative h-fit py-6 lg:p-0">
+          <RiveAutoplay
+            src={"/animations/heroanim.riv"}
+            stateMachines={"heroanim"}
+            delay={800}
           />
         </div>
       </div>
