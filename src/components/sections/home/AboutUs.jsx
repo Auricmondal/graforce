@@ -230,7 +230,7 @@ const AboutUs = () => {
                   <div className="w-full h-full flex flex-col justify-between space-y-[70px] sm:space-y-[70px]">
                     <div className="text-[48px] text-left capitalize font-bold">
                       <h2>
-                        <AnimatedHeader>{companyName}</AnimatedHeader>
+                        {companyName}
                       </h2>
                     </div>
                     <div>
