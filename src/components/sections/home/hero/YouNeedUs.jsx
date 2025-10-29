@@ -50,7 +50,7 @@ const YouNeedUs = ({
   const sectionRef = useRef(null);
   const needRef = useRef(null);
   const labelRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(undefined);
   const triggerRef = useRef(null); // Store trigger reference
   const { showCustomContent, showSpecificationsContent, showJobContent } =
     useSidebarActions();
@@ -90,7 +90,12 @@ const YouNeedUs = ({
   useGSAP(() => {
     cleanup();
 
-    if (isMobile || !needRef.current || !sectionRef.current) {
+    if (
+      isMobile ||
+      !needRef.current ||
+      !sectionRef.current ||
+      isMobile === undefined
+    ) {
       return;
     }
 
