@@ -13,7 +13,7 @@ const CardWrapper = ({
     standard: "px-6 py-12 sm:px-6 sm:py-8",
     compact: "py-6 px-8",
     normal: "py-20 px-4 md:px-6",
-    featured:"pt-20 sm:pt-28 pb-10 px-10",
+    featured: "pt-20 sm:pt-28 pb-10 px-10",
     custom: "",
   };
 
@@ -26,7 +26,8 @@ const CardWrapper = ({
   };
 
   const cardRadius = {
-    standard: "rounded-lg",
+    standard: "rounded-2xl",
+    medium: "rounded-lg",
     compact: "rounded-xl",
     featured: "rounded-3xl",
     custom: "",
@@ -45,7 +46,13 @@ const CardWrapper = ({
         flex 
         ${flexColumn ? "flex-col" : ""}
         ${className}
-        ${color === "default" ? "border border-cst-neutral-1" : color === "transparent" || color === "custom" ? "" : "border border-cst-neutral-1"}
+        ${
+          color === "default"
+            ? "border border-cst-neutral-1"
+            : color === "transparent" || color === "custom"
+            ? ""
+            : "border border-cst-neutral-1"
+        }
         ${variants[variant]}
         ${cardColors[color]}
         ${cardRadius[radius]}

@@ -57,7 +57,7 @@ export default function FAQSection({ faqs = faqData }) {
     >
       <motion.div layout>
         <CardWrapper
-          className="rounded-lg gap-2 bg-white py-8 px-4 md:px-6"
+          className="gap-2 bg-white py-8 px-4 md:px-6"
           variant="custom"
         >
           <div className="md:max-w-[400px] flex flex-col gap-2">
@@ -78,7 +78,7 @@ export default function FAQSection({ faqs = faqData }) {
           <div
             style={{ height: "auto" }}
             ref={imageRef}
-            className="hidden md:block md:flex-[1] lg:flex-[2] bg-primary rounded-lg"
+            className="hidden md:block md:flex-[1] lg:flex-[2] bg-primary rounded-2xl"
           >
             <Image
               src={shapeImg.src}
