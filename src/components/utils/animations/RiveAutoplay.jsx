@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useRive, Fit, Alignment, Layout } from "@rive-app/react-canvas";
 
-export default function RiveAutoplay({ src, stateMachines }) {
+export default function RiveAutoplay({ src, stateMachines, delay = 0 }) {
   const containerRef = useRef(null);
   const [aspectRatio, setAspectRatio] = useState(null);
 
   const { rive, RiveComponent } = useRive({
     src,
     stateMachines,
-    autoplay: true,
+    autoplay: false,
     layout: new Layout({
       fit: Fit.Contain,
       alignment: Alignment.Center,
@@ -34,6 +34,19 @@ export default function RiveAutoplay({ src, stateMachines }) {
       }
     }
   }, [rive]);
+
+  useEffect(() => {
+    if (!rive) return;
+
+    const play = () => rive.play();
+
+    if (delay > 0) {
+      const timer = setTimeout(play, delay);
+      return () => clearTimeout(timer);
+    } else {
+      play();
+    }
+  }, [rive, delay]);
 
   return (
     <div

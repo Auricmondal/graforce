@@ -44,6 +44,7 @@ const Hero = () => {
           <RiveAutoplay
             src={"/animations/heroanim.riv"}
             stateMachines={"heroanim"}
+            delay={800}
           />
         </div>
       </div>
