@@ -17,31 +17,6 @@ const ReadingContent = () => {
   const content = contentData.content || {};
   const actions = contentData.actions || [];
 
-  // const {
-  //   title,
-  //   content,
-  //   author,
-  //   date,
-  //   readTime,
-  //   category,
-  //   tags,
-  //   relatedLinks,
-  //   ctaText,
-  //   ctaAction
-  // } = contentData;
-
-  // const handleCtaClick = () => {
-  //   if (ctaAction === 'contact') {
-  //     openContact({
-  //       subject: `Inquiry about: ${title}`,
-  //       showSubject: true,
-  //       additionalInfo: 'I would like to know more about this topic.'
-  //     });
-  //   } else if (ctaAction && typeof ctaAction === 'function') {
-  //     ctaAction();
-  //   }
-  // };
-
   return (
     <>
       <div className='relative gap-2 h-fit'>
