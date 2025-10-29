@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, act } from "react";
+import { useState, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,7 +10,6 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import DetailsCard from "./DetailsCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
-import Chart from "@/components/utils/charts/Chart";
 import { leftTypes } from "./ImpDetailsLefts";
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
