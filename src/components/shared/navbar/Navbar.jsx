@@ -1,16 +1,13 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/navigation";
 import BrandLogo from "./nav/BrandLogo";
 import useHideOnScrollNav from "@/hooks/useHideOnScrollNav";
 import Hamburger from "./nav/Hamburger";
 import { useSidebar } from "@/contexts/SidebarContext";
-import { LanguageToggle } from "./nav/LanguageToggle";
+import LanguageToggle from "./nav/LanguageToggle";
 
 const Navbar = () => {
-  const router = useRouter();
   const { isOpen, toggleSidebar } = useSidebar();
-  const active = "rounded-full border border-gray-400";
   const menuRef = React.useRef(null);
   const downMenuRef = React.useRef(null);
   const navRef = React.useRef(null);

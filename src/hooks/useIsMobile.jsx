@@ -2,14 +2,6 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * useIsMobile
- *
- * Custom hook using `useState`, `useEffect`, and `window`—client-only APIs.
- *
- * *Important: This hook should **only** be imported in Client Components, [add "use client" in the parent file].
- */
-
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
 

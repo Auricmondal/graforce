@@ -45,19 +45,17 @@ export default function ImportantDetails({
           onEnter: () => {
             console.log(`Entering step ${i}`);
             setActiveStep(i);
-            setScrollProgress(0); // Reset progress when entering new step
+            setScrollProgress(0);
           },
           onEnterBack: () => {
             console.log(`Entering back step ${i}`);
             setActiveStep(i);
-            setScrollProgress(0); // Reset progress when entering back
+            setScrollProgress(0);
           },
           onUpdate: (self) => {
-            // Only update progress for current step being scrolled
             setScrollProgress(self.progress * 100);
           },
           onLeave: () => {
-            // When leaving a step, set progress to 100%
             if (i < details.length - 1) {
               setScrollProgress(100);
             }
@@ -71,7 +69,6 @@ export default function ImportantDetails({
   }, []);
 
   const handleCardClick = (index) => {
-    // Only handle click for tablet and mobile (non-desktop)
     const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
     if (!isDesktop) {
       setActiveStep(index);

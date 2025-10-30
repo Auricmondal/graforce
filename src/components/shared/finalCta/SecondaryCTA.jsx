@@ -2,17 +2,17 @@
 import React from "react";
 import Image from "next/image";
 import ScrollReveal from "@/wrappers/ScrollReveal";
-import { useContactModal } from "@/contexts/ContactModalContext";
 import secondaryCTALeftImg from "@/assets/grid.webp";
 import secondaryCTARightImg from "@/assets/spark.webp";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa6";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
-import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
 const SecondaryCTA = () => {
+  const { showContactForm } = useSidebarActions();
   const handleContactModal = () => {
-    sidebarUtils.openContact();
+    showContactForm();
   };
 
   return (

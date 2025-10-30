@@ -26,9 +26,10 @@ const ContactContent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    //Todo: Handle form submission logic here
     console.log('Contact form submitted:', formData);
-    // You can add your API call here
+
     closeSidebar();
   };
 

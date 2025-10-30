@@ -36,7 +36,6 @@ const Hero = () => {
             alt="About Us"
             className="absolute inset-0 w-full h-full object-cover z-0 brightness-60 scale-150 blur-md"
           />
-
         </CardWrapper>
       </SectionWrapper>
     </div>

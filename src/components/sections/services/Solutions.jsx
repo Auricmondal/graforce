@@ -125,9 +125,6 @@ const Solutions = ({ isStraight = false }) => {
           {subsections.map((subsection, index) => (
             <React.Fragment key={index}>
               <DemoCard subsection={subsection} index={index} />
-              {/* {index < subsections.length - 1 && (
-                <hr className="w-full lg:hidden mx-auto border-0 border-t border-dark-tint/80" />
-              )} */}
             </React.Fragment>
           ))}
         </div>

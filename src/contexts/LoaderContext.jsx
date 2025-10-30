@@ -4,10 +4,9 @@ import { createContext, useState, useEffect } from "react";
 export const loaderContext = createContext(null);
 
 export const LoaderContextProvider = ({ children }) => {
-  const [loading, setLoading] = useState(true); // ✅ Start as true on first load
+  const [loading, setLoading] = useState(true);
   const [revealStarted, setRevealStarted] = useState(false);
 
-  // ✅ Wait function moved inside context
   async function waitForPageReady(selector, timeout = 5000) {
     return new Promise((resolve, reject) => {
       const start = Date.now();
@@ -40,7 +39,6 @@ export const LoaderContextProvider = ({ children }) => {
     });
   }
 
-  // ✅ Handle reload / first mount
   useEffect(() => {
     let mounted = true;
 
@@ -51,12 +49,11 @@ export const LoaderContextProvider = ({ children }) => {
         console.warn(e);
       }
       if (mounted) {
-        // play reveal animation AFTER page is ready
         setRevealStarted(true);
         setTimeout(() => {
           setRevealStarted(false);
           setLoading(false);
-        }, 1500); // same as animation duration
+        }, 1500);
       }
     })();
 

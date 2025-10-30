@@ -3,7 +3,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -11,7 +11,6 @@ import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomBlogData from "@/data/customBlogData.json";
-import sideImg from "@/assets/service/shapeDiamond.png";
 import useIsDesktop from "@/hooks/useIsDesktop";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -135,9 +134,8 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
     });
 
     return cleanup;
-  }, [isMobile]); // Add dependencies
+  }, [isMobile]);
 
-  // Cleanup on unmount
   useEffect(() => {
     return cleanup;
   }, []);

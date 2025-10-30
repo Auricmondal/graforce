@@ -23,20 +23,15 @@ const GalleryScroller = ({ className = "", direction = 'left', sideBlur = false 
     const el = galleryScroll.current;
     if (!el) return;
 
-    // ensure any previous tweens are removed (prevents speed-up from stacking)
     gsap.killTweensOf(el);
 
-    // duplicate contents once so the repeating animation appears seamless
     if (!el.dataset.duplicated) {
       el.innerHTML = el.innerHTML + el.innerHTML;
       el.dataset.duplicated = 'true';
     }
 
-    // distance is 100% because content was duplicated (move half the full strip)
     const distancePercent = 100;
-    const durationSeconds = galleryImages.length * 10; // increase for slower, decrease for faster
-
-    // Set initial position based on direction
+    const durationSeconds = galleryImages.length * 10;
     if (direction === 'right') {
       gsap.set(el, { xPercent: -distancePercent + 20 });
     }
@@ -59,7 +54,7 @@ const GalleryScroller = ({ className = "", direction = 'left', sideBlur = false 
       <div ref={galleryScroll} className="flex shrink-0 gap-2">
         {galleryImages.map((image, index) => (
           <div key={index} className='flex gap-2 shrink-0'>
-            <Image src={image} alt={`Gallery Image ${index + 1}`} width={(index%2) ? 500 : 400} height={'400'} className='aspect-[2/1] object-cover rounded-lg ' />
+            <Image src={image} alt={`Gallery Image ${index + 1}`} width={(index % 2) ? 500 : 400} height={'400'} className='aspect-[2/1] object-cover rounded-lg ' />
           </div>
         ))}
       </div>

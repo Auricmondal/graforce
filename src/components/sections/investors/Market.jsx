@@ -114,7 +114,6 @@ export default function MarketEntry() {
           </div>
         </div>
       </div>
-      {/* </div> */}
     </SectionWrapper>
   );
 }

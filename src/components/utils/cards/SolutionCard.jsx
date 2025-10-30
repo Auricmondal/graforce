@@ -38,7 +38,6 @@ export default function SolutionCard({
       className="!justify-between md:flex-1 h-[90vh] md:h-full border-1 border-primary-light !bg-secondary-light py-8 px-4 md:px-6"
     >
       <div className="mb-4 flex items-center gap-2 md:gap-4 w-full">
-        {/* Circular Progress Bar */}
         <div className="relative w-14 h-14 md:w-16 md:h-16">
           <svg
             className="w-14 h-14 md:w-16 md:h-16 transform -rotate-90"

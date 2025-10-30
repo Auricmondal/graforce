@@ -7,10 +7,8 @@ const useHideOnScrollNav = (menuRef, isMenuOpen) => {
 
   useEffect(() => {
     const menu = menuRef.current;
-    // const nav = navRef.current;
     if (!menu) return;
 
-    // gsap.set(nav, { y: "1%", x: "1%" });
 
     const showNavigation = () => {
       gsap.to(menu, {

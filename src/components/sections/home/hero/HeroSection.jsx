@@ -44,27 +44,7 @@ const HeroSection = () => {
             <PrimaryButton
               className="bg-black/30 text-white transition border-1 border-white backdrop-blur-[17.4px] py-3 px-4 md:py-4 md:px-6 lg:py-8 lg:px-12 rounded-2xl lg:rounded-3xl font-medium lg:text-2xl text-sm sm:text-base flex items-center gap-3 w-full md:w-fit justify-center"
               onClick={() => {
-                /*
-                 * Show custom content in sidebar
-                 */
-                // showCustomContent(CustomJobData);
-                /*
-                 * Show reading content in sidebar
-                 */
-                // showReadingContent(CustomBlogData);
-                /*
-                 * Show specifications content in sidebar
-                 */
-                // showSpecificationsContent(CustomSpecData);
-
-                /*
-                 * Show contact form in sidebar
-                 */
                 showContactForm();
-
-                // showCustomContent(CustomJobData);
-                // showReadingContent(CustomBlogData);
-                // showSpecificationsContent(CustomSpecData);
               }}
             >
               Book a Demo <FaChevronRight />

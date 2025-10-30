@@ -3,7 +3,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -136,9 +136,8 @@ const CaseStudies = () => {
     });
 
     return cleanup;
-  }, [isMobile]); // Add dependencies
+  }, [isMobile]);
 
-  // Cleanup on unmount
   useEffect(() => {
     return cleanup;
   }, []);

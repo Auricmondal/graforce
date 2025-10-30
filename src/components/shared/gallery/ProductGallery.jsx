@@ -1,4 +1,3 @@
-import AnimatedHeader from '@/components/utils/animations/AnimatedHeader'
 import SectionLabel from '@/components/utils/badges/SectionLabel'
 import CardWrapper from '@/wrappers/CardWrapper'
 import SectionWrapper from '@/wrappers/SectionWrapper'

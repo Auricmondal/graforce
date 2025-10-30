@@ -1,4 +1,3 @@
-// import GalleryScroller from '@/components/shared/gallery/GallerScroller'
 import ImageScroller from '@/components/shared/gallery/ImageScroller'
 import CardWrapper from '@/wrappers/CardWrapper'
 import GalleryImage1 from "@/assets/about/gallery-image-1.jpg"
@@ -120,7 +119,6 @@ const TeamRightCard = ({ className }) => {
 
   return (
     <CardWrapper color='transparent' variant='custom' className={`flex flex-col gap-4 justify-center h-full ${className}`}>
-      {/* <GalleryScroller  /> */}
       <div className="rounded-xl overflow-hidden max-h-1/2 max-w-full">
         <ImageScroller scrollImage={images2} aspect="3/4" className="" direction="left" duration={20} />
       </div>

@@ -14,10 +14,8 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
     const section = sectionRef.current;
     const items = wrapperRef.current.querySelectorAll(".item");
 
-    // Set container relative to allow absolutely positioned children
     section.style.position = "relative";
 
-    // Set up initial states
     items.forEach((item, index) => {
       gsap.set(item, {
         position: "absolute",
@@ -27,7 +25,7 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
         height: "100%",
         opacity: index === 0 ? 1 : 0,
         scale: index === 0 ? 1 : 0.95,
-        yPercent: index === 0 ? 0 : 50, // cards start lower
+        yPercent: index === 0 ? 0 : 50,
         zIndex: index,
       });
     });
@@ -47,7 +45,6 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
       const next = items[i + 1];
       if (!next) return;
 
-      // Fade out current, move it up a little
       tl.to(item, {
         opacity: 0,
         scale: 0.9,
@@ -55,7 +52,6 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
         duration: 0.5,
       });
 
-      // At the same time, bring in next from below
       tl.to(
         next,
         {
@@ -64,7 +60,7 @@ const ScrollStackSection = ({ direction = "vertical", children }) => {
           yPercent: 10,
           duration: 0.5,
         },
-        "-=0.3" // Overlap the animations
+        "-=0.3" 
       );
     });
 

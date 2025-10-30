@@ -2,7 +2,7 @@
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import CardWrapper from "@/wrappers/CardWrapper";
 import { IoMdArrowForward } from "react-icons/io";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import useIsDesktop from "@/hooks/useIsDesktop";
@@ -15,9 +15,8 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
   const isDesktop = useIsDesktop();
 
   const hoverIn = () => {
-    if (!isDesktop) return; // Disable hover effects on non-desktop devices
+    if (!isDesktop) return;
 
-    // Animate description out
     gsap.to(descriptionRef.current, {
       opacity: 0,
       y: 10,
@@ -27,7 +26,6 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
         descriptionRef.current.style.display = "none";
         buttonRef.current.style.display = "block";
 
-        // Animate button in
         gsap.fromTo(
           buttonRef.current,
           { opacity: 0, y: 10 },
@@ -36,7 +34,6 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
       },
     });
 
-    // Animate justify-content
     gsap.to(rightSideRef.current, {
       justifyContent: "flex-end",
       duration: 0.3,
@@ -45,9 +42,8 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
   };
 
   const hoverOut = () => {
-    if (!isDesktop) return; // Disable hover effects on non-desktop devices
+    if (!isDesktop) return;
 
-    // Animate button out
     gsap.to(buttonRef.current, {
       opacity: 0,
       y: 10,
@@ -57,7 +53,6 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
         buttonRef.current.style.display = "none";
         descriptionRef.current.style.display = "block";
 
-        // Animate description in
         gsap.fromTo(
           descriptionRef.current,
           { opacity: 0, y: 10 },
@@ -66,7 +61,6 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
       },
     });
 
-    // Animate justify-content back
     gsap.to(rightSideRef.current, {
       justifyContent: "flex-start",
       duration: 0.3,
@@ -85,7 +79,6 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
         className="flex flex-row items-center text-start gap-2 transition-all duration-300 ease-in-out p-4 md:px-6 md:py-8"
         variant="custom"
       >
-        {/* Left Side */}
         <div className="flex flex-row items-center md:justify-between gap-2 w-[60%] md:w-[70%]">
           <Image
             src={icon}
@@ -99,12 +92,10 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
           </div>
         </div>
 
-        {/* Right Side (Description or Button) */}
         <div
           ref={rightSideRef}
           className="flex items-center w-[40%] md:w-[30%] justify-start relative min-h-[48px] transition-all duration-300"
         >
-          {/* Description */}
           <div
             ref={descriptionRef}
             className="absolute left-0"
@@ -113,7 +104,6 @@ const HoverCard = ({ icon, title, description, className, onClick }) => {
             <p className="text-base text-cst-neutral-5">{description}</p>
           </div>
 
-          {/* Button */}
           <div
             ref={buttonRef}
             className="absolute right-0"

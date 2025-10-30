@@ -1,5 +1,4 @@
 'use client';
-import { useSidebarActions } from '@/hooks/useSidebarActions';
 import CardWrapper from '@/wrappers/CardWrapper';
 import SectionWrapper from '@/wrappers/SectionWrapper';
 import Image from 'next/image';

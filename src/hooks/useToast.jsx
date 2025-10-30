@@ -60,7 +60,6 @@ export const useToast = () => {
       },
       {
         ...options,
-        // Merge variantConfig defaults if provided
         style: { ...variantConfig.default.style, ...options.style },
       }
     );

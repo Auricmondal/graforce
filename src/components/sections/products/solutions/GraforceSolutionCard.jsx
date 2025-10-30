@@ -1,11 +1,10 @@
-'use client'
-import PrimaryButton from '@/components/utils/buttons/PrimaryButton'
-import CardWrapper from '@/wrappers/CardWrapper'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import Image from 'next/image'
-import React from 'react'
-import { IoMdArrowForward } from 'react-icons/io'
+'use client';
+import PrimaryButton from '@/components/utils/buttons/PrimaryButton';
+import CardWrapper from '@/wrappers/CardWrapper';
+import gsap from 'gsap';
+import Image from 'next/image';
+import React from 'react';
+import { IoMdArrowForward } from 'react-icons/io';
 
 const GraforceSolutionCard = ({ icon, title, description, className, onClick }) => {
   const descriptionRef = React.useRef(null);
@@ -76,4 +75,4 @@ const GraforceSolutionCard = ({ icon, title, description, className, onClick }) 
   )
 }
 
-export default GraforceSolutionCard
+export default GraforceSolutionCard;

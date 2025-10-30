@@ -1,4 +1,3 @@
-// Create: src/hooks/useElementHeight.js
 'use client';
 import { useRef, useEffect } from 'react';
 

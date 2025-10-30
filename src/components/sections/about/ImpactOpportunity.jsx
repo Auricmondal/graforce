@@ -43,8 +43,6 @@ const ImpactOpportunity = () => {
             </p>
           </div>
         </div>
-
-        {/* <div className='text-white flex items-end justify-end h-full sm:h-scree w-full sm:w-1/2 md:w-6/10'> */}
           <video
             ref={videoRef}
             src='https://cdn.sanity.io/files/sib3yr4f/production/f125f737cd7466d06b29fb7d319aa9620c55a7f9.webm'
@@ -54,7 +52,6 @@ const ImpactOpportunity = () => {
             muted
             playsInline
           />
-        {/* </div> */}
       </CardWrapper>
     </SectionWrapper>
   )

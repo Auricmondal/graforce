@@ -4,27 +4,23 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LuClock3 } from "react-icons/lu";
 import { MdOutlineLocationOn } from "react-icons/md";
 import aboutUsImage from "@/assets/home/aboutimg.png";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomSpecData from "@/data/customSpecData.json";
 import BrandLogos from "@/components/shared/brands/Brands";
 import Link from "next/link";
 
 const AboutUs = () => {
-  const { showSpecificationsContent } = useSidebarActions();
 
   const [foundation, setFoundation] = useState(2012);
   const [location, setLocation] = useState("Berlin Adlershof");
-  const [loading, setLoading] = useState(true);
 
   return (
     <SectionWrapper
-      // maxWidth="2000px"
       className="bg-[#E6E6E6] text-black space-y-10 "
       sectionStyle={{ backgroundColor: "#E6E6E6" }}
     >
