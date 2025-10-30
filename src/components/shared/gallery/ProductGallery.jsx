@@ -3,10 +3,8 @@ import SectionLabel from '@/components/utils/badges/SectionLabel';
 import CardWrapper from '@/wrappers/CardWrapper';
 import SectionWrapper from '@/wrappers/SectionWrapper';
 import React from 'react';
-import GalleryScroller from './GallerScroller';
 import InfiniteScrollContainer from '@/components/utils/scroller/InfiniteScrollContainer';
 import LogoItem from '@/components/utils/scroller/LogoItem';
-import AboutImage from "@/assets/home/aboutimg.png"
 import useContainerWidth from '@/hooks/useContainerWidth';
 import useInfiniteLogos from '@/hooks/useInfiniteLogos';
 import GradientOverlay from '@/components/utils/scroller/GradientOverlay';
@@ -31,10 +29,9 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
   ];
 
   const { containerRef, containerWidth } = useContainerWidth();
-  const duplicatedImages = useInfiniteLogos(logos, containerWidth, 284);
-  // const duplicatedImages = [...logos, ...logos, ...logos, ...logos];
+  const duplicatedImages = useInfiniteLogos(logos, containerWidth, 184);
   console.log("images", duplicatedImages);
-  const oneSetWidth = logos.length * 284;
+  const oneSetWidth = logos.length * 184;
 
   return (
     <SectionWrapper sectionClassName='bg-cst-neutral-1'>
@@ -51,8 +48,8 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
           <GradientOverlay />
           {duplicatedImages.length > 0 && (
             <InfiniteScrollContainer
-              oneSetWidth={oneSetWidth}
-              duration={20}
+              oneSetWidth={1000}
+              duration={13}
               reversePeriod={reversePeriod}
             >
               {duplicatedImages.map((logo, index) => (
@@ -65,8 +62,8 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
           <GradientOverlay />
           {duplicatedImages.length > 0 && (
             <InfiniteScrollContainer
-              oneSetWidth={oneSetWidth}
-              duration={20}
+              oneSetWidth={1000}
+              duration={13}
               reversePeriod={reversePeriod}
               direction='right'
             >
@@ -81,4 +78,4 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
   )
 }
 
-export default ProductGallery
+export default ProductGallery;

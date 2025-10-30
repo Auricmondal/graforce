@@ -16,7 +16,6 @@ const InfiniteScrollContainer = ({
     <motion.div
       key={`scroll-${animationKey}-${direction}`}
       className={`${className} ${direction === "left" ? "justify-start" : "justify-end"}`}
-      initial={{ x: direction === "left" ? -oneSetWidth : 0 }}
       animate={{
         x: direction === "left" ? [0, -oneSetWidth] : [0, oneSetWidth],
       }}
