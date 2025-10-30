@@ -48,8 +48,6 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
           <SectionLabel className={`capitalize`} text={`Product Gallery`} />
         </div>
         <div className="flex py-0 sm:py-2 w-full gap-0 rounded-xl overflow-hidden relative" ref={containerRef}>
-          {/* <GalleryScroller direction='left' /> */}
-          {/* <GalleryScroller direction='right' /> */}
           <GradientOverlay />
           {duplicatedImages.length > 0 && (
             <InfiniteScrollContainer
@@ -64,8 +62,6 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
           )}
         </div>
         <div className="flex py-0 sm:py-2 w-full gap-0 rounded-xl overflow-hidden relative" ref={containerRef}>
-          {/* <GalleryScroller direction='left' /> */}
-          {/* <GalleryScroller direction='right' /> */}
           <GradientOverlay />
           {duplicatedImages.length > 0 && (
             <InfiniteScrollContainer
