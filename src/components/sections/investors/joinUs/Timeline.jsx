@@ -14,12 +14,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function RiveScrollAnimation() {
   const containerRef = useRef(null);
-  const [artboardName, setArtboardName] = useState("web");
+  const [riveSrc, setRiveSrc] = useState("/animations/timeline.riv");
   const [aspectRatio, setAspectRatio] = useState(null);
 
   const handleResize = () => {
     const isMobile = window.innerWidth < 1024;
-    setArtboardName(isMobile ? "phone" : "web");
+    setRiveSrc(
+      isMobile
+        ? "/animations/timeline.riv" // Use mobile version if available
+        : "/animations/timeline.riv" // Use desktop version
+    );
   };
 
   useEffect(() => {
@@ -29,8 +33,7 @@ export default function RiveScrollAnimation() {
   }, []);
 
   const { rive, RiveComponent } = useRive({
-    src: "/animations/timeline.riv",
-    // artboard: artboardName,
+    src: riveSrc,
     stateMachines: "timeline",
     autoplay: true,
     layout: new Layout({
@@ -83,6 +86,7 @@ export default function RiveScrollAnimation() {
       ref={containerRef}
       style={{
         aspectRatio: aspectRatio || 1,
+        marginInline: "auto",
       }}
     >
       <RiveComponent style={{ width: "100%", height: "100%" }} />
