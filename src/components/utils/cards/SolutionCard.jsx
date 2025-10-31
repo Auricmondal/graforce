@@ -47,7 +47,7 @@ export default function SolutionCard({
               cx="32"
               cy="32"
               r={radius}
-              stroke={isMobile ? "#1a1a1a" : "#b3b3b3"}
+              stroke={"#dfe8f1"}
               strokeWidth="2.5"
               fill="none"
             />

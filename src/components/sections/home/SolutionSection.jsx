@@ -29,7 +29,7 @@ export default function SolutionSection() {
       if (stepElement) {
         ScrollTrigger.create({
           trigger: stepElement,
-          start: "top 75%",
+          start: "top 25%",
           end: "bottom 25%",
           scrub: 1,
           onEnter: () => {

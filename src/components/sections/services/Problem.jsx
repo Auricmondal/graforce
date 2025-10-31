@@ -35,7 +35,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
       if (stepElement) {
         ScrollTrigger.create({
           trigger: stepElement,
-          start: "top 75%",
+          start: "top 25%",
           end: "bottom 25%",
           scrub: 1,
           onEnter: () => {
@@ -102,7 +102,7 @@ export default function EmissionPage({ problemData = tempProblemData }) {
               />
             </div>
 
-            <div className="md:hidden flex flex-col gap-2">
+            <div className="md:hidden flex flex-col gap-2 scale-75">
               {problemData.map((problem, index) => (
                 <SolutionCard
                   key={problem.id}

@@ -58,7 +58,7 @@ const YouNeedUs = ({
     autoplay: true,
     stateMachines: "State Machine 1",
     layout: new Layout({
-      fit: "cover",
+      fit: "contain",
       alignment: "center",
     }),
   });
