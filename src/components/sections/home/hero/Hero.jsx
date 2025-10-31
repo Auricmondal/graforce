@@ -1,7 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 
-import HeroSection from "@/components/sections/home/hero/HeroSection";
+// import HeroSection from "@/components/sections/home/hero/HeroSection";
+const HeroSection = dynamic(
+  () => import("@/components/sections/home/hero/HeroSection"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 const Hero = () => {
   const [isFixed, setIsFixed] = useState(true);
