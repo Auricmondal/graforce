@@ -1,6 +1,5 @@
 'use client';
 import { useSidebarActions } from '@/hooks/useSidebarActions';
-import { IoIosArrowForward } from 'react-icons/io';
 import CardWrapper from '@/wrappers/CardWrapper';
 import CustomJobContent from '@/data/customJobData.json'
 import React from 'react'

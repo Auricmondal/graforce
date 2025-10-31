@@ -2,23 +2,17 @@
 import React from "react";
 import Image from "next/image";
 import ScrollReveal from "@/wrappers/ScrollReveal";
-import { useContactModal } from "@/contexts/ContactModalContext";
 import finalCtaLeftImg from "@/assets/grid.webp";
 import finalCtaRightImg from "@/assets/spark.webp";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { FaChevronRight } from "react-icons/fa6";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
-import { sidebarUtils } from "@/utils/sidebarUtils";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
 const FinalCTA = () => {
-  const { isOpen, closeModal, openModal } = useContactModal();
+  const { showContactForm } = useSidebarActions();
   const handleContactModal = () => {
-    // if (!isOpen) {
-    //   openModal();
-    // } else {
-    //   closeModal();
-    // }
-    sidebarUtils.openContact();
+    showContactForm();
   };
   return (
     <div className="bg-cst-neutral-1 p-2">

@@ -25,7 +25,6 @@ const BrandLogos = () => {
           <img
             src={logo.src}
             alt={logo.name}
-            // onError={handleImgError}
             className="w-[25%] h-[25%] object-contain rounded-lg filter grayscale group-hover:grayscale-0 transition-all duration-300 ease-in-out"
           />
         </div>

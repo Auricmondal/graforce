@@ -29,25 +29,6 @@ export default function FAQSection({ faqs = faqData }) {
   const imageRef = useRef(null);
   const faqContainerRef = useRef(null);
 
-  // GSAP animation function using hook
-  const { context: gsapCtx } = useGSAP(() => {
-    if (!imageRef.current || !faqContainerRef.current) return;
-
-    const resizeObserver = new ResizeObserver(() => {
-      const newHeight = faqContainerRef.current?.offsetHeight ?? 0;
-
-      gsap.to(imageRef.current, {
-        height: newHeight,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    });
-
-    resizeObserver.observe(faqContainerRef.current);
-
-    return () => resizeObserver.disconnect();
-  }, []);
-
   return (
     <SectionWrapper
       className=""

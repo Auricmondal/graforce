@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function SectorTabs({ tabs, activeTab, onTabClick }) {
   return (
     <div className="overflow-x-auto overflow-y-hidden scrollbar-hide">

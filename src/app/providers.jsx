@@ -1,4 +1,3 @@
-// app/providers.jsx (create a provider)
 "use client";
 
 import { useEffect } from "react";

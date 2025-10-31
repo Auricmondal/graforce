@@ -1,9 +1,7 @@
 'use client';
 import React from 'react'
-import { useSidebarActions } from '@/hooks/useSidebarActions';
 import { IoIosArrowForward } from 'react-icons/io';
 
-// const { showJobContent } = useSidebarActions();
 
 const ExploreButton = ({
   className = '',

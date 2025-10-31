@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useContactModal } from "@/contexts/ContactModalContext";
 import bgImg from "@/assets/product/waste-water.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";

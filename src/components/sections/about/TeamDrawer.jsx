@@ -1,8 +1,5 @@
 import React from 'react'
 import TeamMember from '@/assets/about/team-member.jpg'
-import Image from 'next/image'
-import ExploreButton from '@/components/utils/buttons/ExploreButton'
-import { IoIosArrowForward } from 'react-icons/io'
 import TeamCard from './TeamCard'
 import { RxCross2 } from 'react-icons/rx'
 
@@ -107,11 +104,9 @@ const TeamDrawer = ({ className, ref, setIsDrawerOpen }) => {
     <div
       ref={ref}
       className={`fixed top-0 left-0 z-2000 h-screen w-full backdrop-blur-md bg-white rounded-t-xl border border-cst-neutral-2 pt-4 ${className}`}
-    // onClick={() => setIsDrawerOpen(false)}
     >
       <div
         className="relative h-full w-full top-0 md:top-0 overflow-auto rounded-t-xl p-6"
-      // onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={() => setIsDrawerOpen(false)}

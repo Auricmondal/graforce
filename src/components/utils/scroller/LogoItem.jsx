@@ -1,23 +1,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-// Logo Item Component
-const LogoItem = ({ logo, index }) => {
+const LogoItem = ({ logo, index, isGrayImage = false }) => {
   return (
     <motion.div
-      className="flex-shrink-0 mx-16 flex items-center justify-center"
+      className="flex-shrink-0 mx-0 flex items-center justify-center"
       style={{ minWidth: "120px" }}
       whileHover={{
-        scale: 1.05,
+        scale: 1.02,
         transition: { duration: 0.2 },
       }}
     >
       <motion.img
         src={logo.src}
         alt={logo.name}
-        className="h-12 w-auto object-contain"
-        initial={{ opacity: 1, filter: "grayscale(100%)" }}
-        animate={{ opacity: 1, filter: "grayscale(100%)" }}
+        className={`h-[20vh] sm:h-[30vh] w-full ${index % 2 === 0 ? "aspect-5/2" : "aspect-5/3"} rounded-xl object-cover`}
+        initial={{ opacity: 1, filter: isGrayImage ? "grayscale(100%)" : "grayscale(0%)" }}
+        animate={{ opacity: 1, filter: isGrayImage ? "grayscale(100%)" : "grayscale(0%)" }}
         whileHover={{
           opacity: 1,
           filter: "grayscale(0%)",

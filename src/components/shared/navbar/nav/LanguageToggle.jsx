@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-export const LanguageToggle = ({ setLanguage, nextLang, language }) => {
+const LanguageToggle = ({ setLanguage, nextLang, language }) => {
   return (
     <Button
       size="icon"
@@ -22,3 +22,5 @@ export const LanguageToggle = ({ setLanguage, nextLang, language }) => {
     </Button>
   );
 };
+
+export default LanguageToggle;

@@ -19,7 +19,7 @@ export function useNews() {
     if (end >= mockNews.length) setHasMore(false);
   }, [page]);
 
-  /* Uncomment for real API fetching
+  /* Todo: Uncomment for real API fetching
 
   useEffect(() => {
     async function fetchNews() {

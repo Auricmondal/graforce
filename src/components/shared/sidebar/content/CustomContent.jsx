@@ -1,9 +1,6 @@
 'use client'
 import React from 'react';
 import { useSidebar } from '@/contexts/SidebarContext';
-import CustomJobContent from './custom/CustomJobContent';
-import CustomSpecContent from './custom/CustomSpecContent';
-import CustomBlogContent from './custom/CustomBlogContent';
 
 const CustomContent = () => {
   const { contentData } = useSidebar();
@@ -37,11 +34,11 @@ const CustomContent = () => {
     if (contentData.type) {
       switch (contentData.type) {
         case 'job':
-          return <CustomJobContent contentData={contentData} />;
+          return <div>Custom Job Content Component</div>;
         case 'specifications':
-          return <CustomSpecContent contentData={contentData} />;
+          return <div>Custom Specifications Content Component</div>;
         case 'blog':
-          return <CustomBlogContent contentData={contentData} />;
+          return <div>Custom Blog Content Component</div>;
         case 'project':
           return <div>Custom Project Content Component</div>;
         case 'faq':

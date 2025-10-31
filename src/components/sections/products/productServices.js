@@ -25,13 +25,13 @@ export const productServices = [
     index: 4,
     title: "Used components",
     link: "/products/used-components",
-    image: shapeDiamond3,
+    image: shapeDiamond1,
   },
   {
     index: 5,
     title: "H2/natural gas refuelling",
     link: "/products/h2-natural-gas-refuelling",
-    image: shapeDiamond3,
+    image: shapeDiamond2,
   },
   {
     index: 6,
@@ -43,12 +43,12 @@ export const productServices = [
     index: 7,
     title: "Synthetic Carbon Quality",
     link: "/products/synthetic-carbon-quality",
-    image: shapeDiamond3,
+    image: shapeDiamond1,
   },
   {
     index: 8,
     title: "Syngas Production",
     link: "/products/syngas-production",
-    image: shapeDiamond3,
+    image: shapeDiamond2,
   },
 ];

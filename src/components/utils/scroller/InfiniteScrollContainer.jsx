@@ -7,15 +7,17 @@ const InfiniteScrollContainer = ({
   oneSetWidth,
   duration = 25,
   reversePeriod = null,
+  direction = "left",
+  className = "flex gap-4",
 }) => {
-  const { direction, animationKey } = useDirectionReversal(reversePeriod);
+  const { animationKey } = useDirectionReversal(reversePeriod);
 
   return (
     <motion.div
       key={`scroll-${animationKey}-${direction}`}
-      className="flex"
+      className={`${className} ${direction === "left" ? "justify-start" : "justify-end"}`}
       animate={{
-        x: direction === 1 ? [0, -oneSetWidth] : [0, oneSetWidth],
+        x: direction === "left" ? [0, -oneSetWidth] : [0, oneSetWidth],
       }}
       transition={{
         x: {

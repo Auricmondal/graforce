@@ -40,9 +40,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Network Image */}
         <div className="w-full flex-1 relative ">
-          {/* Background network image */}
           <Image
             src={bgImgLeft.src}
             alt="Hydrogen Network"
