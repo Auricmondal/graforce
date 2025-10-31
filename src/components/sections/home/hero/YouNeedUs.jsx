@@ -16,6 +16,7 @@ import CustomSpecData from "@/data/customSpecData.json";
 import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 import { Layout, useRive } from "@rive-app/react-canvas";
 import Tower from "@/assets/tower.png";
+import AchievementRive from "../../services/AchievementRive";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -402,8 +403,16 @@ const YouNeedUs = ({
                 />
               )}
 
-              {!currentSector.image && (
+              {currentSector.riveFile && !currentSector.scroll && (
                 <RiveComponent className="h-full w-full" />
+              )}
+
+              {currentSector.id}
+              {currentSector.riveFile && currentSector.scroll && (
+                <AchievementRive
+                  src={currentSector.riveFile}
+                  id={currentSector.id}
+                />
               )}
             </div>
           </div>
@@ -473,10 +482,17 @@ const YouNeedUs = ({
                       alt="tower"
                     />
                   )}
-                  {!sector.image && (
+                  {sector.riveFile && !sector.scroll && (
                     <RiveAutoplay
                       src={sector.riveFile}
                       className="h-full w-full"
+                    />
+                  )}
+
+                  {currentSector.riveFile && currentSector.scroll && (
+                    <AchievementRive
+                      src={currentSector.riveFile}
+                      id={currentSector.id}
                     />
                   )}
                 </div>
