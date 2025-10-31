@@ -6,6 +6,7 @@ import DataCard from "./DataCard";
 import lightningImg from "@/assets/product/lightning.svg";
 import h2Img from "@/assets/product/h2.svg";
 import cImg from "@/assets/product/c.svg";
+import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 
 const cards = [
   {
@@ -40,13 +41,13 @@ const cards = [
 
 export const leftTypes = {
   1: (
-    <Image
-      src={importantDetailsImg}
-      height={800}
-      width={1000}
-      alt="imp-details"
-      style={{ objectFit: "contain", width: "100%" }}
-    />
+    <div className="p-2 flex flex-col h-full justify-center">
+      <RiveAutoplay
+        src={"/animations/methane.riv"}
+        stateMachines={"timeline"}
+        delay={800}
+      />
+    </div>
   ),
   2: (
     <div className="flex h-full w-full bg-cst-neutral-1 gap-2">

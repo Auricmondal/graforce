@@ -88,7 +88,7 @@ export default function ImportantDetails({
       </CardWrapper>
       <div className="lg:sticky top-0 left-0 w-full lg:h-[98vh] z-30 flex flex-col lg:flex-row gap-2 h-fit mt-2">
         {/* Left Side */}
-        <div className="w-full hidden lg:block lg:flex-5/8 bg-primary rounded-2xl bg-cover bg-center min-h-[100dvh] lg:min-h-0">
+        <div className="w-full hidden lg:block lg:flex-5/8 bg-cst-neutral-5 rounded-2xl bg-cover bg-center min-h-[100dvh] lg:min-h-0">
           {isOneLeftType
             ? leftTypes[details[0].leftType]
             : leftTypes[details[activeStep].leftType] || null}
@@ -119,7 +119,7 @@ export default function ImportantDetails({
                   />
                 </div>
                 {index === activeStep && (
-                  <div className="w-full flex-1/2 lg:hidden bg-primary rounded-2xl bg-cover bg-center lg:min-h-0 animate-in slide-in-from-top delay-300 duration-300 ease-in-out">
+                  <div className="w-full flex-1/2 lg:hidden bg-cst-neutral-5 rounded-2xl bg-cover bg-center lg:min-h-0 animate-in slide-in-from-top delay-300 duration-300 ease-in-out">
                     {leftTypes[problem.leftType] || null}
                   </div>
                 )}
