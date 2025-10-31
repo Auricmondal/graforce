@@ -4,7 +4,6 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useState } from "react";
 import { LuClock3 } from "react-icons/lu";
 import { MdOutlineLocationOn } from "react-icons/md";
 import aboutUsImage from "@/assets/home/aboutimg.png";
@@ -16,6 +15,7 @@ import client from "@/lib/sanityClient";
 import urlFor from "@/lib/urlFor";
 import { useLanguage } from "@/hooks/useLanguage";
 import { aboutUsQuery } from "@/Queries/home/AboutUs";
+import React, { useState, useEffect } from "react";
 
 
 const AboutUs = () => {
