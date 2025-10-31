@@ -9,13 +9,15 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import { client } from "@/lib/sanityClient"; // your existing client
 import { whatDoWeDoSectionQuery } from "@/Queries/home/WhatDoWeDo";
-
+import { useLanguage } from "@/hooks/useLanguage";
 const WhatDoWeDo = () => {
   const [data, setData] = useState(null);
+  const { language } = useLanguage();
 
   useEffect(() => {
+    const lang = language || "en";
     client
-      .fetch(whatDoWeDoSectionQuery)
+      .fetch(whatDoWeDoSectionQuery,{language: lang })
       .then((res) => {
         if (res?.whatDoWeDo) setData(res.whatDoWeDo);
       })
@@ -38,7 +40,7 @@ const WhatDoWeDo = () => {
           ],
         });
       });
-  }, []);
+  }, [language]);
 
   if (!data) return null; // optional loader
 

@@ -11,7 +11,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import client from "@/lib/sanityClient";
 import { solutionSectionQuery } from "@/Queries/home/Solution";
-
+import { useLanguage } from "@/hooks/useLanguage";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SolutionSection() {
@@ -19,12 +19,14 @@ export default function SolutionSection() {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
+  const { language } = useLanguage();
 
   // Fetch Sanity data
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await client.fetch(solutionSectionQuery);
+        const lang = language || "en";
+        const res = await client.fetch(solutionSectionQuery , { language: lang });
 
         setData({
           sectionLabel: res?.solution?.sectionLabel || "Our Solution",
@@ -56,7 +58,7 @@ export default function SolutionSection() {
     };
 
     fetchData();
-  }, []);
+  }, [language]);
 
   // GSAP ScrollTrigger
   useGSAP(() => {

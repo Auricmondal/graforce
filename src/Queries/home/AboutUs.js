@@ -1,5 +1,5 @@
-export const aboutUsQuery = /* groq */ `
-  *[_type == "home"][0]{
+export const aboutUsQuery = `
+  *[_type == "home" && language == $language][0]{
     "aboutUs": aboutUsSection{
       title,
       foundation,
@@ -8,20 +8,10 @@ export const aboutUsQuery = /* groq */ `
       description,
       buttonText,
       buttonUrl,
-      image{
-        asset->{
-          url
-        },
-        alt
-      },
-      brandLogos[]{
+      image,
+      brandLogos[] {
         name,
-        logo{
-          asset->{
-            url
-          },
-          alt
-        }
+        logo
       }
     }
   }

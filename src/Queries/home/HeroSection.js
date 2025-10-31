@@ -1,5 +1,5 @@
 export const heroSectionQuery = /* groq */ `
-*[_type == "home"][0]{
+*[_type == "home" && language == $language][0]{
   "hero": heroHomeSection{
     title,
     highlightedWord,

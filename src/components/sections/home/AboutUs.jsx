@@ -15,25 +15,8 @@ import CustomSpecData from "@/data/customSpecData.json";
 import client from "@/lib/sanityClient";
 import urlFor from "@/lib/urlFor";
 import { useLanguage } from "@/hooks/useLanguage";
+import { aboutUsQuery } from "@/Queries/home/AboutUs";
 
-const GROQ_QUERY = `
-  *[_type == "home" && language == $language][0]{
-    "aboutUs": aboutUsSection{
-      title,
-      foundation,
-      location,
-      companyName,
-      description,
-      buttonText,
-      buttonUrl,
-      image,
-      brandLogos[] {
-        name,
-        logo
-      }
-    }
-  }
-`;
 
 const AboutUs = () => {
   const { showSpecificationsContent } = useSidebarActions();
@@ -57,7 +40,15 @@ const AboutUs = () => {
   const [title, setTitle] = useState("Trusted. Proven. Driven.");
   const [companyName, setCompanyName] = useState("graforce");
   const [description, setDescription] = useState(
-    "Power-to-X plants generate CO₂-free or CO₂-negative hydrogen and synthetic raw materials."
+    "Power-to-X plants generate CO<sub>2</sub>-free or CO\
+                          <sub>2</sub>-negative hydrogen and synthetic raw\
+                          materials. The technology leader in sustainable\
+                          solutions and negative emission technologies holds\
+                          three patents for applying different plasma processes\
+                          (high-frequency discharge, dielectric barrier\
+                          discharge and coronal low-frequency discharge).\
+                          Production capacities: Methane plasmalysis expansion\
+                          to up to 50 MW/a. through customers and partners."
   );
   const [buttonText, setButtonText] = useState("Learn More");
   const [buttonUrl, setButtonUrl] = useState("#");
@@ -71,7 +62,7 @@ const AboutUs = () => {
       setLoading(true);
       try {
         const lang = language || "en";
-        const sanityData = await client.fetch(GROQ_QUERY, { language: lang });
+        const sanityData = await client.fetch(aboutUsQuery, { language: lang });
         const about = sanityData?.aboutUs;
         console.log("about: ", about,about.companyName)
 
@@ -86,7 +77,15 @@ const AboutUs = () => {
           setDescription(
             typeof about.description === "string" && about.description.trim().length > 0
               ? about.description
-              : "Power-to-X plants generate CO₂-free or CO₂-negative hydrogen and synthetic raw materials."
+              : "Power-to-X plants generate CO<sub>2</sub>-free or CO\
+                          <sub>2</sub>-negative hydrogen and synthetic raw\
+                          materials. The technology leader in sustainable\
+                          solutions and negative emission technologies holds\
+                          three patents for applying different plasma processes\
+                          (high-frequency discharge, dielectric barrier\
+                          discharge and coronal low-frequency discharge).\
+                          Production capacities: Methane plasmalysis expansion\
+                          to up to 50 MW/a. through customers and partners."
           );
           setButtonText(about.buttonText || "Learn More");
           setButtonUrl(about.buttonUrl || "#");

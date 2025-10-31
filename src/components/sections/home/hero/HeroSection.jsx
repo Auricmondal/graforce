@@ -7,16 +7,18 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import client from "@/lib/sanityClient"; 
 import { heroSectionQuery } from "@/Queries/home/HeroSection"; 
+import { useLanguage } from "@/hooks/useLanguage";
 
 const HeroSection = () => {
   const { showContactForm } = useSidebarActions();
   const [heroData, setHeroData] = useState(null);
-
-  // Fetch Hero Section data
+  const { language } = useLanguage();
+   // Fetch Hero Section data
   useEffect(() => {
     const fetchHero = async () => {
       try {
-        const result = await client.fetch(heroSectionQuery);
+        const lang = language || "en";
+        const result = await client.fetch(heroSectionQuery, {language: lang });
         console.log("🟩 Hero Section data fetched:", result?.hero);
         setHeroData(result?.hero);
       } catch (error) {
@@ -24,7 +26,7 @@ const HeroSection = () => {
       }
     };
     fetchHero();
-  }, []);
+  }, [language]);
 
   const handleLearnMore = () => {
     const el = document.getElementById("what-do-we-do");

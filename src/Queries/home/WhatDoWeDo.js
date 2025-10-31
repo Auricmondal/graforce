@@ -1,5 +1,5 @@
 export const whatDoWeDoSectionQuery = /* groq */ `
-  *[_type == "home"][0]{
+  *[_type == "home" && language == $language][0]{
     "whatDoWeDo": whatDoWeDoSection{
       sectionLabel,
       description,

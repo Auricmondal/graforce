@@ -1,4 +1,5 @@
 'use client'
+
 import CardWrapper from '@/wrappers/CardWrapper'
 import SectionWrapper from '@/wrappers/SectionWrapper'
 import Image from 'next/image'
@@ -14,14 +15,14 @@ const Hero = () => {
   const AboutImageRef = useRef(null)
   const tl = gsap.timeline()
 
+  // Default state (matches old file)
   const [heroData, setHeroData] = useState({
     header: "Building a Circular, Carbon Free Future.",
-    subHeader: "",
     imageUrl: AboutImageFallback.src,
     alt: "About Us",
   })
 
-  // Fetch data from Sanity
+  // Fetch hero data from Sanity
   useEffect(() => {
     const fetchHero = async () => {
       try {
@@ -30,9 +31,8 @@ const Hero = () => {
         if (hero) {
           setHeroData({
             header: hero.header || heroData.header,
-            subHeader: hero.subHeader || "",
             imageUrl: hero.imageUrl || AboutImageFallback.src,
-            alt: hero.alt || "About Us",
+            alt: hero.alt || heroData.alt,
           })
         }
       } catch (err) {
@@ -53,16 +53,19 @@ const Hero = () => {
   }, [])
 
   return (
-    <SectionWrapper sectionClassName='bg-cst-neutral-1 w-full h-screen' className='flex items-center justify-center h-full'>
-      <CardWrapper variant='custom' className='relative flex items-center justify-center w-full overflow-hidden h-full'>
+    <SectionWrapper
+      sectionClassName="bg-cst-neutral-1 w-full h-screen"
+      className="flex items-center justify-center h-full"
+    >
+      <CardWrapper
+        variant="custom"
+        className="relative flex items-center justify-center w-full overflow-hidden h-full"
+      >
         <div className="relative flex items-center justify-center z-2 w-5/6 text-center mx-auto">
-          <AnimatedHeader className='flex items-center justify-center my-auto'>
-            <h2 className='text-[48px] sm:text-[64px] lg:text-[128px] text-white capitalize leading-12 sm:leading-16 lg:leading-32'>
+          <AnimatedHeader className="flex items-center justify-center my-auto">
+            <h2 className="text-[48px] sm:text-[64px] lg:text-[128px] text-white capitalize leading-12 sm:leading-16 lg:leading-32">
               {heroData.header}
             </h2>
-            {heroData.subHeader && (
-              <p className="text-white mt-4 text-base sm:text-lg lg:text-xl">{heroData.subHeader}</p>
-            )}
           </AnimatedHeader>
         </div>
 

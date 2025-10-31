@@ -13,12 +13,6 @@ export default defineType({
       description: "Main heading displayed in the hero section",
     }),
     defineField({
-      name: "subHeader",
-      title: "Subheader Text",
-      type: "text",
-      description: "Optional subheader or description",
-    }),
-    defineField({
       name: "image",
       title: "Hero Image",
       type: "image",
