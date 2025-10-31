@@ -22,7 +22,6 @@ const Hero = () => {
             </AnimatedHeader>
           </h2>
 
-          {/* CTA Buttons */}
           <div className="flex flex-wrap justify-center gap-4">
             <PrimaryButton
               className="text-white transition duration-300 border-1 border-transparent hover:border-white py-3 px-4 md:py-4 md:px-6 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-3 bg-primary hover:!bg-cst-neutral-5 w-full md:w-fit justify-center"
@@ -39,7 +38,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Network Image */}
         <div className="w-auto flex-1 h-fit relative py-6 lg:p-0">
           <RiveAutoplay
             src={"/animations/heroanim.riv"}

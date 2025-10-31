@@ -10,11 +10,9 @@ import { MdOutlineLocationOn } from "react-icons/md";
 import aboutUsImage from "@/assets/home/aboutimg.png";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
-import { useSidebarActions } from "@/hooks/useSidebarActions";
 import Link from "next/link";
 
 const AboutUs = () => {
-  const { showSpecificationsContent } = useSidebarActions();
 
   const [foundation, setFoundation] = useState(2012);
   const [location, setLocation] = useState("Berlin Adlershof");

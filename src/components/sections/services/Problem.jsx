@@ -61,14 +61,12 @@ export default function EmissionPage({ problemData = tempProblemData }) {
       }
     });
 
-    // Add smooth exit transition to prevent lag
     ScrollTrigger.create({
       trigger: triggerRef.current,
       start: "bottom bottom",
       end: "bottom top",
       scrub: true,
       onLeave: () => {
-        // Force a refresh to clean up any lingering effects
         requestAnimationFrame(() => {
           ScrollTrigger.refresh();
         });

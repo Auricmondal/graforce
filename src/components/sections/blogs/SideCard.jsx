@@ -37,7 +37,6 @@ const SideCard = ({
               onClick={() => {
                 console.log("Clicked on arrow.");
               }}
-              // size="small"
               className="scale-75 min-[880px]:scale-50"
             />
           </div>

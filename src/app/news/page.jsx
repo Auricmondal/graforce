@@ -10,8 +10,6 @@ import LatestNews from "@/components/sections/blogs/LatestNews";
 const Blogs = () => {
   return (
     <div className="bg-white">
-      {/* Hero */}
-      {/* Latest news */}
       <HeroBlogs />
       <LatestNews />
       <CardsSection />

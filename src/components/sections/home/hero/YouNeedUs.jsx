@@ -7,11 +7,9 @@ import SectionWrapper from "@/wrappers/SectionWrapper";
 import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Tower from "@/assets/tower.png";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
-import { sidebarUtils } from "@/utils/sidebarUtils";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomJobData from "@/data/customJobData.json";
 import CustomSpecData from "@/data/customSpecData.json";
@@ -52,7 +50,7 @@ const YouNeedUs = ({
   const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(undefined);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showCustomContent, showSpecificationsContent, showJobContent } =
+  const { showSpecificationsContent, showJobContent } =
     useSidebarActions();
 
   const { RiveComponent } = useRive({
@@ -183,10 +181,10 @@ const YouNeedUs = ({
           });
         },
       });
-    }); // close requestAnimationFrame callback
+    });
 
     return cleanup;
-  }, [isMobile, sectionColorVariant]); // Add dependencies
+  }, [isMobile, sectionColorVariant]);
 
   // Cleanup on unmount
   useEffect(() => {

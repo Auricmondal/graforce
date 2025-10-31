@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import FitText from "@/hooks/FitText";
 import ScrollReveal from "@/wrappers/ScrollReveal";
 import { useFooterHeight } from "@/contexts/FooterContext";
 import useElementHeight from "@/hooks/useElementHeight";
@@ -27,7 +26,6 @@ const Footer2 = () => {
             className="w-full h-auto"
           />
         </ScrollReveal>
-
         <div className="pb-4 px-2 md:px-4">
           <div className="flex flex-col-reverse md:flex-row md:justify-between justify-center items-center text-[#7B7B7B] text-sm border-t-[1.5px] border-[rgba(255,255,255,0.15)] pt-4">
             {/* Left copyright text */}

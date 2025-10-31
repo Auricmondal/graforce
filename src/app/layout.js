@@ -7,8 +7,6 @@ import FooterRevealer from "@/components/shared/footer/FooterRevealer";
 import ProgressProvider from "./providers";
 import LoaderProvider from "@/wrappers/LoaderProvider";
 import { LoaderContextProvider } from "@/contexts/LoaderContext";
-import ContactModal from "@/components/shared/navbar/nav/ContactModal";
-import { ContactModalProvider } from "@/contexts/ContactModalContext";
 import { SidebarProvider } from "@/contexts/SidebarContext";
 import { FooterProvider } from "@/contexts/FooterContext";
 import { ReactLenis } from "@/components/utils/lenis/LenisProvider";
@@ -30,34 +28,31 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <ReactLenis root>
         <LoaderContextProvider>
-          <ContactModalProvider>
-            <SidebarProvider>
-              <FooterProvider>
-                <body
-                  className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
-                >
-                  <LoaderProvider>
-                    <BannerProvider>
-                      <ToastProvider />
-                      <div className="relative z-10">
-                        <Navbar />
-                        <ProgressProvider>{children}</ProgressProvider>
-                        <Footer />
-                      </div>
-                      <div className="relative z-10 pointer-events-none ">
-                        <FooterRevealer />
-                      </div>
-                      <div className="fixed w-full bottom-0 z-0">
-                        <Footer2 />
-                      </div>
-                      <ContactModal clickOutside={true} />
-                      <DynamicSidebar />
-                    </BannerProvider>
-                  </LoaderProvider>
-                </body>
-              </FooterProvider>
-            </SidebarProvider>
-          </ContactModalProvider>
+          <SidebarProvider>
+            <FooterProvider>
+              <body
+                className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
+              >
+                <LoaderProvider>
+                  <BannerProvider>
+                    <ToastProvider />
+                    <div className="relative z-10">
+                      <Navbar />
+                      <ProgressProvider>{children}</ProgressProvider>
+                      <Footer />
+                    </div>
+                    <div className="relative z-10 pointer-events-none ">
+                      <FooterRevealer />
+                    </div>
+                    <div className="fixed w-full bottom-0 z-0">
+                      <Footer2 />
+                    </div>
+                    <DynamicSidebar />
+                  </BannerProvider>
+                </LoaderProvider>
+              </body>
+            </FooterProvider>
+          </SidebarProvider>
         </LoaderContextProvider>
       </ReactLenis>
     </html>

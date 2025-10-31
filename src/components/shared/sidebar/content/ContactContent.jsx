@@ -2,7 +2,6 @@
 import React from 'react';
 import { useSidebar } from '@/contexts/SidebarContext';
 import PrimaryButton from '@/components/utils/buttons/PrimaryButton';
-import { FiMail, FiPhone, FiMapPin, FiUser, FiMessageCircle } from 'react-icons/fi';
 import Image from 'next/image';
 import SolutionImage from '@/assets/service/ServiceSolution1.jpg';
 
@@ -27,9 +26,10 @@ const ContactContent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    //Todo: Handle form submission logic here
     console.log('Contact form submitted:', formData);
-    // You can add your API call here
+
     closeSidebar();
   };
 
@@ -37,21 +37,6 @@ const ContactContent = () => {
     <div className="flex flex-col h-full px-2">
       {/* Contact Info Section */}
       <div className="mb-6">
-        {/* <h3 className="text-lg font-semibold mb-4 text-gray-800">Get in Touch</h3>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 text-gray-600">
-            <FiMail className="text-primary" />
-            <span className="text-sm">info@graforce.com</span>
-          </div>
-          <div className="flex items-center gap-3 text-gray-600">
-            <FiPhone className="text-primary" />
-            <span className="text-sm">+49 30 123 456 789</span>
-          </div>
-          <div className="flex items-center gap-3 text-gray-600">
-            <FiMapPin className="text-primary" />
-            <span className="text-sm">Berlin, Germany</span>
-          </div>
-        </div> */}
         <Image
           src={SolutionImage}
           alt="Contact Image"
@@ -63,7 +48,6 @@ const ContactContent = () => {
       <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-2">
         <div className="grid grid-cols-1 gap-4">
           <div className="relative">
-            {/* <FiUser className="absolute left-3 top-3 text-gray-400" /> */}
             <input
               type="text"
               name="name"
@@ -86,7 +70,6 @@ const ContactContent = () => {
           </div>
 
           <div className="relative">
-            {/* <FiMail className="absolute left-3 top-3 text-gray-400" /> */}
             <input
               type="email"
               name="email"
@@ -107,18 +90,6 @@ const ContactContent = () => {
               Email
             </label>
           </div>
-
-          {/* <div className="relative">
-            <FiPhone className="absolute left-3 top-3 text-gray-400" />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number (Optional)"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full p-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-            />
-          </div> */}
 
           <div className="relative">
             <input
@@ -155,7 +126,6 @@ const ContactContent = () => {
           )}
 
           <div className="relative">
-            {/* <FiMessageCircle className="absolute left-3 top-3 text-gray-400" /> */}
             <textarea
               name="message"
               id="message"
@@ -176,18 +146,6 @@ const ContactContent = () => {
               Message
             </label>
           </div>
-
-          {/* <div className="relative flex items-center w-full">
-            <input
-              type="checkbox"
-              name="agreement"
-              id='agreement'
-              checked={formData.agreement || false}
-              onChange={handleInputChange}
-              className=""
-            />
-            <label htmlFor="agreement" className="ml-4 text-sm text-cst-neutral-1 w-full">By clicking the "Submit" button you agree that we use your information to contact you. <a href="/privacy-policy" className="text-primary underline">Privacy policy</a></label>
-          </div> */}
 
           <div className="flex items-center space-x-3 cursor-pointer">
             <label className="flex items-center">
@@ -228,13 +186,6 @@ const ContactContent = () => {
 
         {/* Action Buttons */}
         <div className="flex gap-3 mt-auto">
-          {/* <button
-            type="button"
-            onClick={closeSidebar}
-            className="flex-1 py-3 px-4 border border-gray-300 rounded-lg text-gray-600 hover:bg-gray-50 transition-all"
-          >
-            Cancel
-          </button> */}
           <PrimaryButton
             type="submit"
             className={`${formData.agreement ? "bg-cst-neutral-1 text-cst-neutral-5" : "bg-transparent border-2 border-cst-neutral-1 text-cst-neutral-1"} py-4 w-full rounded-xl`}

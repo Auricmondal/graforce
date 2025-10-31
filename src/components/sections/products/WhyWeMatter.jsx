@@ -131,7 +131,6 @@ export default function WhyWeMatter() {
         ))}
       </div>
 
-      {/* Smooth transition buffer to prevent lag */}
       <div className="hidden md:block h-[100vh] bg-secondary-light relative z-0"></div>
     </main>
   );

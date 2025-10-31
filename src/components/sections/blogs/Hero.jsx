@@ -3,7 +3,6 @@ import SectionWrapper from "@/wrappers/SectionWrapper";
 import Image from "next/image";
 import React from "react";
 import heroImage from "@/assets/blogs/ServiceSolution1.jpg";
-import { FaLinkedin } from "react-icons/fa";
 import gsap from "gsap";
 import CardWrapper from "@/wrappers/CardWrapper";
 
@@ -55,11 +54,6 @@ const HeroBlogs = () => {
               On this page, we regularly share the latest updates about our company
               and our groundbreaking plasma technology.
             </p>
-            {/* <a href="#">
-          <p className="hero-text text-xl text-white lg:max-w-[60%] mx-auto">
-            Follow us on <FaLinkedin className="inline mr-2" />
-          </p>
-        </a> */}
           </div>
         </div>
       </CardWrapper>

@@ -92,12 +92,6 @@ const NavigationContent = () => {
           gsap.set(".nav-talk-button", { y: 50, opacity: 0 });
           navTalkButton.current && navTalkButton.current.classList.add("hidden");
           navContainer.current && navContainer.current.classList.toggle("h-full", isSubMenuOpen);
-          // gsap.to(".nav-talk-button", {
-          //   y: 0,
-          //   opacity: 1,
-          //   duration: 0.3,
-          //   ease: "power2.out"
-          // });
         }
       });
     }

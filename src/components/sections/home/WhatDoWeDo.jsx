@@ -1,12 +1,28 @@
 import React from "react";
-import Image from "next/image";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-import globeImg from "@/assets/home/globe.webp";
 import FloatingTip from "@/components/utils/heroutils/FloatingTip";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 
 const WhatDoWeDo = () => {
+  const FloatingTipData = [
+    {
+      text: "100% Carbon Value",
+      position: "top-8 right-4 md:right-1/8 -translate-y-10 md:translate-0",
+      delay: 1,
+    },
+    {
+      text: "0% CO₂ Costs",
+      position: "top-1/2 left-2/3 md:left-2/3 -translate-y-10 md:translate-0",
+      delay: 0.2,
+    },
+    {
+      text: "50% Energy Savings",
+      position: "bottom-5 sm:bottom-5 left-1/9 -translate-y-10 md:translate-0",
+      delay: 0.6,
+    },
+  ];
+
   return (
     <div
       className="flex flex-col md:flex-row gap-2 bg-cst-neutral-1 p-2"
@@ -38,26 +54,15 @@ const WhatDoWeDo = () => {
           muted
           className="absolute w-full h-full object-cover object-[top_center] top-0"
         ></video>
-
-        <FloatingTip
-          className="top-8 right-4 md:right-1/8 -translate-y-10 md:translate-0"
-          delay={1}
-        >
-          • 100% Carbon Value
-        </FloatingTip>
-
-        <FloatingTip
-          className="top-1/2 left-2/3 md:left-2/3 -translate-y-10 md:translate-0"
-          delay={0.2}
-        >
-          • 0% CO₂ Costs
-        </FloatingTip>
-        <FloatingTip
-          className="bottom-5 sm:bottom-5 left-1/9 -translate-y-10 md:translate-0"
-          delay={0.6}
-        >
-          • 50% Energy Savings
-        </FloatingTip>
+        {FloatingTipData.map((tip, index) => (
+          <FloatingTip
+            key={index}
+            className={tip.position}
+            delay={tip.delay}
+          >
+            • {tip.text}
+          </FloatingTip>
+        ))}
       </div>
     </div>
   );

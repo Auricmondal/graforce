@@ -1,9 +1,8 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useContactModal } from "@/contexts/ContactModalContext";
 import atomImg from "@/assets/product/atom.webp";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
@@ -13,7 +12,6 @@ import carbonImg from "@/assets/product/carbon.webp";
 import hydrogenImg from "@/assets/product/hydrogen.webp";
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomBlogData from "@/data/customBlogData.json";
 
 const Hero = () => {
   const { showContactForm } = useSidebarActions();

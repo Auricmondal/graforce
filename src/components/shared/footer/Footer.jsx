@@ -7,7 +7,6 @@ import AnimatedText from "@/components/utils/animations/AnimatedText";
 const Footer = () => {
   return (
     <footer className="bg-cst-neutral-5 text-white  relative overflow-hidden">
-      {/* <div className="max-w-[2000px] mx-auto"> */}
       <div className="pt-12 px-6 md:px-16">
         <div className="mb-8 flex flex-col lg:flex-row items-center gap-4 lg:gap-20">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
@@ -208,8 +207,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      {/* </div> */}
     </footer>
   );
 };
