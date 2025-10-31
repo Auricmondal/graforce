@@ -4,7 +4,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LuClock3 } from "react-icons/lu";
 import { MdOutlineLocationOn } from "react-icons/md";
 import aboutUsImage from "@/assets/home/aboutimg.png";

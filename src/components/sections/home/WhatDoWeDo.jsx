@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
-import globeImg from "@/assets/home/globe.webp";
 import FloatingTip from "@/components/utils/heroutils/FloatingTip";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";

@@ -110,7 +110,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Network Image */}
         <div className="w-full flex-1 relative ">
           <Image
             src={heroData.backgroundImageLeft}

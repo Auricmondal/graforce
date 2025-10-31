@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
 import useIsDesktop from "@/hooks/useIsDesktop";
-// import gridImg from '@/assets/grid-blue.svg';
 
 export default function FlipCard({
   companyName,

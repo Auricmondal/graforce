@@ -33,7 +33,7 @@ export const variantConfig = {
   },
   loading: {
     icon: <LuLoaderCircle className="text-2xl animate-spin" />,
-    duration: 10000, // Loading toasts stay until dismissed
+    duration: 10000,
     style: { color: "var(--color-dark)" },
   },
   default: {

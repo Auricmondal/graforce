@@ -1,4 +1,3 @@
-// Modified useInfiniteLogos.jsx
 import { useMemo } from 'react';
 
 const useInfiniteLogos = (logos, containerWidth, itemWidth = 184) => {

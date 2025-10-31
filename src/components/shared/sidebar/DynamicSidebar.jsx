@@ -18,15 +18,16 @@ const DynamicSidebar = () => {
   const {
     isOpen,
     contentType,
-    title,
     closeSidebar
   } = useSidebar();
 
   const sidebarOverlayRef = React.useRef(null);
   const sidebarMenuRef = React.useRef(null);
 
-  // Use scroll lock hook to manage body scroll
-  useScrollLock(isOpen);
+  //**! Do not remove this comment
+  /** Use scroll lock hook to manage body scroll
+   * useScrollLock(isOpen);
+   **/
   
   // Use scroll prevention for overlay and menu
   useScrollPrevention(sidebarOverlayRef);
@@ -40,16 +41,13 @@ const DynamicSidebar = () => {
     const tl = gsap.timeline();
 
     if (isOpen) {
-      // Reset any previous states for content items
       gsap.set(".sidebar-content-item", { x: 300, opacity: 0 });
       gsap.set(".sidebar-action-button", { y: 50, opacity: 0 });
 
-      // Open animation
       tl.to(overlay, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
       tl.to(sidebarOverlayBackdrop, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
       tl.to(menuContainer, { x: 0, duration: 0.3, ease: "power2.inOut" }, 0);
 
-      // Animate content items if they exist
       tl.to(".sidebar-content-item", {
         x: 0,
         opacity: 1,
@@ -58,7 +56,6 @@ const DynamicSidebar = () => {
         ease: "power2.out"
       }, ">-0.1");
 
-      // Animate action buttons if they exist
       tl.to(".sidebar-action-button", {
         y: 0,
         opacity: 1,
@@ -66,7 +63,6 @@ const DynamicSidebar = () => {
         ease: "power2.out"
       }, ">-0.1");
     } else {
-      // Close animation
       tl.to(".sidebar-action-button", { y: 50, opacity: 0, duration: 0.2, ease: "power2.in" }, 0);
       tl.to(".sidebar-content-item", {
         x: 300,
@@ -81,10 +77,7 @@ const DynamicSidebar = () => {
     }
   }, [isOpen]);
 
-  // Render content based on type
   const renderContent = () => {
-    // console.log('DynamicSidebar - renderContent - contentType:', contentType);
-    // console.log('DynamicSidebar - SIDEBAR_TYPES.CUSTOM:', SIDEBAR_TYPES.CUSTOM);
     
     switch (contentType) {
       case SIDEBAR_TYPES.NAVIGATION:
@@ -104,7 +97,6 @@ const DynamicSidebar = () => {
     }
   };
 
-  // if (!isOpen) return null;
 
   return (
     <div
@@ -126,11 +118,6 @@ const DynamicSidebar = () => {
         <CardWrapper variant='custom' color={contentType === SIDEBAR_TYPES.CONTACT ? "custom" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "blue" : "default"} flexColumn={false} className={`sidebar-content-item flex items-center justify-between rounded-xl p-4 capitalize text-3xl font-bold ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "bg-primary text-cst-neutral-1" : "bg-white text-cst-neutral-5"}`}>
           <div className="flex items-center gap-3">
             <BrandLogo size='text-4xl' />
-            {/* {contentType !== SIDEBAR_TYPES.NAVIGATION && (
-              <span className="text-lg font-semibold text-gray-700">
-                {title}
-              </span>
-            )} */} 
           </div>
           <div
             className={`group border border-cst-neutral-2 p-2 rounded-full cursor-pointer transition-all ease-in-out duration-300 hover:bg-primary ${contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "hover:border-cst-neutral-1 hover:text-cst-neutral-5" : "hover:border-primary "}`}

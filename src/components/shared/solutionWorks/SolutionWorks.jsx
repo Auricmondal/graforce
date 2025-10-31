@@ -89,7 +89,7 @@ const SolutionWorks = () => {
       }}
     >
       <CardWrapper
-        className="rounded-lg gap-2 bg-white py-8 px-4 md:px-6"
+        className="gap-2 bg-white py-8 px-4 md:px-6"
         variant="custom"
       >
         <div className="md:max-w-[400px] flex flex-col gap-2">
@@ -107,7 +107,7 @@ const SolutionWorks = () => {
       </CardWrapper>
 
       <CardWrapper
-        className="rounded-lg gap-6 bg-white p-4 md:p-6 mt-2 w-full flex flex-col"
+        className="gap-6 bg-white p-4 md:p-6 mt-2 w-full flex flex-col"
         variant="custom"
         align="center"
       >

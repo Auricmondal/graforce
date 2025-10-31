@@ -5,12 +5,14 @@ import { AnimatePresence, motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect, useRef } from "react";
 
-export default function LoaderProvider({ children }) {
+export default function LoaderProvider({ children, word = 'GRAFORCE' }) {
   const loadingctx = useContext(loaderContext);
-  const { loading, setLoading, setRevealStarted, waitForPageReady } =
+  const { loading, setLoading, waitForPageReady } =
     loadingctx;
   const pathname = usePathname();
   const prevPath = useRef(pathname);
+  const counts = {};
+  const letters = [...word];
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -34,7 +36,6 @@ export default function LoaderProvider({ children }) {
       <AnimatePresence>
         {loading && (
           <motion.div
-            // className="fixed bg-[linear-gradient(206.41deg,_var(--color-dark)_17.27%,_var(--color-primary-light)_47.98%,_var(--color-primary)_65.61%,_var(--color-secondary)_91.31%)] z-10 flex items-center justify-center w-screen h-screen"
             className="fixed bg-cst-neutral-5 z-10 flex items-center justify-center w-screen h-screen"
             initial={{
               x: "-50%",
@@ -46,13 +47,14 @@ export default function LoaderProvider({ children }) {
             animate={{
               y: "-200vh",
               transition: {
-                duration: 2.5,
+                duration: 1,
                 ease: [0.25, 0.46, 0.45, 0.94],
                 delay: 0.6,
               },
             }}
             exit={{
               y: "-200vh",
+              display: "none",
               opacity: 0,
               transition: {
                 duration: 2,
@@ -62,24 +64,18 @@ export default function LoaderProvider({ children }) {
           >
             <motion.span
               className="text-white text-[10vw] font-bold"
-              // initial={{ scale: 1 }}
-              // animate={{ scale: 0 }}
-              // exit={{ scale: 0 }}
-              // transition={{
-              //   duration: 1.5,
-              //   ease: [0.6, 0.01, -0.05, 0.95],
-              // }}
             >
-              {/* Graforce */}
               <div className="loader">
-                <span className="g">G</span>
-                <span className="r">R</span>
-                <span className="a">A</span>
-                <span className="f">F</span>
-                <span className="o">O</span>
-                <span className="r2">R</span>
-                <span className="c">C</span>
-                <span className="e">E</span>
+                {letters.map((ch, idx) => {
+                  const base = ch.toLowerCase();
+                  counts[base] = (counts[base] || 0) + 1;
+                  const cls = counts[base] === 1 ? base : `${base}${counts[base]}`;
+                  return (
+                    <span key={idx} className={cls}>
+                      {ch}
+                    </span>
+                  );
+                })}
               </div>
             </motion.span>
           </motion.div>

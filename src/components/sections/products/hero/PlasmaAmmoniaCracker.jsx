@@ -6,6 +6,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 
 import bgImgFallback from "@/assets/product/plasma-ammonia-cracker.webp"; // fallback image
 import client from "@/lib/sanityClient";

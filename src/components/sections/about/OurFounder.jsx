@@ -4,15 +4,17 @@ import CardWrapper from '@/wrappers/CardWrapper'
 import SectionWrapper from '@/wrappers/SectionWrapper'
 import FounderImage from "@/assets/about/FounderImage.png"
 import { TfiLinkedin } from 'react-icons/tfi'
-import Image from 'next/image'
 import React from 'react'
 import StampImages from '@/components/utils/stampImages/StampImages'
+import Link from 'next/link'
 
 const OurFounder = () => {
-  const founderDetails = {
-    name: "Dr. Jens Hanke",
-    title: "Founder and Chief Technology Officer",
+  const data = {
+    header: "The Minds Powering a Hydrogen Revolution",
+    linkedInUrl: "https://www.linkedin.com/in/dr-jens-hanke-123b6212/",
+    subHeader: ["Grafoce was founded by Dr. Jens Hanke, a visionary scientist and entrepreneur driven by the belief that technology can reverse climate change. Under his leadership, we’ve built a team of physicists, engineers, and designers united by one goal — to make clean hydrogen accessible and scalable for every industry.", "Our interdisciplinary team blends expertise in plasma physics, electrical engineering, and process design, pushing the boundaries of what’s possible in sustainable energy innovation. Together, we turn bold ideas into real, world-changing technologies."],
   };
+
   return (
     <div>
       <SectionWrapper sectionClassName='bg-cst-neutral-1 overflow-hidden '>
@@ -23,45 +25,31 @@ const OurFounder = () => {
                 <SectionLabel text={'Our Founder'} invertIcon={true} textColor='text-white' />
                 <AnimatedHeader>
                   <h2 className={`text-xl sm:text-2xl min-[910px]:text-3xl capitalize`}>
-                    The Minds Powering a Hydrogen Revolution
+                    {data.header}
                   </h2>
                 </AnimatedHeader>
               </div>
               <div className="flex flex-col justify-start mt-6">
-                <TfiLinkedin size={36} className='text-white hover:text-primary transition-colors duration-300 ease-in-out cursor-pointer border p-2 rounded-lg border-white hover:border-primary' />
+                <Link href={data.linkedInUrl} target='_blank' rel='noopener noreferrer' className='mb-4'>
+                  <TfiLinkedin size={36} className='text-white hover:text-primary transition-colors duration-300 ease-in-out cursor-pointer border p-2 rounded-lg border-white hover:border-primary' />
+                </Link>
                 <div className="flex flex-col min-[910px]:flex-row my-2 gap-4 w-full">
-                  <p className={`w-full min-[910px]:w-1/2`}>
-                    Graforce was founded by Dr. Jens Hanke, a visionary scientist and entrepreneur driven by the belief that technology can reverse climate change. Under his leadership, we’ve built a team of physicists, engineers, and designers united by one goal — to make clean hydrogen accessible and scalable for every industry.
-                  </p>
-                  <p className={`w-full min-[910px]:w-1/2`}>
-                    Our interdisciplinary team blends expertise in plasma physics, electrical engineering, and process design, pushing the boundaries of what’s possible in sustainable energy innovation. Together, we turn bold ideas into real, world-changing technologies.
-                  </p>
+                  {data.subHeader.map((paragraph, index) => (
+                    <p key={index} className={`w-full min-[910px]:w-1/2`}>
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
-            <StampImages className='min-[910px]:w-[40%] lg:w-[35%]' Image={FounderImage} />
-            {/* <div className="relative flex w-full min-[910px]:w-[40%] lg:w-[35%]">
-              <Image
-                src={FounderImage}
-                alt="Our Founder"
-                className="w-[500px] h-[500px] object-contain translate-y-10 min-[910px]:-translate-y-10 min-[910px]:translate-x-10 scale-110 min-[910px]:scale-100"
-              />
-
-              <div className="absolute bottom-2 left-2 min-[910px]:bottom-12 min-[910px]:left-12">
-                <div className="bg-white/28 p-2 rounded-lg backdrop-blur-xs">
-                  <div className="bg-white/50 backdrop-blur-xs px-4 py-2 rounded-lg">
-                    <AnimatedHeader>
-                      <h3 className="text-3xl font-semibold text-black">{founderDetails.name}</h3>
-                      <p className="text-sm text-cst-neutral-4">{founderDetails.title}</p>
-                    </AnimatedHeader>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            <StampImages
+              className='min-[910px]:w-[40%] lg:w-[35%]'
+              Image={FounderImage}
+            />
           </div>
         </CardWrapper>
       </SectionWrapper>
-    </div>
+    </div >
   )
 }
 

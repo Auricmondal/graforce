@@ -1,8 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 
-// Custom hook for container width detection
 const useContainerWidth = () => {
   const containerRef = useRef(null);
   const [containerWidth, setContainerWidth] = useState(0);
