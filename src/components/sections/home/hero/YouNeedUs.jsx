@@ -15,21 +15,26 @@ import CustomJobData from "@/data/customJobData.json";
 import CustomSpecData from "@/data/customSpecData.json";
 import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 import { Layout, useRive } from "@rive-app/react-canvas";
+import Tower from "@/assets/tower.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const sectorsData = [
+const defaultSectorsData = [
   {
     id: 1,
     label: "energy management",
     title:
       "Graforce helps energy providers and plant operators replace fossil-fuel based methane or biogas with CO₂-free and CO₂-negative hydrogen using its Plasmalyzer® systems. This lets them generate clean heat and power, reduce energy costs (since plasmalysis uses far less electricity than water electrolysis), and remove CO₂ rather than just capturing it.",
+    image: Tower,
+    riveFile: null,
   },
   {
     id: 2,
     label: "industrial applications",
     title:
       "Graforce enables industrial manufacturers to decarbonize their production processes by integrating plasma-based hydrogen generation. This technology reduces dependency on natural gas, lowers operational costs by up to 40%, and helps achieve net-zero emissions targets while maintaining production efficiency.",
+    image: Tower,
+    riveFile: null,
   },
 ];
 
@@ -37,7 +42,7 @@ const YouNeedUs = ({
   learnMoreLink,
   learnMoreOnClick,
   specificationsOnClick,
-  sectionImage = null,
+  sectorsData = defaultSectorsData,
   sectionHeader = "Our contribution",
   sectionSubHeader = "Powering Every Sector",
   sectionColorVariant = "default",
@@ -49,14 +54,13 @@ const YouNeedUs = ({
   const needRef = useRef(null);
   const labelRef = useRef(null);
   const [isMobile, setIsMobile] = useState(undefined);
+  const [currentSector, setCurrentSector] = useState(sectorsData[0]);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showSpecificationsContent, showJobContent } =
-    useSidebarActions();
+  const { showSpecificationsContent, showJobContent } = useSidebarActions();
 
   const { RiveComponent } = useRive({
-    src: "/animations/tower.riv",
+    src: currentSector.riveFile,
     autoplay: true,
-    stateMachines: "State Machine 1",
     layout: new Layout({
       fit: "contain",
       alignment: "center",
@@ -153,6 +157,8 @@ const YouNeedUs = ({
             sectorsData.length - 1,
             Math.floor(self.progress * sectorsData.length)
           );
+
+          setCurrentSector(sectorsData[sectorIndex]);
           // Only update if different
           if (text.dataset.sector !== String(sectorIndex)) {
             text.innerHTML = "";
@@ -388,15 +394,17 @@ const YouNeedUs = ({
                 fullWidthHeader ? "" : "border !border-primary rounded-lg"
               }`}
             >
-              {sectionImage && (
+              {currentSector.image && (
                 <Image
-                  src={sectionImage}
+                  src={currentSector.image}
                   className="object-cover w-full lg:w-fit aspect-[1] h-full"
                   alt="tower"
                 />
               )}
 
-              {!sectionImage && <RiveComponent className="h-full w-full" />}
+              {!currentSector.image && (
+                <RiveComponent className="h-full w-full" />
+              )}
             </div>
           </div>
 
@@ -458,16 +466,16 @@ const YouNeedUs = ({
                   </div>
                 </CardWrapper>
                 <div className="flex items-center justify-center">
-                  {sectionImage && (
+                  {sector.image && (
                     <Image
-                      src={sectionImage}
+                      src={sector.image}
                       className={"object-cover w-full h-full"}
                       alt="tower"
                     />
                   )}
-                  {!sectionImage && (
+                  {!sector.image && (
                     <RiveAutoplay
-                      src={"/animations/tower.riv"}
+                      src={sector.riveFile}
                       className="h-full w-full"
                     />
                   )}

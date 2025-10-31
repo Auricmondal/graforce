@@ -17,8 +17,6 @@ export default function SolutionCard({
   const circumference = 2 * Math.PI * radius;
   const offset = circumference * (1 - progress / 100);
 
-  const isMobile = useIsMobile();
-
   const ButtonContent = (
     <PrimaryButton
       className="bg-cst-neutral-5 text-white rounded-lg py-4 px-6 w-full"
