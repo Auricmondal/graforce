@@ -33,8 +33,8 @@ export default function WhyWeMatter() {
         if (stepElement) {
           ScrollTrigger.create({
             trigger: stepElement,
-            start: "top 80%",
-            end: "bottom 20%",
+            start: "top 25%",
+            end: "bottom 25%",
             scrub: 1,
             onEnter: () => {
               setActiveStep(i);

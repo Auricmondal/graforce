@@ -407,7 +407,6 @@ const YouNeedUs = ({
                 <RiveComponent className="h-full w-full" />
               )}
 
-              {currentSector.id}
               {currentSector.riveFile && currentSector.scroll && (
                 <AchievementRive
                   src={currentSector.riveFile}
