@@ -1,116 +1,91 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  useRive,
+  useStateMachineInput,
+  Fit,
+  Layout,
+  Alignment,
+} from "@rive-app/react-canvas";
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
-const steps = ["NDA", "Review", "Site Visit", "Signing"];
-
-export default function Timeline() {
+export default function RiveScrollAnimation() {
   const containerRef = useRef(null);
-  const progressRef = useRef(null);
-  const labelRefs = useRef([]);
+  const [artboardName, setArtboardName] = useState("web");
+  const [aspectRatio, setAspectRatio] = useState(null);
 
-  useGSAP(
-    () => {
-      const ctx = gsap.context(() => {
-        ScrollTrigger.refresh(true);
-        const container = containerRef.current;
-        const progress = progressRef.current;
+  const handleResize = () => {
+    const isMobile = window.innerWidth < 1024;
+    setArtboardName(isMobile ? "phone" : "web");
+  };
 
-        if (!container || !progress) return;
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-        // Animate the progress bar
-        gsap.fromTo(
-          progress,
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: container,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: true,
-              markers: {
-                startColor: "green",
-                endColor: "red",
-                fontSize: "12px",
-                indent: 10,
-              },
-              // anticipatePin: 1,
-              pin: false,
-              refreshPriority: 100,
-              id: "timeline-trigger",
-            },
-          }
-        );
-
-        // Animate each label as it enters view
-        labelRefs.current.forEach((el, i) => {
-          if (!el) return;
-
-          const offsetFraction = (i + 0.5) / steps.length;
-          const offset = container.offsetHeight * offsetFraction;
-
-          gsap.fromTo(
-            el,
-            { opacity: 0, y: -10 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.3,
-              scrollTrigger: {
-                trigger: container,
-                start: `top+=${offset}px bottom`,
-                end: `top+=${offset + 50}px bottom`,
-                toggleActions: "play reverse play reverse",
-                scrub: true,
-              },
-            }
-          );
-        });
-      }, containerRef);
-      return () => ctx.revert();
+  const { rive, RiveComponent } = useRive({
+    src: "/animations/timeline.riv",
+    // artboard: artboardName,
+    stateMachines: "timeline",
+    autoplay: true,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.Center,
+    }),
+    onLoad: () => {
+      // get intrinsic artboard size once loaded
+      const artboard = rive?.artboard;
+      if (artboard) {
+        const ratio = artboard.bounds.maxY / artboard.bounds.maxX;
+        setAspectRatio(ratio);
+      }
     },
-    { scope: containerRef }
-  );
+  });
+
+  const scrollInput = useStateMachineInput(rive, "timeline", "Scroll");
+
+  useEffect(() => {
+    if (!scrollInput || !containerRef.current) return;
+
+    const trigger = ScrollTrigger.create({
+      trigger: containerRef.current,
+      start: "top 75%",
+      end: "bottom 25%",
+      scrub: true,
+      onUpdate: (self) => {
+        scrollInput.value = self.progress * 100;
+      },
+    });
+
+    // console.log({artboardName})
+    return () => trigger.kill();
+  }, [scrollInput]);
+
+  useEffect(() => {
+    if (rive && rive.loaded) {
+      const artboard = rive.artboard;
+      if (artboard?.bounds) {
+        const width = artboard.bounds.maxX - artboard.bounds.minX;
+        const height = artboard.bounds.maxY - artboard.bounds.minY;
+        const ratio = width / height;
+        setAspectRatio(ratio);
+      }
+    }
+  }, [rive]);
 
   return (
     <div
-      className="relative px-8 py-16 border border-red-600 containere"
       ref={containerRef}
+      style={{
+        aspectRatio: aspectRatio || 1,
+      }}
     >
-      <div className="relative mx-auto max-w-5xl">
-        {/* Timeline base bar */}
-        <div className="relative h-1 bg-white/30 w-full rounded-full">
-          {/* Progress bar */}
-          <div
-            ref={progressRef}
-            className="absolute top-0 left-0 h-1 bg-white origin-left transform scale-x-0 w-full"
-          />
-
-          {/* Checkpoints */}
-          <div className="absolute w-full flex justify-between -top-6">
-            {steps.map((step, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center text-white text-sm"
-              >
-                <div className="w-5 h-5 bg-white rounded-full border-2 border-blue-900 mb-2" />
-                <div
-                  ref={(el) => (labelRefs.current[i] = el)}
-                  className="opacity-0"
-                >
-                  {step}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <RiveComponent style={{ width: "100%", height: "100%" }} />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import TopSection from "./joinUs/TopSection";
 import Image from "next/image";
 import timelineImage from "@/assets/investor/timeline.png";
+import Timeline from "@/components/sections/investors/joinUs/Timeline";
 
 const JoinUs = () => {
   return (
@@ -34,14 +35,15 @@ const JoinUs = () => {
             <TopSection />
           </div>
           <div className="">
-            <Image
+            {/* <Image
               src={timelineImage}
               style={{ objectFit: "contain" }}
               alt="timelineImg"
               className="mx-auto"
               height={1000}
               width={1000}
-            />
+            /> */}
+            <Timeline />
           </div>
         </div>
       </div>

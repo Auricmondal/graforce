@@ -37,7 +37,7 @@ const CaseStudies = () => {
   const needRef = useRef(null);
   const labelRef = useRef(null);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showReadingContent } = useSidebarActions();
+  const { showReadingContent, showJobContent } = useSidebarActions();
 
   const isMobile = !useIsDesktop();
 
