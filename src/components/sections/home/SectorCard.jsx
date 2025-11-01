@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import FloatupButton from "@/components/utils/buttons/FloatupButton";
 import useIsMobile from "@/hooks/useIsMobile";

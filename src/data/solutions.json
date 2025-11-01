@@ -4,55 +4,55 @@
     "title": "Plasma Electrolysis Systems (Plasmalyzers®)",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "methane-plasmalyzer"
+    "link": "/products/methane-plasmalyzer"
   },
   {
     "id": 2,
     "title": "Step 2 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "wastewater-plasmalyzer"
+    "link": "/products/wastewater-plasmalyzer"
   },
   {
     "id": 3,
     "title": "Step 3 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "plasma-ammonia-cracker"
+    "link": "/products/plasma-ammonia-cracker"
   },
   {
     "id": 4,
     "title": "Step 4 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "used-components"
+    "link": "/products/used-components"
   },
   {
     "id": 5,
     "title": "Step 5 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "h2-natural-gas-refuelling"
+    "link": "/products/h2-natural-gas-refuelling"
   },
   {
     "id": 6,
     "title": "Step 6 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "synthetic-carbon"
+    "link": "/products/synthetic-carbon"
   },
   {
     "id": 7,
     "title": "Step 7 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "synthetic-carbon-quality"
+    "link": "/products/synthetic-carbon-quality"
   },
   {
     "id": 8,
     "title": "Step 8 Title",
     "description": "Traditional hydrogen production is energy-intensive and emits CO₂. Graforce’s Plasmalyzers® solve this by using plasma electrolysis to generate CO₂-free and even CO₂-negative hydrogen from renewable and waste sources, dramatically lowering emissions and energy costs.",
     "image": null,
-    "link": "syngas-production"
+    "link": "/products/syngas-production"
   }
 ]
