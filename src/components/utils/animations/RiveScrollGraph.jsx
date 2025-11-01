@@ -22,6 +22,17 @@ export default function RiveScrollGraph({
   const containerRef = useRef(null);
   const [riveSrc, setRiveSrc] = useState(src);
   const [aspectRatio, setAspectRatio] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
 
   // const handleResize = () => {
   //   const isMobile = window.innerWidth < 1024;
@@ -62,6 +73,11 @@ export default function RiveScrollGraph({
   useEffect(() => {
     if (!scrollInput || !containerRef.current) return;
 
+    if (isMobile) {
+      scrollInput.value = 100;
+      return;
+    }
+
     const triggerElement = anchorRef || containerRef.current;
 
     const trigger = ScrollTrigger.create({
@@ -94,13 +110,15 @@ export default function RiveScrollGraph({
   return (
     <div
       ref={containerRef}
-      className={`flex  relative flex-col items-center justify-between m-auto w-full h-2/3 ${className}`}
+      className={`flex relative flex-col items-center justify-between m-auto w-full h-fit ${className}`}
       style={{aspectRatio: aspectRatio}}
     >
       <RiveComponent
         style={{
           position: "absolute",
           inset: 0,
+          top: 0,
+          left: 0,
           width: "100%",
           height: "100%",
           display: "block",

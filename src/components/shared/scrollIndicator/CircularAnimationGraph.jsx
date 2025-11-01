@@ -132,7 +132,7 @@ export default function CircularAnimationGraph({
         </div>
 
         {/* Right Side */}
-        <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-2xl bg-cover bg-center min-h-[100dvh] md:min-h-0">
+        <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-2xl h-fit sm:h-full p-2 md:p-4 flex items-center justify-center overflow-hidden">
           {/* <Chart
             data={problemData[activeStep ?? 0].data}
             dataIndex={activeStep ?? 0}
