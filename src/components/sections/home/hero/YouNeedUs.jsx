@@ -91,138 +91,148 @@ const YouNeedUs = ({
     }
   };
 
-  useGSAP(() => {
-    cleanup();
+  useGSAP(
+    () => {
+      cleanup();
 
-    // Desktop-only behavior, like SolutionSection
-    const isDesktop =
-      typeof window !== "undefined" &&
-      window.matchMedia("(min-width: 768px)").matches;
-    if (!isDesktop || !triggerRef.current || !needRef.current) return;
+      // Desktop-only behavior, like SolutionSection
+      const isDesktop =
+        typeof window !== "undefined" &&
+        window.matchMedia("(min-width: 768px)").matches;
+      if (!isDesktop || !triggerRef.current || !needRef.current) return;
 
-    const text = needRef.current;
-
-    // Helper to wrap each character in a span
-    const wrapCharacters = (html) => {
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = html;
-      const processNode = (node) => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const chars = node.textContent.split("");
-          const fragment = document.createDocumentFragment();
-          chars.forEach((char) => {
-            const span = document.createElement("span");
-            span.textContent = char;
-            span.style.color = "rgba(255,255,255,0.1)";
-            fragment.appendChild(span);
-          });
-          return fragment;
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const newNode = node.cloneNode(false);
-          Array.from(node.childNodes).forEach((child) => {
-            newNode.appendChild(processNode(child));
-          });
-          return newNode;
-        }
-        return node.cloneNode(true);
-      };
-      const processed = document.createDocumentFragment();
-      Array.from(tempDiv.childNodes).forEach((child) => {
-        processed.appendChild(processNode(child));
-      });
-      return processed;
-    };
-
-    // Initial content
-    text.innerHTML = "";
-    text.appendChild(wrapCharacters(sectorsData[0].title));
-    text.dataset.sector = "0";
-    if (labelRef.current) labelRef.current.textContent = sectorsData[0].label;
-    setCurrentSector(sectorsData[0]);
-
-    // Build per-step ScrollTriggers like SolutionSection
-    Array.from(triggerRef.current.children).forEach((stepElement, i) => {
-      if (!stepElement) return;
-      const trig = ScrollTrigger.create({
-        trigger: stepElement,
-        start: "top 25%",
-        end: "bottom 25%",
-        scrub: 1,
-        onEnter: () => {
-          setCurrentSector(sectorsData[i]);
-          text.innerHTML = "";
-          text.appendChild(wrapCharacters(sectorsData[i].title));
-          text.dataset.sector = String(i);
-          if (labelRef.current)
-            labelRef.current.textContent = sectorsData[i].label;
-        },
-        onEnterBack: () => {
-          setCurrentSector(sectorsData[i]);
-          text.innerHTML = "";
-          text.appendChild(wrapCharacters(sectorsData[i].title));
-          text.dataset.sector = String(i);
-          if (labelRef.current)
-            labelRef.current.textContent = sectorsData[i].label;
-        },
-        onUpdate: (self) => {
-          // Character reveal within the current step
-          const chars = text.querySelectorAll("span");
-          const eased = Math.pow(self.progress, 0.8);
-          const charsToShow = Math.floor(eased * chars.length);
-          chars.forEach((char, idx) => {
-            if (sectionColorVariant === "default") {
-              char.style.color =
-                idx < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
-            } else {
-              char.style.color =
-                idx < charsToShow
-                  ? "rgba(255,255,255,1)"
-                  : "rgba(255,255,255,0.1)";
+      const text = needRef.current;
+      requestAnimationFrame(() => {
+        // Helper to wrap each character in a span
+        const wrapCharacters = (html) => {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = html;
+          const processNode = (node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+              const chars = node.textContent.split("");
+              const fragment = document.createDocumentFragment();
+              chars.forEach((char) => {
+                const span = document.createElement("span");
+                span.textContent = char;
+                span.style.color = "rgba(255,255,255,0.1)";
+                fragment.appendChild(span);
+              });
+              return fragment;
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+              const newNode = node.cloneNode(false);
+              Array.from(node.childNodes).forEach((child) => {
+                newNode.appendChild(processNode(child));
+              });
+              return newNode;
             }
+            return node.cloneNode(true);
+          };
+          const processed = document.createDocumentFragment();
+          Array.from(tempDiv.childNodes).forEach((child) => {
+            processed.appendChild(processNode(child));
           });
-        },
-        onLeave: () => {
-          // Ensure fully revealed at leave
-          const chars = text.querySelectorAll("span");
-          chars.forEach((char) => {
-            if (sectionColorVariant === "default") {
-              char.style.color = "rgba(0,0,0,1)";
-            } else {
-              char.style.color = "rgba(255,255,255,1)";
-            }
-          });
-        },
-        onLeaveBack: () => {
-          // Reset when scrolling back
-          const chars = text.querySelectorAll("span");
-          chars.forEach((char) => {
-            if (sectionColorVariant === "default") {
-              char.style.color = "rgba(0,0,0,0.1)";
-            } else {
-              char.style.color = "rgba(255,255,255,0.1)";
-            }
-          });
-        },
-      });
-      createdTriggersRef.current.push(trig);
-    });
+          return processed;
+        };
 
-    // Smooth exit transition to prevent lag (same pattern as SolutionSection)
-    const exitTrig = ScrollTrigger.create({
-      trigger: triggerRef.current,
-      start: "bottom bottom",
-      end: "bottom top",
-      scrub: true,
-      onLeave: () => {
-        requestAnimationFrame(() => {
-          ScrollTrigger.refresh();
+        // Initial content
+        text.innerHTML = "";
+        text.appendChild(wrapCharacters(sectorsData[0].title));
+        text.dataset.sector = "0";
+        if (labelRef.current)
+          labelRef.current.textContent = sectorsData[0].label;
+        setCurrentSector(sectorsData[0]);
+
+        // Build per-step ScrollTriggers like SolutionSection
+        Array.from(triggerRef.current.children).forEach((stepElement, i) => {
+          if (!stepElement) return;
+          const trig = ScrollTrigger.create({
+            id: `you-need-us-step-${i}`,
+            trigger: stepElement,
+            start: "top 25%",
+            end: "bottom 25%",
+            scrub: 1,
+            onEnter: () => {
+              setCurrentSector(sectorsData[i]);
+              text.innerHTML = "";
+              text.appendChild(wrapCharacters(sectorsData[i].title));
+              text.dataset.sector = String(i);
+              if (labelRef.current)
+                labelRef.current.textContent = sectorsData[i].label;
+            },
+            onEnterBack: () => {
+              setCurrentSector(sectorsData[i]);
+              text.innerHTML = "";
+              text.appendChild(wrapCharacters(sectorsData[i].title));
+              text.dataset.sector = String(i);
+              if (labelRef.current)
+                labelRef.current.textContent = sectorsData[i].label;
+            },
+            onUpdate: (self) => {
+              // Character reveal within the current step
+              const chars = text.querySelectorAll("span");
+              const eased = Math.pow(self.progress, 0.8);
+              const charsToShow = Math.floor(eased * chars.length);
+              chars.forEach((char, idx) => {
+                if (sectionColorVariant === "default") {
+                  char.style.color =
+                    idx < charsToShow ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.1)";
+                } else {
+                  char.style.color =
+                    idx < charsToShow
+                      ? "rgba(255,255,255,1)"
+                      : "rgba(255,255,255,0.1)";
+                }
+              });
+            },
+            onLeave: () => {
+              // Ensure fully revealed at leave
+              const chars = text.querySelectorAll("span");
+              chars.forEach((char) => {
+                if (sectionColorVariant === "default") {
+                  char.style.color = "rgba(0,0,0,1)";
+                } else {
+                  char.style.color = "rgba(255,255,255,1)";
+                }
+              });
+            },
+            onLeaveBack: () => {
+              // Reset when scrolling back
+              const chars = text.querySelectorAll("span");
+              chars.forEach((char) => {
+                if (sectionColorVariant === "default") {
+                  char.style.color = "rgba(0,0,0,0.1)";
+                } else {
+                  char.style.color = "rgba(255,255,255,0.1)";
+                }
+              });
+            },
+          });
+          createdTriggersRef.current.push(trig);
         });
-      },
-    });
-    createdTriggersRef.current.push(exitTrig);
 
-    return cleanup;
-  }, [sectionColorVariant, sectorsData]);
+        // Smooth exit transition to prevent lag (same pattern as SolutionSection)
+        const exitTrig = ScrollTrigger.create({
+          id: `you-need-us-exit`,
+          trigger: triggerRef.current,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+          onLeave: () => {
+            requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+            });
+          },
+        });
+        createdTriggersRef.current.push(exitTrig);
+      });
+
+      return cleanup;
+    },
+    {
+      scope: triggerRef,
+      dependencies: [sectionColorVariant, sectorsData],
+    }
+  );
 
   // Cleanup on unmount
   // useEffect(() => {
