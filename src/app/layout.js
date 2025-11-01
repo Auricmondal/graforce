@@ -9,6 +9,7 @@ import LoaderProvider from "@/wrappers/LoaderProvider";
 import { LoaderContextProvider } from "@/contexts/LoaderContext";
 import { SidebarProvider } from "@/contexts/SidebarContext";
 import { FooterProvider } from "@/contexts/FooterContext";
+import CustomCursor from "@/components/shared/CustomCursor";
 import { ReactLenis } from "@/components/utils/lenis/LenisProvider";
 import DynamicSidebar from "@/components/shared/sidebar/DynamicSidebar";
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
               <body
                 className={`${oxygen.variable} ${dmSans.variable} ${dancingScript.variable} antialiased`}
               >
+                <CustomCursor />
                 <LoaderProvider>
                   <BannerProvider>
                     <ToastProvider />
