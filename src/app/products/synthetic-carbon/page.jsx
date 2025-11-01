@@ -15,6 +15,9 @@ import News from "@/components/shared/news/News";
 import FAQ from "@/components/shared/faq/FAQ";
 import { productServices } from "@/components/sections/products/productServices";
 
+import { leftTypes } from "@/components/sections/products/ImpDetailsLefts";
+import details from "@/data/details.json";
+
 const config = {
   hero: true,
   whyWeMatter: true,
@@ -37,9 +40,13 @@ export default async function UsedComponents() {
       {config.graforceSolution && <GraforceSolution />}
       {config.howThisWorks && <HowThisWorks />}
       {config.productGallery && <ProductGallery />}
-      {config.importantDetails && <ImportantDetails isOneLeftType={false} />}
+      {config.importantDetails && (
+        <ImportantDetails leftTypes={leftTypes} details={details} />
+      )}
       {config.solutionWorks && <SolutionWorks />}
-      {config.otherServices && <OtherServices servicesOptions={productServices}/>}
+      {config.otherServices && (
+        <OtherServices servicesOptions={productServices} />
+      )}
       {config.testimonials && <Testimonials />}
       {config.faq && <FAQ />}
       {config.news && <News />}
