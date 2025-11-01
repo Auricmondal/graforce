@@ -12,7 +12,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function RiveScrollGraph({ src = "/animations/graph.riv", stateMachines = "timeline", anchorRef, aspectRatioProp = '1', className = "" }) {
+export default function RiveScrollGraph({
+  src = "/animations/graph.riv",
+  stateMachines = "timeline",
+  anchorRef,
+  aspectRatioProp = "1",
+  className = "",
+}) {
   const containerRef = useRef(null);
   const [riveSrc, setRiveSrc] = useState(src);
   const [aspectRatio, setAspectRatio] = useState(null);
@@ -83,14 +89,23 @@ export default function RiveScrollGraph({ src = "/animations/graph.riv", stateMa
       }
     }
   }, [rive]);
-// });
+  // });
 
   return (
     <div
       ref={containerRef}
-      className={`flex flex-col items-center justify-between m-auto w-full h-2/3 aspect-${aspectRatio} ${className}`}
+      className={`flex  relative flex-col items-center justify-between m-auto w-full h-2/3 ${className}`}
+      style={{aspectRatio: aspectRatio}}
     >
-      <RiveComponent />
+      <RiveComponent
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          display: "block",
+        }}
+      />
     </div>
   );
 }
