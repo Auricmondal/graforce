@@ -10,6 +10,7 @@ import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
 import Chart from "@/components/utils/charts/TempChart";
+import RiveScrollGraph from "@/components/utils/animations/RiveScrollGraph";
 
 import tempProblemData from "@/data/tempProblems.json";
 
@@ -21,10 +22,12 @@ export default function CircularAnimationGraph({
   onButtonClick,
   buttonLink,
   problemData = tempProblemData,
+  riveFile = "/animations/graph.riv",
 }) {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
+  const missionRef = useRef(null);
 
   useGSAP(() => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
@@ -84,7 +87,7 @@ export default function CircularAnimationGraph({
   }, []);
 
   return (
-    <main className="md:relative w-full bg-secondary-light">
+    <main ref={missionRef} className="md:relative w-full bg-secondary-light">
       <div className="md:sticky top-0 left-0 w-full md:h-[100vh] z-30 flex flex-col md:flex-row p-2 gap-2 h-fit">
         {/* Left Side */}
         <div className="w-full md:flex-3/7 flex gap-2">
@@ -130,9 +133,16 @@ export default function CircularAnimationGraph({
 
         {/* Right Side */}
         <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-2xl bg-cover bg-center min-h-[100dvh] md:min-h-0">
-          <Chart
+          {/* <Chart
             data={problemData[activeStep ?? 0].data}
             dataIndex={activeStep ?? 0}
+          /> */}
+          <RiveScrollGraph
+            src={riveFile}
+            stateMachines="timeline"
+            // aspectRatio="1"
+            className=""
+            anchorRef={missionRef.current}
           />
         </div>
       </div>

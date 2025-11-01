@@ -9,33 +9,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
-import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomBlogData from "@/data/customBlogData.json";
 import useIsDesktop from "@/hooks/useIsDesktop";
+import defaultCases from "@/data/cases.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const cases = [
-  {
-    id: 1,
-    label: "Drive for Decarbonization",
-    title:
-      "Graforce&apos;s plasma-based hydrogen technology offers a sustainable solution for the transportation sector, enabling fleets to transition to clean energy. By producing green hydrogen on-site, Graforce helps reduce carbon emissions by up to 70%, lowers fuel costs, and supports the shift towards zero-emission vehicles.",
-  },
-  {
-    id: 2,
-    label: "industrial applications",
-    title:
-      "Graforce enables industrial manufacturers to decarbonize their production processes by integrating plasma-based hydrogen generation. This technology reduces dependency on natural gas, lowers operational costs by up to 40%, and helps achieve net-zero emissions targets while maintaining production efficiency.",
-  },
-];
-
-const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
+const Contribution = ({
+  sectionHeader,
+  sectionSubHeader,
+  sectionImage,
+  onButtonClick,
+  cases = defaultCases,
+}) => {
   const sectionRef = useRef(null);
   const needRef = useRef(null);
   const labelRef = useRef(null);
   const triggerRef = useRef(null); // Store trigger reference
-  const { showReadingContent } = useSidebarActions();
 
   const isMobile = !useIsDesktop();
 
@@ -191,9 +180,7 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
                     <PrimaryButton
                       className={`bg-[#5326D4] text-white rounded-xl py-4 px-6 w-full text-sm md:text-base`}
-                      onClick={() => {
-                        showReadingContent(CustomBlogData);
-                      }}
+                      onClick={onButtonClick}
                     >
                       Learn More
                     </PrimaryButton>
@@ -252,9 +239,7 @@ const Contribution = ({ sectionHeader, sectionSubHeader, sectionImage }) => {
                   <div className="flex gap-2 lg:gap-4 pt-6 w-full capitalize">
                     <PrimaryButton
                       className="bg-cst-neutral-1 text-black rounded-xl py-4 px-2 sm:px-6 w-full text-sm md:text-base"
-                      onClick={() => {
-                        showReadingContent(CustomBlogData);
-                      }}
+                      onClick={onButtonClick}
                     >
                       Learn More
                     </PrimaryButton>

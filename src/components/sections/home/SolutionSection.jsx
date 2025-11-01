@@ -9,6 +9,7 @@ export default function SolutionSection() {
       header={"Splitting methane into solid carbon and clean hydrogen."}
       subHeader={"Our Solution"}
       problemData={solutionData}
+      riveFile="/animations/electrolysis.riv"
     />
   );
 }
