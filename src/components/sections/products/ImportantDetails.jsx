@@ -5,12 +5,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import details from "@/data/details.json";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import DetailsCard from "./DetailsCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
-import { leftTypes } from "./ImpDetailsLefts";
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomBlogData from "@/data/customBlogData.json";
@@ -18,9 +16,10 @@ import CustomBlogData from "@/data/customBlogData.json";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ImportantDetails({
+  details,
+  leftTypes,
   sectionLabel = "Important Details",
   sectionHeader = "Technical And Other Details About Plasmalyzer",
-  isOneLeftType = true,
 }) {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -89,9 +88,7 @@ export default function ImportantDetails({
       <div className="lg:sticky top-0 left-0 w-full lg:h-[98vh] z-30 flex flex-col lg:flex-row gap-2 h-fit mt-2">
         {/* Left Side */}
         <div className="w-full hidden lg:block lg:flex-5/8 bg-primary rounded-2xl bg-cover bg-center min-h-[100dvh] lg:min-h-0">
-          {isOneLeftType
-            ? leftTypes[details[0].leftType]
-            : leftTypes[details[activeStep].leftType] || null}
+          {leftTypes[activeStep + 1] || null}
         </div>
 
         {/* Right Side */}
@@ -120,7 +117,7 @@ export default function ImportantDetails({
                 </div>
                 {index === activeStep && (
                   <div className="w-full flex-1/2 lg:hidden bg-primary rounded-2xl bg-cover bg-center lg:min-h-0 animate-in slide-in-from-top delay-300 duration-300 ease-in-out">
-                    {leftTypes[problem.leftType] || null}
+                    {leftTypes[activeStep + 1] || null}
                   </div>
                 )}
               </div>

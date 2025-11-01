@@ -30,7 +30,7 @@ const ProductGallery = ({ reversePeriod = 0 }) => {
 
   const { containerRef, containerWidth } = useContainerWidth();
   const duplicatedImages = useInfiniteLogos(logos, containerWidth, 184);
-  console.log("images", duplicatedImages);
+  // console.log("images", duplicatedImages);
   const oneSetWidth = logos.length * 184;
 
   return (

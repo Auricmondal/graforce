@@ -2,9 +2,9 @@
 
 import React from "react";
 import YouNeedUs from "../home/hero/YouNeedUs";
-import shapeDiamond1 from "@/assets/service/shapeDiamond2.png";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomBlogData from "@/data/customBlogData.json";
+import { howThisWorksSectorsData } from "@/data/sectorData";
 
 const HowThisWorks = () => {
   const { showReadingContent } = useSidebarActions();
@@ -14,7 +14,7 @@ const HowThisWorks = () => {
         sectionHeader={`How This Works`}
         sectionSubHeader="Process Flow"
         sectionColorVariant="dark"
-        sectionImage={shapeDiamond1}
+        sectorsData={howThisWorksSectorsData}
         learnMoreOnClick={() => showReadingContent(CustomBlogData)}
       />
     </div>

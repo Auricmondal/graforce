@@ -1,11 +1,3 @@
-"use client";
-
-import React from "react";
-import { useSidebarActions } from "@/hooks/useSidebarActions";
-import CustomBlogData from "@/data/customBlogData.json";
-import Contribution from "../industry/Contribution";
-import sideImg from "@/assets/service/shapeDiamond.png";
-
 const cases = [
   {
     id: 1,
@@ -21,18 +13,4 @@ const cases = [
   },
 ];
 
-const CaseStudies = () => {
-  const { showReadingContent } = useSidebarActions();
-
-  return (
-    <Contribution
-      sectionHeader="The Impact Opportunity"
-      sectionSubHeader={`Graforce's technology aligns with global energy and climate goals.`}
-      sectionImage={sideImg}
-      onButtonClick={() => showReadingContent(CustomBlogData)}
-      cases={cases}
-    />
-  );
-};
-
-export default CaseStudies;
+export default cases;
