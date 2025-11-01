@@ -10,7 +10,8 @@ import SectionLabel from "@/components/utils/badges/SectionLabel";
 import SolutionCard from "@/components/utils/cards/SolutionCard";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import CardWrapper from "@/wrappers/CardWrapper";
-import Chart from "@/components/utils/charts/TempChart";
+// import Chart from "@/components/utils/charts/TempChart";
+import RiveScrollGraph from "@/components/utils/animations/RiveScrollGraph";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,7 @@ export default function WhyWeMatter() {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const triggerRef = useRef(null);
+  const missionRef = useRef(null);
 
   useGSAP(() => {
     const isDesktop = window.matchMedia("(min-width: 768px)").matches;
@@ -68,7 +70,7 @@ export default function WhyWeMatter() {
   }, []);
 
   return (
-    <main className="md:relative w-full bg-secondary-light">
+    <main ref={missionRef} className="md:relative w-full bg-secondary-light">
       <div className="md:sticky top-0 left-0 w-full md:h-[100vh] z-30 flex flex-col md:flex-row p-2 gap-2 h-fit">
         {/* Left Side */}
         <div className="w-full md:flex-3/7 flex gap-2">
@@ -110,10 +112,16 @@ export default function WhyWeMatter() {
         </div>
 
         {/* Right Side */}
-        <div className="w-full md:flex-4/7 border-1 border-primary-light rounded-2xl bg-cover bg-center min-h-[100dvh] md:min-h-0">
-          <Chart
+        <div className="relative w-full h-fit sm:h-full flex md:flex-4/7 items-center border-1 p-2 border-primary-light rounded-2xl bg-cover bg-center overflow-hidden">
+          {/* <Chart
             data={problemData[activeStep ?? 0]?.data}
             dataIndex={activeStep ?? 0}
+          /> */}
+          <RiveScrollGraph
+            src="/animations/graph.riv"
+            stateMachines="timeline"
+            aspectRatio="1"
+            anchorRef={missionRef.current}
           />
         </div>
       </div>
