@@ -1,12 +1,20 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import { FaChevronRight } from "react-icons/fa";
 
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
-import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
+
+const RiveAutoplay = dynamic(
+  () => import("@/components/utils/animations/RiveAutoplay"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 const Hero = () => {
   const { showContactForm } = useSidebarActions();

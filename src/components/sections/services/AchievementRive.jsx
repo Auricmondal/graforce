@@ -40,7 +40,7 @@ export default function AchievementRive({
   const scrollInput = useStateMachineInput(rive, "timeline", "Scroll");
 
   useEffect(() => {
-    if (!scrollInput || !containerRef.current) return;
+    if (!rive || !scrollInput || !containerRef.current) return;
 
     const trigger = ScrollTrigger.create({
       id: `rive-scroll-trigger-${id}`,

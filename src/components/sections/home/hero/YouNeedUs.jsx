@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import CardWrapper from "@/wrappers/CardWrapper";
@@ -13,10 +14,23 @@ import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomJobData from "@/data/customJobData.json";
 import CustomSpecData from "@/data/customSpecData.json";
-import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
 import { Layout, useRive } from "@rive-app/react-canvas";
 import Tower from "@/assets/tower.png";
-import AchievementRive from "../../services/AchievementRive";
+
+const RiveAutoplay = dynamic(
+  () => import("@/components/utils/animations/RiveAutoplay"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
+const AchievementRive = dynamic(
+  () => import("@/components/sections/services/AchievementRive"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 gsap.registerPlugin(ScrollTrigger);
 

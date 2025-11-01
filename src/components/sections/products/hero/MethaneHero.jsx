@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -10,7 +11,14 @@ import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import sparkImg from "@/assets/product/spark_hydro.svg";
 import carbonImg from "@/assets/product/carbon.webp";
 import hydrogenImg from "@/assets/product/hydrogen.webp";
-import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
+
+const RiveAutoplay = dynamic(
+  () => import("@/components/utils/animations/RiveAutoplay"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 

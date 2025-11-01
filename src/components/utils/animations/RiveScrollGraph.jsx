@@ -52,7 +52,7 @@ export default function RiveScrollGraph({ src = "/animations/graph.riv", stateMa
 
   const scrollInput = useStateMachineInput(rive, "timeline", "Scroll");
 
-  requestAnimationFrame(() => {
+  // requestAnimationFrame(() => {
   useEffect(() => {
     if (!scrollInput || !containerRef.current) return;
 
@@ -83,7 +83,7 @@ export default function RiveScrollGraph({ src = "/animations/graph.riv", stateMa
       }
     }
   }, [rive]);
-});
+// });
 
   return (
     <div

@@ -1,4 +1,12 @@
-import AchievementRive from "../services/AchievementRive";
+import dynamic from "next/dynamic";
+
+const AchievementRive = dynamic(
+  () => import("@/components/sections/services/AchievementRive"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 export const leftTypes = {
   1: (

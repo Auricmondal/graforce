@@ -5,7 +5,15 @@ import DataCard from "./DataCard";
 import lightningImg from "@/assets/product/lightning.svg";
 import h2Img from "@/assets/product/h2.svg";
 import cImg from "@/assets/product/c.svg";
-import AchievementRive from "../services/AchievementRive";
+import dynamic from "next/dynamic";
+const AchievementRive = dynamic(
+  () => import("@/components/sections/services/AchievementRive"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
+
 
 const cards = [
   {

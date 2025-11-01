@@ -1,5 +1,4 @@
 import shapeDiamond1 from "@/assets/service/shapeDiamond2.png";
-import AchievementRive from "@/components/sections/services/AchievementRive";
 
 export const homeSectorsData = [
   {
