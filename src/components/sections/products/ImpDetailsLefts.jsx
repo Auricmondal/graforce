@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import leftImg from "@/assets/service/ServiceSolution1.jpg";
 import InfoCard from "./InfoCard";

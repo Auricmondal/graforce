@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import Hero from "@/components/sections/industry/Hero";
 import ImportantDetails from "@/components/sections/products/ImportantDetails";
