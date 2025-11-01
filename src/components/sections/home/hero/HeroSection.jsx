@@ -26,6 +26,8 @@ const HeroSection = () => {
         muted
         autoPlay
         loop
+        preload="none"
+        poster="/hero-videos/hero-video-frame.png"
         className="w-full h-full rounded-2xl object-cover brightness-80"
       />
 
