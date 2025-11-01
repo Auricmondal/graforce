@@ -1,4 +1,3 @@
-// schemas/hydrogenAmmoniaHeroSection.js
 import { defineType, defineField } from "sanity";
 
 export default defineType({
@@ -10,20 +9,13 @@ export default defineType({
       name: "title",
       title: "Main Title",
       type: "string",
-      description: "The main heading for the hero section. Example: 'Hydrogen from Ammonia, Reinvented'",
+      description: "Example: 'Hydrogen from Ammonia, Reinvented'",
     }),
     defineField({
       name: "subTitle",
       title: "Subheading / Description",
       type: "text",
-      description: "A short description or tagline for the hero section. Example: 'Our plasma technology makes hydrogen production cleaner, safer, and carbon-free.'",
-    }),
-    defineField({
-      name: "backgroundImage",
-      title: "Background Image",
-      type: "image",
-      options: { hotspot: true },
-      description: "Main background image for the hero section. Example: Upload a high-quality PNG or JPG showing the hydrogen network.",
+      description: "Example: 'Our plasma technology makes hydrogen production cleaner, safer, and carbon-free.'",
     }),
     defineField({
       name: "primaryButtonText",
@@ -42,7 +34,6 @@ export default defineType({
           { title: "Custom Link", value: "link" },
         ],
       },
-      description: "Action triggered when the primary button is clicked. Example: 'openModal' to show contact form.",
     }),
     defineField({
       name: "secondaryButtonText",
@@ -51,24 +42,40 @@ export default defineType({
       description: "Text for the secondary CTA button. Example: 'Download Brochure'",
     }),
     defineField({
-  name: "secondaryButtonAction",
-  title: "Secondary Button Action",
-  type: "string",
-  options: {
-    list: [
-      { title: "Download Brochure", value: "download" },
-      { title: "Scroll to Section", value: "scroll" },
-      { title: "Custom Link", value: "link" },
-    ],
-  },
-  description: "Action triggered when the secondary button is clicked. Example: 'download' to download a brochure PDF.",
-}),
-
+      name: "secondaryButtonAction",
+      title: "Secondary Button Action",
+      type: "string",
+      options: {
+        list: [
+          { title: "Download Brochure", value: "download" },
+          { title: "Scroll to Section", value: "scroll" },
+          { title: "Custom Link", value: "link" },
+        ],
+      },
+    }),
     defineField({
       name: "secondaryButtonUrl",
       title: "Secondary Button URL",
       type: "url",
-      description: "Optional URL for the secondary button if action is 'link' or 'download'. Example: 'https://example.com/brochure.pdf'",
+      description: "Optional URL for secondary button if action is 'link' or 'download'",
+    }),
+    defineField({
+      name: "riveFile",
+      title: "Rive File",
+      type: "file",
+      description: "Upload the .riv animation file",
+    }),
+    defineField({
+      name: "riveStateMachine",
+      title: "Rive State Machine",
+      type: "string",
+      description: "Name of the state machine to control the animation",
+    }),
+    defineField({
+      name: "riveDelay",
+      title: "Rive Animation Delay",
+      type: "number",
+      description: "Delay before the animation starts in milliseconds",
     }),
   ],
 });

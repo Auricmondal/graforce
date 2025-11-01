@@ -1,11 +1,15 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
+
+import client from "@/lib/sanityClient";
+import { plasmaAmmoniaHeroQuery } from "@/Queries/products/plasma-ammonia-cracker/plasmaammoniacrackerhero";
 
 const RiveAutoplay = dynamic(
   () => import("@/components/utils/animations/RiveAutoplay"),
@@ -15,24 +19,21 @@ const RiveAutoplay = dynamic(
   }
 );
 
-import bgImgFallback from "@/assets/product/plasma-ammonia-cracker.webp"; // fallback image
-import client from "@/lib/sanityClient";
-import { plasmaAmmoniaHeroQuery } from "@/Queries/products/plasma-ammonia-cracker/plasmaammoniacrackerhero";
-
 const Hero = () => {
   const { showContactForm } = useSidebarActions();
 
+  // Fallback content (same as old hardcoded version)
   const [heroData, setHeroData] = useState({
     title: "Hydrogen from Ammonia, Reinvented",
     subTitle: "Our plasma technology makes hydrogen production cleaner, safer, and carbon-free.",
     primaryButtonText: "Talk to an Expert",
-    primaryButtonAction: "openModal",
     secondaryButtonText: "Download Brochure",
-    secondaryButtonAction: "download",
-    secondaryButtonUrl: null,
-    backgroundImageUrl: bgImgFallback.src,
+    riveFile: "/animations/heroanim.riv",
+    riveStateMachine: "heroanim",
+    riveDelay: 800,
   });
 
+  // Fetch content from Sanity
   useEffect(() => {
     const fetchHero = async () => {
       try {
@@ -44,15 +45,14 @@ const Hero = () => {
             title: hero.title || prev.title,
             subTitle: hero.subTitle || prev.subTitle,
             primaryButtonText: hero.primaryButtonText || prev.primaryButtonText,
-            primaryButtonAction: hero.primaryButtonAction || prev.primaryButtonAction,
             secondaryButtonText: hero.secondaryButtonText || prev.secondaryButtonText,
-            secondaryButtonAction: hero.secondaryButtonAction || prev.secondaryButtonAction,
-            secondaryButtonUrl: hero.secondaryButtonUrl || prev.secondaryButtonUrl,
-            backgroundImageUrl: hero.backgroundImageUrl || prev.backgroundImageUrl,
+            riveFile: hero.riveFile || prev.riveFile,
+            riveStateMachine: hero.riveStateMachine || prev.riveStateMachine,
+            riveDelay: hero.riveDelay || prev.riveDelay,
           }));
         }
       } catch (err) {
-        console.error("Failed to fetch hero data:", err);
+        console.error("Failed to fetch hero data from Sanity:", err);
       }
     };
 
@@ -62,7 +62,6 @@ const Hero = () => {
   return (
     <main className="text-white overflow-hidden h-fit bg-cst-neutral-1 p-2">
       <div className="bg-cst-neutral-5 flex flex-col gap-2 w-full rounded-2xl relative p-2 md:p-16 md:pb-4 h-full">
-        
         <div className="flex flex-col gap-4 pt-16 lg:pt-0">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-medium max-w-9xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
             <AnimatedHeader delay={0.4}>{heroData.title}</AnimatedHeader>
@@ -82,26 +81,19 @@ const Hero = () => {
             </PrimaryButton>
             <PrimaryButton
               className="text-black bg-cst-neutral-1 py-3 px-4 md:py-4 md:px-6 rounded-2xl transition font-medium text-sm sm:text-base w-full md:w-fit justify-center"
-              onClick={() =>
-                heroData.secondaryButtonUrl
-                  ? window.open(heroData.secondaryButtonUrl, "_blank")
-                  : showContactForm()
-              }
+              onClick={() => showContactForm()}
             >
               {heroData.secondaryButtonText}
             </PrimaryButton>
           </div>
         </div>
 
-        {/* Background Image */}
-        <div className="w-auto flex-1 relative">
-          <Image
-            src={heroData.backgroundImageUrl}
-            alt="Hydrogen Network"
-            height={1000}
-            width={1000}
-            className="mx-auto w-full h-auto"
-            style={{ objectFit: "contain" }}
+        {/* Rive Animation */}
+        <div className="w-auto flex-1 relative h-fit py-6 lg:p-0">
+          <RiveAutoplay
+            src={heroData.riveFile}
+            stateMachines={heroData.riveStateMachine}
+            delay={heroData.riveDelay}
           />
         </div>
       </div>

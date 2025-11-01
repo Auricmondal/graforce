@@ -1,9 +1,10 @@
 export const problemSectionQuery = /* groq */ `
-  *[_type == "hydrogen-production"][0]{
-    problemSection {
-      sectionTitle,
-      sectionHeading,
-      problems[] {
+*[_type == "hydrogen-production"][0]{
+  problemSection {
+    sectionTitle,
+    sectionHeading,
+    problems[] {
+      problemItem {
         id,
         title,
         description,
@@ -11,9 +12,8 @@ export const problemSectionQuery = /* groq */ `
           year,
           value
         }
-      },
-      learnMoreText,
-      learnMoreLink
+      }
     }
   }
+}
 `;

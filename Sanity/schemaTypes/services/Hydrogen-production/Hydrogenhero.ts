@@ -18,11 +18,11 @@ export default defineType({
       description: "Word or phrase to highlight in the title (e.g., Hydrogen).",
     }),
     defineField({
-      name: "backgroundImage",
-      title: "Background Image",
-      type: "image",
-      description: "Main hero background image (e.g., hydrogen network or globe).",
-      options: { hotspot: true },
+      name: "riveFile",
+      title: "Rive Animation File",
+      type: "file",
+      description: "Upload the .riv file for the hero animation.",
+      options: { accept: ".riv" },
     }),
     defineField({
       name: "primaryButtonText",
@@ -40,7 +40,7 @@ export default defineType({
       name: "primaryButtonAction",
       title: "Primary Button Action",
       type: "string",
-      description: "Defines what happens when user clicks the primary button",
+      description: "Defines what happens when user clicks the primary button.",
       options: {
         list: [
           { title: "Open Contact Modal", value: "openModal" },
@@ -50,17 +50,10 @@ export default defineType({
       },
     }),
     defineField({
-      name: "secondaryButtonLink",
-      title: "Secondary Button Link / File",
-      type: "file",
-      description: "Upload a brochure PDF or any downloadable file.",
-      options: { accept: "application/pdf" },
-    }),
-    defineField({
       name: "secondaryButtonUrl",
-      title: "External Brochure URL",
+      title: "Secondary Button URL",
       type: "url",
-      description: "Optional external brochure link (used if file is empty).",
+      description: "Optional external link for the secondary button (brochure, download, etc.).",
     }),
   ],
 });

@@ -8,7 +8,9 @@ export const plasmaAmmoniaHeroQuery = /* groq */ `
     secondaryButtonText,
     secondaryButtonAction,
     secondaryButtonUrl,
-    "backgroundImageUrl": backgroundImage.asset->url
+    "riveFile": riveFile.asset->url,
+    riveStateMachine,
+    riveDelay
   }
 }
 `;

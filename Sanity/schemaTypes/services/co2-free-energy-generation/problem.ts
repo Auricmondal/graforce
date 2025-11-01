@@ -2,58 +2,76 @@ import { defineType, defineField } from "sanity";
 
 export default defineType({
   name: "problemSection",
-  title: "Problem Section",
+  title: "Emission Problem Section",
   type: "object",
   fields: [
-    defineField({
-      name: "sectionTitle",
-      title: "Section Title",
-      type: "string",
-      description: "Title for the problem section",
-    }),
-    defineField({
-      name: "sectionHeading",
-      title: "Section Heading",
-      type: "string",
-      description: "Heading displayed under the section title",
-    }),
-    defineField({
-      name: "problems",
-      title: "Problems",
-      type: "array",
-      of: [
         defineField({
-          name: "problemItem",
-          title: "Problem Item",
-          type: "object",
-          fields: [
+          name: "sectionTitle",
+          title: "Section Title",
+          type: "string",
+          description:
+            "The main title of the problem section. Example: 'The Problem We Discovered'",
+        }),
+        defineField({
+          name: "sectionHeading",
+          title: "Section Heading",
+          type: "string",
+          description:
+            "The short heading below the section title. Example: 'The Emission Burden'",
+        }),
+        defineField({
+          name: "problems",
+          title: "Problems",
+          type: "array",
+          of: [
             defineField({
-              name: "id",
-              title: "Problem ID",
-              type: "number",
-            }),
-            defineField({
-              name: "title",
-              title: "Title",
-              type: "string",
-            }),
-            defineField({
-              name: "description",
-              title: "Description",
-              type: "text",
-            }),
-            defineField({
-              name: "data",
-              title: "Data Points",
-              type: "array",
-              of: [
+              name: "problemItem",
+              title: "Problem Item",
+              type: "object",
+              fields: [
                 defineField({
-                  name: "dataPoint",
-                  title: "Data Point",
-                  type: "object",
-                  fields: [
-                    { name: "year", title: "Year", type: "string" },
-                    { name: "value", title: "Value", type: "number" },
+                  name: "id",
+                  title: "Problem ID",
+                  type: "number",
+                  description: "Unique numeric identifier for each problem.",
+                }),
+                defineField({
+                  name: "title",
+                  title: "Title",
+                  type: "string",
+                  description: "The title of the problem. Example: 'High CO₂ Emissions'",
+                }),
+                defineField({
+                  name: "description",
+                  title: "Description",
+                  type: "text",
+                  description:
+                    "Detailed explanation of the problem. Example: 'Methane combustion contributes significantly to greenhouse gases.'",
+                }),
+                defineField({
+                  name: "data",
+                  title: "Data Points",
+                  type: "array",
+                  of: [
+                    defineField({
+                      name: "dataPoint",
+                      title: "Data Point",
+                      type: "object",
+                      fields: [
+                        {
+                          name: "year",
+                          title: "Year",
+                          type: "string",
+                          description: "Year of the data point. Example: '2025'",
+                        },
+                        {
+                          name: "value",
+                          title: "Value",
+                          type: "number",
+                          description: "Value for that year. Example: 1200",
+                        },
+                      ],
+                    }),
                   ],
                 }),
               ],
@@ -61,19 +79,4 @@ export default defineType({
           ],
         }),
       ],
-    }),
-    // ✅ Learn More Button
-    defineField({
-      name: "learnMoreText",
-      title: "Learn More Button Text",
-      type: "string",
-      description: "Text for the Learn More button",
-    }),
-    defineField({
-      name: "learnMoreLink",
-      title: "Learn More Link",
-      type: "url",
-      description: "Link for the Learn More button",
-    }),
-  ],
-});
+    });

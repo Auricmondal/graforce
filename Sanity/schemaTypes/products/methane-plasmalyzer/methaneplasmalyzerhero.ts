@@ -9,20 +9,13 @@ export default defineType({
       name: "title",
       title: "Main Title",
       type: "string",
-      description: "The main heading for the product hero (e.g., Methane Plasmalyzer®)",
+      description: "Main heading for the product hero (e.g., Methane Plasmalyzer®)",
     }),
     defineField({
-      name: "subTitle", // Changed from "description" to "subTitle"
+      name: "subTitle",
       title: "Subheading / Description",
       type: "text",
       description: "Short description or tagline for the hero section",
-    }),
-    defineField({
-      name: "backgroundImages",
-      title: "Background Images",
-      type: "array",
-      description: "Images shown in the hero background (can be multiple decorative images)",
-      of: [{ type: "image", options: { hotspot: true } }],
     }),
     defineField({
       name: "primaryButtonText",
@@ -62,7 +55,24 @@ export default defineType({
       name: "secondaryButtonUrl",
       title: "Secondary Button URL",
       type: "url",
-      description: "Optional URL for secondary button if action is 'link' or 'download'",
+    }),
+    defineField({
+      name: "riveFile",
+      title: "Rive File",
+      type: "file",
+      description: "Upload the .riv animation file",
+    }),
+    defineField({
+      name: "riveStateMachine",
+      title: "Rive State Machine",
+      type: "string",
+      description: "Name of the Rive state machine to use",
+    }),
+    defineField({
+      name: "riveDelay",
+      title: "Rive Delay",
+      type: "number",
+      description: "Delay in milliseconds before starting the Rive animation",
     }),
   ],
 });

@@ -1,19 +1,16 @@
-// queries/methaneHeroQuery.js
 export const methaneHeroQuery = /* groq */ `
 *[_type == "methane-plasmalyzer"][0]{
-  "heroSection": methaneplasmalyzerHeroSection{
+  "heroSection": methaneplasmalyzerHeroSection {
     title,
     subTitle,
     primaryButtonText,
     primaryButtonAction,
     secondaryButtonText,
+    secondaryButtonAction,
     secondaryButtonUrl,
-    backgroundImages[]{
-      asset->{
-        _id,
-        url
-      }
-    }
+    "riveFile": riveFile.asset->url,
+    riveStateMachine,
+    riveDelay
   }
 }
 `;

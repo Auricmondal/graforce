@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { FaChevronRight } from "react-icons/fa";
 
-import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 
+import { client } from "@/lib/sanityClient";
+import { hydrogenHeroQuery } from "@/Queries/services/hydrogen-production/hydrogenhero";
+
+// Keep RiveAutoplay dynamic import
 const RiveAutoplay = dynamic(
   () => import("@/components/utils/animations/RiveAutoplay"),
   {
@@ -40,16 +43,12 @@ const Hero = () => {
   const highlightedWord = heroData?.highlightedWord || "Hydrogen";
   const primaryButtonText = heroData?.primaryButtonText || "Talk to an Expert";
   const secondaryButtonText = heroData?.secondaryButtonText || "Download Brochure";
-  const backgroundImage = heroData?.backgroundImage?.asset?.url || bgImgFallback.src;
-  const backgroundAlt = heroData?.backgroundImage?.alt || "Hydrogen Network";
 
   const parts = title.split(highlightedWord);
 
-  if (!heroData) return null; // optional loader
-
   return (
-    <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
-      <div className="flex flex-col w-full rounded-2xl px-[3vw] h-full absolute inset-0 z-10 justify-center">
+    <main className="text-white h-fit bg-cst-neutral-1 p-2">
+      <div className="bg-cst-neutral-5 flex flex-col w-full rounded-2xl relative pt-[20vh] lg:pt-[8vh] pb-2 px-[3vw] h-full">
         <div className="flex flex-col gap-6">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-semibold max-w-8xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
             <AnimatedHeader delay={0.4}>
@@ -74,17 +73,14 @@ const Hero = () => {
             </PrimaryButton>
           </div>
         </div>
-      </div>
 
-      {/* Background Image */}
-      <div className="w-full h-full relative">
-        <Image
-          src={backgroundImage}
-          alt={backgroundAlt}
-          fill
-          className="z-0 object-cover rounded-2xl brightness-70"
-          style={{ objectFit: "cover" }}
-        />
+        <div className="w-auto flex-1 h-fit relative py-6 lg:p-0">
+          <RiveAutoplay
+            src={"/animations/heroanim.riv"}
+            stateMachines={"heroanim"}
+            delay={800}
+          />
+        </div>
       </div>
     </main>
   );
