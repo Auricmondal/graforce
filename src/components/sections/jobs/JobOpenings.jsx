@@ -5,10 +5,10 @@ import SectionWrapper from "@/wrappers/SectionWrapper";
 import CardWrapper from "@/wrappers/CardWrapper";
 import SectionLabel from "@/components/utils/badges/SectionLabel";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
-import HoverCard from "@/components/utils/cards/HoverCard";
 import thunderImg from "@/assets/thunder.webp";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomJobData from "@/data/customJobData.json";
+import GraforceSolutionCard from "../products/solutions/GraforceSolutionCard";
 
 const sectorData = [
   {
@@ -65,7 +65,7 @@ const JobOpenings = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
         {sectorData.map((card) => (
-          <HoverCard
+          <GraforceSolutionCard
             key={card.id}
             icon={card.icon}
             title={card.title}
@@ -85,7 +85,7 @@ const JobOpenings = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
         {sectorData.map((card) => (
-          <HoverCard
+          <GraforceSolutionCard
             key={card.id}
             icon={card.icon}
             title={card.title}

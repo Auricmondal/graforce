@@ -12,28 +12,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function RiveScrollAnimation() {
+export default function AchievementRive({
+  id,
+  src = "/animations/electrolysis.riv",
+}) {
   const containerRef = useRef(null);
-  const [riveSrc, setRiveSrc] = useState("/animations/timeline.riv");
   const [aspectRatio, setAspectRatio] = useState(null);
 
-  const handleResize = () => {
-    const isMobile = window.innerWidth < 1024;
-    setRiveSrc(
-      isMobile
-        ? "/animations/timeline.riv" // Use mobile version if available
-        : "/animations/timeline.riv" // Use desktop version
-    );
-  };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const { rive, RiveComponent } = useRive({
-    src: riveSrc,
+    src: src,
     stateMachines: "timeline",
     autoplay: true,
     layout: new Layout({
@@ -53,12 +40,13 @@ export default function RiveScrollAnimation() {
   const scrollInput = useStateMachineInput(rive, "timeline", "Scroll");
 
   useEffect(() => {
-    if (!scrollInput || !containerRef.current) return;
+    if (!rive || !scrollInput || !containerRef.current) return;
 
     const trigger = ScrollTrigger.create({
+      id: `rive-scroll-trigger-${id}`,
       trigger: containerRef.current,
-      start: "top 75%",
-      end: "bottom 25%",
+      start: "top 50%",
+      end: "bottom 0%",
       scrub: true,
       onUpdate: (self) => {
         scrollInput.value = self.progress * 100;
@@ -67,7 +55,7 @@ export default function RiveScrollAnimation() {
 
     // console.log({artboardName})
     return () => trigger.kill();
-  }, [scrollInput]);
+  }, [scrollInput, id, src]);
 
   useEffect(() => {
     if (rive && rive.loaded) {
@@ -87,9 +75,19 @@ export default function RiveScrollAnimation() {
       style={{
         aspectRatio: aspectRatio || 1,
         marginInline: "auto",
+        position: "relative",
+        width: "100%",
       }}
     >
-      <RiveComponent style={{ width: "100%", height: "100%" }} />
+      <RiveComponent
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          display: "block",
+        }}
+      />
     </div>
   );
 }

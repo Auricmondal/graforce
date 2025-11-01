@@ -1,12 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React from "react";
+import dynamic from "next/dynamic";
 import { FaChevronRight } from "react-icons/fa";
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
-import RiveAutoplay from "@/components/utils/animations/RiveAutoplay";
+
+const RiveAutoplay = dynamic(
+  () => import("@/components/utils/animations/RiveAutoplay"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 import bgImgFallback from "@/assets/product/plasma-ammonia-cracker.webp"; // fallback image
 import client from "@/lib/sanityClient";

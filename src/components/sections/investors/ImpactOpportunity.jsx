@@ -6,9 +6,9 @@ import CardWrapper from "@/wrappers/CardWrapper";
 import SectionWrapper from "@/wrappers/SectionWrapper";
 import thunderImg from "@/assets/investor/thunder.webp";
 import React from "react";
-import ImpactCard from "../../utils/cards/HoverCard";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import CustomBlogData from "@/data/customBlogData.json";
+import GraforceSolutionCard from "../products/solutions/GraforceSolutionCard";
 
 const impactCardData = [
   {
@@ -55,7 +55,7 @@ const ImpactOpportunity = () => {
         </CardWrapper>
         <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
           {impactCardData.map((card) => (
-            <ImpactCard
+            <GraforceSolutionCard
               key={card.id}
               icon={card.icon}
               title={card.title}

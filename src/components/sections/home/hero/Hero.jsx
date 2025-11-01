@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-
-import HeroSection from "@/components/sections/home/hero/HeroSection";
+import HeroSection from "./HeroSection";
 
 const Hero = () => {
   const [isFixed, setIsFixed] = useState(true);

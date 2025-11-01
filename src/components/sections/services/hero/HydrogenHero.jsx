@@ -1,15 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+
+import React from "react";
+import dynamic from "next/dynamic";
 import { FaChevronRight } from "react-icons/fa";
 
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
+import { useSidebarActions } from "@/hooks/useSidebarActions";
 
-import bgImgFallback from "@/assets/service/hero/service-hero.webp";
-import { client } from "@/lib/sanityClient";
-import { hydrogenHeroQuery } from "@/Queries/services/hydrogen-production/hydrogenhero";
+const RiveAutoplay = dynamic(
+  () => import("@/components/utils/animations/RiveAutoplay"),
+  {
+    ssr: false,
+    loading: () => <div className="bg-gray-200 h-64 w-full animate-pulse" />,
+  }
+);
 
 const Hero = () => {
   const { showContactForm } = useSidebarActions();
