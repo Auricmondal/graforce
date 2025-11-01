@@ -27,7 +27,7 @@ const Hero = () => {
 
   return (
     <main className="text-white overflow-hidden h-fit bg-cst-neutral-1 p-2">
-      <div className="bg-[linear-gradient(90.53deg,_#102044_-1.02%,_#416DD2_99.51%)] flex flex-col w-full rounded-2xl relative p-2 md:p-16 md:pb-4 px-[3vw] h-full">
+      <div className="bg-[linear-gradient(90.53deg,_#102044_-1.02%,_#416DD2_99.51%)] flex flex-col w-full rounded-2xl relative p-2 md:p-16 md:pb-4 px-[3vw] h-full overflow-hidden">
         <div className="relative pt-32">
           <div className="absolute right-[-17%] top-[-10vh] md:top-[-27vh] lg:top-[-32vh] w-full lg:w-2/3 bg-no-repeat bg-contain z-1 scale-125">
             <Image
