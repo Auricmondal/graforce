@@ -41,7 +41,7 @@ const Hero = () => {
           <div className="absolute right-[0.5vw] bottom-[20vh] bg-no-repeat bg-contain z-1 scale-25 hidden lg:block">
             <Image src={carbonImg} alt="left image" fill={false} className="" />
           </div>
-          <div className="absolute left-[15vw] bottom-[-4vh] bg-no-repeat bg-contain z-1 scale-20 hidden lg:block">
+          <div className="absolute left-[13vw] bottom-[-8vh] bg-no-repeat bg-contain z-1 scale-20 hidden lg:block">
             <Image
               src={hydrogenImg}
               alt="left image"
@@ -49,7 +49,7 @@ const Hero = () => {
               className="z-10"
             />
           </div>
-          <div className="absolute left-[5%] top-[8%] hidden md:block bg-no-repeat bg-contain z-1 scale-50">
+          <div className="absolute left-[3%] top-[0%] hidden md:block bg-no-repeat bg-contain z-1 scale-50">
             <Image src={carbonImg} alt="left image" fill={false} className="" />
           </div>
 

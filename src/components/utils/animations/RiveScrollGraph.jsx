@@ -32,22 +32,7 @@ export default function RiveScrollGraph({
     checkIsMobile();
     window.addEventListener("resize", checkIsMobile);
     return () => window.removeEventListener("resize", checkIsMobile);
-  }, []);
-
-  // const handleResize = () => {
-  //   const isMobile = window.innerWidth < 1024;
-  //   setRiveSrc(
-  //     isMobile
-  //       ? "/animations/graph.riv" // Use mobile version if available
-  //       : "/animations/graph.riv" // Use desktop version
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   handleResize();
-  //   window.addEventListener("resize", handleResize);
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+  }, [isMobile]);
 
   const { rive, RiveComponent } = useRive({
     src: riveSrc,
@@ -69,7 +54,6 @@ export default function RiveScrollGraph({
 
   const scrollInput = useStateMachineInput(rive, "timeline", "Scroll");
 
-  // requestAnimationFrame(() => {
   useEffect(() => {
     if (!scrollInput || !containerRef.current) return;
 
@@ -92,7 +76,7 @@ export default function RiveScrollGraph({
 
     // console.log({artboardName})
     return () => trigger.kill();
-  }, [scrollInput, anchorRef]);
+  }, [scrollInput, anchorRef, isMobile]);
 
   useEffect(() => {
     if (rive && rive.loaded) {
@@ -105,7 +89,6 @@ export default function RiveScrollGraph({
       }
     }
   }, [rive]);
-  // });
 
   return (
     <div
