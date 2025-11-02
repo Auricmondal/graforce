@@ -53,6 +53,10 @@
   --font-dancing-script: var(--font-dancing-script);
 }
 
+* {
+  cursor: none !important;
+}
+
 body {
   font-family: var(--font-dm-sans), sans-serif;
   background-color: var(--dark);
