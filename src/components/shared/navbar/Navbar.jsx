@@ -21,14 +21,14 @@ const Navbar = () => {
     <>
       {!isOpen && <div className="">
         <div
-          className={`fixed top-0 right-0 w-full z-100  h-fit`}
+          className={`fixed top-0 right-0 w-full z-10000 h-fit`}
           ref={menuRef}
         >
           <nav
             ref={navRef}
             className={`mx-auto flex-1 items-center justify-between px-3 py-2 bg-transparent shadow-none m-auto h-14 transition-all duration-500 ease-in-out origin-top sm:mt-3 rounded-2xl w-[100%]`}
           >
-            <div className="justify-between items-center flex sm:px-4 md:px-2 lg:px-4">
+            <div className="justify-between items-center backdrop-blur-sm flex sm:py-1 px-4 rounded-4xl border-[0.2px] shadow-xl border-cst-neutral-2/20 bg-cst-neutral-2/25">
               <BrandLogo
                 onClick={toggleSidebar}
                 isMenuOpen={isOpen}
@@ -47,7 +47,7 @@ const Navbar = () => {
         </div>
         <div
           ref={downMenuRef}
-          className="fixed flex items-center gap-2 bg-white py-2 px-4 rounded-xl shadow-lg border border-cst-neutral-1 cursor-pointer z-100 -bottom-[10vh] right-2"
+          className="fixed flex items-center gap-2 bg-cst-neutral-2/20 backdrop-blur-sm py-1 px-2 rounded-4xl shadow-xl border border-cst-neutral-2/20 cursor-pointer z-100 -bottom-[10vh] right-2"
         >
           <LanguageToggle setLanguage={setLanguage} nextLang={nextLang} language={language} />
           <div
