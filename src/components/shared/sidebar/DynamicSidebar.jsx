@@ -116,8 +116,9 @@ const DynamicSidebar = () => {
       >
         {/* Header */}
         <CardWrapper variant='custom' color={contentType === SIDEBAR_TYPES.CONTACT ? "custom" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "blue" : "default"} flexColumn={false} className={`sidebar-content-item flex items-center justify-between rounded-xl p-4 capitalize text-3xl font-bold ${contentType === SIDEBAR_TYPES.CONTACT ? "text-white bg-cst-neutral-5" : contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "bg-primary text-cst-neutral-1" : "bg-white text-cst-neutral-5"}`}>
-          <div className="flex items-center gap-3">
-            <BrandLogo size='text-4xl' />
+          <div className="">
+            {/* <BrandLogo size='text-4xl' /> */}
+            <h3 className='capitalize text-4xl group flex font-bold cursor-pointer transition-all duration-300 ease-in-out'>Graforce</h3>
           </div>
           <div
             className={`group border border-cst-neutral-2 p-2 rounded-full cursor-pointer transition-all ease-in-out duration-300 hover:bg-primary ${contentType === SIDEBAR_TYPES.SPECIFICATIONS ? "hover:border-cst-neutral-1 hover:text-cst-neutral-5" : "hover:border-primary "}`}
