@@ -47,7 +47,7 @@ const Stats = () => {
         opacity: 1,
         scrollTrigger: {
           trigger: '.stat-item',
-          start: 'top 90%',
+          start: 'top 80%',
           onEnter: () => startCounter(),
           once: true,
           scrub: 2,

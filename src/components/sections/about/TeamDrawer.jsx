@@ -103,7 +103,7 @@ const TeamDrawer = ({ className, ref, setIsDrawerOpen }) => {
   return (
     <div
       ref={ref}
-      className={`fixed top-0 left-0 z-2000 h-screen w-full backdrop-blur-md bg-white rounded-t-xl border border-cst-neutral-2 pt-4 ${className}`}
+      className={`fixed top-0 left-0 z-20000 h-screen w-full backdrop-blur-md bg-white rounded-t-xl border border-cst-neutral-2 pt-4 ${className}`}
     >
       <div
         className="relative h-full w-full top-0 md:top-0 overflow-auto rounded-t-xl p-6"
