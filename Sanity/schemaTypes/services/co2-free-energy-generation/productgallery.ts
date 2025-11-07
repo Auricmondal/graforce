@@ -9,28 +9,42 @@ export default defineType({
       name: "sectionHeader",
       title: "Section Header",
       type: "string",
-      description: "Header text for the gallery section",
+      description: "Header text for the gallery section (e.g., 'Product Gallery').",
     }),
     defineField({
       name: "images",
       title: "Gallery Images",
       type: "array",
       of: [
-        {
-          type: "image",
-          options: {
-            hotspot: true,
-          },
-        },
+        defineField({
+          name: "imageItem",
+          title: "Image Item",
+          type: "object",
+          fields: [
+            defineField({
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "alt",
+              title: "Alt Text",
+              type: "string",
+              description: "Accessibility description for the image.",
+            }),
+          ],
+        }),
       ],
-      description: "Images to display in the product gallery",
+      description: "Images to display in the product gallery.",
     }),
     defineField({
       name: "scrollDirections",
       title: "Scroll Directions",
       type: "array",
       of: [{ type: "string", options: { list: ["left", "right"] } }],
-      description: "Scroll direction for each gallery scroller",
+      description:
+        "Scroll direction for each gallery scroller (e.g., ['left', 'right']).",
     }),
   ],
 });

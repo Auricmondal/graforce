@@ -35,7 +35,7 @@ const config = {
   news: true,
 };
 
-export default async function MethanePlasmalyzer() {
+export default function MethanePlasmalyzer() {
   return (
     <>
       {config.hero && <Hero />}

@@ -6,65 +6,58 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      name: "sectionLabel",
-      title: "Section Label",
-      type: "string",
-      description: "Small label displayed above the section (e.g., 'Here is Why We Matter')",
-    }),
-    defineField({
       name: "sectionHeader",
       title: "Section Header",
       type: "string",
-      description: "Main header text for this section (e.g., 'Our Mission is to Save the Earth')",
+      description:
+        "Main header text for this section (e.g., 'Our Mission is to Save the Earth')",
+    }),
+    defineField({
+      name: "sectionSubHeader",
+      title: "Section Sub Header",
+      type: "string",
+      description:
+        "Small label displayed above the section (e.g., 'Here is Why We Matter')",
     }),
     defineField({
       name: "cards",
-      title: "Solution Cards",
+      title: "Why We Matter Cards",
       type: "array",
-      description: "List of cards explaining why this product/service matters",
+      description:
+        "List of cards explaining why this product/service matters",
       of: [
-        defineField({
+        {
+          type: "object",
           name: "card",
           title: "Card",
-          type: "object",
           fields: [
             defineField({
               name: "id",
               title: "ID",
-              type: "string",
+              type: "number",
               description: "Unique identifier for each card",
             }),
             defineField({
               name: "title",
               title: "Card Title",
               type: "string",
-              description: "Title for the solution card",
+              description: "Title for the card (e.g., 'Rising Emissions Over Decades')",
             }),
             defineField({
               name: "description",
               title: "Card Description",
               type: "text",
-              description: "Description text for the solution card",
+              description:
+                "Description text for the card (e.g., 'Global fossil CO₂ emissions have grown by 60%...')",
             }),
             defineField({
-              name: "data",
-              title: "Chart Data",
-              type: "array",
-              description: "Optional numeric data used to render chart on the right side",
-              of: [
-                defineField({
-                  name: "dataPoint",
-                  title: "Data Point",
-                  type: "object",
-                  fields: [
-                    { name: "label", title: "Label", type: "string" },
-                    { name: "value", title: "Value", type: "number" },
-                  ],
-                }),
-              ],
-            }),
+      name: "buttonLink",
+      title: "Button Link",
+      type: "url",
+      description: "URL to navigate when the button is clicked (e.g., /industries)",
+    }),
           ],
-        }),
+        },
       ],
     }),
   ],

@@ -1,18 +1,15 @@
 export const solutionSectionQuery = /* groq */ `
-  *[_type == "home" && language == $language][0]{
-    "solution": solutionSection{
-      sectionLabel,
-      heading,
-      backgroundImage{
-        asset->{
-          url
-        },
-        alt
-      },
-      steps[]{
+  *[_type == "home"][0]{
+    solutionSection{
+      header,
+      subHeader,
+      "riveFileUrl": riveFile.asset->url,
+      problemData[] {
         id,
         title,
-        description
+        description,
+        "imageUrl": image.asset->url,
+        link
       }
     }
   }

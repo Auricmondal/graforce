@@ -9,19 +9,22 @@ export default defineType({
       name: "sectionLabel",
       title: "Section Label",
       type: "string",
-      description: "Small label displayed above the section (e.g., 'Important Details')",
+      description:
+        "Small label displayed above the section (e.g., 'Important Details')",
     }),
     defineField({
       name: "sectionHeader",
       title: "Section Header",
       type: "string",
-      description: "Main header for this section (e.g., 'Technical and Other Details')",
+      description:
+        "Main header for this section (e.g., 'Technical and Other Details')",
     }),
     defineField({
       name: "cards",
       title: "Details Cards",
       type: "array",
-      description: "Right-hand cards with title, description, and leftType image mapping",
+      description:
+        "Right-hand cards with title, description, and left visual mapping",
       of: [
         defineField({
           name: "card",
@@ -48,17 +51,21 @@ export default defineType({
             }),
             defineField({
               name: "leftType",
-              title: "Left Side Type",
+              title: "Left Visual Type",
               type: "string",
-              description: "Controls which visual appears on the left (1, 2, 3...)",
+              description:
+                "Select which pre-defined left layout should appear for this card",
               options: {
                 list: [
-                  { title: "Full Image", value: "1" },
-                  { title: "Image + Info Cards", value: "2" },
-                  { title: "Grid Panels", value: "3" },
+                  { title: "Type 1 – Rive Animation", value: "1" },
+                  { title: "Type 2 – Image + InfoCards", value: "2" },
+                  { title: "Type 3 – Data Grid Cards", value: "3" },
+                  { title: "Type 4 – Rive Animation 2", value: "4" },
+                  { title: "Type 5 – Image + InfoCards 2", value: "5" },
                 ],
-                layout: "radio",
+                layout: "dropdown",
               },
+              initialValue: "1",
             }),
           ],
         }),

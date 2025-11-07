@@ -3,8 +3,10 @@ export const productGallerySectionQuery = /* groq */ `
     "productGallerySection": productGallerySection{
       sectionHeader,
       images[]{
-        asset->{
-          url
+        image{
+          asset->{
+            url
+          }
         },
         alt
       },

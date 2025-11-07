@@ -9,8 +9,10 @@ export const whatDoWeDoSectionQuery = /* groq */ `
         },
         alt
       },
-      floatingTips[]{
-        text
+      floatingTips[] {
+        text,
+        position,
+        delay
       }
     }
   }

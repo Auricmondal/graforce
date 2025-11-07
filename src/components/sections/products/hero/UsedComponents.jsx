@@ -1,11 +1,14 @@
 "use client";
-import React from "react";
+import React ,{useState,useEffect} from "react";
 import dynamic from "next/dynamic";
 import { FaChevronRight } from "react-icons/fa";
 
 import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
+
+import client from "@/lib/sanityClient";
+import { heroSectionQuery } from "@/Queries/products/used-components/usedcomponentshero";
 
 const RiveAutoplay = dynamic(
   () => import("@/components/utils/animations/RiveAutoplay"),
@@ -18,21 +21,55 @@ const RiveAutoplay = dynamic(
 const Hero = () => {
   const { showContactForm } = useSidebarActions();
 
+ const [title, setTitle] = useState("Efficient Gas Separation & Compression");
+  const [subtitle, setSubtitle] = useState(
+    "Modular systems to separate, compress and store hydrogen and other industrial gases — enabling scalable, emission-free infrastructure."
+  );
+  const [primaryButtonText, setPrimaryButtonText] = useState("Talk to an Expert");
+  const [secondaryButtonText, setSecondaryButtonText] = useState("Download Brochure");
+  const [riveAnimation, setRiveAnimation] = useState("/animations/heroanim.riv");
+
+useEffect(() => {
+    const fetchHeroData = async () => {
+      try {
+        const res = await client.fetch(heroSectionQuery);
+        const section = res?.heroSection;
+
+        if (!section) {
+          console.warn("⚠️ No Hero section data found in Sanity. Using fallback.");
+          return;
+        }
+
+        setTitle(section.title || "Efficient Gas Separation & Compression");
+setSubtitle(
+  section.subtitle ||
+    "Modular systems to separate, compress and store hydrogen and other industrial gases — enabling scalable, emission-free infrastructure."
+);
+setPrimaryButtonText(section.primaryButtonText || "Talk to an Expert");
+setSecondaryButtonText(section.secondaryButtonText || "Download Brochure");
+setRiveAnimation(section.riveAnimation || "/animations/heroanim.riv");
+
+      } catch (error) {
+        console.error("❌ Error fetching Hero data:", error);
+      }
+    };
+
+    fetchHeroData();
+  }, []);
+
   return (
     <main className="text-white overflow-hidden h-fit bg-cst-neutral-1 p-2">
       <div className="bg-[linear-gradient(71.58deg,_#102044_3.29%,_#416DD2_95.99%)] flex flex-col gap-2 w-full rounded-2xl relative p-2 md:p-16 md:pb-4 h-full">
         <div className="flex flex-col gap-4 pt-16 lg:pt-0">
           <h2 className="relative text-[clamp(40px,6vw,128px)] font-medium max-w-9xl w-full px-6 leading-[100%] max-w-6xl mx-auto text-center">
             <AnimatedHeader delay={0.4}>
-              Efficient Gas Separation & Compression
+              {title}
             </AnimatedHeader>
           </h2>
 
           <p className="max-w-2xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
-              Modular systems to separate, compress and store hydrogen and other
-              industrial gases — enabling scalable, emission-free
-              infrastructure.
+              {subtitle}
             </AnimatedHeader>
           </p>
 
@@ -42,13 +79,13 @@ const Hero = () => {
               className="text-white transition duration-300 border-1 border-transparent hover:border-white py-3 px-4 md:py-4 md:px-6 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-3 bg-primary hover:!bg-cst-neutral-5 w-full md:w-fit justify-center"
               onClick={() => showContactForm()}
             >
-              Talk to an Expert <FaChevronRight />
+              {primaryButtonText}<FaChevronRight />
             </PrimaryButton>
             <PrimaryButton
               className="text-black bg-cst-neutral-1 py-3 px-4 md:py-4 md:px-6 rounded-2xl transition font-medium text-sm sm:text-base w-full md:w-fit justify-center"
               onClick={() => showContactForm()}
             >
-              Download Brochure
+              {secondaryButtonText}
             </PrimaryButton>
           </div>
         </div>
@@ -56,7 +93,7 @@ const Hero = () => {
         {/* Network Image */}
         <div className="w-auto flex-1 relative h-fit py-6 lg:p-0">
           <RiveAutoplay
-            src={"/animations/heroanim.riv"}
+            src={riveAnimation}
             stateMachines={"heroanim"}
             delay={800}
           />

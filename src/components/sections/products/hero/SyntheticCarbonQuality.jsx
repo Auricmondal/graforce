@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React ,{useState,useEffect}from "react";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
@@ -8,8 +8,42 @@ import AnimatedHeader from "@/components/utils/animations/AnimatedHeader";
 import PrimaryButton from "@/components/utils/buttons/PrimaryButton";
 import { useSidebarActions } from "@/hooks/useSidebarActions";
 
+import client from "@/lib/sanityClient";
+import { syntheticCarbonHeroQuery } from "@/Queries/products/synthetic-carbon-quality/syntheticcarbonqualityhero";
+
 const Hero = () => {
   const { showContactForm } = useSidebarActions();
+
+  const [data, setData] = useState({
+    title: "Exceptional Carbon. Engineered for Performance.",
+    subtitle:
+      "Deep-purity carbon with high thermal stability, electrical conductivity and long-term structural integrity.",
+    primaryButtonText: "Talk to an Expert",
+    secondaryButtonText: "Download Brochure",
+    backgroundImage: bgImg,
+      });
+
+      useEffect(() => {
+    (async () => {
+      try {
+        const res = await client.fetch(syntheticCarbonHeroQuery);
+        const section = res?.heroSection;
+
+        if (section) {
+          setData((prev) => ({
+            ...prev,
+            title: section.title || prev.title,
+            subtitle: section.subtitle || prev.subtitle,
+            primaryButtonText: section.primaryButtonText || prev.primaryButtonText,
+            secondaryButtonText: section.secondaryButtonText || prev.secondaryButtonText,
+            backgroundImage: section.backgroundImage || prev.backgroundImage,
+          }));
+        }
+      } catch (err) {
+        console.error("❌ Failed to fetch synthetic carbon hero data:", err);
+      }
+    })();
+  }, []);
 
   return (
     <main className="text-white overflow-hidden h-screen bg-cst-neutral-1 p-2 relative">
@@ -17,14 +51,13 @@ const Hero = () => {
         <div className="flex flex-col gap-6">
           <h1 className="relative text-[clamp(40px,6vw,128px)] font-medium  w-full px-6 leading-[100%] mx-auto text-center">
             <AnimatedHeader>
-              Exceptional Carbon. Engineered for Performance.
+              {data.title}
             </AnimatedHeader>
           </h1>
 
           <p className="max-w-2xl mx-auto md:text-xl font-light text-center">
             <AnimatedHeader>
-              Deep-purity carbon with high thermal stability, electrical
-              conductivity and long-term structural integrity.
+              {data.subtitle}
             </AnimatedHeader>
           </p>
 
@@ -34,13 +67,13 @@ const Hero = () => {
               className="text-white transition duration-300 border-1 border-transparent hover:border-white py-3 px-4 md:py-4 md:px-6 rounded-2xl font-medium text-sm sm:text-base flex items-center gap-3 bg-primary hover:!bg-cst-neutral-5 w-full md:w-fit justify-center"
               onClick={() => showContactForm()}
             >
-              Talk to an Expert <FaChevronRight />
+            {data.primaryButtonText} <FaChevronRight />
             </PrimaryButton>
             <PrimaryButton
               className="text-black bg-cst-neutral-1 py-3 px-4 md:py-4 md:px-6 rounded-2xl transition font-medium text-sm sm:text-base w-full md:w-fit justify-center"
               onClick={() => showContactForm()}
             >
-              Download Brochure
+            {data.secondaryButtonText}
             </PrimaryButton>
           </div>
         </div>
@@ -49,7 +82,7 @@ const Hero = () => {
       {/* background Image */}
       <div className="w-full h-full relative">
         <Image
-          src={bgImg.src}
+          src={data.backgroundImage}
           alt="Background Image"
           fill
           className="z-0 object-cover rounded-2xl brightness-70"

@@ -10,33 +10,38 @@ export default defineType({
       name: "sectionLabel",
       title: "Section Label",
       type: "string",
-      description: "Label above the header",
+      description:
+        "Short title shown above the main heading — e.g., ‘Our Founder’.",
     }),
     defineField({
       name: "header",
-      title: "Header",
+      title: "Main Heading",
       type: "string",
-      description: "Main heading for this section",
+      description:
+        "Add a bold, visionary heading — e.g., ‘The Minds Powering a Hydrogen Revolution’.",
     }),
     defineField({
       name: "paragraphs",
-      title: "Paragraphs",
+      title: "Founder Story",
       type: "array",
       of: [{ type: "text" }],
-      description: "Content paragraphs about the founder",
+      description:
+        "Write about the founder’s journey and mission — for example, how Dr. Jens Hanke envisioned reversing climate change through technology, and how the Grafoce team blends physics, engineering, and design to make clean hydrogen accessible.",
     }),
     defineField({
       name: "linkedinUrl",
-      title: "LinkedIn URL",
+      title: "LinkedIn Profile URL",
       type: "url",
-      description: "Founder’s LinkedIn profile link",
+      description:
+        "Add the founder’s official LinkedIn profile link — e.g., Dr. Jens Hanke’s profile.",
     }),
     defineField({
       name: "founderImage",
       title: "Founder Image",
       type: "image",
       options: { hotspot: true },
-      description: "Image of the founder",
+      description:
+        "Upload a professional image of the founder — ideally one that reflects leadership and innovation.",
     }),
   ],
 });

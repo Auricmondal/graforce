@@ -3,9 +3,9 @@ export const testimonialSectionQuery = /* groq */ `
     "testimonialSection": testimonialSection{
       sectionHeader,
       sectionSubHeader,
-      testimonials[]{
+      testimonials[] {
         companyName,
-        logo{
+        logo {
           asset->{
             url
           },

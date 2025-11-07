@@ -1,17 +1,15 @@
 export const problemSectionQuery = /* groq */ `
 *[_type == "hydrogen-production"][0]{
   problemSection {
-    sectionTitle,
-    sectionHeading,
+    sectionHeader,
+    sectionSubHeader,
     problems[] {
-      problemItem {
-        id,
-        title,
-        description,
-        data[] {
-          year,
-          value
-        }
+      id,
+      title,
+      description,
+      data[] {
+        year,
+        value
       }
     }
   }

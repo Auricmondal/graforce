@@ -6,91 +6,80 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
-      name: "sectionLabel",
-      title: "Section Label",
+      name: "subHeader",
+      title: "Sub Header",
       type: "string",
-      description: "Badge text displayed above the heading (e.g., 'Our Solution')",
+      description: "Small heading text (e.g., 'Our Solution')",
     }),
     defineField({
-      name: "heading",
-      title: "Heading",
+      name: "header",
+      title: "Header",
       type: "string",
-      description: "Main heading for the solution section",
+      description: "Main heading text (e.g., 'Splitting methane into solid carbon and clean hydrogen.')",
     }),
     defineField({
-      name: "steps",
-      title: "Solution Steps",
+      name: "riveFile",
+      title: "Rive File",
+      type: "file",
+      options: { accept: ".riv" },
+      description: "Upload a Rive animation file (e.g., electrolysis.riv)",
+    }),
+    defineField({
+      name: "problemData",
+      title: "Solution Steps / Problem Data",
       type: "array",
-      description: "Steps that show the solution process",
+      description: "Steps displayed in the circular animation graph",
       validation: (Rule) => Rule.required().min(1),
       of: [
         defineArrayMember({
           type: "object",
-          name: "solutionStep", // <— consistent naming
+          name: "solutionStep",
           title: "Solution Step",
           fields: [
             defineField({
               name: "id",
               title: "ID",
               type: "number",
-              description: "Unique identifier for the step",
               validation: (Rule) => Rule.required(),
+              description: "Unique identifier for the step",
             }),
             defineField({
               name: "title",
               title: "Title",
               type: "string",
-              description: "Step title",
               validation: (Rule) => Rule.required(),
+              description: "Step title (e.g., 'Plasma Electrolysis Systems (Plasmalyzers®)')",
             }),
             defineField({
               name: "description",
               title: "Description",
               type: "text",
-              description: "Detailed description of the step",
               validation: (Rule) => Rule.required(),
+              description: "Detailed explanation of this step",
+            }),
+            defineField({
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+              description: "Optional image for this step",
+            }),
+            defineField({
+              name: "link",
+              title: "Link",
+              type: "url",
+              description: "Optional URL link for this step (e.g., /products/methane-plasmalyzer)",
             }),
           ],
           preview: {
             select: {
-              title: "title.en",
+              title: "title",
               subtitle: "id",
+              media: "image",
             },
           },
         }),
       ],
     }),
-    defineField({
-      name: "backgroundImage",
-      title: "Background Image",
-      type: "image",
-      description: "Image displayed on the right side of the section",
-      options: {
-        hotspot: true,
-      },
-      validation: (Rule) => Rule.required(),
-      fields: [
-        defineField({
-          name: "alt",
-          title: "Alternative Text",
-          type: "string",
-          description: "Accessibility description of the image",
-        }),
-      ],
-    }),
   ],
-  preview: {
-    select: {
-      title: "heading.en",
-      subtitle: "sectionLabel.en",
-      media: "backgroundImage",
-    },
-    prepare({ title, subtitle, media }) {
-      return {
-        title: title || "Solution Section",
-        subtitle: subtitle || "Our Solution",
-        media,
-      };
-    },
-  },
 });

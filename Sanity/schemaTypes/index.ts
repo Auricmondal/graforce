@@ -53,7 +53,7 @@ import impactoppurtunityabout from "./about/impactoppurtunityabout"
 import ourFounder from "./about/ourFounder"
 import ourWholeTeam from "./about/ourWholeTeam"
 import stats from "./about/stats"
-import impactOppurtunity from "./investors/ImpactOppurtunity"
+//import ImpactOppurtunity from "./investors/impactOppurtunity"
 import AboutUsjob from "./jobs/AboutUsjob"
 import graforceCards from "./investors/graforceCards"
 import job from "./jobs/job"
@@ -63,6 +63,17 @@ import methanePlasmalyzer from "./methane-plasmalyzer"
 import methaneplasmalyzerhero from "./products/methane-plasmalyzer/methaneplasmalyzerhero"
 import plasmaAmmoniaCracker from "./plasma-ammonia-cracker"
 import plasmaammoniacrackerhero from "./products/plasma-ammonia-cracker/plasmaammoniacrackerhero"
+import impactOppurtunity from "./investors/impactOppurtunity"
+import wastewaterPlasmalyzer from "./wastewater-plasmalyzer"
+import wastewaterhero from "./products/wastewater-plasmalyzer/wastewaterhero"
+import usedComponents from "./used-components"
+import usedcomponentshero from "./products/used-components/usedcomponentshero"
+import syntheticCarbon from "./synthetic-carbon"
+import syntheticcarbonhero from "./products/synthetic-carbon/syntheticcarbonhero"
+import syntheticcarbonqualityhero from "./products/synthetic-carbon-quality/syntheticcarbonqualityhero"
+import syngasProduction from "./syngas-production"
+import syngasproductionhero from "./products/syngas-production/syngasproductionhero"
+import syntheticCarbonQuality from "./synthetic-carbon-quality"
 
 
 
@@ -102,6 +113,17 @@ export const schemaTypes = [
     whywematter,
     graforcesolution,
     howthisworks,
+    wastewaterPlasmalyzer,
+    wastewaterhero,
+    usedComponents,
+    usedcomponentshero,
+    syntheticCarbon,
+    syntheticcarbonhero,
+    syntheticCarbonQuality,
+    syntheticcarbonqualityhero,
+    syngasProduction,
+    syngasproductionhero,
+
 
     newsPage,
     blog,

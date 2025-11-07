@@ -9,34 +9,65 @@ export default defineType({
       name: "sectionHeader",
       title: "Section Header",
       type: "string",
-      description: "Header text for the testimonial section",
+      description: "Header text for the testimonial section. Example: 'This is What Our Customers Have to Say'.",
     }),
     defineField({
       name: "sectionSubHeader",
       title: "Section Subheader",
       type: "string",
-      description: "Subheader text (optional)",
+      description: "Optional subheader text. Example: 'Valuable Reviews'.",
     }),
     defineField({
       name: "testimonials",
       title: "Testimonials",
       type: "array",
+      description: "Customer reviews to be displayed in the testimonial section.",
       of: [
-        {
+        defineField({
+          name: "testimonialItem",
+          title: "Testimonial",
           type: "object",
           fields: [
-            { name: "companyName", type: "string", title: "Company Name" },
-            {
+            defineField({
+              name: "companyName",
+              title: "Company Name",
+              type: "string",
+              description: "The name of the company giving the testimonial.",
+            }),
+            defineField({
               name: "logo",
-              type: "image",
               title: "Company Logo",
+              type: "image",
               options: { hotspot: true },
-            },
-            { name: "review", type: "text", title: "Review Text" },
-            { name: "reviewer", type: "string", title: "Reviewer Name" },
-            { name: "designation", type: "string", title: "Designation" },
+              description: "Upload the company logo image.",
+            }),
+            defineField({
+              name: "review",
+              title: "Review Text",
+              type: "text",
+              description: "The main testimonial text.",
+            }),
+            defineField({
+              name: "reviewer",
+              title: "Reviewer Name",
+              type: "string",
+              description: "Name of the person giving the review.",
+            }),
+            defineField({
+              name: "designation",
+              title: "Designation",
+              type: "string",
+              description: "Designation or role of the reviewer.",
+            }),
           ],
-        },
+          preview: {
+            select: {
+              title: "companyName",
+              subtitle: "reviewer",
+              media: "logo",
+            },
+          },
+        }),
       ],
     }),
   ],
