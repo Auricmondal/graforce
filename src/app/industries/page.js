@@ -19,7 +19,7 @@ const IndustryPage = () => {
 
   return (
     <div>
-      <Hero />
+      <Hero/>
       <ImportantDetails
         sectionLabel="Industries We Serve"
         sectionHeader="Explore Solutions that Fits Your Needs"

@@ -19,7 +19,7 @@ const Hero = () => {
     title: "Clean Syngas, Built from Residue Streams",
     subTitle:
       "Turning methane, biogas or other gaseous residues into hydrogen and synthesis gas with zero CO₂.",
-    backgroundImageUrl: bgImg.src,
+    backgroundImageUrl: bgImg,
     primaryButtonText: "Talk to an Expert",
     primaryButtonAction: "openModal",
     secondaryButtonText: "Download Brochure",
